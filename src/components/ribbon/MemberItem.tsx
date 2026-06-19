@@ -81,10 +81,10 @@ export function MemberRow({ user, role }: { user: User; role?: string }) {
           style={{
             background:
               role === "owner"
-                ? "rgba(255, 59, 48, 0.15)"
+                ? "rgba(255, 255, 255, 0.12)"
                 : role === "admin"
                   ? "rgba(255, 214, 10, 0.15)"
-                  : "rgba(0, 214, 125, 0.15)",
+                  : "rgba(128, 132, 142, 0.18)",
             color:
               role === "owner"
                 ? "var(--color-ribbon-terracotta)"

@@ -119,7 +119,7 @@ export function ServerSettingsView() {
                     onClick={() => setServerSettingsTab(t.id)}
                     className="mb-0.5 flex w-full cursor-pointer items-center gap-2 rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
                     style={{
-                      background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
+                      background: active ? "rgba(255, 255, 255, 0.08)" : "transparent",
                       color: active
                         ? "var(--color-ribbon-terracotta)"
                         : "var(--color-ribbon-text-dim)",
@@ -146,7 +146,7 @@ export function ServerSettingsView() {
               onClick={() => navigate("dms")}
               className="flex cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 py-2 text-[12px] transition"
               style={{ color: "var(--color-ribbon-terracotta)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 59, 48, 0.08)")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               <Trash2 size={12} strokeWidth={2} />
@@ -359,11 +359,11 @@ function OverviewTab({
             className="flex cursor-pointer items-center gap-1 rounded-lg border border-dashed px-3 py-1 text-[12px] transition"
             style={{
               background: "rgba(255, 255, 255, 0.04)",
-              borderColor: "rgba(255, 255, 255, 0.08)",
+              borderColor: "transparent",
               color: "var(--color-ribbon-text-faint)",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.15)")}
-            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)")}
+            onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--ribbon-border-strong)")}
+            onMouseLeave={(e) => (e.currentTarget.style.borderColor = "transparent")}
           >
             <Plus size={10} strokeWidth={2.5} />
             add tag
@@ -396,7 +396,7 @@ function OverviewTab({
       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
       <div
         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
-        style={{ background: server?.banner ?? "linear-gradient(135deg, #E5484D 0%, #F5A623 50%, #12B886 100%)" }}
+        style={{ background: server?.banner ?? "linear-gradient(135deg, #B5BAC1 0%, #B5BAC1 50%, #80848E 100%)" }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
@@ -417,11 +417,11 @@ function OverviewTab({
         <button
           className="cursor-pointer rounded-[12px] px-7 py-2.5 text-[13px] font-bold text-white transition"
           style={{
-            background: "#E5484D",
-            boxShadow: "0 4px 16px rgba(255, 59, 48, 0.25)",
+            background: "#B5BAC1",
+            boxShadow: "0 4px 16px rgba(255, 255, 255, 0.2)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
         >
           save changes
         </button>
@@ -533,7 +533,7 @@ function ToggleRow({
         style={{
           width: 40,
           height: 22,
-          background: value ? "#12B886" : "rgba(255, 255, 255, 0.1)",
+          background: value ? "#80848E" : "rgba(255, 255, 255, 0.1)",
           padding: 2,
         }}
       >

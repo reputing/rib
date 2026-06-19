@@ -55,7 +55,7 @@ export function ServersListView() {
           onClick={() => navigate("discover")}
           className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-[10px] px-3 py-1.5 text-[12px] font-medium"
           style={{
-            background: "rgba(255, 59, 48, 0.12)",
+            background: "rgba(255, 255, 255, 0.1)",
             color: "var(--color-ribbon-terracotta)",
           }}
         >
@@ -78,7 +78,7 @@ export function ServersListView() {
                 borderColor: "var(--color-ribbon-border)",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                e.currentTarget.style.borderColor = "transparent";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
@@ -133,7 +133,7 @@ export function ServersListView() {
                 opacity: 0.7,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+                e.currentTarget.style.borderColor = "transparent";
                 e.currentTarget.style.opacity = "1";
               }}
               onMouseLeave={(e) => {

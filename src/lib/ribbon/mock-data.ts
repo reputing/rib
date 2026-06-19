@@ -225,7 +225,7 @@ export const servers: Record<string, Server> = {
     isPublic: true,
     category: "art",
     tags: ["art", "design", " critique", "collab"],
-    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+    banner: "linear-gradient(135deg, #4E5058 0%, #6D6F78 50%, #80848E 100%)",
     joined: true,
     channels: [
       { id: "ac-general", name: "general", type: "text", topic: "general chitchat" },
@@ -258,7 +258,7 @@ export const servers: Record<string, Server> = {
     onlineCount: 3,
     isPublic: false,
     category: "tech",
-    banner: "linear-gradient(135deg, #D4944C 0%, #8B7FA0 100%)",
+    banner: "linear-gradient(135deg, #6D6F78 0%, #9497A0 100%)",
     joined: true,
     channels: [
       { id: "d-general", name: "general", type: "text", topic: "service status & chitchat" },
@@ -276,7 +276,7 @@ export const servers: Record<string, Server> = {
     onlineCount: 38,
     isPublic: true,
     category: "art",
-    banner: "linear-gradient(135deg, #7BA87A 0%, #C4654A 100%)",
+    banner: "linear-gradient(135deg, #80848E 0%, #4E5058 100%)",
     joined: true,
     channels: [
       { id: "g-general", name: "general", type: "text" },
@@ -295,7 +295,7 @@ export const servers: Record<string, Server> = {
     onlineCount: 41,
     isPublic: true,
     category: "music",
-    banner: "linear-gradient(135deg, #8B7FA0 0%, #D4944C 100%)",
+    banner: "linear-gradient(135deg, #9497A0 0%, #6D6F78 100%)",
     joined: true,
     channels: [
       { id: "m-general", name: "general", type: "text", mentions: 2 },
@@ -322,7 +322,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "music",
     tags: ["lofi", "chill", "study", "beats"],
-    banner: "linear-gradient(135deg, #8B7FA0 0%, #7BA87A 100%)",
+    banner: "linear-gradient(135deg, #9497A0 0%, #80848E 100%)",
   },
   {
     id: "pixel-pushers",
@@ -335,7 +335,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "art",
     tags: ["pixel art", "sprites", "games", "animation"],
-    banner: "linear-gradient(135deg, #C4654A 0%, #8B7FA0 100%)",
+    banner: "linear-gradient(135deg, #4E5058 0%, #9497A0 100%)",
   },
   {
     id: "code-cave",
@@ -348,7 +348,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "tech",
     tags: ["code", "shaders", "generative", "webgl"],
-    banner: "linear-gradient(135deg, #7BA87A 0%, #D4944C 100%)",
+    banner: "linear-gradient(135deg, #80848E 0%, #6D6F78 100%)",
   },
   {
     id: "writers-block",
@@ -361,7 +361,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "creators",
     tags: ["writing", "novels", "poetry", "critique"],
-    banner: "linear-gradient(135deg, #D4944C 0%, #C4654A 100%)",
+    banner: "linear-gradient(135deg, #6D6F78 0%, #4E5058 100%)",
   },
   {
     id: "synth-wave",
@@ -374,7 +374,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "music",
     tags: ["synthwave", "retrowave", "analog", "synths"],
-    banner: "linear-gradient(135deg, #8B7FA0 0%, #C4654A 100%)",
+    banner: "linear-gradient(135deg, #9497A0 0%, #4E5058 100%)",
   },
   {
     id: "photo-lab",
@@ -387,7 +387,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "art",
     tags: ["photography", "film", "analog", "critique"],
-    banner: "linear-gradient(135deg, #7BA87A 0%, #8B7FA0 100%)",
+    banner: "linear-gradient(135deg, #80848E 0%, #9497A0 100%)",
   },
   // New servers matching the Discover mockup
   {
@@ -401,7 +401,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "gaming",
     tags: ["gaming", "lfg", "voice"],
-    banner: "linear-gradient(135deg, #8B7FA0 0%, #6B5F80 50%, #4A3D60 100%)",
+    banner: "linear-gradient(135deg, #9497A0 0%, #3A3B3F 50%, #2B2D31 100%)",
   },
   {
     id: "music-corner",
@@ -414,7 +414,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "music",
     tags: ["playlists", "discovery", "vibes"],
-    banner: "linear-gradient(135deg, #D4944C 0%, #C4654A 100%)",
+    banner: "linear-gradient(135deg, #6D6F78 0%, #4E5058 100%)",
   },
   {
     id: "coding-club",
@@ -427,7 +427,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "tech",
     tags: ["opensource", "collabs", "reviews"],
-    banner: "linear-gradient(135deg, #7BA87A 0%, #5B8A6C 100%)",
+    banner: "linear-gradient(135deg, #80848E 0%, #5D6067 100%)",
   },
   {
     id: "film-nerds",
@@ -440,7 +440,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "social",
     tags: ["movies", "reviews", "watchlists"],
-    banner: "linear-gradient(135deg, #B85544 0%, #8B7FA0 100%)",
+    banner: "linear-gradient(135deg, #3A3B3F 0%, #9497A0 100%)",
   },
   {
     id: "plant-parents",
@@ -453,7 +453,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "hangout",
     tags: ["plants", "garden", "propagation"],
-    banner: "linear-gradient(135deg, #D4944C 0%, #7BA87A 100%)",
+    banner: "linear-gradient(135deg, #6D6F78 0%, #80848E 100%)",
   },
   {
     id: "streetwear-talk",
@@ -466,7 +466,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "social",
     tags: ["streetwear", "drops", "thrift"],
-    banner: "linear-gradient(135deg, #D4944C 0%, #B85544 100%)",
+    banner: "linear-gradient(135deg, #6D6F78 0%, #3A3B3F 100%)",
   },
   // Featured cards from the Discover mockup
   {
@@ -480,7 +480,7 @@ export const discoverableServers: Server[] = [
     isPublic: true,
     category: "art",
     tags: ["art", "design", "critique"],
-    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+    banner: "linear-gradient(135deg, #4E5058 0%, #6D6F78 50%, #80848E 100%)",
   },
 ];
 
@@ -498,7 +498,7 @@ export const friendsInServers: { server: Server; friendIds: string[] }[] = [
       isPublic: true,
       category: "creators",
       tags: ["writing"],
-      banner: "linear-gradient(135deg, #D4944C 0%, #B85544 100%)",
+      banner: "linear-gradient(135deg, #6D6F78 0%, #3A3B3F 100%)",
     },
     friendIds: ["maya", "lena"],
   },
@@ -514,7 +514,7 @@ export const friendsInServers: { server: Server; friendIds: string[] }[] = [
       isPublic: true,
       category: "music",
       tags: ["vinyl", "records"],
-      banner: "linear-gradient(135deg, #7BA87A 0%, #D4944C 100%)",
+      banner: "linear-gradient(135deg, #80848E 0%, #6D6F78 100%)",
     },
     friendIds: ["kai"],
   },
@@ -530,7 +530,7 @@ export const friendsInServers: { server: Server; friendIds: string[] }[] = [
       isPublic: true,
       category: "social",
       tags: ["anime", "watch"],
-      banner: "linear-gradient(135deg, #8B7FA0 0%, #B85544 100%)",
+      banner: "linear-gradient(135deg, #9497A0 0%, #3A3B3F 100%)",
     },
     friendIds: ["river", "sol"],
   },
@@ -549,7 +549,7 @@ export const featuredServerCards: Server[] = [
     isPublic: true,
     category: "art",
     tags: ["art", "design", "critique"],
-    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+    banner: "linear-gradient(135deg, #4E5058 0%, #6D6F78 50%, #80848E 100%)",
   },
   {
     id: "gaming-lounge-featured",
@@ -562,7 +562,7 @@ export const featuredServerCards: Server[] = [
     isPublic: true,
     category: "gaming",
     tags: ["gaming", "lfg", "voice"],
-    banner: "linear-gradient(135deg, #8B7FA0 0%, #6B5F80 50%, #4A3D60 100%)",
+    banner: "linear-gradient(135deg, #9497A0 0%, #3A3B3F 50%, #2B2D31 100%)",
   },
 ];
 
@@ -610,7 +610,7 @@ export const onboardingSuggestedServers: Server[] = [
     isPublic: true,
     category: "art",
     tags: ["art", "design", "critique"],
-    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+    banner: "linear-gradient(135deg, #4E5058 0%, #6D6F78 50%, #80848E 100%)",
   },
   {
     id: "coding-club-suggested",
@@ -623,7 +623,7 @@ export const onboardingSuggestedServers: Server[] = [
     isPublic: true,
     category: "tech",
     tags: ["opensource", "collabs"],
-    banner: "linear-gradient(135deg, #7BA87A 0%, #5B8A6C 100%)",
+    banner: "linear-gradient(135deg, #80848E 0%, #5D6067 100%)",
   },
   {
     id: "streetwear-talk-suggested",
@@ -636,7 +636,7 @@ export const onboardingSuggestedServers: Server[] = [
     isPublic: true,
     category: "social",
     tags: ["streetwear", "drops"],
-    banner: "linear-gradient(135deg, #D4944C 0%, #B85544 100%)",
+    banner: "linear-gradient(135deg, #6D6F78 0%, #3A3B3F 100%)",
   },
   {
     id: "film-nerds-suggested",
@@ -649,7 +649,7 @@ export const onboardingSuggestedServers: Server[] = [
     isPublic: true,
     category: "social",
     tags: ["movies", "reviews"],
-    banner: "linear-gradient(135deg, #B85544 0%, #8B7FA0 100%)",
+    banner: "linear-gradient(135deg, #3A3B3F 0%, #9497A0 100%)",
   },
 ];
 
@@ -690,7 +690,7 @@ export const galleryMessages: Message[] = [
         type: "profile",
         title: "sol",
         subtitle: "digital alchemist",
-        banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+        banner: "linear-gradient(135deg, #4E5058 0%, #6D6F78 50%, #80848E 100%)",
         avatarLetter: "s",
         avatarAccent: "terracotta",
         meta: "digital artist · 3 boards · 12 links",
@@ -951,60 +951,60 @@ export const pinboardItems: PinItem[] = [
   {
     id: "p1", ownerId: "sol", title: "texture pack v3",
     description: "rust, paper, and noise overlays",
-    gradient: "linear-gradient(135deg, #C4654A 0%, #2A2118 100%)",
+    gradient: "linear-gradient(135deg, #4E5058 0%, #2A2118 100%)",
     pinnedAt: "2d ago", likes: 12, comments: 3, tag: "textures",
   },
   {
     id: "p2", ownerId: "sol", title: "color study — coastal",
-    gradient: "linear-gradient(135deg, #7BA87A 0%, #D4944C 100%)",
+    gradient: "linear-gradient(135deg, #80848E 0%, #6D6F78 100%)",
     pinnedAt: "5d ago", likes: 18, comments: 2, tag: "color",
   },
   {
     id: "p3", ownerId: "sol", title: "low-poly island",
     description: "test render for the next collab",
-    gradient: "linear-gradient(135deg, #8B7FA0 0%, #C4654A 100%)",
+    gradient: "linear-gradient(135deg, #9497A0 0%, #4E5058 100%)",
     pinnedAt: "1w ago", likes: 24, comments: 5, tag: "3d",
   },
   {
     id: "p4", ownerId: "sol", title: "biomass gradient",
-    gradient: "linear-gradient(135deg, #D4944C 0%, #7BA87A 50%, #8B7FA0 100%)",
+    gradient: "linear-gradient(135deg, #6D6F78 0%, #80848E 50%, #9497A0 100%)",
     pinnedAt: "1w ago", likes: 9, comments: 1, tag: "gradient",
   },
   {
     id: "p5", ownerId: "sol", title: "molten type",
     description: "experiment with crt distortion",
-    gradient: "linear-gradient(135deg, #B85544 0%, #131010 100%)",
+    gradient: "linear-gradient(135deg, #3A3B3F 0%, #131010 100%)",
     pinnedAt: "2w ago", likes: 31, comments: 7, tag: "type",
   },
   {
     id: "p6", ownerId: "sol", title: "field recording — waves",
-    gradient: "linear-gradient(135deg, #7BA87A 0%, #211D17 100%)",
+    gradient: "linear-gradient(135deg, #80848E 0%, #211D17 100%)",
     pinnedAt: "2w ago", likes: 6, comments: 0, tag: "audio",
   },
   {
     id: "p7", ownerId: "sol", title: "studio setup 2026",
-    gradient: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #211D17 100%)",
+    gradient: "linear-gradient(135deg, #4E5058 0%, #6D6F78 50%, #211D17 100%)",
     pinnedAt: "3w ago", likes: 14, comments: 4, tag: "studio",
   },
   {
     id: "p8", ownerId: "sol", title: "chromatic aberration test",
-    gradient: "linear-gradient(135deg, #8B7FA0 0%, #C4654A 50%, #7BA87A 100%)",
+    gradient: "linear-gradient(135deg, #9497A0 0%, #4E5058 50%, #80848E 100%)",
     pinnedAt: "3w ago", likes: 22, comments: 3, tag: "fx",
   },
   // Maya's pinboard
   {
     id: "p9", ownerId: "maya", title: "sculpt — desert god",
-    gradient: "linear-gradient(135deg, #C4654A 0%, #8B7FA0 100%)",
+    gradient: "linear-gradient(135deg, #4E5058 0%, #9497A0 100%)",
     pinnedAt: "4d ago", likes: 17, comments: 2, tag: "3d",
   },
   {
     id: "p10", ownerId: "maya", title: "topology study",
-    gradient: "linear-gradient(135deg, #D4944C 0%, #211D17 100%)",
+    gradient: "linear-gradient(135deg, #6D6F78 0%, #211D17 100%)",
     pinnedAt: "1w ago", likes: 11, comments: 1, tag: "3d",
   },
   {
     id: "p11", ownerId: "maya", title: "hair shader wip",
-    gradient: "linear-gradient(135deg, #7BA87A 0%, #C4654A 100%)",
+    gradient: "linear-gradient(135deg, #80848E 0%, #4E5058 100%)",
     pinnedAt: "2w ago", likes: 8, comments: 0, tag: "shader",
   },
 ];

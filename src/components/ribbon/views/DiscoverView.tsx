@@ -69,7 +69,7 @@ export function DiscoverView() {
         <div className="flex items-center gap-2 px-3.5 pt-3.5 pb-2">
           <div
             className="flex h-7 w-7 items-center justify-center rounded-[9px] text-[14px] font-extrabold text-white"
-            style={{ background: "#E5484D" }}
+            style={{ background: "#B5BAC1" }}
           >
             r
           </div>
@@ -93,7 +93,7 @@ export function DiscoverView() {
                 onClick={() => setDiscoverCategory(cat.id)}
                 className="flex cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
                 style={{
-                  background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
+                  background: active ? "rgba(255, 255, 255, 0.08)" : "transparent",
                   color: active
                     ? "var(--color-ribbon-terracotta)"
                     : "var(--color-ribbon-text-dim)",
@@ -183,7 +183,7 @@ export function DiscoverView() {
                     borderColor: "var(--color-ribbon-border)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.07)";
+                    e.currentTarget.style.borderColor = "transparent";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
@@ -232,8 +232,8 @@ export function DiscoverView() {
                     className="flex-none cursor-pointer rounded-lg px-3 py-1.5 text-[11px] font-semibold transition"
                     style={{
                       background: isJoined
-                        ? "rgba(0, 214, 125, 0.12)"
-                        : "rgba(255, 59, 48, 0.12)",
+                        ? "rgba(128, 132, 142, 0.14)"
+                        : "rgba(255, 255, 255, 0.1)",
                       color: isJoined
                         ? "var(--color-ribbon-sage)"
                         : "var(--color-ribbon-terracotta)",
@@ -270,7 +270,7 @@ export function DiscoverView() {
                     borderColor: "var(--color-ribbon-border)",
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.07)";
+                    e.currentTarget.style.borderColor = "transparent";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
@@ -348,7 +348,7 @@ function FeaturedServerCard({
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+        e.currentTarget.style.borderColor = "transparent";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
@@ -381,7 +381,7 @@ function FeaturedServerCard({
             style={{
               background: "rgba(0, 0, 0, 0.4)",
               backdropFilter: "blur(4px)",
-              color: "#12B886",
+              color: "#80848E",
             }}
           >
             {server.onlineCount} online
@@ -435,8 +435,8 @@ function FeaturedServerCard({
           className="mt-3 w-full cursor-pointer rounded-[10px] py-2 text-[12px] font-semibold transition"
           style={{
             background: joined
-              ? "rgba(0, 214, 125, 0.15)"
-              : "rgba(255, 59, 48, 0.15)",
+              ? "rgba(128, 132, 142, 0.18)"
+              : "rgba(255, 255, 255, 0.12)",
             color: joined
               ? "var(--color-ribbon-sage)"
               : "var(--color-ribbon-terracotta)",

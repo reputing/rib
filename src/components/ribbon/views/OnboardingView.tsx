@@ -20,14 +20,14 @@ const INTEREST_ICONS = {
 };
 
 const PARTICLES = [
-  { top: "8%", left: "15%", size: 5, color: "#E5484D", delay: 0, char: "✦" },
+  { top: "8%", left: "15%", size: 5, color: "#B5BAC1", delay: 0, char: "✦" },
   { top: "20%", left: "80%", size: 2, color: "#E8E0D6", delay: 0.6, dot: true },
-  { top: "70%", left: "10%", size: 2, color: "#4263EB", delay: 1.1, dot: true },
-  { top: "85%", left: "75%", size: 4, color: "#F5A623", delay: 1.6, char: "✦" },
-  { top: "30%", left: "5%", size: 2, color: "#E5484D", delay: 2.1, dot: true },
+  { top: "70%", left: "10%", size: 2, color: "#9497A0", delay: 1.1, dot: true },
+  { top: "85%", left: "75%", size: 4, color: "#B5BAC1", delay: 1.6, char: "✦" },
+  { top: "30%", left: "5%", size: 2, color: "#B5BAC1", delay: 2.1, dot: true },
   { top: "50%", left: "90%", size: 4, color: "#E8E0D6", delay: 0.4, char: "✦" },
-  { top: "15%", left: "45%", size: 1, color: "#F5A623", delay: 3.1, dot: true },
-  { top: "90%", left: "35%", size: 2, color: "#4263EB", delay: 2.6, dot: true },
+  { top: "15%", left: "45%", size: 1, color: "#B5BAC1", delay: 3.1, dot: true },
+  { top: "90%", left: "35%", size: 2, color: "#9497A0", delay: 2.6, dot: true },
 ];
 
 export function OnboardingView() {
@@ -183,7 +183,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             width: 80,
             height: 80,
             borderRadius: 22,
-            border: "1px solid rgba(255, 59, 48, 0.2)",
+            border: "1px solid transparent",
           }}
         />
         <div
@@ -192,7 +192,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             width: 80,
             height: 80,
             borderRadius: 22,
-            border: "1px solid rgba(255, 59, 48, 0.15)",
+            border: "1px solid transparent",
             animationDelay: "1s",
           }}
         />
@@ -203,8 +203,8 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             height: 80,
             borderRadius: 22,
             fontSize: 36,
-            background: "linear-gradient(135deg, #E5484D, #F5A623)",
-            boxShadow: "0 8px 40px rgba(255, 59, 48, 0.3)",
+            background: "linear-gradient(135deg, #B5BAC1, #B5BAC1)",
+            boxShadow: "0 8px 40px rgba(255, 255, 255, 0.24)",
           }}
         >
           p
@@ -226,11 +226,11 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         onClick={onNext}
         className="mt-8 cursor-pointer rounded-[14px] px-10 py-3 text-[14px] font-bold text-white transition"
         style={{
-          background: "#E5484D",
-          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
+          background: "#B5BAC1",
+          boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
       >
         get started
       </button>
@@ -238,7 +238,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         already have an account?{" "}
         <span
           className="cursor-pointer font-semibold"
-          style={{ color: "#E5484D" }}
+          style={{ color: "#B5BAC1" }}
           onClick={onNext}
         >
           sign in
@@ -275,7 +275,7 @@ function StepCreateAccount({
         className="mt-6 flex items-center gap-2.5 rounded-[14px] border px-4 py-3.5"
         style={{
           background: "#1A1612",
-          borderColor: "rgba(255, 255, 255, 0.06)",
+          borderColor: "transparent",
         }}
       >
         <span className="text-[13px] font-semibold" style={{ color: "#5C5045" }}>
@@ -292,9 +292,9 @@ function StepCreateAccount({
         {username && (
           <div
             className="flex h-[18px] w-[18px] items-center justify-center rounded-full"
-            style={{ background: "rgba(0, 214, 125, 0.15)" }}
+            style={{ background: "rgba(128, 132, 142, 0.18)" }}
           >
-            <Check size={10} strokeWidth={3} style={{ color: "#12B886" }} />
+            <Check size={10} strokeWidth={3} style={{ color: "#80848E" }} />
           </div>
         )}
       </div>
@@ -302,7 +302,7 @@ function StepCreateAccount({
       {/* Password */}
       <div
         className="mt-2 rounded-[14px] border px-4 py-3.5"
-        style={{ background: "#1A1612", borderColor: "rgba(255, 255, 255, 0.04)" }}
+        style={{ background: "#1A1612", borderColor: "transparent" }}
       >
         <input
           type="password"
@@ -329,11 +329,11 @@ function StepCreateAccount({
         onClick={onNext}
         className="mt-5 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E5484D",
-          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
+          background: "#B5BAC1",
+          boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
       >
         continue
       </button>
@@ -348,7 +348,7 @@ function SocialButton({ label, icon }: { label: string; icon?: React.ReactNode }
       className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[12px] border py-2.5 text-[12px] font-semibold transition"
       style={{
         background: "rgba(255, 255, 255, 0.04)",
-        borderColor: "rgba(255, 255, 255, 0.04)",
+        borderColor: "transparent",
         color: "#A89A88",
       }}
       onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)")}
@@ -396,14 +396,14 @@ function StepPickVibe({
               className="flex cursor-pointer flex-col items-center gap-2 rounded-[14px] border-2 py-4 text-center transition"
               style={{
                 background: isSelected ? `${accentColor}1A` : "rgba(255, 255, 255, 0.03)",
-                borderColor: isSelected ? accentColor : "rgba(255, 255, 255, 0.06)",
+                borderColor: isSelected ? accentColor : "transparent",
                 boxShadow: isSelected ? `0 0 20px ${accentColor}26` : "none",
               }}
               onMouseEnter={(e) => {
                 if (!isSelected) e.currentTarget.style.borderColor = `${accentColor}66`;
               }}
               onMouseLeave={(e) => {
-                if (!isSelected) e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.06)";
+                if (!isSelected) e.currentTarget.style.borderColor = "transparent";
               }}
             >
               <Icon size={20} strokeWidth={2} style={{ color: accentColor }} />
@@ -422,11 +422,11 @@ function StepPickVibe({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E5484D",
-          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
+          background: "#B5BAC1",
+          boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
       >
         continue
       </button>
@@ -469,7 +469,7 @@ function StepFindPeople({
               style={{
                 background: "#1A1612",
                 borderColor: isJoined
-                  ? "rgba(0, 214, 125, 0.2)"
+                  ? "rgba(128, 132, 142, 0.22)"
                   : "rgba(255, 255, 255, 0.04)",
               }}
             >
@@ -493,9 +493,9 @@ function StepFindPeople({
                 className="flex-none cursor-pointer rounded-lg px-3.5 py-1.5 text-[11px] font-semibold transition"
                 style={{
                   background: isJoined
-                    ? "rgba(0, 214, 125, 0.15)"
-                    : "rgba(255, 59, 48, 0.12)",
-                  color: isJoined ? "#12B886" : "#E5484D",
+                    ? "rgba(128, 132, 142, 0.18)"
+                    : "rgba(255, 255, 255, 0.1)",
+                  color: isJoined ? "#80848E" : "#B5BAC1",
                 }}
               >
                 {isJoined ? "joined" : "join"}
@@ -509,11 +509,11 @@ function StepFindPeople({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E5484D",
-          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
+          background: "#B5BAC1",
+          boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
       >
         continue
       </button>
@@ -553,8 +553,8 @@ function StepSetUpRibbon({
         style={{
           background: "rgba(14, 12, 10, 0.7)",
           backdropFilter: "blur(16px)",
-          borderColor: "rgba(255, 255, 255, 0.05)",
-          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 59, 48, 0.06)",
+          borderColor: "transparent",
+          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(181, 186, 193, 0.04)",
         }}
       >
         {/* Avatar upload area */}
@@ -563,14 +563,14 @@ function StepSetUpRibbon({
             className="flex h-16 w-16 cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px] border-2 border-dashed transition"
             style={{
               background: "rgba(255, 255, 255, 0.04)",
-              borderColor: "rgba(255, 255, 255, 0.1)",
+              borderColor: "transparent",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.2)";
+              e.currentTarget.style.borderColor = "var(--ribbon-border-strong)";
               e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+              e.currentTarget.style.borderColor = "transparent";
               e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
             }}
           >
@@ -594,7 +594,7 @@ function StepSetUpRibbon({
           className="mt-3 w-full rounded-[10px] border px-3.5 py-2.5 text-[12px] outline-none"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
-            borderColor: "rgba(255, 255, 255, 0.04)",
+            borderColor: "transparent",
             color: "#EDE5D6",
           }}
         />
@@ -604,10 +604,10 @@ function StepSetUpRibbon({
           className="mt-2 flex w-full cursor-pointer items-center gap-2 rounded-[10px] border px-3.5 py-2.5 transition"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
-            borderColor: "rgba(255, 255, 255, 0.04)",
+            borderColor: "transparent",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)")}
-          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.04)")}
+          onMouseEnter={(e) => (e.currentTarget.style.borderColor = "transparent")}
+          onMouseLeave={(e) => (e.currentTarget.style.borderColor = "transparent")}
         >
           <Plus size={14} strokeWidth={2} style={{ color: "#5C5045" }} />
           <span className="text-[12px]" style={{ color: "#5C5045" }}>
@@ -623,7 +623,7 @@ function StepSetUpRibbon({
               className="flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[8px] border transition"
               style={{
                 background: "rgba(255, 255, 255, 0.03)",
-                borderColor: "rgba(255, 255, 255, 0.04)",
+                borderColor: "transparent",
               }}
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)")}
@@ -638,11 +638,11 @@ function StepSetUpRibbon({
         onClick={onFinish}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E5484D",
-          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
+          background: "#B5BAC1",
+          boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
       >
         enter prey
       </button>
@@ -671,8 +671,8 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           width: 72,
           height: 72,
           borderRadius: 20,
-          background: "linear-gradient(135deg, #12B886, #00B85C)",
-          boxShadow: "0 8px 30px rgba(0, 214, 125, 0.3)",
+          background: "linear-gradient(135deg, #80848E, #00B85C)",
+          boxShadow: "0 8px 30px rgba(128, 132, 142, 0.3)",
         }}
       >
         <Check size={32} strokeWidth={2.5} style={{ color: "#fff" }} />
@@ -694,11 +694,11 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           onClick={onFinish}
           className="cursor-pointer rounded-[14px] px-7 py-3 text-[14px] font-bold text-white transition"
           style={{
-            background: "#E5484D",
-            boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
+            background: "#B5BAC1",
+            boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
         >
           start chatting
         </button>
@@ -707,7 +707,7 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           className="cursor-pointer rounded-[14px] border px-7 py-3 text-[14px] font-bold transition"
           style={{
             background: "rgba(255, 255, 255, 0.04)",
-            borderColor: "rgba(255, 255, 255, 0.06)",
+            borderColor: "transparent",
             color: "#A89A88",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)")}
@@ -731,7 +731,7 @@ function ProgressBar({ step }: { step: number }) {
             width: 32,
             height: 3,
             borderRadius: 2,
-            background: i <= step ? "#E5484D" : "rgba(255, 255, 255, 0.06)",
+            background: i <= step ? "#B5BAC1" : "rgba(255, 255, 255, 0.06)",
           }}
         />
       ))}

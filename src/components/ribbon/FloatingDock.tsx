@@ -174,8 +174,8 @@ export function FloatingDock() {
           }}
           className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
           style={{
-            background: "rgba(0, 214, 125, 0.15)",
-            border: "1px solid rgba(0, 214, 125, 0.3)",
+            background: "rgba(128, 132, 142, 0.18)",
+            border: "1px solid rgba(128, 132, 142, 0.3)",
           }}
           title="Voice call active"
         >
@@ -184,7 +184,7 @@ export function FloatingDock() {
             style={{
               width: 8,
               height: 8,
-              background: "#12B886",
+              background: "#80848E",
               animation: "ribbon-enter-pulse 1.5s ease-in-out infinite",
             }}
           />
@@ -220,7 +220,7 @@ function DockButton({
       className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all"
       style={{
         background: item.active
-          ? "linear-gradient(135deg, #E5484D 0%, #F5A623 50%, #4263EB 100%)"
+          ? "linear-gradient(135deg, #B5BAC1 0%, #B5BAC1 50%, #9497A0 100%)"
           : "transparent",
         color: item.active ? "#FFFFFF" : "var(--ribbon-text-dim)",
       }}

@@ -171,7 +171,7 @@ export function DMsView() {
               onClick={() => setActiveProfile(other.id)}
               className="cursor-pointer rounded-md px-2 py-1 text-[10px] font-medium"
               style={{
-                background: "rgba(255, 59, 48, 0.1)",
+                background: "rgba(255, 255, 255, 0.08)",
                 color: "var(--color-ribbon-terracotta)",
               }}
             >

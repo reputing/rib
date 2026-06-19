@@ -7,7 +7,7 @@ export function TypingIndicator({ users }: { users: string[] }) {
       className="flex items-center gap-1.5 px-1 pb-1.5 text-[11px]"
       style={{ color: "var(--color-ribbon-text-faint)" }}
     >
-      <span style={{ color: "#F5A623", fontWeight: 600 }}>{users.join(", ")}</span>
+      <span style={{ color: "#B5BAC1", fontWeight: 600 }}>{users.join(", ")}</span>
       <span>is typing</span>
       <span className="flex gap-0.5">
         {[0, 1, 2].map((i) => (

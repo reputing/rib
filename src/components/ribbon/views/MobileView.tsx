@@ -194,7 +194,7 @@ export function MobileView() {
                 className="h-5 w-5"
                 style={{
                   borderRadius: 6,
-                  background: "linear-gradient(135deg,#E5484D,#F5A623)",
+                  background: "linear-gradient(135deg,#B5BAC1,#B5BAC1)",
                 }}
               />
             }
@@ -230,10 +230,10 @@ function MobileTabButton({
       className="relative flex cursor-pointer flex-col items-center gap-1"
       style={{ padding: "4px 12px" }}
     >
-      <div style={{ color: active ? "#E5484D" : "#5C5045" }}>{icon}</div>
+      <div style={{ color: active ? "#B5BAC1" : "#5C5045" }}>{icon}</div>
       <span
         className="text-[9px] font-semibold"
-        style={{ color: active ? "#E5484D" : "#5C5045" }}
+        style={{ color: active ? "#B5BAC1" : "#5C5045" }}
       >
         {label}
       </span>
@@ -246,7 +246,7 @@ function MobileTabButton({
             width: 7,
             height: 7,
             borderRadius: "50%",
-            background: "#E5484D",
+            background: "#B5BAC1",
             border: "2px solid #151210",
           }}
         />
@@ -325,8 +325,8 @@ function MobileMessageCard({
               className="flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px]"
               style={{
                 background: `var(--color-ribbon-${r.accent})`,
-                background: `rgba(255, 59, 48, 0.1)`,
-                borderColor: `rgba(255, 59, 48, 0.15)`,
+                background: `rgba(255, 255, 255, 0.08)`,
+                borderColor: "transparent",
               }}
             >
               <span>{r.emoji}</span>

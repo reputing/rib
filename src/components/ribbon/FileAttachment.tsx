@@ -25,7 +25,7 @@ export function FileAttachmentChip({ file }: { file: FileAttachmentType }) {
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+        e.currentTarget.style.borderColor = "transparent";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
@@ -67,7 +67,7 @@ export function FileRow({ file, onOpen }: { file: FileAttachmentType; onOpen?: (
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+        e.currentTarget.style.borderColor = "transparent";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--color-ribbon-border)";

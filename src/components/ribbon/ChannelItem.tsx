@@ -30,7 +30,7 @@ export function ChannelItem({ channel, active, onClick }: ChannelItemProps) {
       }}
       className="flex w-full cursor-pointer items-center justify-between rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
       style={{
-        background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
+        background: active ? "rgba(255, 255, 255, 0.08)" : "transparent",
         color: active
           ? "var(--color-ribbon-terracotta)"
           : "var(--color-ribbon-text-dim)",
@@ -51,7 +51,7 @@ export function ChannelItem({ channel, active, onClick }: ChannelItemProps) {
         <span
           className="rounded-md px-1.5 py-0.5 text-[10px] font-semibold"
           style={{
-            background: "rgba(255, 59, 48, 0.15)",
+            background: "rgba(255, 255, 255, 0.12)",
             color: "var(--color-ribbon-terracotta)",
           }}
         >
@@ -90,7 +90,7 @@ export function VoiceChannelItem({
         }}
         className="flex w-full cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
         style={{
-          background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
+          background: active ? "rgba(255, 255, 255, 0.08)" : "transparent",
           color: active
             ? "var(--color-ribbon-terracotta)"
             : "var(--color-ribbon-text-dim)",

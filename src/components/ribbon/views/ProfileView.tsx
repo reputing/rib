@@ -130,7 +130,7 @@ export function ProfileView() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 40%, rgba(255, 59, 48, 0.1) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%)",
         }}
       />
       <div
@@ -206,7 +206,7 @@ export function ProfileView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: `linear-gradient(135deg, ${accentColor}, #F5A623)`,
+            background: `linear-gradient(135deg, ${accentColor}, #B5BAC1)`,
           }}
         >
           {user.avatarLetter}
@@ -216,7 +216,7 @@ export function ProfileView() {
           style={{
             color: "#E8E0D6",
             letterSpacing: "-1px",
-            textShadow: "0 0 30px rgba(255, 59, 48, 0.4)",
+            textShadow: "0 0 30px rgba(181, 186, 193, 0.25)",
           }}
         >
           {user.username}
@@ -306,8 +306,8 @@ export function ProfileView() {
             height: 88,
             borderRadius: 24,
             fontSize: 34,
-            background: `linear-gradient(135deg, ${accentColor}, #F5A623)`,
-            boxShadow: "0 8px 40px rgba(255, 59, 48, 0.35)",
+            background: `linear-gradient(135deg, ${accentColor}, #B5BAC1)`,
+            boxShadow: "0 8px 40px rgba(181, 186, 193, 0.2)",
           }}
         >
           {user.avatarLetter}
@@ -319,7 +319,7 @@ export function ProfileView() {
               width: 16,
               height: 16,
               borderRadius: "50%",
-              background: "#12B886",
+              background: "#80848E",
               border: "3px solid #060504",
             }}
           />
@@ -414,7 +414,7 @@ export function ProfileView() {
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.background = "rgba(255, 255, 255, 0.1)";
-                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.1)";
+                    e.currentTarget.style.borderColor = "transparent";
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
@@ -458,12 +458,12 @@ export function ProfileView() {
             className="cursor-pointer rounded-[10px] border px-4 py-1.5 text-[11px] font-semibold transition"
             style={{
               background: isFriend
-                ? "rgba(0, 214, 125, 0.18)"
+                ? "rgba(128, 132, 142, 0.2)"
                 : friendRequested
                   ? "rgba(59, 91, 255, 0.18)"
                   : `${accentColor}2E`,
               borderColor: isFriend
-                ? "rgba(0, 214, 125, 0.2)"
+                ? "rgba(128, 132, 142, 0.22)"
                 : friendRequested
                   ? "rgba(59, 91, 255, 0.2)"
                   : `${accentColor}33`,

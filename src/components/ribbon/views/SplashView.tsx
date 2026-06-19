@@ -5,24 +5,24 @@ import { useRibbon } from "@/lib/ribbon/store";
 import { getUser } from "@/lib/ribbon/mock-data";
 
 const PARTICLES = [
-  { top: "7%", left: "14%", size: 6, color: "#E5484D", delay: 0, char: "✦" },
+  { top: "7%", left: "14%", size: 6, color: "#B5BAC1", delay: 0, char: "✦" },
   { top: "18%", left: "76%", size: 2, color: "#E8E0D6", delay: 0.6, dot: true },
-  { top: "28%", left: "22%", size: 2, color: "#4263EB", delay: 1.1, dot: true },
-  { top: "38%", left: "88%", size: 5, color: "#F5A623", delay: 1.6, char: "✦" },
-  { top: "58%", left: "6%", size: 2, color: "#E5484D", delay: 2.1, dot: true },
+  { top: "28%", left: "22%", size: 2, color: "#9497A0", delay: 1.1, dot: true },
+  { top: "38%", left: "88%", size: 5, color: "#B5BAC1", delay: 1.6, char: "✦" },
+  { top: "58%", left: "6%", size: 2, color: "#B5BAC1", delay: 2.1, dot: true },
   { top: "72%", left: "62%", size: 4, color: "#E8E0D6", delay: 0.4, char: "✦" },
-  { top: "82%", left: "32%", size: 2, color: "#4263EB", delay: 2.6, dot: true },
+  { top: "82%", left: "32%", size: 2, color: "#9497A0", delay: 2.6, dot: true },
   { top: "14%", left: "52%", size: 1, color: "#E8E0D6", delay: 3.1, dot: true },
-  { top: "48%", left: "94%", size: 2, color: "#E5484D", delay: 1.3, dot: true },
-  { top: "66%", left: "16%", size: 5, color: "#F5A623", delay: 0.9, char: "✦" },
+  { top: "48%", left: "94%", size: 2, color: "#B5BAC1", delay: 1.3, dot: true },
+  { top: "66%", left: "16%", size: 5, color: "#B5BAC1", delay: 0.9, char: "✦" },
   { top: "92%", left: "74%", size: 2, color: "#E8E0D6", delay: 1.9, dot: true },
-  { top: "5%", left: "40%", size: 4, color: "#4263EB", delay: 2.3, char: "✦" },
+  { top: "5%", left: "40%", size: 4, color: "#9497A0", delay: 2.3, char: "✦" },
   { top: "52%", left: "44%", size: 1, color: "#E8E0D6", delay: 3.6, dot: true },
-  { top: "34%", left: "4%", size: 2, color: "#E5484D", delay: 0.2, dot: true },
+  { top: "34%", left: "4%", size: 2, color: "#B5BAC1", delay: 0.2, dot: true },
   { top: "78%", left: "86%", size: 6, color: "#E8E0D6", delay: 1.7, char: "✦" },
-  { top: "22%", left: "66%", size: 2, color: "#F5A623", delay: 2.9, dot: true },
-  { top: "88%", left: "10%", size: 4, color: "#E5484D", delay: 3.3, char: "✦" },
-  { top: "42%", left: "36%", size: 1, color: "#4263EB", delay: 0.7, dot: true },
+  { top: "22%", left: "66%", size: 2, color: "#B5BAC1", delay: 2.9, dot: true },
+  { top: "88%", left: "10%", size: 4, color: "#B5BAC1", delay: 3.3, char: "✦" },
+  { top: "42%", left: "36%", size: 1, color: "#9497A0", delay: 0.7, dot: true },
 ];
 
 export function SplashView() {
@@ -51,7 +51,7 @@ export function SplashView() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 40%, rgba(255, 59, 48, 0.1) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 50% 40%, rgba(255, 255, 255, 0.08) 0%, transparent 50%)",
         }}
       />
       <div
@@ -126,7 +126,7 @@ export function SplashView() {
             width: 80,
             height: 80,
             borderRadius: "50%",
-            border: "1px solid rgba(255, 59, 48, 0.3)",
+            border: "1px solid rgba(181, 186, 193, 0.2)",
           }}
         />
         <div
@@ -135,7 +135,7 @@ export function SplashView() {
             width: 80,
             height: 80,
             borderRadius: "50%",
-            border: "1px solid rgba(255, 59, 48, 0.2)",
+            border: "1px solid transparent",
             animationDelay: "1s",
           }}
         />
@@ -145,7 +145,7 @@ export function SplashView() {
             width: 80,
             height: 80,
             borderRadius: "50%",
-            border: "1px solid rgba(255, 59, 48, 0.15)",
+            border: "1px solid transparent",
             animationDelay: "2s",
           }}
         />
@@ -158,7 +158,7 @@ export function SplashView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: "linear-gradient(135deg, #E5484D 0%, #F5A623 50%, #4263EB 100%)",
+            background: "linear-gradient(135deg, #B5BAC1 0%, #B5BAC1 50%, #9497A0 100%)",
           }}
         >
           {me.avatarLetter}
@@ -170,7 +170,7 @@ export function SplashView() {
           style={{
             color: "#E8E0D6",
             letterSpacing: "-1px",
-            textShadow: "0 0 30px rgba(255, 59, 48, 0.4)",
+            textShadow: "0 0 30px rgba(181, 186, 193, 0.25)",
           }}
         >
           {me.username}
@@ -197,7 +197,7 @@ export function SplashView() {
               width: 44,
               height: 44,
               borderRadius: "50%",
-              border: "1px solid rgba(255, 59, 48, 0.4)",
+              border: "1px solid rgba(181, 186, 193, 0.25)",
             }}
           />
           <div
@@ -206,7 +206,7 @@ export function SplashView() {
               width: 44,
               height: 44,
               borderRadius: "50%",
-              border: "1px solid rgba(255, 59, 48, 0.3)",
+              border: "1px solid rgba(181, 186, 193, 0.2)",
               animationDelay: "0.7s",
             }}
           />
@@ -216,15 +216,15 @@ export function SplashView() {
               width: 44,
               height: 44,
               borderRadius: "50%",
-              background: "rgba(255, 59, 48, 0.15)",
-              border: "1px solid rgba(255, 59, 48, 0.3)",
+              background: "rgba(255, 255, 255, 0.12)",
+              border: "1px solid rgba(181, 186, 193, 0.2)",
             }}
           >
             <svg
               width={16}
               height={16}
               viewBox="0 0 24 24"
-              fill="#E5484D"
+              fill="#B5BAC1"
               stroke="none"
             >
               <polygon points="8 5 19 12 8 19 8 5" />
@@ -257,7 +257,7 @@ export function SplashView() {
               width: 16,
               height: 16,
               borderRadius: 5,
-              background: "#E5484D",
+              background: "#B5BAC1",
             }}
           >
             p

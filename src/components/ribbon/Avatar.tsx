@@ -14,10 +14,10 @@ interface AvatarProps {
 }
 
 const STATUS_COLORS: Record<UserStatus, string> = {
-  online: "#12B886",
-  idle: "#F5A623",
-  dnd: "#E5484D",
-  offline: "#5C5045",
+  online: "#DBDEE1",
+  idle: "#9499A2",
+  dnd: "#9499A2",
+  offline: "#5D6067",
 };
 
 export function Avatar({
@@ -47,7 +47,7 @@ export function Avatar({
           background: bg,
           borderRadius: radius,
           fontSize: Math.round(size * 0.42),
-          boxShadow: ring ? "0 4px 16px rgba(255, 59, 48, 0.35)" : undefined,
+          boxShadow: ring ? "0 4px 16px rgba(181, 186, 193, 0.2)" : undefined,
         }}
       >
         {letter.toLowerCase()}

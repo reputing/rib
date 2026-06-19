@@ -72,7 +72,7 @@ export function SettingsView() {
                 onClick={() => setActiveSettingsTab(t.id)}
                 className="mb-0.5 flex w-full cursor-pointer items-center gap-2 rounded-[10px] px-3 py-2 text-[12px] font-medium transition"
                 style={{
-                  background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
+                  background: active ? "rgba(255, 255, 255, 0.08)" : "transparent",
                   color: active
                     ? "var(--color-ribbon-terracotta)"
                     : "var(--color-ribbon-text-dim)",
@@ -232,7 +232,7 @@ export function SettingsView() {
                       style={{
                         background:
                           settings.dmNotifications === opt
-                            ? "rgba(255, 59, 48, 0.15)"
+                            ? "rgba(255, 255, 255, 0.12)"
                             : "#211D17",
                         color:
                           settings.dmNotifications === opt
@@ -460,10 +460,10 @@ function ThemeField() {
               className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border px-3 py-2.5 text-[12px] font-semibold transition"
               style={{
                 background: isActive
-                  ? "rgba(255, 59, 48, 0.12)"
+                  ? "rgba(255, 255, 255, 0.1)"
                   : "var(--ribbon-card)",
                 borderColor: isActive
-                  ? "rgba(255, 59, 48, 0.3)"
+                  ? "rgba(255, 255, 255, 0.24)"
                   : "var(--ribbon-border)",
                 color: isActive
                   ? "var(--color-ribbon-terracotta)"

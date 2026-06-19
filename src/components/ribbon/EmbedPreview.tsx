@@ -23,7 +23,7 @@ export function EmbedPreview({ embed }: { embed: EmbedPreviewType }) {
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+        e.currentTarget.style.borderColor = "transparent";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--color-ribbon-border)";

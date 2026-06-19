@@ -53,7 +53,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.06)";
+        e.currentTarget.style.borderColor = "transparent";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
@@ -90,7 +90,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
             onClick={() => navigate("profile", { userId: author.id })}
             className="ml-auto cursor-pointer rounded-md px-1.5 py-0.5 text-[9px] font-medium"
             style={{
-              background: "rgba(255, 59, 48, 0.08)",
+              background: "rgba(255, 255, 255, 0.06)",
               color: "var(--color-ribbon-terracotta)",
             }}
           >
