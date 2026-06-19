@@ -1,222 +1,449 @@
 "use client";
 
-import { useState } from "react";
-import { ArrowLeft, Search, Users, Plus, Check } from "lucide-react";
+import {
+  Compass, Gamepad2, Palette, Music, Code, Users, Star, Smile,
+  Search, Plus,
+} from "lucide-react";
 import { useRibbon, ACCENT_HEX } from "@/lib/ribbon/store";
-import { discoverableServers, featuredCollections } from "@/lib/ribbon/mock-data";
+import {
+  discoverableServers,
+  discoverCategories,
+  featuredServerCards,
+  friendsInServers,
+  getUser,
+} from "@/lib/ribbon/mock-data";
 import { Avatar } from "../Avatar";
 import { SectionLabel } from "../Shared";
+import { UserCard } from "../UserCard";
+
+const CATEGORY_ICONS = {
+  compass: Compass,
+  gamepad: Gamepad2,
+  palette: Palette,
+  music: Music,
+  code: Code,
+  users: Users,
+  star: Star,
+  smile: Smile,
+};
 
 export function DiscoverView() {
-  const { navigate, setActiveServer } = useRibbon();
-  const [query, setQuery] = useState("");
-  const [joined, setJoined] = useState<string[]>([]);
+  const {
+    navigate,
+    discoverCategory,
+    setDiscoverCategory,
+    discoverQuery,
+    setDiscoverQuery,
+    joinedDiscoverServers,
+    joinDiscoverServer,
+    setActiveServer,
+  } = useRibbon();
 
-  const filtered = discoverableServers.filter(
-    (s) =>
-      s.name.toLowerCase().includes(query.toLowerCase()) ||
-      s.description?.toLowerCase().includes(query.toLowerCase()) ||
-      s.tags?.some((t) => t.toLowerCase().includes(query.toLowerCase()))
-  );
-
-  const toggleJoin = (id: string) => {
-    setJoined((j) => (j.includes(id) ? j.filter((x) => x !== id) : [...j, id]));
-  };
+  const filtered = discoverableServers.filter((s) => {
+    if (discoverCategory !== "all" && s.category !== discoverCategory) return false;
+    if (discoverQuery) {
+      const q = discoverQuery.toLowerCase();
+      return (
+        s.name.toLowerCase().includes(q) ||
+        s.description?.toLowerCase().includes(q) ||
+        s.tags?.some((t) => t.toLowerCase().includes(q))
+      );
+    }
+    return true;
+  });
 
   return (
     <div
-      className="flex h-full w-full flex-col"
+      className="flex h-full w-full"
       style={{ background: "var(--color-ribbon-bg)", color: "var(--color-ribbon-text)" }}
     >
-      {/* Header */}
+      {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex h-[52px] flex-none items-center px-5 border-b"
-        style={{ borderColor: "var(--color-ribbon-border)" }}
+        className="flex w-[256px] flex-none flex-col border-r"
+        style={{
+          background: "#1A1612",
+          borderColor: "var(--color-ribbon-border)",
+        }}
       >
-        <button
-          onClick={() => navigate("dms")}
-          className="mr-3 flex-none cursor-pointer"
-          title="Back"
-        >
-          <ArrowLeft size={16} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-        </button>
-        <div className="text-[15px] font-bold">Discover</div>
-        <div
-          className="ml-auto flex items-center gap-2 rounded-[10px] border px-2.5 py-1.5"
-          style={{
-            background: "#211D17",
-            borderColor: "var(--color-ribbon-border)",
-          }}
-        >
-          <Search size={12} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-          <input
-            type="text"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search communities"
-            className="w-56 bg-transparent text-[12px] outline-none"
-            style={{ color: "var(--color-ribbon-text)" }}
-          />
+        {/* Header */}
+        <div className="flex items-center gap-2 px-3.5 pt-3.5 pb-2">
+          <div
+            className="flex h-7 w-7 items-center justify-center rounded-[9px] text-[14px] font-extrabold text-white"
+            style={{ background: "#C4654A" }}
+          >
+            r
+          </div>
+          <div
+            className="text-[15px] font-bold"
+            style={{ letterSpacing: "-0.3px" }}
+          >
+            Discover
+          </div>
         </div>
-      </div>
 
-      <div className="flex-1 overflow-y-auto p-5">
-        {!query && (
-          <>
-            {/* Featured Collections */}
-            <SectionLabel>Featured Collections</SectionLabel>
-            <div className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {featuredCollections.map((c) => (
-                <button
-                  key={c.name}
-                  onClick={() => setQuery(c.name.split(" ")[0].toLowerCase())}
-                  className="cursor-pointer rounded-[14px] border p-4 text-left transition"
-                  style={{
-                    background: `linear-gradient(135deg, ${ACCENT_HEX[c.accent]}1F 0%, #1A1612 100%)`,
-                    borderColor: `${ACCENT_HEX[c.accent]}26`,
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.borderColor = `${ACCENT_HEX[c.accent]}40`;
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.borderColor = `${ACCENT_HEX[c.accent]}26`;
-                  }}
-                >
-                  <div
-                    className="mb-2 h-8 w-8 rounded-[10px]"
-                    style={{
-                      background: ACCENT_HEX[c.accent],
-                    }}
-                  />
-                  <div className="text-[13px] font-semibold">{c.name}</div>
-                  <div
-                    className="mt-1 text-[11px]"
-                    style={{ color: "var(--color-ribbon-text-faint)" }}
-                  >
-                    {c.description}
-                  </div>
-                  <div
-                    className="mt-2 text-[10px] font-medium"
-                    style={{ color: ACCENT_HEX[c.accent] }}
-                  >
-                    {c.serverIds.length} servers →
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            <SectionLabel>Trending Communities</SectionLabel>
-          </>
-        )}
-
-        {/* Server grid */}
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((s) => {
-            const isJoined = joined.includes(s.id);
+        {/* Categories */}
+        <div className="flex flex-1 flex-col gap-px overflow-y-auto px-2.5 py-1.5">
+          <SectionLabel>Browse</SectionLabel>
+          {discoverCategories.map((cat) => {
+            const Icon = CATEGORY_ICONS[cat.icon];
+            const active = discoverCategory === cat.id;
             return (
-              <div
-                key={s.id}
-                className="overflow-hidden rounded-[14px] border"
+              <button
+                key={cat.id}
+                onClick={() => setDiscoverCategory(cat.id)}
+                className="flex cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
                 style={{
-                  background: "#1A1612",
-                  borderColor: "var(--color-ribbon-border)",
+                  background: active ? "rgba(196, 101, 74, 0.1)" : "transparent",
+                  color: active
+                    ? "var(--color-ribbon-terracotta)"
+                    : "var(--color-ribbon-text-dim)",
+                  fontWeight: active ? 600 : 400,
+                }}
+                onMouseEnter={(e) => {
+                  if (!active) e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+                }}
+                onMouseLeave={(e) => {
+                  if (!active) e.currentTarget.style.background = "transparent";
                 }}
               >
-                <div
-                  className="relative h-16"
-                  style={{ background: s.banner }}
-                >
-                  <div className="absolute -bottom-4 left-4">
-                    <Avatar
-                      letter={s.letter}
-                      accent={s.accent}
-                      size={36}
-                      radius={11}
-                    />
-                  </div>
-                  <div
-                    className="absolute right-2 top-2 rounded-md px-1.5 py-0.5 text-[9px] font-semibold uppercase"
-                    style={{
-                      background: "rgba(0, 0, 0, 0.4)",
-                      color: "#fff",
-                    }}
-                  >
-                    {s.category}
-                  </div>
-                </div>
-                <div className="px-4 pb-4 pt-6">
-                  <div className="text-[13px] font-semibold">{s.name}</div>
-                  <div
-                    className="mt-0.5 line-clamp-2 text-[11px]"
-                    style={{ color: "var(--color-ribbon-text-faint)" }}
-                  >
-                    {s.description}
-                  </div>
-                  {s.tags && s.tags.length > 0 && (
-                    <div className="mt-2 flex flex-wrap gap-1">
-                      {s.tags.map((t, i) => (
-                        <span
-                          key={i}
-                          className="rounded-md px-1.5 py-0.5 text-[9px] font-medium"
-                          style={{
-                            background: "rgba(255, 255, 255, 0.04)",
-                            color: "var(--color-ribbon-text-muted)",
-                          }}
-                        >
-                          {t}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <div
-                    className="mt-3 flex items-center justify-between"
-                  >
-                    <div
-                      className="flex items-center gap-1.5 text-[10px]"
-                      style={{ color: "var(--color-ribbon-text-muted)" }}
-                    >
-                      <Users size={11} strokeWidth={2.5} />
-                      {s.memberCount} · {s.onlineCount} online
-                    </div>
-                    <button
-                      onClick={() => (isJoined ? setActiveServer(s.id) : toggleJoin(s.id))}
-                      className="flex cursor-pointer items-center gap-1 rounded-[8px] px-2.5 py-1 text-[11px] font-semibold transition"
-                      style={{
-                        background: isJoined
-                          ? "rgba(123, 168, 122, 0.15)"
-                          : "rgba(196, 101, 74, 0.15)",
-                        color: isJoined
-                          ? "var(--color-ribbon-sage)"
-                          : "var(--color-ribbon-terracotta)",
-                      }}
-                    >
-                      {isJoined ? (
-                        <>
-                          <Check size={11} strokeWidth={2.5} />
-                          open
-                        </>
-                      ) : (
-                        <>
-                          <Plus size={11} strokeWidth={2.5} />
-                          join
-                        </>
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </div>
+                <Icon size={12} strokeWidth={2.5} />
+                {cat.label}
+              </button>
             );
           })}
         </div>
 
-        {filtered.length === 0 && (
+        <UserCard />
+      </div>
+
+      {/* ═══ MAIN CONTENT ═══ */}
+      <div className="flex flex-1 flex-col min-w-0 overflow-y-auto">
+        {/* Search bar */}
+        <div className="px-7 pt-4">
           <div
-            className="py-12 text-center text-[12px]"
-            style={{ color: "var(--color-ribbon-text-faint)" }}
+            className="flex items-center gap-2.5 rounded-[14px] border px-4 py-2.5"
+            style={{
+              background: "#1A1612",
+              borderColor: "var(--color-ribbon-border)",
+            }}
           >
-            no servers match "{query}"
+            <Search size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
+            <input
+              type="text"
+              value={discoverQuery}
+              onChange={(e) => setDiscoverQuery(e.target.value)}
+              placeholder="Search communities..."
+              className="flex-1 bg-transparent text-[14px] outline-none"
+              style={{ color: "var(--color-ribbon-text)" }}
+            />
+          </div>
+        </div>
+
+        {/* Featured (only when no query + category = all) */}
+        {!discoverQuery && discoverCategory === "all" && (
+          <div className="px-7 pt-5">
+            <SectionLabel>Featured</SectionLabel>
+            <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+              {featuredServerCards.map((s) => (
+                <FeaturedServerCard
+                  key={s.id}
+                  server={s}
+                  onJoin={() => joinDiscoverServer(s.id)}
+                  onOpen={() => setActiveServer(s.id)}
+                  joined={joinedDiscoverServers.includes(s.id)}
+                />
+              ))}
+            </div>
           </div>
         )}
+
+        {/* Trending */}
+        <div className="px-7 pt-5">
+          <div
+            className="mb-3 flex items-center justify-between text-[11px] font-bold uppercase tracking-wider"
+            style={{ color: "var(--color-ribbon-text-faint)" }}
+          >
+            <span>Trending</span>
+            <span
+              className="cursor-pointer text-[10px] font-semibold normal-case tracking-normal"
+              style={{ color: "var(--color-ribbon-terracotta)" }}
+            >
+              see all
+            </span>
+          </div>
+          <div className="flex flex-col gap-1.5">
+            {filtered.slice(0, 8).map((s) => {
+              const isJoined = joinedDiscoverServers.includes(s.id);
+              return (
+                <div
+                  key={s.id}
+                  className="flex cursor-pointer items-center gap-3 rounded-[14px] border px-3.5 py-3 transition"
+                  style={{
+                    background: "#1A1612",
+                    borderColor: "var(--color-ribbon-border)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.07)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
+                  }}
+                  onClick={() => !isJoined && joinDiscoverServer(s.id)}
+                >
+                  <div
+                    className="flex h-10 w-10 flex-none items-center justify-center text-[16px] font-bold text-white"
+                    style={{
+                      borderRadius: 12,
+                      background: s.banner,
+                    }}
+                  >
+                    {s.letter}
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[13px] font-semibold">{s.name}</div>
+                    <div
+                      className="truncate text-[11px]"
+                      style={{ color: "var(--color-ribbon-text-faint)" }}
+                    >
+                      {s.description}
+                    </div>
+                  </div>
+                  <div className="flex-none text-right">
+                    <div
+                      className="text-[11px] font-semibold"
+                      style={{ color: "var(--color-ribbon-text-dim)" }}
+                    >
+                      {s.memberCount >= 1000
+                        ? `${(s.memberCount / 1000).toFixed(1)}k`
+                        : s.memberCount}
+                    </div>
+                    <div
+                      className="text-[9px]"
+                      style={{ color: "var(--color-ribbon-text-faint)" }}
+                    >
+                      members
+                    </div>
+                  </div>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      if (isJoined) { setActiveServer(s.id); } else { joinDiscoverServer(s.id); }
+                    }}
+                    className="flex-none cursor-pointer rounded-lg px-3 py-1.5 text-[11px] font-semibold transition"
+                    style={{
+                      background: isJoined
+                        ? "rgba(123, 168, 122, 0.12)"
+                        : "rgba(196, 101, 74, 0.12)",
+                      color: isJoined
+                        ? "var(--color-ribbon-sage)"
+                        : "var(--color-ribbon-terracotta)",
+                    }}
+                  >
+                    {isJoined ? "open" : "join"}
+                  </button>
+                </div>
+              );
+            })}
+          </div>
+          {filtered.length === 0 && (
+            <div
+              className="py-8 text-center text-[12px]"
+              style={{ color: "var(--color-ribbon-text-faint)" }}
+            >
+              no servers match &quot;{discoverQuery}&quot;
+            </div>
+          )}
+        </div>
+
+        {/* Your friends are in */}
+        {!discoverQuery && discoverCategory === "all" && (
+          <div className="px-7 pt-5 pb-7">
+            <SectionLabel>Your friends are in</SectionLabel>
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {friendsInServers.map(({ server, friendIds }) => (
+                <div
+                  key={server.id}
+                  onClick={() => joinDiscoverServer(server.id)}
+                  className="flex cursor-pointer flex-col items-center rounded-[14px] border px-3.5 py-3.5 text-center transition"
+                  style={{
+                    background: "#1A1612",
+                    borderColor: "var(--color-ribbon-border)",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.07)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
+                  }}
+                >
+                  <div
+                    className="flex h-9 w-9 items-center justify-center text-[14px] font-bold text-white"
+                    style={{
+                      borderRadius: 11,
+                      background: server.banner,
+                    }}
+                  >
+                    {server.letter}
+                  </div>
+                  <div
+                    className="mt-2 text-[12px] font-semibold"
+                    style={{ color: "var(--color-ribbon-text)" }}
+                  >
+                    {server.name}
+                  </div>
+                  <div
+                    className="mt-0.5 text-[10px]"
+                    style={{ color: "var(--color-ribbon-text-faint)" }}
+                  >
+                    {server.memberCount} members
+                  </div>
+                  <div className="mt-2 flex items-center justify-center gap-0.5">
+                    {friendIds.slice(0, 2).map((uid) => {
+                      const u = getUser(uid);
+                      return (
+                        <Avatar
+                          key={uid}
+                          letter={u.avatarLetter}
+                          accent={u.accent}
+                          size={16}
+                          radius={5}
+                        />
+                      );
+                    })}
+                    {friendIds.length > 2 && (
+                      <span
+                        className="ml-0.5 text-[9px]"
+                        style={{ color: "var(--color-ribbon-text-faint)" }}
+                      >
+                        +{friendIds.length - 2}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function FeaturedServerCard({
+  server,
+  onJoin,
+  onOpen,
+  joined,
+}: {
+  server: typeof featuredServerCards[number];
+  onJoin: () => void;
+  onOpen: () => void;
+  joined: boolean;
+}) {
+  return (
+    <div
+      className="cursor-pointer overflow-hidden rounded-[16px] border transition"
+      style={{
+        background: "#1A1612",
+        borderColor: "var(--color-ribbon-border)",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.borderColor = "rgba(255, 255, 255, 0.08)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
+      }}
+    >
+      {/* Banner */}
+      <div
+        className="relative"
+        style={{
+          height: 100,
+          background: server.banner,
+        }}
+      >
+        <div
+          className="absolute bottom-2.5 left-3 flex items-center gap-1.5"
+        >
+          <div
+            className="rounded-md px-2 py-0.5 text-[10px] font-semibold text-white"
+            style={{
+              background: "rgba(0, 0, 0, 0.4)",
+              backdropFilter: "blur(4px)",
+            }}
+          >
+            {server.memberCount >= 1000
+              ? `${(server.memberCount / 1000).toFixed(1)}k members`
+              : `${server.memberCount} members`}
+          </div>
+          <div
+            className="rounded-md px-2 py-0.5 text-[10px] font-semibold"
+            style={{
+              background: "rgba(0, 0, 0, 0.4)",
+              backdropFilter: "blur(4px)",
+              color: "#7BA87A",
+            }}
+          >
+            {server.onlineCount} online
+          </div>
+        </div>
+      </div>
+      {/* Body */}
+      <div className="px-3.5 pb-3 pt-3">
+        <div className="flex items-center gap-2">
+          <div
+            className="-mt-6 flex h-8 w-8 flex-none items-center justify-center rounded-[10px] border-[3px] text-[13px] font-bold text-white"
+            style={{
+              background: ACCENT_HEX[server.accent],
+              borderColor: "#1A1612",
+            }}
+          >
+            {server.letter}
+          </div>
+          <div>
+            <div className="text-[14px] font-bold">{server.name}</div>
+            <div
+              className="text-[11px]"
+              style={{ color: "var(--color-ribbon-text-faint)" }}
+            >
+              {server.description}
+            </div>
+          </div>
+        </div>
+        <div className="mt-2.5 flex flex-wrap gap-1">
+          {server.tags?.map((t, i) => {
+            const accent = (["terracotta", "sage", "amber"] as const)[i % 3];
+            return (
+              <span
+                key={t}
+                className="rounded-md px-2 py-0.5 text-[10px] font-medium"
+                style={{
+                  background: `${ACCENT_HEX[accent]}14`,
+                  color: ACCENT_HEX[accent],
+                }}
+              >
+                {t}
+              </span>
+            );
+          })}
+        </div>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            if (joined) { onOpen(); } else { onJoin(); }
+          }}
+          className="mt-3 w-full cursor-pointer rounded-[10px] py-2 text-[12px] font-semibold transition"
+          style={{
+            background: joined
+              ? "rgba(123, 168, 122, 0.15)"
+              : "rgba(196, 101, 74, 0.15)",
+            color: joined
+              ? "var(--color-ribbon-sage)"
+              : "var(--color-ribbon-terracotta)",
+          }}
+        >
+          {joined ? "✓ joined — open" : "+ join server"}
+        </button>
       </div>
     </div>
   );

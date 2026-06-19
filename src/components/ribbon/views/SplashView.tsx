@@ -242,32 +242,81 @@ export function SplashView() {
         </div>
       </div>
 
-      {/* Branding at the bottom */}
-      <div
-        className="absolute bottom-[18px] left-1/2 z-20 flex items-center gap-1.5 rounded-[10px] border px-3 py-1.5"
-        style={{
-          background: "rgba(255, 255, 255, 0.03)",
-          borderColor: "var(--color-ribbon-border)",
-          transform: "translateX(-50%)",
-        }}
-      >
-        <div
-          className="flex items-center justify-center text-[8px] font-extrabold text-white"
+      {/* Branding at the bottom + alternate entry points */}
+      <div className="absolute bottom-[18px] left-1/2 z-50 flex -translate-x-1/2 items-center gap-2">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            useRibbon.getState().navigate("onboarding");
+          }}
+          className="cursor-pointer rounded-[10px] border px-3 py-1.5 text-[10px] font-semibold transition"
           style={{
-            width: 16,
-            height: 16,
-            borderRadius: 5,
-            background: "#B85544",
+            background: "rgba(255, 255, 255, 0.03)",
+            borderColor: "var(--color-ribbon-border)",
+            color: "#6B5F52",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
+            e.currentTarget.style.color = "#A89A88";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+            e.currentTarget.style.color = "#6B5F52";
+          }}
+          title="View the onboarding flow"
+        >
+          onboarding
+        </button>
+        <div
+          className="flex items-center gap-1.5 rounded-[10px] border px-3 py-1.5"
+          style={{
+            background: "rgba(255, 255, 255, 0.03)",
+            borderColor: "var(--color-ribbon-border)",
           }}
         >
-          r
+          <div
+            className="flex items-center justify-center text-[8px] font-extrabold text-white"
+            style={{
+              width: 16,
+              height: 16,
+              borderRadius: 5,
+              background: "#B85544",
+            }}
+          >
+            r
+          </div>
+          <span
+            className="text-[10px] font-semibold"
+            style={{ color: "#4A4038" }}
+          >
+            ribbon.lol
+          </span>
         </div>
-        <span
-          className="text-[10px] font-semibold"
-          style={{ color: "#4A4038" }}
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            // Enter the app (set hasEntered) so navigation from mobile works
+            useRibbon.getState().enterApp();
+            useRibbon.getState().navigate("mobile");
+          }}
+          className="cursor-pointer rounded-[10px] border px-3 py-1.5 text-[10px] font-semibold transition"
+          style={{
+            background: "rgba(255, 255, 255, 0.03)",
+            borderColor: "var(--color-ribbon-border)",
+            color: "#6B5F52",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
+            e.currentTarget.style.color = "#A89A88";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
+            e.currentTarget.style.color = "#6B5F52";
+          }}
+          title="View the mobile mockup"
         >
-          ribbon.lol
-        </span>
+          mobile
+        </button>
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import type {
   ServerEvent,
   FriendRequest,
   FileAttachment,
+  Interest,
 } from "./types";
 
 // ═════════════════════════════════════════════════════════════════
@@ -222,7 +223,7 @@ export const servers: Record<string, Server> = {
     memberCount: 48,
     onlineCount: 12,
     isPublic: true,
-    category: "Creative",
+    category: "art",
     tags: ["art", "design", " critique", "collab"],
     banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
     joined: true,
@@ -256,7 +257,7 @@ export const servers: Record<string, Server> = {
     memberCount: 14,
     onlineCount: 3,
     isPublic: false,
-    category: "Tech",
+    category: "tech",
     banner: "linear-gradient(135deg, #D4944C 0%, #8B7FA0 100%)",
     joined: true,
     channels: [
@@ -274,7 +275,7 @@ export const servers: Record<string, Server> = {
     memberCount: 240,
     onlineCount: 38,
     isPublic: true,
-    category: "Creative",
+    category: "art",
     banner: "linear-gradient(135deg, #7BA87A 0%, #C4654A 100%)",
     joined: true,
     channels: [
@@ -293,7 +294,7 @@ export const servers: Record<string, Server> = {
     memberCount: 312,
     onlineCount: 41,
     isPublic: true,
-    category: "Music",
+    category: "music",
     banner: "linear-gradient(135deg, #8B7FA0 0%, #D4944C 100%)",
     joined: true,
     channels: [
@@ -308,6 +309,7 @@ export const servers: Record<string, Server> = {
 export const serverList = Object.values(servers);
 
 // Discoverable (not yet joined) servers
+// Categories match the new DiscoverCategory type: all | gaming | art | music | tech | social | creators | hangout
 export const discoverableServers: Server[] = [
   {
     id: "lofi-lounge",
@@ -318,7 +320,7 @@ export const discoverableServers: Server[] = [
     memberCount: 1240,
     onlineCount: 312,
     isPublic: true,
-    category: "Music",
+    category: "music",
     tags: ["lofi", "chill", "study", "beats"],
     banner: "linear-gradient(135deg, #8B7FA0 0%, #7BA87A 100%)",
   },
@@ -331,7 +333,7 @@ export const discoverableServers: Server[] = [
     memberCount: 890,
     onlineCount: 124,
     isPublic: true,
-    category: "Creative",
+    category: "art",
     tags: ["pixel art", "sprites", "games", "animation"],
     banner: "linear-gradient(135deg, #C4654A 0%, #8B7FA0 100%)",
   },
@@ -344,7 +346,7 @@ export const discoverableServers: Server[] = [
     memberCount: 567,
     onlineCount: 88,
     isPublic: true,
-    category: "Tech",
+    category: "tech",
     tags: ["code", "shaders", "generative", "webgl"],
     banner: "linear-gradient(135deg, #7BA87A 0%, #D4944C 100%)",
   },
@@ -357,7 +359,7 @@ export const discoverableServers: Server[] = [
     memberCount: 423,
     onlineCount: 47,
     isPublic: true,
-    category: "Writing",
+    category: "creators",
     tags: ["writing", "novels", "poetry", "critique"],
     banner: "linear-gradient(135deg, #D4944C 0%, #C4654A 100%)",
   },
@@ -370,7 +372,7 @@ export const discoverableServers: Server[] = [
     memberCount: 678,
     onlineCount: 91,
     isPublic: true,
-    category: "Music",
+    category: "music",
     tags: ["synthwave", "retrowave", "analog", "synths"],
     banner: "linear-gradient(135deg, #8B7FA0 0%, #C4654A 100%)",
   },
@@ -383,9 +385,271 @@ export const discoverableServers: Server[] = [
     memberCount: 1102,
     onlineCount: 167,
     isPublic: true,
-    category: "Creative",
+    category: "art",
     tags: ["photography", "film", "analog", "critique"],
     banner: "linear-gradient(135deg, #7BA87A 0%, #8B7FA0 100%)",
+  },
+  // New servers matching the Discover mockup
+  {
+    id: "gaming-lounge",
+    name: "Gaming Lounge",
+    letter: "G",
+    accent: "mauve",
+    description: "chill games, zero toxicity",
+    memberCount: 3400,
+    onlineCount: 241,
+    isPublic: true,
+    category: "gaming",
+    tags: ["gaming", "lfg", "voice"],
+    banner: "linear-gradient(135deg, #8B7FA0 0%, #6B5F80 50%, #4A3D60 100%)",
+  },
+  {
+    id: "music-corner",
+    name: "Music Corner",
+    letter: "M",
+    accent: "amber",
+    description: "share playlists, discover artists, vibe together",
+    memberCount: 892,
+    onlineCount: 64,
+    isPublic: true,
+    category: "music",
+    tags: ["playlists", "discovery", "vibes"],
+    banner: "linear-gradient(135deg, #D4944C 0%, #C4654A 100%)",
+  },
+  {
+    id: "coding-club",
+    name: "Coding Club",
+    letter: "C",
+    accent: "sage",
+    description: "open source, collabs, code reviews",
+    memberCount: 647,
+    onlineCount: 73,
+    isPublic: true,
+    category: "tech",
+    tags: ["opensource", "collabs", "reviews"],
+    banner: "linear-gradient(135deg, #7BA87A 0%, #5B8A6C 100%)",
+  },
+  {
+    id: "film-nerds",
+    name: "Film Nerds",
+    letter: "F",
+    accent: "terracotta",
+    description: "movie nights, reviews, watchlists",
+    memberCount: 514,
+    onlineCount: 38,
+    isPublic: true,
+    category: "social",
+    tags: ["movies", "reviews", "watchlists"],
+    banner: "linear-gradient(135deg, #B85544 0%, #8B7FA0 100%)",
+  },
+  {
+    id: "plant-parents",
+    name: "Plant Parents",
+    letter: "P",
+    accent: "sage",
+    description: "plant care tips, propagation, show your garden",
+    memberCount: 328,
+    onlineCount: 22,
+    isPublic: true,
+    category: "hangout",
+    tags: ["plants", "garden", "propagation"],
+    banner: "linear-gradient(135deg, #D4944C 0%, #7BA87A 100%)",
+  },
+  {
+    id: "streetwear-talk",
+    name: "Streetwear Talk",
+    letter: "S",
+    accent: "terracotta",
+    description: "fits, drops, thrift finds",
+    memberCount: 1100,
+    onlineCount: 89,
+    isPublic: true,
+    category: "social",
+    tags: ["streetwear", "drops", "thrift"],
+    banner: "linear-gradient(135deg, #D4944C 0%, #B85544 100%)",
+  },
+  // Featured cards from the Discover mockup
+  {
+    id: "art-collective-public",
+    name: "Art Collective",
+    letter: "A",
+    accent: "terracotta",
+    description: "the internet's coziest art community",
+    memberCount: 1200,
+    onlineCount: 89,
+    isPublic: true,
+    category: "art",
+    tags: ["art", "design", "critique"],
+    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+  },
+];
+
+// "Your friends are in" — servers your friends have joined
+export const friendsInServers: { server: Server; friendIds: string[] }[] = [
+  {
+    server: {
+      id: "writers-room",
+      name: "Writers Room",
+      letter: "W",
+      accent: "amber",
+      description: "novelists, poets, and screenwriters",
+      memberCount: 412,
+      onlineCount: 28,
+      isPublic: true,
+      category: "creators",
+      tags: ["writing"],
+      banner: "linear-gradient(135deg, #D4944C 0%, #B85544 100%)",
+    },
+    friendIds: ["maya", "lena"],
+  },
+  {
+    server: {
+      id: "vinyl-heads",
+      name: "Vinyl Heads",
+      letter: "V",
+      accent: "sage",
+      description: "record collectors, crate diggers",
+      memberCount: 189,
+      onlineCount: 12,
+      isPublic: true,
+      category: "music",
+      tags: ["vinyl", "records"],
+      banner: "linear-gradient(135deg, #7BA87A 0%, #D4944C 100%)",
+    },
+    friendIds: ["kai"],
+  },
+  {
+    server: {
+      id: "anime-club",
+      name: "Anime Club",
+      letter: "A",
+      accent: "mauve",
+      description: "seasonal watch parties & discussion",
+      memberCount: 2100,
+      onlineCount: 187,
+      isPublic: true,
+      category: "social",
+      tags: ["anime", "watch"],
+      banner: "linear-gradient(135deg, #8B7FA0 0%, #B85544 100%)",
+    },
+    friendIds: ["river", "sol"],
+  },
+];
+
+// Featured cards — the two big ones at the top of Discover
+export const featuredServerCards: Server[] = [
+  {
+    id: "art-collective-public",
+    name: "Art Collective",
+    letter: "A",
+    accent: "terracotta",
+    description: "the internet's coziest art community",
+    memberCount: 1200,
+    onlineCount: 89,
+    isPublic: true,
+    category: "art",
+    tags: ["art", "design", "critique"],
+    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+  },
+  {
+    id: "gaming-lounge-featured",
+    name: "Gaming Lounge",
+    letter: "G",
+    accent: "mauve",
+    description: "chill games, zero toxicity",
+    memberCount: 3400,
+    onlineCount: 241,
+    isPublic: true,
+    category: "gaming",
+    tags: ["gaming", "lfg", "voice"],
+    banner: "linear-gradient(135deg, #8B7FA0 0%, #6B5F80 50%, #4A3D60 100%)",
+  },
+];
+
+// ═════════════════════════════════════════════════════════════════
+// DISCOVER CATEGORIES (sidebar nav)
+// ═════════════════════════════════════════════════════════════════
+
+export const discoverCategories: {
+  id: string;
+  label: string;
+  icon: "compass" | "gamepad" | "palette" | "music" | "code" | "users" | "star" | "smile";
+}[] = [
+  { id: "all", label: "All", icon: "compass" },
+  { id: "gaming", label: "Gaming", icon: "gamepad" },
+  { id: "art", label: "Art + Design", icon: "palette" },
+  { id: "music", label: "Music", icon: "music" },
+  { id: "tech", label: "Tech + Code", icon: "code" },
+  { id: "social", label: "Social", icon: "users" },
+  { id: "creators", label: "Creators", icon: "star" },
+  { id: "hangout", label: "Hangout", icon: "smile" },
+];
+
+// ═════════════════════════════════════════════════════════════════
+// ONBOARDING — interests + suggested servers per step
+// ═════════════════════════════════════════════════════════════════
+
+export const onboardingInterests: Interest[] = [
+  { id: "gaming", label: "gaming", accent: "mauve", icon: "gamepad" },
+  { id: "art", label: "art", accent: "terracotta", icon: "palette" },
+  { id: "music", label: "music", accent: "amber", icon: "music" },
+  { id: "code", label: "code", accent: "sage", icon: "code" },
+  { id: "creators", label: "creators", accent: "terracotta", icon: "star" },
+  { id: "social", label: "social", accent: "terracotta", icon: "smile" },
+];
+
+export const onboardingSuggestedServers: Server[] = [
+  {
+    id: "art-collective-suggested",
+    name: "Art Collective",
+    letter: "A",
+    accent: "terracotta",
+    description: "art, design, critique",
+    memberCount: 1200,
+    onlineCount: 89,
+    isPublic: true,
+    category: "art",
+    tags: ["art", "design", "critique"],
+    banner: "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)",
+  },
+  {
+    id: "coding-club-suggested",
+    name: "Coding Club",
+    letter: "C",
+    accent: "sage",
+    description: "open source, collabs",
+    memberCount: 647,
+    onlineCount: 73,
+    isPublic: true,
+    category: "tech",
+    tags: ["opensource", "collabs"],
+    banner: "linear-gradient(135deg, #7BA87A 0%, #5B8A6C 100%)",
+  },
+  {
+    id: "streetwear-talk-suggested",
+    name: "Streetwear Talk",
+    letter: "S",
+    accent: "terracotta",
+    description: "fits, drops, thrifts",
+    memberCount: 1100,
+    onlineCount: 89,
+    isPublic: true,
+    category: "social",
+    tags: ["streetwear", "drops"],
+    banner: "linear-gradient(135deg, #D4944C 0%, #B85544 100%)",
+  },
+  {
+    id: "film-nerds-suggested",
+    name: "Film Nerds",
+    letter: "F",
+    accent: "terracotta",
+    description: "movie nights, reviews",
+    memberCount: 514,
+    onlineCount: 38,
+    isPublic: true,
+    category: "social",
+    tags: ["movies", "reviews"],
+    banner: "linear-gradient(135deg, #B85544 0%, #8B7FA0 100%)",
   },
 ];
 

@@ -6,6 +6,8 @@ import type {
   NavParams,
   Message,
   DMConversation,
+  InterestId,
+  ServerSettingsTab,
 } from "./types";
 import {
   dmConversations as initialDms,
@@ -79,6 +81,40 @@ interface RibbonState {
     key: K,
     value: RibbonState["settings"][K]
   ) => void;
+
+  // ─── Onboarding ───
+  onboardingStep: number;            // 0 = welcome, 1 = account, 2 = vibe, 3 = find people, 4 = set up, 5 = done
+  onboardingInterests: InterestId[];
+  onboardingJoinedServers: string[];
+  onboardingUsername: string;
+  setOnboardingStep: (step: number) => void;
+  nextOnboardingStep: () => void;
+  prevOnboardingStep: () => void;
+  toggleOnboardingInterest: (id: InterestId) => void;
+  toggleOnboardingServerJoin: (serverId: string) => void;
+  setOnboardingUsername: (username: string) => void;
+  finishOnboarding: () => void;
+
+  // ─── Discover ───
+  discoverCategory: string;          // matches DiscoverCategory
+  discoverQuery: string;
+  setDiscoverCategory: (cat: string) => void;
+  setDiscoverQuery: (q: string) => void;
+  joinedDiscoverServers: string[];   // server IDs joined from Discover
+  joinDiscoverServer: (serverId: string) => void;
+
+  // ─── Server settings ───
+  serverSettingsTab: ServerSettingsTab;
+  serverSettings: Record<string, {
+    listedOnDiscover: boolean;
+    allowInvites: boolean;
+    requireApproval: boolean;
+    tags: string[];
+  }>;
+  setServerSettingsTab: (tab: ServerSettingsTab) => void;
+  toggleServerSetting: (serverId: string, key: "listedOnDiscover" | "allowInvites" | "requireApproval") => void;
+  addServerTag: (serverId: string, tag: string) => void;
+  removeServerTag: (serverId: string, tag: string) => void;
 }
 
 const ACCENTS = ["terracotta", "amber", "sage", "mauve"] as const;
@@ -262,6 +298,120 @@ export const useRibbon = create<RibbonState>((set, get) => ({
   },
   updateSetting: (key, value) =>
     set((s) => ({ settings: { ...s.settings, [key]: value } })),
+
+  // ─── Onboarding ───
+  onboardingStep: 0,
+  onboardingInterests: [],
+  onboardingJoinedServers: [],
+  onboardingUsername: "",
+  setOnboardingStep: (step) => set({ onboardingStep: step }),
+  nextOnboardingStep: () =>
+    set((s) => ({ onboardingStep: Math.min(s.onboardingStep + 1, 5) })),
+  prevOnboardingStep: () =>
+    set((s) => ({ onboardingStep: Math.max(s.onboardingStep - 1, 0) })),
+  toggleOnboardingInterest: (id) =>
+    set((s) => ({
+      onboardingInterests: s.onboardingInterests.includes(id)
+        ? s.onboardingInterests.filter((i) => i !== id)
+        : [...s.onboardingInterests, id],
+    })),
+  toggleOnboardingServerJoin: (serverId) =>
+    set((s) => ({
+      onboardingJoinedServers: s.onboardingJoinedServers.includes(serverId)
+        ? s.onboardingJoinedServers.filter((x) => x !== serverId)
+        : [...s.onboardingJoinedServers, serverId],
+    })),
+  setOnboardingUsername: (username) => set({ onboardingUsername: username }),
+  finishOnboarding: () => set({ onboardingStep: 5 }),
+
+  // ─── Discover ───
+  discoverCategory: "all",
+  discoverQuery: "",
+  setDiscoverCategory: (cat) => set({ discoverCategory: cat }),
+  setDiscoverQuery: (q) => set({ discoverQuery: q }),
+  joinedDiscoverServers: [],
+  joinDiscoverServer: (serverId) =>
+    set((s) => ({
+      joinedDiscoverServers: s.joinedDiscoverServers.includes(serverId)
+        ? s.joinedDiscoverServers
+        : [...s.joinedDiscoverServers, serverId],
+    })),
+
+  // ─── Server settings ───
+  serverSettingsTab: "overview",
+  serverSettings: {
+    "art-collective": {
+      listedOnDiscover: true,
+      allowInvites: true,
+      requireApproval: false,
+      tags: ["art", "design", "critique"],
+    },
+    "dead": {
+      listedOnDiscover: false,
+      allowInvites: true,
+      requireApproval: true,
+      tags: ["tech", "email"],
+    },
+    "gallery-space": {
+      listedOnDiscover: true,
+      allowInvites: true,
+      requireApproval: false,
+      tags: ["art", "gallery"],
+    },
+    "music-makers": {
+      listedOnDiscover: true,
+      allowInvites: true,
+      requireApproval: false,
+      tags: ["music", "production"],
+    },
+  },
+  setServerSettingsTab: (tab) => set({ serverSettingsTab: tab }),
+  toggleServerSetting: (serverId, key) =>
+    set((s) => {
+      const current = s.serverSettings[serverId] ?? {
+        listedOnDiscover: false,
+        allowInvites: false,
+        requireApproval: false,
+        tags: [],
+      };
+      return {
+        serverSettings: {
+          ...s.serverSettings,
+          [serverId]: { ...current, [key]: !current[key] },
+        },
+      };
+    }),
+  addServerTag: (serverId, tag) =>
+    set((s) => {
+      const current = s.serverSettings[serverId] ?? {
+        listedOnDiscover: false,
+        allowInvites: false,
+        requireApproval: false,
+        tags: [],
+      };
+      if (current.tags.includes(tag)) return s;
+      return {
+        serverSettings: {
+          ...s.serverSettings,
+          [serverId]: { ...current, tags: [...current.tags, tag] },
+        },
+      };
+    }),
+  removeServerTag: (serverId, tag) =>
+    set((s) => {
+      const current = s.serverSettings[serverId] ?? {
+        listedOnDiscover: false,
+        allowInvites: false,
+        requireApproval: false,
+        tags: [],
+      };
+      return {
+        serverSettings: {
+          ...s.serverSettings,
+          [serverId]: { ...current, tags: current.tags.filter((t) => t !== tag) },
+        },
+      };
+    }),
 }));
 
 // ─── Helpers ─────────────────────────────────────────────────────

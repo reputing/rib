@@ -3,13 +3,16 @@
 import { useRibbon } from "@/lib/ribbon/store";
 import { BottomDock } from "./BottomDock";
 import { SplashView } from "./views/SplashView";
+import { OnboardingView } from "./views/OnboardingView";
 import { DMsView } from "./views/DMsView";
 import { ChatView } from "./views/ChatView";
+import { MobileView } from "./views/MobileView";
 import { ProfileView } from "./views/ProfileView";
 import { ServersListView } from "./views/ServersListView";
 import { DiscoverView } from "./views/DiscoverView";
 import { FriendsView } from "./views/FriendsView";
 import { SettingsView } from "./views/SettingsView";
+import { ServerSettingsView } from "./views/ServerSettingsView";
 import { PinboardView } from "./views/PinboardView";
 import { GuestbookView } from "./views/GuestbookView";
 import { VoiceView } from "./views/VoiceView";
@@ -20,12 +23,27 @@ export function AppShell() {
   const view = useRibbon((s) => s.view);
   const hasEntered = useRibbon((s) => s.hasEntered);
 
-  // Splash is full-screen, no bottom dock
-  if (view === "splash" || !hasEntered) {
+  // Onboarding + Mobile + Splash are full-screen, no bottom dock, and accessible
+  // from the splash screen BEFORE the user has "entered" the app.
+  if (view === "onboarding") {
+    return <OnboardingView />;
+  }
+
+  if (view === "mobile") {
+    return (
+      <div className="flex h-screen w-screen flex-col">
+        <div className="flex-1 min-h-0">
+          <MobileView />
+        </div>
+      </div>
+    );
+  }
+
+  if (view === "splash" || (!hasEntered && view !== "mobile" && view !== "onboarding")) {
     return <SplashView />;
   }
 
-  // Voice and Profile are also full-screen (no bottom dock — they have their own controls)
+  // Voice has its own full-screen layout with sidebar + controls
   if (view === "voice") {
     return (
       <div className="flex h-screen w-screen flex-col">
@@ -59,6 +77,7 @@ export function AppShell() {
         {view === "discover" && <DiscoverView />}
         {view === "friends" && <FriendsView />}
         {view === "settings" && <SettingsView />}
+        {view === "server-settings" && <ServerSettingsView />}
         {view === "pinboard" && <PinboardView />}
         {view === "guestbook" && <GuestbookView />}
         {view === "events" && <EventsView />}

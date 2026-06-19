@@ -171,13 +171,16 @@ export interface FriendRequest {
 
 export type ViewId =
   | "splash"
+  | "onboarding"
   | "dms"
   | "chat"
+  | "mobile"
   | "profile"
   | "servers"
   | "discover"
   | "friends"
   | "settings"
+  | "server-settings"
   | "pinboard"
   | "guestbook"
   | "voice"
@@ -192,4 +195,60 @@ export interface NavParams {
   userId?: string;
   // For "settings" — which tab
   settingsTab?: string;
+  // For "server-settings" — which server + which tab
+  serverSettingsTab?: string;
 }
+
+// ═════════════════════════════════════════════════════════════════
+// Onboarding
+// ═════════════════════════════════════════════════════════════════
+
+export type InterestId =
+  | "gaming"
+  | "art"
+  | "music"
+  | "code"
+  | "creators"
+  | "social";
+
+export interface Interest {
+  id: InterestId;
+  label: string;
+  accent: AccentColor;
+  icon: "gamepad" | "palette" | "music" | "code" | "star" | "smile";
+}
+
+// ═════════════════════════════════════════════════════════════════
+// Discover (extended)
+// ═════════════════════════════════════════════════════════════════
+
+export type DiscoverCategory =
+  | "all"
+  | "gaming"
+  | "art"
+  | "music"
+  | "tech"
+  | "social"
+  | "creators"
+  | "hangout";
+
+// ═════════════════════════════════════════════════════════════════
+// Server settings
+// ═════════════════════════════════════════════════════════════════
+
+export type ServerSettingsTab =
+  | "overview"
+  | "channels"
+  | "roles"
+  | "members"
+  | "invites"
+  | "moderation"
+  | "bans";
+
+export interface ServerSettings {
+  listedOnDiscover: boolean;
+  allowInvites: boolean;
+  requireApproval: boolean;
+  tags: string[];
+}
+

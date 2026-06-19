@@ -8,6 +8,7 @@ import {
   Users,
   Hash,
   Volume2,
+  Settings as SettingsIcon,
 } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
 import { servers, getUser } from "@/lib/ribbon/mock-data";
@@ -145,6 +146,13 @@ export function ChatView() {
             </>
           )}
           <div className="ml-auto flex items-center gap-2.5">
+            <button
+              onClick={() => navigate("server-settings")}
+              className="cursor-pointer"
+              title="Server settings"
+            >
+              <SettingsIcon size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
+            </button>
             <button
               onClick={() => navigate("files")}
               className="cursor-pointer"
