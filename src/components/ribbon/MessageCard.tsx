@@ -94,7 +94,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
               color: "var(--color-ribbon-terracotta)",
             }}
           >
-            ribbon.lol/{author.handle}
+            prey.lol/{author.handle}
           </button>
         )}
       </div>

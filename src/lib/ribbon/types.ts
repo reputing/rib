@@ -5,15 +5,15 @@
 export type UserStatus = "online" | "idle" | "dnd" | "offline";
 
 export type AccentColor =
-  | "terracotta" // #FF3B30 (red)
-  | "amber"      // #FFD60A (yellow)
-  | "sage"       // #00D67D (green)
-  | "mauve";     // #3B5BFF (blue)
+  | "terracotta" // #E5484D (red)
+  | "amber"      // #F5A623 (yellow)
+  | "sage"       // #12B886 (green)
+  | "mauve";     // #4263EB (blue)
 
 export interface User {
   id: string;
   username: string;
-  handle: string;          // ribbon.lol/{handle}
+  handle: string;          // prey.lol/{handle}
   avatarLetter: string;
   accent: AccentColor;
   status: UserStatus;

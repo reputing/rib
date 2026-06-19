@@ -12,17 +12,17 @@ const quicksand = Quicksand({
 });
 
 export const metadata: Metadata = {
-  title: "ribbon — chat for digital alchemists",
+  title: "prey — chat for digital alchemists",
   description: "A niche chat app for creative communities. DMs, servers, voice, and more.",
   keywords: ["ribbon", "chat", "discord alternative", "creative community", "niche chat"],
-  authors: [{ name: "ribbon.lol" }],
+  authors: [{ name: "prey.lol" }],
   icons: {
     icon: "/logo.svg",
   },
   openGraph: {
     title: "ribbon",
     description: "chat for digital alchemists",
-    siteName: "ribbon.lol",
+    siteName: "prey.lol",
     type: "website",
   },
 };

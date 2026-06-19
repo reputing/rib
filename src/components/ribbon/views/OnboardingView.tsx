@@ -20,14 +20,14 @@ const INTEREST_ICONS = {
 };
 
 const PARTICLES = [
-  { top: "8%", left: "15%", size: 5, color: "#FF3B30", delay: 0, char: "✦" },
+  { top: "8%", left: "15%", size: 5, color: "#E5484D", delay: 0, char: "✦" },
   { top: "20%", left: "80%", size: 2, color: "#E8E0D6", delay: 0.6, dot: true },
-  { top: "70%", left: "10%", size: 2, color: "#3B5BFF", delay: 1.1, dot: true },
-  { top: "85%", left: "75%", size: 4, color: "#FFD60A", delay: 1.6, char: "✦" },
-  { top: "30%", left: "5%", size: 2, color: "#FF3B30", delay: 2.1, dot: true },
+  { top: "70%", left: "10%", size: 2, color: "#4263EB", delay: 1.1, dot: true },
+  { top: "85%", left: "75%", size: 4, color: "#F5A623", delay: 1.6, char: "✦" },
+  { top: "30%", left: "5%", size: 2, color: "#E5484D", delay: 2.1, dot: true },
   { top: "50%", left: "90%", size: 4, color: "#E8E0D6", delay: 0.4, char: "✦" },
-  { top: "15%", left: "45%", size: 1, color: "#FFD60A", delay: 3.1, dot: true },
-  { top: "90%", left: "35%", size: 2, color: "#3B5BFF", delay: 2.6, dot: true },
+  { top: "15%", left: "45%", size: 1, color: "#F5A623", delay: 3.1, dot: true },
+  { top: "90%", left: "35%", size: 2, color: "#4263EB", delay: 2.6, dot: true },
 ];
 
 export function OnboardingView() {
@@ -48,7 +48,7 @@ export function OnboardingView() {
   const step = onboardingStep;
   const [isExiting, setIsExiting] = useState(false);
 
-  // "enter ribbon" from the setup step → go to the "done" screen (step 5)
+  // "enter prey" from the setup step → go to the "done" screen (step 5)
   const handleFinish = () => {
     finishOnboarding();
   };
@@ -203,18 +203,18 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             height: 80,
             borderRadius: 22,
             fontSize: 36,
-            background: "linear-gradient(135deg, #FF3B30, #FFD60A)",
+            background: "linear-gradient(135deg, #E5484D, #F5A623)",
             boxShadow: "0 8px 40px rgba(255, 59, 48, 0.3)",
           }}
         >
-          r
+          p
         </div>
       </div>
       <div
         className="text-[34px] font-bold"
         style={{ color: "#EDE5D6", letterSpacing: "-0.8px" }}
       >
-        welcome to ribbon
+        welcome to prey
       </div>
       <div
         className="mt-2 max-w-[360px] text-[14px] leading-[1.6]"
@@ -226,11 +226,11 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         onClick={onNext}
         className="mt-8 cursor-pointer rounded-[14px] px-10 py-3 text-[14px] font-bold text-white transition"
         style={{
-          background: "#FF3B30",
+          background: "#E5484D",
           boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
       >
         get started
       </button>
@@ -238,7 +238,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         already have an account?{" "}
         <span
           className="cursor-pointer font-semibold"
-          style={{ color: "#FF3B30" }}
+          style={{ color: "#E5484D" }}
           onClick={onNext}
         >
           sign in
@@ -279,7 +279,7 @@ function StepCreateAccount({
         }}
       >
         <span className="text-[13px] font-semibold" style={{ color: "#5C5045" }}>
-          ribbon.lol/
+          prey.lol/
         </span>
         <input
           type="text"
@@ -294,22 +294,9 @@ function StepCreateAccount({
             className="flex h-[18px] w-[18px] items-center justify-center rounded-full"
             style={{ background: "rgba(0, 214, 125, 0.15)" }}
           >
-            <Check size={10} strokeWidth={3} style={{ color: "#00D67D" }} />
+            <Check size={10} strokeWidth={3} style={{ color: "#12B886" }} />
           </div>
         )}
-      </div>
-
-      {/* Email */}
-      <div
-        className="mt-2 rounded-[14px] border px-4 py-3.5"
-        style={{ background: "#1A1612", borderColor: "rgba(255, 255, 255, 0.04)" }}
-      >
-        <input
-          type="email"
-          placeholder="email address"
-          className="w-full bg-transparent text-[13px] outline-none"
-          style={{ color: "#EDE5D6" }}
-        />
       </div>
 
       {/* Password */}
@@ -342,11 +329,11 @@ function StepCreateAccount({
         onClick={onNext}
         className="mt-5 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#FF3B30",
+          background: "#E5484D",
           boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
       >
         continue
       </button>
@@ -435,11 +422,11 @@ function StepPickVibe({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#FF3B30",
+          background: "#E5484D",
           boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
       >
         continue
       </button>
@@ -508,7 +495,7 @@ function StepFindPeople({
                   background: isJoined
                     ? "rgba(0, 214, 125, 0.15)"
                     : "rgba(255, 59, 48, 0.12)",
-                  color: isJoined ? "#00D67D" : "#FF3B30",
+                  color: isJoined ? "#12B886" : "#E5484D",
                 }}
               >
                 {isJoined ? "joined" : "join"}
@@ -522,11 +509,11 @@ function StepFindPeople({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#FF3B30",
+          background: "#E5484D",
           boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
       >
         continue
       </button>
@@ -557,7 +544,7 @@ function StepSetUpRibbon({
         set up your ribbon
       </div>
       <div className="mt-1 text-center text-[12px]" style={{ color: "#5C5045" }}>
-        your bio page is live at ribbon.lol/{username}
+        your bio page is live at prey.lol/{username}
       </div>
 
       {/* Mini profile card preview */}
@@ -594,7 +581,7 @@ function StepSetUpRibbon({
           </button>
           <div className="mt-2.5 text-[18px] font-bold">{username}</div>
           <div className="mt-0.5 text-[10px]" style={{ color: "#5C5045" }}>
-            ribbon.lol/{username}
+            prey.lol/{username}
           </div>
         </div>
 
@@ -651,13 +638,13 @@ function StepSetUpRibbon({
         onClick={onFinish}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#FF3B30",
+          background: "#E5484D",
           boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
       >
-        enter ribbon
+        enter prey
       </button>
       <div
         className="mt-2 cursor-pointer text-center text-[11px]"
@@ -684,7 +671,7 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           width: 72,
           height: 72,
           borderRadius: 20,
-          background: "linear-gradient(135deg, #00D67D, #00B85C)",
+          background: "linear-gradient(135deg, #12B886, #00B85C)",
           boxShadow: "0 8px 30px rgba(0, 214, 125, 0.3)",
         }}
       >
@@ -700,18 +687,18 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
         className="mt-1.5 max-w-[320px] text-[14px] leading-[1.6]"
         style={{ color: "#6B5F52" }}
       >
-        your ribbon is live. go explore, join the conversation, make it yours.
+        your prey is live. go explore, join the conversation, make it yours.
       </div>
       <div className="mt-7 flex gap-2">
         <button
           onClick={onFinish}
           className="cursor-pointer rounded-[14px] px-7 py-3 text-[14px] font-bold text-white transition"
           style={{
-            background: "#FF3B30",
+            background: "#E5484D",
             boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
         >
           start chatting
         </button>
@@ -744,7 +731,7 @@ function ProgressBar({ step }: { step: number }) {
             width: 32,
             height: 3,
             borderRadius: 2,
-            background: i <= step ? "#FF3B30" : "rgba(255, 255, 255, 0.06)",
+            background: i <= step ? "#E5484D" : "rgba(255, 255, 255, 0.06)",
           }}
         />
       ))}

@@ -396,7 +396,7 @@ function OverviewTab({
       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
       <div
         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
-        style={{ background: server?.banner ?? "linear-gradient(135deg, #FF3B30 0%, #FFD60A 50%, #00D67D 100%)" }}
+        style={{ background: server?.banner ?? "linear-gradient(135deg, #E5484D 0%, #F5A623 50%, #12B886 100%)" }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
@@ -417,11 +417,11 @@ function OverviewTab({
         <button
           className="cursor-pointer rounded-[12px] px-7 py-2.5 text-[13px] font-bold text-white transition"
           style={{
-            background: "#FF3B30",
+            background: "#E5484D",
             boxShadow: "0 4px 16px rgba(255, 59, 48, 0.25)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#E5484D")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#E5484D")}
         >
           save changes
         </button>
@@ -533,7 +533,7 @@ function ToggleRow({
         style={{
           width: 40,
           height: 22,
-          background: value ? "#00D67D" : "rgba(255, 255, 255, 0.1)",
+          background: value ? "#12B886" : "rgba(255, 255, 255, 0.1)",
           padding: 2,
         }}
       >

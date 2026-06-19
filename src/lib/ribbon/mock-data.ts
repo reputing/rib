@@ -26,11 +26,11 @@ export const users: Record<string, User> = {
     avatarLetter: "y",
     accent: "terracotta",
     status: "online",
-    customTag: "ribbon user",
+    customTag: "prey user",
     bio: "just here making things",
     uid: 12846,
     socialLinks: [
-      { type: "website", label: "ribbon.lol/you", url: "#" },
+      { type: "website", label: "prey.lol/you", url: "#" },
     ],
   },
   maya: {
@@ -107,7 +107,7 @@ export const users: Record<string, User> = {
       { type: "twitter", label: "@sol_pixel", url: "#" },
       { type: "spotify", label: "sol's studio", url: "#" },
       { type: "github", label: "sol-dev", url: "#" },
-      { type: "website", label: "ribbon.lol/sol", url: "#" },
+      { type: "website", label: "prey.lol/sol", url: "#" },
     ],
     nowPlaying: { track: "When You Sleep", artist: "My Bloody Valentine" },
     pronouns: "they/them",
@@ -729,7 +729,7 @@ export const galleryMessages: Message[] = [
     timestamp: "6:24 PM",
     content: {
       kind: "text-with-reactions",
-      text: "ribbon really said \"we're not just a chat app\"",
+      text: "prey really said \"we're not just a chat app\"",
       reactions: [
         { emoji: "🔥", count: 4, accent: "terracotta" },
         { emoji: "👌", count: 2, accent: "sage" },

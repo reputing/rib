@@ -175,7 +175,7 @@ export function DMsView() {
                 color: "var(--color-ribbon-terracotta)",
               }}
             >
-              ribbon.lol/{other.handle}
+              prey.lol/{other.handle}
             </button>
           </div>
         </div>

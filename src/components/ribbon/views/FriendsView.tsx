@@ -86,12 +86,12 @@ export function FriendsView() {
                 className="mt-1 text-[11px]"
                 style={{ color: "var(--color-ribbon-text-faint)" }}
               >
-                Enter a ribbon.lol username or paste an invite link.
+                Enter a prey.lol username or paste an invite link.
               </div>
               <div className="mt-3 flex gap-2">
                 <input
                   type="text"
-                  placeholder="ribbon.lol/username"
+                  placeholder="prey.lol/username"
                   className="flex-1 rounded-[10px] border px-3 py-2 text-[12px] outline-none"
                   style={{
                     background: "#211D17",
@@ -205,7 +205,7 @@ export function FriendsView() {
                         className="cursor-pointer rounded-[8px] px-2.5 py-1.5 text-[11px] font-semibold"
                         style={{
                           background: "rgba(184, 85, 68, 0.15)",
-                          color: "#FF3B30",
+                          color: "#E5484D",
                         }}
                       >
                         <X size={11} strokeWidth={2.5} />
@@ -333,7 +333,7 @@ function FriendRow({
         className="cursor-pointer rounded-[8px] px-2 py-1.5 text-[11px] font-semibold"
         style={{
           background: "rgba(184, 85, 68, 0.1)",
-          color: "#FF3B30",
+          color: "#E5484D",
         }}
         title="Remove friend"
       >

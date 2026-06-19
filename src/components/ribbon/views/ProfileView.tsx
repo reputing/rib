@@ -13,6 +13,7 @@ import {
   Eye,
   Volume2,
   MessageCircle,
+  Pencil,
 } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
 import { getUser } from "@/lib/ribbon/mock-data";
@@ -29,9 +30,11 @@ const SOCIAL_ICONS = {
 };
 
 export function ProfileView() {
-  const { activeProfileUserId, params, navigate, dms, setActiveDM, friendIds } = useRibbon();
+  const { activeProfileUserId, params, navigate, dms, setActiveDM, friendIds, currentUser, setActiveSettingsTab } = useRibbon();
   const userId = params.userId ?? activeProfileUserId;
-  const user = getUser(userId);
+  // If viewing your own profile, use the editable currentUser from the store
+  const user = userId === "you" ? currentUser : getUser(userId);
+  const isOwnProfile = userId === "you";
   const [entered, setEntered] = useState(false);
   const [isFriend, setIsFriend] = useState(friendIds.includes(userId));
   const [friendRequested, setFriendRequested] = useState(false);
@@ -203,7 +206,7 @@ export function ProfileView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: `linear-gradient(135deg, ${accentColor}, #FFD60A)`,
+            background: `linear-gradient(135deg, ${accentColor}, #F5A623)`,
           }}
         >
           {user.avatarLetter}
@@ -303,7 +306,7 @@ export function ProfileView() {
             height: 88,
             borderRadius: 24,
             fontSize: 34,
-            background: `linear-gradient(135deg, ${accentColor}, #FFD60A)`,
+            background: `linear-gradient(135deg, ${accentColor}, #F5A623)`,
             boxShadow: "0 8px 40px rgba(255, 59, 48, 0.35)",
           }}
         >
@@ -316,7 +319,7 @@ export function ProfileView() {
               width: 16,
               height: 16,
               borderRadius: "50%",
-              background: "#00D67D",
+              background: "#12B886",
               border: "3px solid #060504",
             }}
           />
@@ -428,8 +431,27 @@ export function ProfileView() {
 
         {/* Action buttons */}
         <div className="mt-3 flex gap-1.5">
-          <button
-            onClick={(e) => {
+          {isOwnProfile ? (
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setActiveSettingsTab("profile");
+                navigate("settings");
+              }}
+              className="flex cursor-pointer items-center gap-1.5 rounded-[6px] border px-4 py-1.5 text-[11px] font-semibold transition"
+              style={{
+                background: `${accentColor}2E`,
+                borderColor: `${accentColor}33`,
+                color: accentColor,
+              }}
+            >
+              <Pencil size={11} strokeWidth={2.5} />
+              edit profile
+            </button>
+          ) : (
+            <>
+              <button
+                onClick={(e) => {
               e.stopPropagation();
               handleAddFriend();
             }}
@@ -479,6 +501,8 @@ export function ProfileView() {
             <MessageCircle size={11} strokeWidth={2.5} />
             message
           </button>
+            </>
+          )}
         </div>
 
         {/* Now playing */}
@@ -546,7 +570,7 @@ export function ProfileView() {
           className="text-[10px] font-semibold"
           style={{ color: "#4A4038" }}
         >
-          ribbon.lol/{user.handle}
+          prey.lol/{user.handle}
         </span>
       </div>
     </div>

@@ -8,6 +8,7 @@ import type {
   DMConversation,
   InterestId,
   ServerSettingsTab,
+  User,
 } from "./types";
 import {
   dmConversations as initialDms,
@@ -15,6 +16,7 @@ import {
   friendIds as initialFriendIds,
   friendRequests as initialFriendRequests,
   CURRENT_USER_ID,
+  users as mockUsers,
 } from "./mock-data";
 
 interface RibbonState {
@@ -64,6 +66,10 @@ interface RibbonState {
   acceptFriend: (requestId: string) => void;
   declineFriend: (requestId: string) => void;
   removeFriend: (userId: string) => void;
+
+  // ─── Current user (editable) ───
+  currentUser: User;               // starts as a copy of mock "you", updated via Settings → Profile
+  updateCurrentUser: (updates: Partial<User>) => void;
 
   // ─── Settings ───
   settings: {
@@ -283,6 +289,11 @@ export const useRibbon = create<RibbonState>((set, get) => ({
       friendIds: s.friendIds.filter((id) => id !== userId),
     })),
 
+  // ─── Current user (editable) ───
+  currentUser: { ...mockUsers.you },
+  updateCurrentUser: (updates) =>
+    set((s) => ({ currentUser: { ...s.currentUser, ...updates } })),
+
   settings: {
     reduceMotion: false,
     showOnlineStatus: true,
@@ -412,21 +423,20 @@ export const useRibbon = create<RibbonState>((set, get) => ({
 
 // ─── Helpers ─────────────────────────────────────────────────────
 
-// Accent colors are remapped to the new vibrant palette:
-//   terracotta → vivid red, amber → bright yellow, sage → vibrant green, mauve → electric blue
-// This keeps all existing component code working while swapping to the punchier palette.
+// Accent colors — toned-down palette (bold but not neon):
+//   terracotta → red #E5484D, amber → yellow #F5A623, sage → green #12B886, mauve → blue #4263EB
 export const ACCENT_HEX: Record<string, string> = {
-  terracotta: "#FF3B30",
-  amber: "#FFD60A",
-  sage: "#00D67D",
-  mauve: "#3B5BFF",
+  terracotta: "#E5484D",
+  amber: "#F5A623",
+  sage: "#12B886",
+  mauve: "#4263EB",
 };
 
 export const ACCENT_HEX_BRIGHT: Record<string, string> = {
-  terracotta: "#FF5C52",
-  amber: "#FFE03D",
-  sage: "#1AE68A",
-  mauve: "#5B7BFF",
+  terracotta: "#F7676B",
+  amber: "#FFB937",
+  sage: "#2EC77F",
+  mauve: "#5B75F0",
 };
 
 export function randomAccent(): typeof ACCENTS[number] {

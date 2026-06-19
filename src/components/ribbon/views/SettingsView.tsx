@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRibbon, ACCENT_HEX } from "@/lib/ribbon/store";
-import { getUser, CURRENT_USER_ID } from "@/lib/ribbon/mock-data";
 import { Avatar } from "../Avatar";
 import { SectionLabel } from "../Shared";
 
@@ -34,8 +33,10 @@ export function SettingsView() {
     setActiveSettingsTab,
     settings,
     updateSetting,
+    currentUser,
+    updateCurrentUser,
   } = useRibbon();
-  const me = getUser(CURRENT_USER_ID);
+  const me = currentUser;
   const tab = activeSettingsTab || "profile";
 
   return (
@@ -112,7 +113,7 @@ export function SettingsView() {
                 className="text-[9px]"
                 style={{ color: "var(--color-ribbon-text-faint)" }}
               >
-                ribbon.lol/you
+                prey.lol/you
               </div>
             </div>
           </div>
@@ -130,7 +131,7 @@ export function SettingsView() {
                 className="mb-6 text-[12px]"
                 style={{ color: "var(--color-ribbon-text-faint)" }}
               >
-                how you appear to everyone on ribbon
+                how you appear to everyone on prey
               </p>
 
               {/* Avatar preview */}
@@ -159,57 +160,10 @@ export function SettingsView() {
                 </div>
               </div>
 
-              <Field label="Display name">
-                <input
-                  defaultValue="you"
-                  className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
-                  style={{
-                    background: "#211D17",
-                    borderColor: "var(--color-ribbon-border)",
-                    color: "var(--color-ribbon-text)",
-                  }}
-                />
-              </Field>
-
-              <Field label="Custom tag">
-                <input
-                  defaultValue={me.customTag}
-                  placeholder="e.g. digital alchemist"
-                  className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
-                  style={{
-                    background: "#211D17",
-                    borderColor: "var(--color-ribbon-border)",
-                    color: "var(--color-ribbon-text)",
-                  }}
-                />
-              </Field>
-
-              <Field label="Bio">
-                <textarea
-                  defaultValue={me.bio}
-                  rows={3}
-                  className="w-full resize-none rounded-[10px] border px-3 py-2 text-[12px] outline-none"
-                  style={{
-                    background: "#211D17",
-                    borderColor: "var(--color-ribbon-border)",
-                    color: "var(--color-ribbon-text)",
-                  }}
-                />
-              </Field>
-
-              <Field label="Pronouns">
-                <input
-                  defaultValue="they/them"
-                  className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
-                  style={{
-                    background: "#211D17",
-                    borderColor: "var(--color-ribbon-border)",
-                    color: "var(--color-ribbon-text)",
-                  }}
-                />
-              </Field>
-
-              <SaveBar />
+              <ProfileEditForm
+                user={me}
+                onSave={(updates) => updateCurrentUser(updates)}
+              />
             </div>
           )}
 
@@ -481,23 +435,6 @@ function ToggleRow({
   );
 }
 
-function SaveBar() {
-  return (
-    <div className="mt-6 flex justify-end">
-      <button
-        className="flex cursor-pointer items-center gap-2 rounded-[10px] px-4 py-2 text-[12px] font-semibold"
-        style={{
-          background: "rgba(255, 59, 48, 0.15)",
-          color: "var(--color-ribbon-terracotta)",
-        }}
-      >
-        <Save size={12} strokeWidth={2.5} />
-        save changes
-      </button>
-    </div>
-  );
-}
-
 function ThemeField() {
   const { theme, setTheme } = useTheme();
   // theme is undefined on first client render (before next-themes hydrates).
@@ -546,5 +483,113 @@ function ThemeField() {
         Auto-adapts to your device setting. Try switching your phone to light mode.
       </div>
     </Field>
+  );
+}
+
+function ProfileEditForm({
+  user,
+  onSave,
+}: {
+  user: any;
+  onSave: (updates: any) => void;
+}) {
+  const [displayName, setDisplayName] = useState(user.username ?? "");
+  const [customTag, setCustomTag] = useState(user.customTag ?? "");
+  const [bio, setBio] = useState(user.bio ?? "");
+  const [pronouns, setPronouns] = useState(user.pronouns ?? "");
+  const [saved, setSaved] = useState(false);
+
+  const handleSave = () => {
+    onSave({
+      username: displayName,
+      customTag,
+      bio,
+      pronouns,
+      handle: displayName.toLowerCase().replace(/\s+/g, ""),
+    });
+    setSaved(true);
+    setTimeout(() => setSaved(false), 2000);
+  };
+
+  return (
+    <>
+      <Field label="Display name">
+        <input
+          value={displayName}
+          onChange={(e) => setDisplayName(e.target.value)}
+          className="w-full rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          style={{
+            background: "var(--ribbon-card)",
+            borderColor: "var(--ribbon-border)",
+            color: "var(--ribbon-text)",
+          }}
+        />
+      </Field>
+
+      <Field label="Custom tag">
+        <input
+          value={customTag}
+          onChange={(e) => setCustomTag(e.target.value)}
+          placeholder="e.g. digital alchemist"
+          className="w-full rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          style={{
+            background: "var(--ribbon-card)",
+            borderColor: "var(--ribbon-border)",
+            color: "var(--ribbon-text)",
+          }}
+        />
+      </Field>
+
+      <Field label="Bio">
+        <textarea
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+          rows={3}
+          placeholder="say something about yourself..."
+          className="w-full resize-none rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          style={{
+            background: "var(--ribbon-card)",
+            borderColor: "var(--ribbon-border)",
+            color: "var(--ribbon-text)",
+          }}
+        />
+      </Field>
+
+      <Field label="Pronouns">
+        <input
+          value={pronouns}
+          onChange={(e) => setPronouns(e.target.value)}
+          placeholder="they/them"
+          className="w-full rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          style={{
+            background: "var(--ribbon-card)",
+            borderColor: "var(--ribbon-border)",
+            color: "var(--ribbon-text)",
+          }}
+        />
+      </Field>
+
+      <div className="mt-5 flex items-center justify-end gap-2">
+        {saved && (
+          <span
+            className="text-[11px] font-semibold"
+            style={{ color: "var(--color-ribbon-sage)" }}
+          >
+            ✓ saved
+          </span>
+        )}
+        <button
+          onClick={handleSave}
+          className="flex cursor-pointer items-center gap-2 rounded-[6px] px-4 py-2 text-[12px] font-semibold transition"
+          style={{
+            background: "var(--color-ribbon-terracotta)",
+            color: "#FFFFFF",
+          }}
+        >
+          <Save size={12} strokeWidth={2.5} />
+          save changes
+        </button>
+      </div>
+    </>
   );
 }

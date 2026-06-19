@@ -69,7 +69,7 @@ export function DiscoverView() {
         <div className="flex items-center gap-2 px-3.5 pt-3.5 pb-2">
           <div
             className="flex h-7 w-7 items-center justify-center rounded-[9px] text-[14px] font-extrabold text-white"
-            style={{ background: "#FF3B30" }}
+            style={{ background: "#E5484D" }}
           >
             r
           </div>
@@ -381,7 +381,7 @@ function FeaturedServerCard({
             style={{
               background: "rgba(0, 0, 0, 0.4)",
               backdropFilter: "blur(4px)",
-              color: "#00D67D",
+              color: "#12B886",
             }}
           >
             {server.onlineCount} online

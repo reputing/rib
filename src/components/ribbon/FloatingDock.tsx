@@ -184,7 +184,7 @@ export function FloatingDock() {
             style={{
               width: 8,
               height: 8,
-              background: "#00D67D",
+              background: "#12B886",
               animation: "ribbon-enter-pulse 1.5s ease-in-out infinite",
             }}
           />
@@ -220,7 +220,7 @@ function DockButton({
       className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all"
       style={{
         background: item.active
-          ? "linear-gradient(135deg, #FF3B30 0%, #FFD60A 50%, #3B5BFF 100%)"
+          ? "linear-gradient(135deg, #E5484D 0%, #F5A623 50%, #4263EB 100%)"
           : "transparent",
         color: item.active ? "#FFFFFF" : "var(--ribbon-text-dim)",
       }}

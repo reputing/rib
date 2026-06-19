@@ -5,24 +5,24 @@ import { useRibbon } from "@/lib/ribbon/store";
 import { getUser } from "@/lib/ribbon/mock-data";
 
 const PARTICLES = [
-  { top: "7%", left: "14%", size: 6, color: "#FF3B30", delay: 0, char: "✦" },
+  { top: "7%", left: "14%", size: 6, color: "#E5484D", delay: 0, char: "✦" },
   { top: "18%", left: "76%", size: 2, color: "#E8E0D6", delay: 0.6, dot: true },
-  { top: "28%", left: "22%", size: 2, color: "#3B5BFF", delay: 1.1, dot: true },
-  { top: "38%", left: "88%", size: 5, color: "#FFD60A", delay: 1.6, char: "✦" },
-  { top: "58%", left: "6%", size: 2, color: "#FF3B30", delay: 2.1, dot: true },
+  { top: "28%", left: "22%", size: 2, color: "#4263EB", delay: 1.1, dot: true },
+  { top: "38%", left: "88%", size: 5, color: "#F5A623", delay: 1.6, char: "✦" },
+  { top: "58%", left: "6%", size: 2, color: "#E5484D", delay: 2.1, dot: true },
   { top: "72%", left: "62%", size: 4, color: "#E8E0D6", delay: 0.4, char: "✦" },
-  { top: "82%", left: "32%", size: 2, color: "#3B5BFF", delay: 2.6, dot: true },
+  { top: "82%", left: "32%", size: 2, color: "#4263EB", delay: 2.6, dot: true },
   { top: "14%", left: "52%", size: 1, color: "#E8E0D6", delay: 3.1, dot: true },
-  { top: "48%", left: "94%", size: 2, color: "#FF3B30", delay: 1.3, dot: true },
-  { top: "66%", left: "16%", size: 5, color: "#FFD60A", delay: 0.9, char: "✦" },
+  { top: "48%", left: "94%", size: 2, color: "#E5484D", delay: 1.3, dot: true },
+  { top: "66%", left: "16%", size: 5, color: "#F5A623", delay: 0.9, char: "✦" },
   { top: "92%", left: "74%", size: 2, color: "#E8E0D6", delay: 1.9, dot: true },
-  { top: "5%", left: "40%", size: 4, color: "#3B5BFF", delay: 2.3, char: "✦" },
+  { top: "5%", left: "40%", size: 4, color: "#4263EB", delay: 2.3, char: "✦" },
   { top: "52%", left: "44%", size: 1, color: "#E8E0D6", delay: 3.6, dot: true },
-  { top: "34%", left: "4%", size: 2, color: "#FF3B30", delay: 0.2, dot: true },
+  { top: "34%", left: "4%", size: 2, color: "#E5484D", delay: 0.2, dot: true },
   { top: "78%", left: "86%", size: 6, color: "#E8E0D6", delay: 1.7, char: "✦" },
-  { top: "22%", left: "66%", size: 2, color: "#FFD60A", delay: 2.9, dot: true },
-  { top: "88%", left: "10%", size: 4, color: "#FF3B30", delay: 3.3, char: "✦" },
-  { top: "42%", left: "36%", size: 1, color: "#3B5BFF", delay: 0.7, dot: true },
+  { top: "22%", left: "66%", size: 2, color: "#F5A623", delay: 2.9, dot: true },
+  { top: "88%", left: "10%", size: 4, color: "#E5484D", delay: 3.3, char: "✦" },
+  { top: "42%", left: "36%", size: 1, color: "#4263EB", delay: 0.7, dot: true },
 ];
 
 export function SplashView() {
@@ -158,7 +158,7 @@ export function SplashView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: "linear-gradient(135deg, #FF3B30 0%, #FFD60A 50%, #3B5BFF 100%)",
+            background: "linear-gradient(135deg, #E5484D 0%, #F5A623 50%, #4263EB 100%)",
           }}
         >
           {me.avatarLetter}
@@ -224,7 +224,7 @@ export function SplashView() {
               width={16}
               height={16}
               viewBox="0 0 24 24"
-              fill="#FF3B30"
+              fill="#E5484D"
               stroke="none"
             >
               <polygon points="8 5 19 12 8 19 8 5" />
@@ -257,16 +257,16 @@ export function SplashView() {
               width: 16,
               height: 16,
               borderRadius: 5,
-              background: "#FF3B30",
+              background: "#E5484D",
             }}
           >
-            r
+            p
           </div>
           <span
             className="text-[10px] font-semibold"
             style={{ color: "#4A4038" }}
           >
-            ribbon.lol
+            prey.lol
           </span>
         </div>
         <button

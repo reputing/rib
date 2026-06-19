@@ -2,11 +2,10 @@
 
 import { Settings } from "lucide-react";
 import { Avatar } from "./Avatar";
-import { getUser, CURRENT_USER_ID } from "@/lib/ribbon/mock-data";
 import { useRibbon } from "@/lib/ribbon/store";
 
 export function UserCard({ onEditBio }: { onEditBio?: () => void }) {
-  const me = getUser(CURRENT_USER_ID);
+  const me = useRibbon((s) => s.currentUser);
   const navigate = useRibbon((s) => s.navigate);
   const joinedVoice = useRibbon((s) => s.joinedVoice);
 
@@ -39,7 +38,7 @@ export function UserCard({ onEditBio }: { onEditBio?: () => void }) {
               className="text-[9px]"
               style={{ color: "var(--color-ribbon-text-faint)" }}
             >
-              ribbon.lol/you
+              prey.lol/you
             </div>
           </div>
           <button
@@ -90,7 +89,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: muted ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: muted ? "#FF3B30" : "var(--color-ribbon-text-faint)",
+          color: muted ? "#E5484D" : "var(--color-ribbon-text-faint)",
         }}
       >
         {muted ? "unmute" : "mute"}
@@ -100,7 +99,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: deafened ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: deafened ? "#FF3B30" : "var(--color-ribbon-text-faint)",
+          color: deafened ? "#E5484D" : "var(--color-ribbon-text-faint)",
         }}
       >
         {deafened ? "undeafen" : "deafen"}
@@ -108,7 +107,7 @@ function VoiceMiniBar() {
       <button
         onClick={leaveVoice}
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
-        style={{ color: "#FF3B30" }}
+        style={{ color: "#E5484D" }}
       >
         leave
       </button>
