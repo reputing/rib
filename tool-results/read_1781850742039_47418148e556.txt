@@ -1,0 +1,336 @@
+     1→     1→<!DOCTYPE html>
+     2→     2→<html>
+     3→     3→<head>
+     4→     4→<meta charset="utf-8">
+     5→     5→<meta name="viewport" content="width=device-width, initial-scale=1">
+     6→     6→<script src="./support.js"></script>
+     7→     7→</head>
+     8→     8→<body>
+     9→     9→<x-dc>
+    10→    10→
+    11→    11→<helmet>
+    12→    12→  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    13→    13→  <style>
+    14→    14→    body { margin: 0; background: #060504; overflow: hidden; }
+    15→    15→    * { box-sizing: border-box; }
+    16→    16→    @keyframes twinkle {
+    17→    17→      0%, 100% { opacity: 0; transform: scale(0.4); }
+    18→    18→      50% { opacity: 1; transform: scale(1); }
+    19→    19→    }
+    20→    20→    @keyframes float {
+    21→    21→      0%, 100% { transform: translateY(0); }
+    22→    22→      50% { transform: translateY(-8px); }
+    23→    23→    }
+    24→    24→    @keyframes pulse-ring {
+    25→    25→      0% { transform: scale(1); opacity: 0.3; }
+    26→    26→      100% { transform: scale(2.5); opacity: 0; }
+    27→    27→    }
+    28→    28→    @keyframes fade-in {
+    29→    29→      from { opacity: 0; transform: translateY(12px); }
+    30→    30→      to { opacity: 1; transform: translateY(0); }
+    31→    31→    }
+    32→    32→  </style>
+    33→    33→</helmet>
+    34→    34→
+    35→    35→<div style="width:100vw; height:100vh; background:#060504; font-family:'Quicksand',sans-serif; color:#EDE5D8; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center;">
+    36→    36→
+    37→    37→  <!-- Background -->
+    38→    38→  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 50% 40%, rgba(180,70,55,0.08) 0%, transparent 50%); pointer-events:none;"></div>
+    39→    39→  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 25% 65%, rgba(123,168,122,0.04) 0%, transparent 35%); pointer-events:none;"></div>
+    40→    40→  <div style="position:absolute; inset:0; background:radial-gradient(ellipse at 75% 60%, rgba(212,148,76,0.03) 0%, transparent 30%); pointer-events:none;"></div>
+    41→    41→  <div style="position:absolute; inset:0; opacity:0.03; background:repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 2px 2px; pointer-events:none;"></div>
+    42→    42→
+    43→    43→  <!-- Particles -->
+    44→    44→  <div style="position:absolute; top:8%; left:15%; font-size:5px; color:#B85544; animation:twinkle 3.2s ease-in-out infinite; pointer-events:none;">✦</div>
+    45→    45→  <div style="position:absolute; top:20%; left:80%; width:2px; height:2px; border-radius:50%; background:#E8E0D6; animation:twinkle 4.1s ease-in-out infinite; animation-delay:0.6s; pointer-events:none;"></div>
+    46→    46→  <div style="position:absolute; top:70%; left:10%; width:2px; height:2px; border-radius:50%; background:#8B7FA0; animation:twinkle 3.7s ease-in-out infinite; animation-delay:1.1s; pointer-events:none;"></div>
+    47→    47→  <div style="position:absolute; top:85%; left:75%; font-size:4px; color:#D4944C; animation:twinkle 4.6s ease-in-out infinite; animation-delay:1.6s; pointer-events:none;">✦</div>
+    48→    48→  <div style="position:absolute; top:30%; left:5%; width:2px; height:2px; border-radius:50%; background:#B85544; animation:twinkle 3s ease-in-out infinite; animation-delay:2.1s; pointer-events:none;"></div>
+    49→    49→  <div style="position:absolute; top:50%; left:90%; font-size:4px; color:#E8E0D6; animation:twinkle 5s ease-in-out infinite; animation-delay:0.4s; pointer-events:none;">✦</div>
+    50→    50→  <div style="position:absolute; top:15%; left:45%; width:1px; height:1px; border-radius:50%; background:#D4944C; animation:twinkle 4.3s ease-in-out infinite; animation-delay:3.1s; pointer-events:none;"></div>
+    51→    51→  <div style="position:absolute; top:90%; left:35%; width:2px; height:2px; border-radius:50%; background:#8B7FA0; animation:twinkle 3.9s ease-in-out infinite; animation-delay:2.6s; pointer-events:none;"></div>
+    52→    52→
+    53→    53→  <!-- ═══ STEP 0: WELCOME ═══ -->
+    54→    54→  <sc-if value="{{ isStep0 }}" hint-placeholder-val="{{ true }}">
+    55→    55→    <div style="display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:2; animation:fade-in 0.6s ease;">
+    56→    56→
+    57→    57→      <!-- Logo pulse -->
+    58→    58→      <div style="position:relative; margin-bottom:24px;">
+    59→    59→        <div style="position:absolute; inset:0; width:80px; height:80px; border-radius:22px; border:1px solid rgba(180,70,55,0.2); animation:pulse-ring 3s ease-out infinite;"></div>
+    60→    60→        <div style="position:absolute; inset:0; width:80px; height:80px; border-radius:22px; border:1px solid rgba(180,70,55,0.15); animation:pulse-ring 3s ease-out infinite; animation-delay:1s;"></div>
+    61→    61→        <div style="width:80px; height:80px; border-radius:22px; background:linear-gradient(135deg,#B85544,#D4944C); display:flex; align-items:center; justify-content:center; font-size:36px; font-weight:800; color:#fff; animation:float 5s ease-in-out infinite; box-shadow:0 8px 40px rgba(180,70,55,0.3);">r</div>
+    62→    62→      </div>
+    63→    63→
+    64→    64→      <div style="font-size:34px; font-weight:700; color:#EDE5D8; letter-spacing:-0.8px;">welcome to ribbon</div>
+    65→    65→      <div style="font-size:14px; color:#6B5F52; margin-top:8px; max-width:360px; line-height:1.6;">the place where your community actually feels like home. chat, share, create your space.</div>
+    66→    66→
+    67→    67→      <div onClick="{{ nextStep }}" style="margin-top:32px; padding:12px 40px; border-radius:14px; background:#B85544; font-size:14px; font-weight:700; color:#fff; cursor:pointer; box-shadow:0 4px 20px rgba(180,70,55,0.3);" style-hover="background:#C4654A;">get started</div>
+    68→    68→      <div style="margin-top:12px; font-size:11px; color:#4A4038;">already have an account? <span style="color:#B85544; cursor:pointer; font-weight:600;">sign in</span></div>
+    69→    69→    </div>
+    70→    70→  </sc-if>
+    71→    71→
+    72→    72→  <!-- ═══ STEP 1: CREATE ACCOUNT ═══ -->
+    73→    73→  <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ false }}">
+    74→    74→    <div style="width:100%; max-width:380px; position:relative; z-index:2; animation:fade-in 0.6s ease;">
+    75→    75→
+    76→    76→      <!-- Progress -->
+    77→    77→      <div style="display:flex; gap:4px; margin-bottom:28px; justify-content:center;">
+    78→    78→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+    79→    79→        <div style="width:32px; height:3px; border-radius:2px; background:rgba(255,255,255,0.06);"></div>
+    80→    80→        <div style="width:32px; height:3px; border-radius:2px; background:rgba(255,255,255,0.06);"></div>
+    81→    81→        <div style="width:32px; height:3px; border-radius:2px; background:rgba(255,255,255,0.06);"></div>
+    82→    82→      </div>
+    83→    83→
+    84→    84→      <div style="font-size:22px; font-weight:700; color:#EDE5D8; text-align:center; letter-spacing:-0.3px;">claim your ribbon</div>
+    85→    85→      <div style="font-size:12px; color:#5C5045; text-align:center; margin-top:4px;">this is your username everywhere</div>
+    86→    86→
+    87→    87→      <!-- Username input -->
+    88→    88→      <div style="margin-top:24px; background:#1A1612; border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.06); display:flex; align-items:center; gap:10px;">
+    89→    89→        <span style="font-size:13px; color:#5C5045; font-weight:600;">ribbon.lol/</span>
+    90→    90→        <span style="font-size:14px; color:#EDE5D8; font-weight:600;">yourname</span>
+    91→    91→        <div style="margin-left:auto; width:18px; height:18px; border-radius:50%; background:rgba(123,168,122,0.15); display:flex; align-items:center; justify-content:center;">
+    92→    92→          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#7BA87A" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    93→    93→        </div>
+    94→    94→      </div>
+    95→    95→
+    96→    96→      <!-- Email -->
+    97→    97→      <div style="margin-top:8px; background:#1A1612; border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04);">
+    98→    98→        <span style="font-size:13px; color:#5C5045;">email address</span>
+    99→    99→      </div>
+   100→   100→
+   101→   101→      <!-- Password -->
+   102→   102→      <div style="margin-top:8px; background:#1A1612; border-radius:14px; padding:14px 16px; border:1px solid rgba(255,255,255,0.04);">
+   103→   103→        <span style="font-size:13px; color:#5C5045;">password</span>
+   104→   104→      </div>
+   105→   105→
+   106→   106→      <!-- Or social -->
+   107→   107→      <div style="display:flex; align-items:center; gap:12px; margin-top:16px;">
+   108→   108→        <div style="flex:1; height:1px; background:rgba(255,255,255,0.04);"></div>
+   109→   109→        <span style="font-size:10px; color:#4A4038;">or continue with</span>
+   110→   110→        <div style="flex:1; height:1px; background:rgba(255,255,255,0.04);"></div>
+   111→   111→      </div>
+   112→   112→      <div style="display:flex; gap:8px; margin-top:12px;">
+   113→   113→        <div style="flex:1; padding:10px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer; font-size:12px; color:#A89A88; font-weight:600;" style-hover="background:rgba(255,255,255,0.07);">
+   114→   114→          <svg width="14" height="14" viewBox="0 0 24 24" fill="#A89A88" stroke="none"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" opacity="0.6"></path><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" opacity="0.6"></path></svg>
+   115→   115→          google
+   116→   116→        </div>
+   117→   117→        <div style="flex:1; padding:10px; border-radius:12px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; gap:6px; cursor:pointer; font-size:12px; color:#A89A88; font-weight:600;" style-hover="background:rgba(255,255,255,0.07);">
+   118→   118→          <svg width="14" height="14" viewBox="0 0 24 24" fill="#A89A88" stroke="none"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.605-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 21.795 24 17.295 24 12 24 5.37 18.627 0 12 0z"></path></svg>
+   119→   119→          github
+   120→   120→        </div>
+   121→   121→      </div>
+   122→   122→
+   123→   123→      <div onClick="{{ nextStep }}" style="margin-top:20px; padding:12px; border-radius:14px; background:#B85544; font-size:14px; font-weight:700; color:#fff; cursor:pointer; text-align:center; box-shadow:0 4px 20px rgba(180,70,55,0.3);" style-hover="background:#C4654A;">continue</div>
+   124→   124→    </div>
+   125→   125→  </sc-if>
+   126→   126→
+   127→   127→  <!-- ═══ STEP 2: PICK YOUR VIBE ═══ -->
+   128→   128→  <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+   129→   129→    <div style="width:100%; max-width:440px; position:relative; z-index:2; animation:fade-in 0.6s ease;">
+   130→   130→
+   131→   131→      <div style="display:flex; gap:4px; margin-bottom:28px; justify-content:center;">
+   132→   132→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   133→   133→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   134→   134→        <div style="width:32px; height:3px; border-radius:2px; background:rgba(255,255,255,0.06);"></div>
+   135→   135→        <div style="width:32px; height:3px; border-radius:2px; background:rgba(255,255,255,0.06);"></div>
+   136→   136→      </div>
+   137→   137→
+   138→   138→      <div style="font-size:22px; font-weight:700; color:#EDE5D8; text-align:center; letter-spacing:-0.3px;">pick your vibe</div>
+   139→   139→      <div style="font-size:12px; color:#5C5045; text-align:center; margin-top:4px;">we'll find communities that match</div>
+   140→   140→
+   141→   141→      <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:24px;">
+   142→   142→        <div onClick="{{ toggleInterest }}" data-interest="gaming" style="padding:16px 10px; border-radius:14px; background:rgba(139,127,160,0.08); border:2px solid rgba(139,127,160,0.2); display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; text-align:center;" style-hover="border-color:rgba(139,127,160,0.4);">
+   143→   143→          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#8B7FA0" stroke-width="2" stroke-linecap="round"><path d="M18 3a3 3 0 00-3 3v12a3 3 0 003 3 3 3 0 003-3 3 3 0 00-3-3H6a3 3 0 00-3 3 3 3 0 003 3 3 3 0 003-3V6a3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3h12a3 3 0 003-3 3 3 0 00-3-3z"></path></svg>
+   144→   144→          <span style="font-size:11px; font-weight:600; color:#8B7FA0;">gaming</span>
+   145→   145→        </div>
+   146→   146→        <div style="padding:16px 10px; border-radius:14px; background:rgba(196,101,74,0.1); border:2px solid #B85544; display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; text-align:center; box-shadow:0 0 20px rgba(180,70,55,0.15);">
+   147→   147→          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4654A" stroke-width="2" stroke-linecap="round"><path d="M12 19l7-7 3 3-7 7-3-3z"></path><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path><path d="M2 2l7.586 7.586"></path><circle cx="11" cy="11" r="2"></circle></svg>
+   148→   148→          <span style="font-size:11px; font-weight:600; color:#C4654A;">art</span>
+   149→   149→        </div>
+   150→   150→        <div style="padding:16px 10px; border-radius:14px; background:rgba(212,148,76,0.08); border:2px solid rgba(212,148,76,0.2); display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; text-align:center;" style-hover="border-color:rgba(212,148,76,0.4);">
+   151→   151→          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#D4944C" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+   152→   152→          <span style="font-size:11px; font-weight:600; color:#D4944C;">music</span>
+   153→   153→        </div>
+   154→   154→        <div style="padding:16px 10px; border-radius:14px; background:rgba(123,168,122,0.1); border:2px solid #7BA87A; display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; text-align:center; box-shadow:0 0 20px rgba(123,168,122,0.12);">
+   155→   155→          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7BA87A" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+   156→   156→          <span style="font-size:11px; font-weight:600; color:#7BA87A;">code</span>
+   157→   157→        </div>
+   158→   158→        <div style="padding:16px 10px; border-radius:14px; background:rgba(196,101,74,0.1); border:2px solid #B85544; display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; text-align:center; box-shadow:0 0 20px rgba(180,70,55,0.15);">
+   159→   159→          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#C4654A" stroke-width="2" stroke-linecap="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+   160→   160→          <span style="font-size:11px; font-weight:600; color:#C4654A;">creators</span>
+   161→   161→        </div>
+   162→   162→        <div style="padding:16px 10px; border-radius:14px; background:rgba(255,255,255,0.03); border:2px solid rgba(255,255,255,0.06); display:flex; flex-direction:column; align-items:center; gap:8px; cursor:pointer; text-align:center;" style-hover="border-color:rgba(255,255,255,0.12);">
+   163→   163→          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A89A88" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M8 14s1.5 2 4 2 4-2 4-2"></path><line x1="9" y1="9" x2="9.01" y2="9"></line><line x1="15" y1="9" x2="15.01" y2="9"></line></svg>
+   164→   164→          <span style="font-size:11px; font-weight:600; color:#A89A88;">social</span>
+   165→   165→        </div>
+   166→   166→      </div>
+   167→   167→
+   168→   168→      <div onClick="{{ nextStep }}" style="margin-top:24px; padding:12px; border-radius:14px; background:#B85544; font-size:14px; font-weight:700; color:#fff; cursor:pointer; text-align:center; box-shadow:0 4px 20px rgba(180,70,55,0.3);" style-hover="background:#C4654A;">continue</div>
+   169→   169→      <div onClick="{{ prevStep }}" style="margin-top:8px; padding:8px; font-size:12px; color:#5C5045; text-align:center; cursor:pointer; font-weight:600;" style-hover="color:#A89A88;">back</div>
+   170→   170→    </div>
+   171→   171→  </sc-if>
+   172→   172→
+   173→   173→  <!-- ═══ STEP 3: FIND YOUR PEOPLE ═══ -->
+   174→   174→  <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+   175→   175→    <div style="width:100%; max-width:440px; position:relative; z-index:2; animation:fade-in 0.6s ease;">
+   176→   176→
+   177→   177→      <div style="display:flex; gap:4px; margin-bottom:28px; justify-content:center;">
+   178→   178→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   179→   179→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   180→   180→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   181→   181→        <div style="width:32px; height:3px; border-radius:2px; background:rgba(255,255,255,0.06);"></div>
+   182→   182→      </div>
+   183→   183→
+   184→   184→      <div style="font-size:22px; font-weight:700; color:#EDE5D8; text-align:center; letter-spacing:-0.3px;">find your people</div>
+   185→   185→      <div style="font-size:12px; color:#5C5045; text-align:center; margin-top:4px;">based on your vibe — join a few to start</div>
+   186→   186→
+   187→   187→      <div style="display:flex; flex-direction:column; gap:8px; margin-top:24px;">
+   188→   188→
+   189→   189→        <div style="padding:12px 14px; border-radius:14px; background:#1A1612; border:1px solid rgba(123,168,122,0.2); display:flex; align-items:center; gap:12px;">
+   190→   190→          <div style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#C4654A,#D4944C); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex:none;">A</div>
+   191→   191→          <div style="flex:1; min-width:0;">
+   192→   192→            <div style="font-size:13px; font-weight:600; color:#EDE5D8;">Art Collective</div>
+   193→   193→            <div style="font-size:10px; color:#5C5045;">1.2k members · art, design, critique</div>
+   194→   194→          </div>
+   195→   195→          <div style="padding:5px 14px; border-radius:8px; background:rgba(123,168,122,0.15); font-size:11px; font-weight:600; color:#7BA87A; flex:none;">joined</div>
+   196→   196→        </div>
+   197→   197→
+   198→   198→        <div style="padding:12px 14px; border-radius:14px; background:#1A1612; border:1px solid rgba(123,168,122,0.2); display:flex; align-items:center; gap:12px;">
+   199→   199→          <div style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#7BA87A,#5B8A6C); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex:none;">C</div>
+   200→   200→          <div style="flex:1; min-width:0;">
+   201→   201→            <div style="font-size:13px; font-weight:600; color:#EDE5D8;">Coding Club</div>
+   202→   202→            <div style="font-size:10px; color:#5C5045;">647 members · open source, collabs</div>
+   203→   203→          </div>
+   204→   204→          <div style="padding:5px 14px; border-radius:8px; background:rgba(123,168,122,0.15); font-size:11px; font-weight:600; color:#7BA87A; flex:none;">joined</div>
+   205→   205→        </div>
+   206→   206→
+   207→   207→        <div style="padding:12px 14px; border-radius:14px; background:#1A1612; border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; gap:12px;">
+   208→   208→          <div style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#D4944C,#B85544); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex:none;">S</div>
+   209→   209→          <div style="flex:1; min-width:0;">
+   210→   210→            <div style="font-size:13px; font-weight:600; color:#EDE5D8;">Streetwear Talk</div>
+   211→   211→            <div style="font-size:10px; color:#5C5045;">1.1k members · fits, drops, thrifts</div>
+   212→   212→          </div>
+   213→   213→          <div style="padding:5px 14px; border-radius:8px; background:rgba(196,101,74,0.12); font-size:11px; font-weight:600; color:#C4654A; flex:none; cursor:pointer;" style-hover="background:rgba(196,101,74,0.22);">join</div>
+   214→   214→        </div>
+   215→   215→
+   216→   216→        <div style="padding:12px 14px; border-radius:14px; background:#1A1612; border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; gap:12px;">
+   217→   217→          <div style="width:38px; height:38px; border-radius:11px; background:linear-gradient(135deg,#B85544,#8B7FA0); display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:700; color:#fff; flex:none;">F</div>
+   218→   218→          <div style="flex:1; min-width:0;">
+   219→   219→            <div style="font-size:13px; font-weight:600; color:#EDE5D8;">Film Nerds</div>
+   220→   220→            <div style="font-size:10px; color:#5C5045;">514 members · movie nights, reviews</div>
+   221→   221→          </div>
+   222→   222→          <div style="padding:5px 14px; border-radius:8px; background:rgba(196,101,74,0.12); font-size:11px; font-weight:600; color:#C4654A; flex:none; cursor:pointer;" style-hover="background:rgba(196,101,74,0.22);">join</div>
+   223→   223→        </div>
+   224→   224→
+   225→   225→      </div>
+   226→   226→
+   227→   227→      <div onClick="{{ nextStep }}" style="margin-top:24px; padding:12px; border-radius:14px; background:#B85544; font-size:14px; font-weight:700; color:#fff; cursor:pointer; text-align:center; box-shadow:0 4px 20px rgba(180,70,55,0.3);" style-hover="background:#C4654A;">continue</div>
+   228→   228→      <div onClick="{{ prevStep }}" style="margin-top:8px; padding:8px; font-size:12px; color:#5C5045; text-align:center; cursor:pointer; font-weight:600;" style-hover="color:#A89A88;">back</div>
+   229→   229→    </div>
+   230→   230→  </sc-if>
+   231→   231→
+   232→   232→  <!-- ═══ STEP 4: SET UP YOUR RIBBON ═══ -->
+   233→   233→  <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+   234→   234→    <div style="width:100%; max-width:400px; position:relative; z-index:2; animation:fade-in 0.6s ease; display:flex; flex-direction:column; align-items:center;">
+   235→   235→
+   236→   236→      <div style="display:flex; gap:4px; margin-bottom:28px;">
+   237→   237→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   238→   238→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   239→   239→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   240→   240→        <div style="width:32px; height:3px; border-radius:2px; background:#B85544;"></div>
+   241→   241→      </div>
+   242→   242→
+   243→   243→      <div style="font-size:22px; font-weight:700; color:#EDE5D8; text-align:center; letter-spacing:-0.3px;">set up your ribbon</div>
+   244→   244→      <div style="font-size:12px; color:#5C5045; text-align:center; margin-top:4px;">your bio page is live at ribbon.lol/you</div>
+   245→   245→
+   246→   246→      <!-- Mini profile card preview -->
+   247→   247→      <div style="margin-top:24px; width:100%; padding:24px 20px; background:rgba(14,12,10,0.7); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.05); border-radius:20px; display:flex; flex-direction:column; align-items:center; box-shadow:0 12px 40px rgba(0,0,0,0.4), 0 0 60px rgba(180,70,55,0.06);">
+   248→   248→
+   249→   249→        <!-- Avatar upload area -->
+   250→   250→        <div style="width:64px; height:64px; border-radius:18px; background:rgba(255,255,255,0.04); border:2px dashed rgba(255,255,255,0.1); display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; gap:4px;" style-hover="border-color:rgba(255,255,255,0.2); background:rgba(255,255,255,0.06);">
+   251→   251→          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5C5045" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+   252→   252→          <span style="font-size:8px; color:#5C5045; font-weight:600;">avatar</span>
+   253→   253→        </div>
+   254→   254→
+   255→   255→        <div style="margin-top:10px; font-size:18px; font-weight:700; color:#EDE5D8;">yourname</div>
+   256→   256→        <div style="font-size:10px; color:#5C5045; margin-top:2px;">ribbon.lol/yourname</div>
+   257→   257→
+   258→   258→        <!-- Bio input -->
+   259→   259→        <div style="margin-top:12px; width:100%; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);">
+   260→   260→          <span style="font-size:12px; color:#4A4038;">add a bio...</span>
+   261→   261→        </div>
+   262→   262→
+   263→   263→        <!-- Add links -->
+   264→   264→        <div style="margin-top:8px; width:100%; padding:10px 14px; border-radius:10px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; gap:8px; cursor:pointer;" style-hover="border-color:rgba(255,255,255,0.08);">
+   265→   265→          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5C5045" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v8"></path><path d="M8 12h8"></path></svg>
+   266→   266→          <span style="font-size:12px; color:#5C5045;">add your links</span>
+   267→   267→        </div>
+   268→   268→
+   269→   269→        <!-- Social connect -->
+   270→   270→        <div style="display:flex; gap:6px; margin-top:12px;">
+   271→   271→          <div style="width:30px; height:30px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:rgba(255,255,255,0.07);">
+   272→   272→            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5C5045" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"></rect><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"></path></svg>
+   273→   273→          </div>
+   274→   274→          <div style="width:30px; height:30px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:rgba(255,255,255,0.07);">
+   275→   275→            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5C5045" stroke-width="2" stroke-linecap="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+   276→   276→          </div>
+   277→   277→          <div style="width:30px; height:30px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:rgba(255,255,255,0.07);">
+   278→   278→            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5C5045" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+   279→   279→          </div>
+   280→   280→          <div style="width:30px; height:30px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; justify-content:center; cursor:pointer;" style-hover="background:rgba(255,255,255,0.07);">
+   281→   281→            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#5C5045" stroke-width="2" stroke-linecap="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"></path></svg>
+   282→   282→          </div>
+   283→   283→        </div>
+   284→   284→      </div>
+   285→   285→
+   286→   286→      <div onClick="{{ finishOnboarding }}" style="margin-top:24px; width:100%; padding:12px; border-radius:14px; background:#B85544; font-size:14px; font-weight:700; color:#fff; cursor:pointer; text-align:center; box-shadow:0 4px 20px rgba(180,70,55,0.3);" style-hover="background:#C4654A;">enter ribbon</div>
+   287→   287→      <div style="margin-top:8px; font-size:11px; color:#4A4038; cursor:pointer; text-align:center;" style-hover="color:#5C5045;">skip for now</div>
+   288→   288→      <div onClick="{{ prevStep }}" style="margin-top:4px; padding:8px; font-size:12px; color:#5C5045; text-align:center; cursor:pointer; font-weight:600;" style-hover="color:#A89A88;">back</div>
+   289→   289→    </div>
+   290→   290→  </sc-if>
+   291→   291→
+   292→   292→  <!-- ═══ STEP 5: DONE ═══ -->
+   293→   293→  <sc-if value="{{ isStep5 }}" hint-placeholder-val="{{ false }}">
+   294→   294→    <div style="display:flex; flex-direction:column; align-items:center; text-align:center; position:relative; z-index:2; animation:fade-in 0.6s ease;">
+   295→   295→
+   296→   296→      <div style="width:72px; height:72px; border-radius:20px; background:linear-gradient(135deg,#7BA87A,#5B8A6C); display:flex; align-items:center; justify-content:center; animation:float 4s ease-in-out infinite; box-shadow:0 8px 30px rgba(123,168,122,0.3);">
+   297→   297→        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+   298→   298→      </div>
+   299→   299→
+   300→   300→      <div style="margin-top:20px; font-size:28px; font-weight:700; color:#EDE5D8; letter-spacing:-0.5px;">you're in</div>
+   301→   301→      <div style="font-size:14px; color:#6B5F52; margin-top:6px; max-width:320px; line-height:1.6;">your ribbon is live. go explore, join the conversation, make it yours.</div>
+   302→   302→
+   303→   303→      <div style="display:flex; gap:8px; margin-top:28px;">
+   304→   304→        <div style="padding:12px 28px; border-radius:14px; background:#B85544; font-size:14px; font-weight:700; color:#fff; cursor:pointer; box-shadow:0 4px 20px rgba(180,70,55,0.3);" style-hover="background:#C4654A;">start chatting</div>
+   305→   305→        <div style="padding:12px 28px; border-radius:14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.06); font-size:14px; font-weight:700; color:#A89A88; cursor:pointer;" style-hover="background:rgba(255,255,255,0.08);">customize bio</div>
+   306→   306→      </div>
+   307→   307→    </div>
+   308→   308→  </sc-if>
+   309→   309→
+   310→   310→</div>
+   311→   311→
+   312→   312→</x-dc>
+   313→   313→<script type="text/x-dc" data-dc-script>
+   314→   314→class Component extends DCLogic {
+   315→   315→  state = { step: 0 };
+   316→   316→
+   317→   317→  renderVals() {
+   318→   318→    const s = this.state.step;
+   319→   319→    return {
+   320→   320→      isStep0: s === 0,
+   321→   321→      isStep1: s === 1,
+   322→   322→      isStep2: s === 2,
+   323→   323→      isStep3: s === 3,
+   324→   324→      isStep4: s === 4,
+   325→   325→      isStep5: s === 5,
+   326→   326→      nextStep: () => this.setState(prev => ({ step: Math.min(prev.step + 1, 5) })),
+   327→   327→      prevStep: () => this.setState(prev => ({ step: Math.max(prev.step - 1, 0) })),
+   328→   328→      finishOnboarding: () => this.setState({ step: 5 }),
+   329→   329→      toggleInterest: () => {},
+   330→   330→    };
+   331→   331→  }
+   332→   332→}
+   333→   333→</script>
+   334→   334→</body>
+   335→   335→</html>
+   336→   336→

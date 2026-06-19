@@ -1,0 +1,981 @@
+     1→
+     2→PS C:\Users\axtze\Downloads\rib-main\rib-main> bun install
+     3→bun install v1.3.2 (b131639c)
+     4→  📦 Installing [149/837] ENOSPC: failed copying files from cache to destination for package typescript-eslint
+     5→ENOENT: failed copying files from cache to destination for package json-stable-stringify-without-jsonify
+     6→ENOSPC: failed copying files from cache to destination for package @dnd-kit/accessibility
+     7→ENOSPC: failed copying files from cache to destination for package eslint-plugin-react-hooks
+     8→ENOSPC: failed copying files from cache to destination for package @next/eslint-plugin-next
+     9→ENOSPC: failed copying files from cache to destination for package eslint-plugin-import
+    10→ENOENT: failed copying files from cache to destination for package mdast-util-gfm-task-list-item
+    11→ENOENT: failed copying files from cache to destination for package mdast-util-mdx
+    12→ENOENT: failed copying files from cache to destination for package mdast-util-mdx-jsx
+    13→ENOENT: failed copying files from cache to destination for package mdast-util-to-markdown
+    14→ENOENT: failed copying files from cache to destination for package micromark-extension-directive
+    15→ENOENT: failed copying files from cache to destination for package micromark-extension-gfm-strikethrough
+    16→ENOENT: failed copying files from cache to destination for package micromark-extension-gfm-table
+    17→ENOENT: failed copying files from cache to destination for package micromark-extension-gfm-task-list-item
+    18→ENOENT: failed copying files from cache to destination for package micromark-extension-mdx-jsx
+    19→ENOENT: failed copying files from cache to destination for package micromark-extension-mdx-md
+    20→ENOENT: failed copying files from cache to destination for package micromark-extension-mdxjs
+    21→ENOENT: failed copying files from cache to destination for package micromark-factory-space
+    22→ENOENT: failed copying files from cache to destination for package micromark-util-character
+    23→ENOSPC: failed copying files from cache to destination for package eslint-plugin-jsx-a11y
+    24→ENOENT: failed copying files from cache to destination for package micromark-util-symbol
+    25→ENOENT: failed copying files from cache to destination for package @radix-ui/react-compose-refs
+    26→ENOENT: failed copying files from cache to destination for package @radix-ui/react-direction
+    27→ENOENT: failed copying files from cache to destination for package @radix-ui/react-id
+    28→ENOENT: failed copying files from cache to destination for package @radix-ui/react-primitive
+    29→ENOENT: failed copying files from cache to destination for package @radix-ui/react-use-controllable-state
+    30→ENOSPC: failed copying files from cache to destination for package @radix-ui/react-use-layout-effect
+    31→ENOENT: failed copying files from cache to destination for package @radix-ui/react-presence
+    32→ENOENT: failed copying files from cache to destination for package @radix-ui/react-use-size
+    33→ENOENT: failed copying files from cache to destination for package @radix-ui/react-menu
+    34→ENOENT: failed copying files from cache to destination for package @radix-ui/react-dismissable-layer
+    35→ENOENT: failed copying files from cache to destination for package @radix-ui/react-focus-guards
+    36→ENOENT: failed copying files from cache to destination for package @radix-ui/react-focus-scope
+    37→ENOSPC: failed copying files from cache to destination for package scheduler
+    38→ENOSPC  📦 Installing [161/837]  for package embla-carousel-reactive-utils
+    39→ENOSPC: failed copying files from cache to destination for package @microsoft/fetch-event-source
+    40→ENOSPC: failed copying files from cache to destination for package motion-utils
+    41→ENOENT: failed copying files from cache to destination for package @types/mdast
+    42→ENOSPC: failed copying files from cache to destination for package hast-util-to-jsx-runtime
+    43→ENOSPC: failed copying files from cache to destination for package mdast-util-to-hast
+    44→ENOSPC: failed copying files from cache to destination for package remark-parse
+    45→ENOSPC: failed copying files from cache to destination for package remark-rehype
+    46→ENOSPC: failed copying files from cache to destination for package unified
+    47→ENOSPC: failed copying files from cache to destination for package vfile
+    48→ENOSPC: failed copying files from cache to destination for package prismjs
+    49→ENOSPC: failed copying files from cache to destination for package eventemitter3
+    50→ENOSPC: failed copying files from cache to destination for package lodash
+    51→ENOSPC: failed copying files from cache to destination for package tiny-invariant
+    52→ENOENT: failed copying files from cache to destination for package @img/colour
+    53→ENOSPC: failed copying files from cache to destination for package semver
+    54→ENOENT: failed copying files from cache to destination for package @jridgewell/remapping
+    55→ENOSPC: failed copying files from cache to destination for package magic-string
+    56→ENOSPC: failed copying files from cache to destination for package source-map-js
+    57→ENOENT: failed copying files from cache to destination for package nanoid
+    58→ENOSPC: failed copying files from cache to destination for package picocolors
+    59→ENOENT: failed copying files from cache to destination for package @types/json-schema
+    60→ENOSPC: failed copying files from cache to destination for package import-fresh
+    61→ENOENT: failed copying files from cache to destination for package fast-json-stable-stringify
+    62→ENOSPC: failed copying files from cache to destination for package json-schema-traverse
+    63→ENOSPC: failed copying files from cache to destination for package uri-js
+    64→ENOENT: failed copying files from cache to destination for package ansi-styles
+    65→ENOSPC: failed copying files from cache to destination for package estraverse
+    66→ENOENT: failed copying files from cache to destination for package acorn
+    67→ENOENT: failed copying files from cache to destination for package acorn-jsx
+    68→ENOENT: failed copying files from cache to destination for package brace-expansion
+    69→ENOSPC: failed copying files from cache to destination for package is-core-module
+    70→ENOENT: failed copying files from cache to destination for package resolve
+    71→ENOENT: failed copying files from cache to destination for package hasown
+    72→ENOSPC: failed copying files from cache to destination for package string.prototype.trimend
+    73→ENOENT: failed copying files from cache to destination for package aria-query
+    74→ENOENT: failed copying files from cache to destination for package axe-core
+    75→ENOENT: failed copying files from cache to destination for package axobject-query
+    76→ENOSPC: failed copying files from cache to destination for package emoji-regex
+    77→  📦 Installing [167/837] copying files from cache to destination for package safe-regex-test
+    78→ENOENT: failed copying files from cache to destination for package lz-string
+    79→ENOENT: failed copying files from cache to destination for package @floating-ui/react-dom
+    80→ENOSPC: failed copying files from cache to destination for package @radix-ui/react-arrow
+    81→ENOENT: failed copying files from cache to destination for package argparse
+    82→ENOENT: failed copying files from cache to destination for package @types/unist
+    83→ENOENT: failed copying files from cache to destination for package ccount
+    84→ENOSPC: failed copying files from cache to destination for package parse-entities
+    85→ENOENT: failed copying files from cache to destination for package stringify-entities
+    86→ENOSPC: failed copying files from cache to destination for package unist-util-visit-parents
+    87→ENOENT: failed copying files from cache to destination for package mdast-util-to-string
+    88→ENOSPC: failed copying files from cache to destination for package micromark
+    89→ENOENT: failed copying files from cache to destination for package micromark-util-decode-numeric-character-reference
+    90→ENOENT: failed copying files from cache to destination for package micromark-util-decode-string
+    91→ENOENT: failed copying files from cache to destination for package micromark-util-normalize-identifier
+    92→ENOENT: failed copying files from cache to destination for package micromark-util-types
+    93→ENOSPC: failed copying files from cache to destination for package unist-util-stringify-position
+    94→ENOENT: failed copying files from cache to destination for package markdown-table
+    95→ENOENT: failed copying files from cache to destination for package mdast-util-mdx-expression
+    96→ENOENT: failed copying files from cache to destination for package mdast-util-mdxjs-esm
+    97→ENOENT: failed copying files from cache to destination for package @types/estree-jsx
+    98→ENOSPC: failed copying files from cache to destination for package vfile-message
+    99→ENOENT: failed copying files from cache to destination for package longest-streak
+   100→ENOENT: failed copying files from cache to destination for package mdast-util-phrasing
+   101→ENOENT: failed copying files from cache to destination for package micromark-util-classify-character
+   102→ENOENT: failed copying files from cache to destination for package micromark-factory-whitespace
+   103→ENOENT: failed copying files from cache to destination for package micromark-util-chunked
+   104→ENOENT: failed copying files from cache to destination for package micromark-util-resolve-all
+   105→ENOSPC: failed copying files from cache to destination for package estree-util-is-identifier-name
+   106→ENOENT: failed copying files from cache to destination for package micromark-factory-mdx-expression
+   107→ENOENT: failed copying files from cache to destination for package micromark-util-events-to-acorn
+   108→ENOENT: failed copying files from cache to destination for package micromark-extension-mdx-expression
+   109→ENOENT: failed copying files from cache to destination for package micromark-extension-mdxjs-esm
+   110→ENOENT: failed copying files from cache to destination for package micromark-util-combine-extensions
+   111→ENOENT: failed copying files from cache to destination for package react-remove-scroll-bar
+   112→ENOENT: failed copying files   📦 Installing [170/837] react-style-singleton
+   113→ENOSPC: failed copying files from cache to destination for package use-callback-ref
+   114→ENOSPC: failed copying files from cache to destination for package use-sidecar
+   115→ENOENT: failed copying files from cache to destination for package lru-cache
+   116→ENOENT: failed copying files from cache to destination for package object-hash
+   117→ENOENT: failed copying files from cache to destination for package oidc-token-hash
+   118→ENOENT: failed copying files from cache to destination for package node-addon-api
+   119→ENOENT: failed copying files from cache to destination for package picomatch
+   120→ENOSPC: failed copying files from cache to destination for package @formatjs/fast-memoize
+   121→ENOENT: failed copying files from cache to destination for package @schummar/icu-type-parser
+   122→ENOENT: failed copying files from cache to destination for package intl-messageformat
+   123→ENOENT: failed copying files from cache to destination for package hast-util-whitespace
+   124→ENOENT: failed copying files from cache to destination for package property-information
+   125→ENOENT: failed copying files from cache to destination for package space-separated-tokens
+   126→ENOENT: failed copying files from cache to destination for package style-to-js
+   127→ENOENT: failed copying files from cache to destination for package unist-util-position
+   128→ENOENT: failed copying files from cache to destination for package @ungap/structured-clone
+   129→ENOENT: failed copying files from cache to destination for package micromark-util-sanitize-uri
+   130→ENOENT: failed copying files from cache to destination for package trim-lines
+   131→ENOENT: failed copying files from cache to destination for package bail
+   132→ENOSPC: failed copying files from cache to destination for package extend
+   133→ENOENT: failed copying files from cache to destination for package is-plain-obj
+   134→ENOENT: failed copying files from cache to destination for package trough
+   135→ENOENT: failed copying files from cache to destination for package unist-util-is
+   136→ENOENT: failed copying files from cache to destination for package @jridgewell/gen-mapping
+   137→ENOENT: failed copying files from cache to destination for package @jridgewell/trace-mapping
+   138→ENOENT: failed copying files from cache to destination for package graceful-fs
+   139→ENOENT: failed copying files from cache to destination for package tapable
+   140→ENOENT: failed copying files from cache to destination for package @jridgewell/sourcemap-codec
+   141→ENOENT: failed copying files from cache to destination for package parent-module
+   142→ENOENT: failed copying files from cache to destination for package resolve-from
+   143→ENOSPC: failed copying files from cache to destination for package color-convert
+   144→ENOENT: failed copying files from cache to destination for package has-flag
+   145→ENOENT: failed copying files from cache to destination for package shebang-regex
+   146→ENOENT: failed copying files from cache to destination for package isexe
+   147→ENOENT: failed copying files from cache to destination for package flatted
+   148→ENOENT: failed copying files from cache to destination for package keyv
+   149→ENOENT: failed copying files from cache to destination for package p-locate
+   150→ENOENT: failed copying files from cache to destination for package balanced-match
+   151→  📦 Installing [172/837] ENOSPC: failed copying files from cache to destination for package concat-map
+   152→ENOENT: failed copying files from cache to destination for package @nodelib/fs.stat
+   153→ENOENT: failed copying files from cache to destination for package @nodelib/fs.walk
+   154→ENOENT: failed copying files from cache to destination for package merge2
+   155→ENOENT: failed copying files from cache to destination for package micromatch
+   156→ENOENT: failed copying files from cache to destination for package path-parse
+   157→ENOENT: failed copying files from cache to destination for package supports-preserve-symlinks-flag
+   158→ENOENT: failed copying files from cache to destination for package call-bind
+   159→ENOENT: failed copying files from cache to destination for package call-bound
+   160→ENOSPC: failed copying files from cache to destination for package define-properties
+   161→ENOENT: failed copying files from cache to destination for package es-abstract
+   162→ENOENT: failed copying files from cache to destination for package es-object-atoms
+   163→ENOENT: failed copying files from cache to destination for package get-intrinsic
+   164→ENOENT: failed copying files from cache to destination for package is-string
+   165→ENOENT: failed copying files from cache to destination for package math-intrinsics
+   166→ENOENT: failed copying files from cache to destination for package es-errors
+   167→ENOENT: failed copying files from cache to destination for package function-bind
+   168→ENOENT: failed copying files from cache to destination for package minimist
+   169→ENOENT: failed copying files from cache to destination for package strip-bom
+   170→ENOENT: failed copying files from cache to destination for package object.assign
+   171→ENOENT: failed copying files from cache to destination for package is-regex
+   172→ENOENT: failed copying files from cache to destination for package es-set-tostringtag
+   173→ENOENT: failed copying files from cache to destination for package globalthis
+   174→ENOENT: failed copying files from cache to destination for package gopd
+   175→ENOENT: failed copying files from cache to destination for package has-property-descriptors
+   176→ENOENT: failed copying files from cache to destination for package has-proto
+   177→ENOENT: failed copying files from cache to destination for package has-symbols
+   178→ENOENT: failed copying files from cache to destination for package internal-slot
+   179→ENOENT: failed copying files from cache to destination for package safe-array-concat
+   180→ENOENT: failed copying files from cache to destination for package loose-envify
+   181→ENOENT: failed copying files from cache to destination for package object-assign
+   182→ENOENT: failed copying files from cache to destination for package regexp.prototype.flags
+   183→ENOENT: failed copying files from cache to destination for package set-function-name
+   184→ENOENT: failed copying files from cache to destination for package side-channel
+   185→ENOSPC: failed copying files from cache to destination for package @babel/helper-compilation-targets
+   186→ENOSPC: failed copying files from cache to destination for package @babel/helpers
+   187→ENOENT: failed copying files from cache to destination for package @babel/template
+   188→ENOENT: failed copying files from cache to destination for package convert-source-map
+   189→  📦 Installing [174/837] copying files from cache to destination for package gensync
+   190→ENOENT: failed copying files from cache to destination for package buffer
+   191→ENOENT: failed copying files from cache to destination for package mime-db
+   192→ENOENT: failed copying files from cache to destination for package @floating-ui/utils
+   193→ENOENT: failed copying files from cache to destination for package @floating-ui/dom
+   194→ENOENT: failed copying files from cache to destination for package character-entities-legacy
+   195→ENOENT: failed copying files from cache to destination for package character-reference-invalid
+   196→ENOENT: failed copying files from cache to destination for package is-alphanumerical
+   197→ENOENT: failed copying files from cache to destination for package is-decimal
+   198→ENOENT: failed copying files from cache to destination for package is-hexadecimal
+   199→ENOENT: failed copying files from cache to destination for package character-entities-html4
+   200→ENOENT: failed copying files from cache to destination for package character-entities
+   201→ENOENT: failed copying files from cache to destination for package @types/debug
+   202→ENOENT: failed copying files from cache to destination for package micromark-core-commonmark
+   203→ENOENT: failed copying files from cache to destination for package micromark-util-encode
+   204→ENOENT: failed copying files from cache to destination for package micromark-util-subtokenize
+   205→ENOENT: failed copying files from cache to destination for package kleur
+   206→ENOENT: failed copying files from cache to destination for package unist-util-position-from-estree
+   207→ENOSPC: failed copying files from cache to destination for package estree-util-visit
+   208→ENOENT: failed copying files from cache to destination for package get-nonce
+   209→ENOENT: failed copying files from cache to destination for package detect-node-es
+   210→ENOENT: failed copying files from cache to destination for package yallist
+   211→ENOENT: failed copying files from cache to destination for package @formatjs/ecma402-abstract
+   212→ENOENT: failed copying files from cache to destination for package @formatjs/icu-messageformat-parser
+   213→ENOENT: failed copying files from cache to destination for package chokidar
+   214→ENOENT: failed copying files from cache to destination for package defu
+   215→ENOENT: failed copying files from cache to destination for package dotenv
+   216→ENOENT: failed copying files from cache to destination for package giget
+   217→ENOENT: failed copying files from cache to destination for package ohash
+   218→ENOENT: failed copying files from cache to destination for package pathe
+   219→ENOENT: failed copying files from cache to destination for package pkg-types
+   220→ENOENT: failed copying files from cache to destination for package rc9
+   221→ENOENT: failed copying files from cache to destination for package style-to-object
+   222→ENOENT: failed copying files from cache to destination for package @jridgewell/resolve-uri
+   223→ENOENT: failed copying files from cache to destination for package callsites
+   224→ENOENT: failed copying files from cache to destination for package color-name
+   225→ENOENT: failed copying files from cache to destination for package json-buffer
+   226→ENOENT: failed copying files from cache to destination for package p-limit
+   227→  🚚 perfect-debounce... copying files from cache to destination for package @nodelib/fs.scandir
+   228→ENOSPC: failed copying files from cache to destination for package fastq
+   229→ENOENT: failed copying files from cache to destination for package braces
+   230→ENOENT: failed copying files from cache to destination for package call-bind-apply-helpers
+   231→ENOENT: failed copying files from cache to destination for package es-define-property
+   232→ENOENT: failed copying files from cache to destination for package set-function-length
+   233→ENOENT: failed copying files from cache to destination for package define-data-property
+   234→ENOENT: failed copying files from cache to destination for package object-keys
+   235→ENOENT: failed copying files from cache to destination for package array-buffer-byte-length
+   236→ENOENT: failed copying files from cache to destination for package arraybuffer.prototype.slice
+   237→ENOENT: failed copying files from cache to destination for package available-typed-arrays
+   238→ENOENT: failed copying files from cache to destination for package data-view-buffer
+   239→ENOENT: failed copying files from cache to destination for package data-view-byte-length
+   240→ENOENT: failed copying files from cache to destination for package data-view-byte-offset
+   241→ENOENT: failed copying files from cache to destination for package es-to-primitive
+   242→ENOENT: failed copying files from cache to destination for package function.prototype.name
+   243→ENOENT: failed copying files from cache to destination for package get-proto
+   244→ENOENT: failed copying files from cache to destination for package get-symbol-description
+   245→ENOENT: failed copying files from cache to destination for package is-array-buffer
+   246→ENOENT: failed copying files from cache to destination for package is-callable
+   247→ENOENT: failed copying files from cache to destination for package is-data-view
+   248→ENOENT: failed copying files from cache to destination for package is-negative-zero
+   249→ENOENT: failed copying files from cache to destination for package is-set
+   250→ENOENT: failed copying files from cache to destination for package is-shared-array-buffer
+   251→ENOENT: failed copying files from cache to destination for package is-typed-array
+   252→ENOENT: failed copying files from cache to destination for package is-weakref
+   253→ENOENT: failed copying files from cache to destination for package object-inspect
+   254→ENOENT: failed copying files from cache to destination for package own-keys
+   255→ENOENT: failed copying files from cache to destination for package safe-push-apply
+   256→ENOENT: failed copying files from cache to destination for package set-proto
+   257→ENOENT: failed copying files from cache to destination for package stop-iteration-iterator
+   258→ENOENT: failed copying files from cache to destination for package string.prototype.trim
+   259→ENOENT: failed copying files from cache to destination for package string.prototype.trimstart
+   260→ENOENT: failed copying files from cache to destination for package typed-array-buffer
+   261→ENOENT: failed copying files from cache to destination for package typed-array-byte-length
+   262→ENOENT: failed copying files from cache to destination for package typed-array-byte-offset
+   263→ENOENT: failed copying files from cache to destination for package typed-array-length
+   264→  📦 Installing [177/837] copying files from cache to destination for package unbox-primitive
+   265→ENOENT: failed copying files from cache to destination for package which-typed-array
+   266→ENOENT: failed copying files from cache to destination for package has-tostringtag
+   267→ENOENT: failed copying files from cache to destination for package dunder-proto
+   268→ENOENT: failed copying files from cache to destination for package isarray
+   269→ENOENT: failed copying files from cache to destination for package js-tokens
+   270→ENOENT: failed copying files from cache to destination for package functions-have-names
+   271→ENOENT: failed copying files from cache to destination for package side-channel-list
+   272→ENOENT: failed copying files from cache to destination for package side-channel-map
+   273→ENOENT: failed copying files from cache to destination for package side-channel-weakmap
+   274→ENOENT: failed copying files from cache to destination for package @babel/helper-validator-identifier
+   275→ENOENT: failed copying files from cache to destination for package jsesc
+   276→ENOENT: failed copying files from cache to destination for package @babel/helper-validator-option
+   277→ENOENT: failed copying files from cache to destination for package browserslist
+   278→ENOENT: failed copying files from cache to destination for package @babel/helper-module-imports
+   279→ENOENT: failed copying files from cache to destination for package @babel/helper-globals
+   280→ENOENT: failed copying files from cache to destination for package @babel/helper-string-parser
+   281→ENOENT: failed copying files from cache to destination for package base64-js
+   282→ENOENT: failed copying files from cache to destination for package ieee754
+   283→ENOENT: failed copying files from cache to destination for package @floating-ui/core
+   284→ENOENT: failed copying files from cache to destination for package is-alphabetical
+   285→ENOENT: failed copying files from cache to destination for package micromark-factory-destination
+   286→ENOENT: failed copying files from cache to destination for package micromark-factory-label
+   287→ENOENT: failed copying files from cache to destination for package micromark-factory-title
+   288→ENOENT: failed copying files from cache to destination for package micromark-util-html-tag-name
+   289→ENOENT: failed copying files from cache to destination for package decimal.js
+   290→ENOENT: failed copying files from cache to destination for package @formatjs/icu-skeleton-parser
+   291→ENOENT: failed copying files from cache to destination for package citty
+   292→ENOENT: failed copying files from cache to destination for package consola
+   293→ENOENT: failed copying files from cache to destination for package node-fetch-native
+   294→ENOENT: failed copying files from cache to destination for package destr
+   295→ENOENT: failed copying files from cache to destination for package inline-style-parser
+   296→ENOENT: failed copying files from cache to destination for package xtend
+   297→ENOENT: failed copying files from cache to destination for package yocto-queue
+   298→ENOENT: failed copying files from cache to destination for package run-parallel
+   299→ENOENT: failed copying files from cache to destination for package reusify
+   300→ENOENT: failed copying files from cache to destination for package possible-typed-array-names
+   301→ENOENT: failed copying f  🚚 esniff...  for package is-date-object
+   302→ENOENT: failed copying files from cache to destination for package is-symbol
+   303→ENOENT: failed copying files from cache to destination for package for-each
+   304→ENOENT: failed copying files from cache to destination for package reflect.getprototypeof
+   305→ENOENT: failed copying files from cache to destination for package has-bigints
+   306→ENOENT: failed copying files from cache to destination for package which-boxed-primitive
+   307→ENOENT: failed copying files from cache to destination for package update-browserslist-db
+   308→ENOENT: failed copying files from cache to destination for package tinyexec
+   309→ENOENT: failed copying files from cache to destination for package queue-microtask
+   310→ENOENT: failed copying files from cache to destination for package to-regex-range
+   311→ENOENT: failed copying files from cache to destination for package which-builtin-type
+   312→ENOENT: failed copying files from cache to destination for package is-bigint
+   313→ENOENT: failed copying files from cache to destination for package is-boolean-object
+   314→ENOENT: failed copying files from cache to destination for package is-number-object
+   315→ENOENT: failed copying files from cache to destination for package escalade
+   316→ENOENT: failed copying files from cache to destination for package is-number
+   317→ENOENT: failed copying files from cache to destination for package is-async-function
+   318→ENOENT: failed copying files from cache to destination for package is-finalizationregistry
+   319→ENOENT: failed copying files from cache to destination for package is-generator-function
+   320→ENOENT: failed copying files from cache to destination for package which-collection
+   321→ENOENT: failed copying files from cache to destination for package async-function
+   322→ENOENT: failed copying files from cache to destination for package generator-function
+   323→ENOENT: failed copying files from cache to destination for package is-map
+   324→ENOENT: failed copying files from cache to destination for package is-weakmap
+   325→ENOENT: failed copying files from cache to destination for package is-weakset
+   326→  🚚 @swc/core-win32-x64-msvc... ENOSPC: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-alert-dialog\node_modules
+   327→ENOSPC: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-dialog\node_modules
+   328→ENOSPC: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-popover\node_modules
+   329→ENOSPC: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-select\node_modules
+   330→ENOSPC: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-tooltip\node_modules
+   331→ENOENT: Failed to open node_modules folder for postcss in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\next\node_modules
+   332→ENOSPC: failed copying files from cache to destination for package uuid
+   333→ENOSPC: Failed to open node_modules folder for semver in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\eslint-plugin-import\node_modules
+   334→ENOENT: Failed to open node_modules folder for semver in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\eslint-plugin-react\node_modules
+   335→ENOENT: Failed to open node_modules folder for react-is in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@codesandbox/sandpack-react\node_modules
+   336→ENOSPC: Failed to open node_modules folder for @radix-ui/react-separator in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-toolbar\node_modules
+   337→ENOENT: Failed to open node_modules folder for react-is in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\downshift\node_modules
+   338→ENOENT: Failed to open node_modules folder for escape-string-regexp in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\mdast-util-frontmatter\node_modules
+   339→ENOSPC: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-collection\node_modules
+   340→ENOENT: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-primitive\node_modules
+   341→ENOENT: Failed to open node_modules folder for @radix-ui/react-slot in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@radix-ui/react-menu\node_modules
+   342→ENOENT: Failed to open node_modules folder for glob-parent in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\fast-glob\node_modules
+   343→ENOENT: Failed to open node_modules folder for json5 in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@babel/core\node_modules
+   344→ENOENT: Failed to open node_modules folder for semver in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@babel/core\node_modules
+   345→ENOENT: Failed to open node_modules folder for ignore in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@typescript-eslint/eslint-plugin\node_modules
+   346→ENOENT: Failed to open node_modules folder for minimatch in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@typescript-eslint/typescript-estree\node_modules
+   347→ENOSPC: Failed to open node_modules folder for @types/unist in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\parse-entities\node_modules
+   348→ENOENT: Failed to o  ⚙️  @prisma/client [1/1] C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\micromatch\node_modules
+   349→ENOSPC: Failed to open node_modules folder for lru-cache in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@babel/helper-compilation-targets\node_modules
+   350→ENOSPC: Failed to open node_modules folder for semver in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@babel/helper-compilation-targets\node_modules
+   351→ENOENT: Failed to open node_modules folder for brace-expansion in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@typescript-eslint/typescript-estree\node_modules\minimatch\node_modules
+   352→ENOENT: Failed to open node_modules folder for @formatjs/intl-localematcher in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@formatjs/ecma402-abstract\node_modules
+   353→ENOENT: Failed to open node_modules folder for @types/unist in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\hastscript\node_modules\@types/hast\node_modules
+   354→ENOENT: Failed to open node_modules folder for yallist in C:\Users\axtze\Downloads\rib-main\rib-main\node_modules\@babel/helper-compilation-targets\node_modules\lru-cache\node_modules
+   355→error: Fail extracting tarball from prisma
+   356→
+   357→error: Fail extracting tarball from date-fns
+   358→
+   359→error: Fail extracting tarball from lucide-react
+   360→
+   361→error: Fail extracting tarball from next
+   362→
+   363→error: Fail extracting tarball from eslint-plugin-react
+   364→
+   365→error: Fail extracting tarball from @codemirror/language-data
+   366→
+   367→error: Fail extracting tarball from cm6-theme-basic-light
+   368→
+   369→error: Fail extracting tarball from @codemirror/state
+   370→
+   371→error: Fail extracting tarball from @lexical/utils
+   372→
+   373→error: Fail extracting tarball from codemirror
+   374→
+   375→error: ENOSPC extracting tarball from @lexical/rich-text
+   376→
+   377→error: Fail extracting tarball from @lexical/selection
+   378→
+   379→error: Fail extracting tarball from @codesandbox/sandpack-react
+   380→
+   381→error: Fail extracting tarball from @radix-ui/colors
+   382→
+   383→error: Fail extracting tarball from @lexical/react
+   384→
+   385→error: Fail extracting tarball from @codemirror/merge
+   386→
+   387→error: Fail extracting tarball from mdast-util-frontmatter
+   388→
+   389→error: Fail extracting tarball from mdast-util-from-markdown
+   390→
+   391→error: Fail extracting tarball from @mdxeditor/gurx
+   392→
+   393→error: Fail extracting tarball from @lexical/link
+   394→
+   395→error: Fail extracting tarball from downshift
+   396→
+   397→error: Fail extracting tarball from @lexical/clipboard
+   398→
+   399→error: Fail extracting tarball from classnames
+   400→
+   401→error: Fail extracting tarball from @lexical/list
+   402→
+   403→error: Fail extracting tarball from @codemirror/lang-markdown
+   404→
+   405→error: Fail extracting tarball from @lexical/markdown
+   406→
+   407→error: Fail extracting tarball from @lexical/plain-text
+   408→
+   409→error: Fail extracting tarball from @codemirror/commands
+   410→
+   411→error: Fail extracting tarball from lexical
+   412→
+   413→error: Fail extracting tarball from @codemirror/view
+   414→
+   415→error: Fail extracting tarball from @radix-ui/react-icons
+   416→
+   417→error: Fail extracting tarball from micromark-extension-frontmatter
+   418→
+   419→error: Fail extracting tarball from mdast-util-highlight-mark
+   420→
+   421→error: Fail extracting tarball from unidiff
+   422→
+   423→error: Fail extracting tarball from micromark-extension-highlight-mark
+   424→
+   425→error: Fail extracting tarball from motion-dom
+   426→
+   427→error: Fail extracting tarball from @tanstack/query-core
+   428→
+   429→error: Fail extracting tarball from embla-carousel
+   430→
+   431→error: Fail extracting tarball from caniuse-lite
+   432→
+   433→error: Fail extracting tarball from @tanstack/table-core
+   434→
+   435→error: Fail extracting tarball from po-parser
+   436→
+   437→error: Fail extracting tarball from @parcel/watcher
+   438→
+   439→error: Fail extracting tarball from use-intl
+   440→
+   441→error: Fail extracting tarball from preact-render-to-string
+   442→
+   443→error: Fail extracting tarball from openid-client
+   444→
+   445→error: ENOSPC extracting tarball from oauth
+   446→
+   447→error: Fail extracting tarball from preact
+   448→
+   449→error: Fail extracting tarball from @date-fns/tz
+   450→
+   451→error: Fail extracting tarball from @panva/hkdf
+   452→
+   453→error: Fail extracting tarball from html-url-attributes
+   454→
+   455→error: Fail extracting tarball from lowlight
+   456→
+   457→error: Fail extracting tarball from unist-util-visit
+   458→
+   459→error: Fail extracting tarball from highlightjs-vue
+   460→
+   461→error: Fail extracting tarball from @swc/core
+   462→
+   463→error: Fail extracting tarball from @prisma/engines
+   464→
+   465→error: Fail extracting tarball from @prisma/config
+   466→
+   467→error: Fail extracting tarball from next-intl-swc-plugin-extractor
+   468→
+   469→error: Fail extracting tarball from highlight.js
+   470→
+   471→error: Fail extracting tarball from date-fns-jalali
+   472→
+   473→error: ENOSPC extracting tarball from @next/swc-win32-x64-msvc
+   474→
+   475→error: Fail extracting tarball from react-is
+   476→
+   477→error: Fail extracting tarball from recharts-scale
+   478→
+   479→error: Fail extracting tarball from react-smooth
+   480→
+   481→error: Fail extracting tarball from enhanced-resolve
+   482→
+   483→error: Fail extracting tarball from lightningcss
+   484→
+   485→error: Fail extracting tarball from immer
+   486→
+   487→error: Fail extracting tarball from refractor
+   488→
+   489→error: Fail extracting tarball from victory-vendor
+   490→
+   491→error: Fail extracting tarball from @humanfs/core
+   492→
+   493→error: Fail extracting tarball from @eslint/object-schema
+   494→
+   495→error: Fail extracting tarball from levn
+   496→
+   497→error: Fail extracting tarball from strip-json-comments
+   498→
+   499→error: Fail extracting tarball from undici-types
+   500→
+   501→error: ENOSPC extracting tarball from @tailwindcss/oxide-win32-x64-msvc
+   502→
+   503→error: Fail extracting tarball from @img/sharp-win32-x64
+   504→
+   505→error: Fail extracting tarball from flat-cache
+   506→
+   507→error: Fail extracting tarball from type-check
+   508→
+   509→error: Fail extracting tarball from fast-glob
+   510→
+   511→error: Fail extracting tarball from fast-levenshtein
+   512→
+   513→error: Fail extracting tarball from prelude-ls
+   514→
+   515→error: Fail extracting tarball from deep-is
+   516→
+   517→error: Fail extracting tarball from word-wrap
+   518→
+   519→error: Fail extracting tarball from ast-types-flow
+   520→
+   521→error: Fail extracting tarball from @nolyfill/is-core-module
+   522→
+   523→error: Fail extracting tarball from damerau-levenshtein
+   524→
+   525→error: Fail extracting tarball from @rtsao/scc
+   526→
+   527→error: ENOSPC extracting tarball from object.groupby
+   528→
+   529→error: Fail extracting tarball from tsconfig-paths
+   530→
+   531→error: Fail extracting tarball from eslint-module-utils
+   532→
+   533→error: Fail extracting tarball from doctrine
+   534→
+   535→error: ENOSPC extracting tarball from object.fromentries
+   536→
+   537→error: ENOENT extracting tarball from object.values
+   538→
+   539→error: Fail extracting tarball from is-bun-module
+   540→
+   541→error: Fail extracting tarball from get-tsconfig
+   542→
+   543→error: Fail extracting tarball from stable-hash
+   544→
+   545→error: ENOSPC extracting tarball from array.prototype.findlastindex
+   546→
+   547→error: Fail extracting tarball from unrs-resolver
+   548→
+   549→error: ENOSPC extracting tarball from array-includes
+   550→
+   551→error: ENOSPC extracting tarball from array.prototype.flat
+   552→
+   553→error: ENOSPC extracting tarball from array.prototype.flatmap
+   554→
+   555→error: Fail extracting tarball from language-tags
+   556→
+   557→error: ENOSPC extracting tarball from jsx-ast-utils
+   558→
+   559→error: ENOENT extracting tarball from object.entries
+   560→
+   561→error: ENOSPC extracting tarball from array.prototype.tosorted
+   562→
+   563→error: ENOSPC extracting tarball from array.prototype.findlast
+   564→
+   565→error: ENOSPC extracting tarball from string.prototype.includes
+   566→
+   567→error: Fail extracting tarball from @codemirror/lang-python
+   568→
+   569→error: Fail extracting tarball from @codemirror/lang-json
+   570→
+   571→error: Fail extracting tarball from @codemirror/lang-javascript
+   572→
+   573→error: Fail extracting tarball from @lexical/code
+   574→
+   575→error: Fail extracting tarball from @codemirror/lang-jinja
+   576→
+   577→error: Fail extracting tarball from compute-scroll-into-view
+   578→
+   579→error: Fail extracting tarball from @codemirror/lang-wast
+   580→
+   581→error: Fail extracting tarball from @lezer/highlight
+   582→
+   583→error: Fail extracting tarball from @codemirror/language
+   584→
+   585→error: Fail extracting tarball from @codemirror/autocomplete
+   586→
+   587→error: Fail extracting tarball from @codemirror/lang-xml
+   588→
+   589→error: Fail extracting tarball from @codemirror/lang-sass
+   590→
+   591→error: Fail extracting tarball from @lezer/markdown
+   592→
+   593→error: Fail extracting tarball from @lezer/common
+   594→
+   595→error: Fail extracting tarball from @codemirror/lang-rust
+   596→
+   597→error: Fail extracting tarball from @codemirror/lang-yaml
+   598→
+   599→error: Fail extracting tarball from @lexical/text
+   600→
+   601→error: Fail extracting tarball from @typescript-eslint/typescript-estree
+   602→
+   603→error: Fail extracting tarball from react-error-boundary
+   604→
+   605→error: Fail extracting tarball from @typescript-eslint/parser
+   606→
+   607→error: Fail extracting tarball from @lexical/html
+   608→
+   609→error: Fail extracting tarball from @codemirror/lang-cpp
+   610→
+   611→error: Fail extracting tarball from @codemirror/lang-css
+   612→
+   613→error: Fail extracting tarball from zod-validation-error
+   614→
+   615→error: Fail extracting tarball from escape-carriage
+   616→
+   617→error: Fail extracting tarball from hermes-parser
+   618→
+   619→error: Fail extracting tarball from string.prototype.matchall
+   620→
+   621→error: Fail extracting tarball from anser
+   622→
+   623→error: Fail extracting tarball from @codemirror/lang-html
+   624→
+   625→error: Fail extracting tarball from clean-set
+   626→
+   627→error: Fail extracting tarball from @floating-ui/react
+   628→
+   629→error: Fail extracting tarball from crelt
+   630→
+   631→error: Fail extracting tarball from @typescript-eslint/utils
+   632→
+   633→error: Fail extracting tarball from prop-types
+   634→
+   635→error: Fail extracting tarball from @babel/parser
+   636→
+   637→error: Fail extracting tarball from @codemirror/lang-angular
+   638→
+   639→error: Fail extracting tarball from @codemirror/lang-go
+   640→
+   641→error: Fail extracting tarball from react-devtools-inline
+   642→
+   643→error: Fail extracting tarball from style-mod
+   644→
+   645→error: Fail extracting tarball from w3c-keyname
+   646→
+   647→error: Fail extracting tarball from es-iterator-helpers
+   648→
+   649→error: Fail extracting tarball from @babel/core
+   650→
+   651→error: Fail extracting tarball from @typescript-eslint/eslint-plugin
+   652→
+   653→error: ENOSPC extracting tarball from string.prototype.repeat
+   654→
+   655→error: Fail extracting tarball from decode-named-character-reference
+   656→
+   657→error: Fail extracting tarball from @codemirror/lang-java
+   658→
+   659→error: Fail extracting tarball from @codemirror/lang-less
+   660→
+   661→error: Fail extracting tarball from @codemirror/lint
+   662→
+   663→error: Fail extracting tarball from @lexical/history
+   664→
+   665→error: Fail extracting tarball from @codemirror/lang-liquid
+   666→
+   667→error: Fail extracting tarball from @lexical/devtools-core
+   668→
+   669→error: Fail extracting tarball from @lexical/dragon
+   670→
+   671→error: Fail extracting tarball from @lexical/overflow
+   672→
+   673→error: Fail extracting tarball from @react-hook/intersection-observer
+   674→
+   675→error: Fail extracting tarball from @lexical/mark
+   676→
+   677→error: Fail extracting tarball from @codemirror/lang-sql
+   678→
+   679→error: Fail extracting tarball from @lexical/table
+   680→
+   681→error: Fail extracting tarball from @lexical/hashtag
+   682→
+   683→error: Fail extracting tarball from @lexical/yjs
+   684→
+   685→error: Fail extracting tarball from @codemirror/search
+   686→
+   687→error: Fail extracting tarball from @codemirror/lang-vue
+   688→
+   689→error: Fail extracting tarball from @codemirror/legacy-modes
+   690→
+   691→error: Fail extracting tarball from @codemirror/lang-php
+   692→
+   693→error: Fail extracting tarball from @marijn/find-cluster-break
+   694→
+   695→error: Fail extracting tarball from @stitches/core
+   696→
+   697→error: Fail extracting tarball from uvu
+   698→
+   699→error: Fail extracting tarball from fault
+   700→
+   701→error: Fail extracting tarball from diff
+   702→
+   703→error: Fail extracting tarball from empathic
+   704→
+   705→error: Fail extracting tarball from c12
+   706→
+   707→error: Fail extracting tarball from deepmerge-ts
+   708→
+   709→error: ENOSPC extracting tarball from @swc/counter
+   710→
+   711→error: Fail extracting tarball from pretty-format
+   712→
+   713→error: Fail extracting tarball from @prisma/debug
+   714→
+   715→error: Fail extracting tarball from @swc/types
+   716→
+   717→error: Fail extracting tarball from @prisma/engines-version
+   718→
+   719→error: Fail extracting tarball from hastscript
+   720→
+   721→error: Fail extracting tarball from react-transition-group
+   722→
+   723→error: Fail extracting tarball from @types/d3-ease
+   724→
+   725→error: Fail extracting tarball from d3-ease
+   726→
+   727→error: Fail extracting tarball from @types/d3-timer
+   728→
+   729→error: Fail extracting tarball from @types/d3-interpolate
+   730→
+   731→error: Fail extracting tarball from @types/d3-shape
+   732→
+   733→error: Fail extracting tarball from fast-equals
+   734→
+   735→error: Fail extracting tarball from @types/d3-array
+   736→
+   737→error: Fail extracting tarball from @types/d3-scale
+   738→
+   739→error: Fail extracting tarball from d3-scale
+   740→
+   741→error: Fail extracting tarball from @prisma/fetch-engine
+   742→
+   743→error: Fail extracting tarball from d3-array
+   744→
+   745→error: Fail extracting tarball from @types/d3-time
+   746→
+   747→error: Fail extracting tarball from @prisma/get-platform
+   748→
+   749→error: Fail extracting tarball from decimal.js-light
+   750→
+   751→error: Fail extracting tarball from d3-time
+   752→
+   753→error: Fail extracting tarball from d3-timer
+   754→
+   755→error: Fail extracting tarball from resolve-pkg-maps
+   756→
+   757→error: Fail extracting tarball from napi-postinstall
+   758→
+   759→error: ENOSPC extracting tarball from d3-interpolate
+   760→
+   761→error: Fail extracting tarball from d3-shape
+   762→
+   763→error: Fail extracting tarball from @parcel/watcher-win32-x64
+   764→
+   765→error: ENOSPC extracting tarball from @unrs/resolver-binding-win32-x64-msvc
+   766→
+   767→error: Fail extracting tarball from effect
+   768→
+   769→error: Fail extracting tarball from json5
+   770→
+   771→error: ENOSPC extracting tarball from es-shim-unscopables
+   772→
+   773→error: Fail extracting tarball from @codesandbox/sandpack-client
+   774→
+   775→error: Fail extracting tarball from @babel/code-frame
+   776→
+   777→error: Fail extracting tarball from @types/json5
+   778→
+   779→error: Fail extracting tarball from iterator.prototype
+   780→
+   781→error: Fail extracting tarball from @babel/generator
+   782→
+   783→error: Fail extracting tarball from language-subtag-registry
+   784→
+   785→error: Fail extracting tarball from lightningcss-win32-x64-msvc
+   786→
+   787→error: Fail extracting tarball from outvariant
+   788→
+   789→error: Fail extracting tarball from hermes-estree
+   790→
+   791→error: Fail extracting tarball from es6-symbol
+   792→
+   793→error: Fail extracting tarball from intersection-observer
+   794→
+   795→error: Fail extracting tarball from @lezer/javascript
+   796→
+   797→error: Fail extracting tarball from tabbable
+   798→
+   799→error: Fail extracting tarball from ts-api-utils
+   800→
+   801→error: Fail extracting tarball from static-browser-server
+   802→
+   803→error: Fail extracting tarball from @typescript-eslint/visitor-keys
+   804→
+   805→error: Fail extracting tarball from format
+   806→
+   807→error: Fail extracting tarball from @typescript-eslint/types
+   808→
+   809→error: Fail extracting tarball from @lezer/json
+   810→
+   811→error: Fail extracting tarball from @typescript-eslint/type-utils
+   812→
+   813→error: Fail extracting tarball from @lezer/xml
+   814→
+   815→error: Fail extracting tarball from sade
+   816→
+   817→error: Fail extracting tarball from @typescript-eslint/project-service
+   818→
+   819→error: Fail extracting tarball from @typescript-eslint/tsconfig-utils
+   820→
+   821→error: Fail extracting tarball from @lezer/yaml
+   822→
+   823→error: Fail extracting tarball from @lezer/sass
+   824→
+   825→error: Fail extracting tarball from @lezer/cpp
+   826→
+   827→error: Fail extracting tarball from @typescript-eslint/scope-manager
+   828→
+   829→error: Fail extracting tarball from @lezer/rust
+   830→
+   831→error: Fail extracting tarball from @lezer/go
+   832→
+   833→error: Fail extracting tarball from @react-hook/passive-layout-effect
+   834→
+   835→error: Fail extracting tarball from @lezer/css
+   836→
+   837→error: Fail extracting tarball from @lexical/offset
+   838→
+   839→error: Fail extracting tarball from @lezer/python
+   840→
+   841→error: Fail extracting tarball from @lezer/lr
+   842→
+   843→error: Fail extracting tarball from @codesandbox/nodebox
+   844→
+   845→error: Fail extracting tarball from @lezer/java
+   846→
+   847→error: Fail extracting tarball from @babel/traverse
+   848→
+   849→error: Fail extracting tarball from @lezer/php
+   850→
+   851→error: Fail extracting tarball from @lezer/html
+   852→
+   853→error: Fail extracting tarball from @babel/types
+   854→
+   855→error: Fail extracting tarball from confbox
+   856→
+   857→error: Fail extracting tarball from yjs
+   858→
+   859→error: Fail extracting tarball from perfect-debounce
+   860→
+   861→error: Fail extracting tarball from hast-util-parse-selector
+   862→
+   863→error: Fail extracting tarball from @types/d3-path
+   864→
+   865→error: Fail extracting tarball from @types/d3-color
+   866→
+   867→error: Fail extracting tarball from dom-helpers
+   868→
+   869→error: Fail extracting tarball from internmap
+   870→
+   871→error: Fail extracting tarball from d3-format
+   872→
+   873→error: Fail extracting tarball from d3-path
+   874→
+   875→error: Fail extracting tarball from d3-time-format
+   876→
+   877→error: Fail extracting tarball from d3-color
+   878→
+   879→error: Fail extracting tarball from fast-check
+   880→
+   881→error: Fail extracting tarball from ext
+   882→
+   883→error: Fail extracting tarball from mri
+   884→
+   885→error: Fail extracting tarball from d
+   886→
+   887→error: Fail extracting tarball from @babel/compat-data
+   888→
+   889→error: Fail extracting tarball from strict-event-emitter
+   890→
+   891→error: Fail extracting tarball from @open-draft/deferred-promise
+   892→
+   893→error: Fail extracting tarball from lib0
+   894→
+   895→error: Fail extracting tarball from nypm
+   896→
+   897→error: Fail extracting tarball from pure-rand
+   898→
+   899→error: Fail extracting tarball from node-releases
+   900→
+   901→error: Fail extracting tarball from type
+   902→
+   903→error: Fail extracting tarball from isomorphic.js
+   904→
+   905→error: Fail extracting tarball from es5-ext
+   906→
+   907→error: Fail extracting tarball from electron-to-chromium
+   908→
+   909→error: ENOSPC extracting tarball from esniff
+   910→
+   911→error: Fail extracting tarball from es6-iterator
+   912→
+   913→error: Fail extracting tarball from event-emitter
+   914→
+   915→error: ENOSPC extracting tarball from next-tick
+   916→
+   917→error: Fail extracting tarball from globals
+   918→
+   919→error: Fail extracting tarball from eslint-visitor-keys
+   920→
+   921→error: Fail extracting tarball from space-separated-tokens
+   922→
+   923→error: Fail extracting tarball from comma-separated-tokens
+   924→
+   925→error: Fail extracting tarball from character-entities
+   926→
+   927→error: Fail extracting tarball from character-reference-invalid
+   928→
+   929→error: Fail extracting tarball from is-alphanumerical
+   930→
+   931→error: Fail extracting tarball from debug
+   932→
+   933→error: Fail extracting tarball from is-hexadecimal
+   934→
+   935→error: Fail extracting tarball from fault
+   936→
+   937→error: Fail extracting tarball from character-entities-legacy
+   938→
+   939→error: Fail extracting tarball from resolve
+   940→
+   941→error: ENOSPC extracting tarball from react-is
+   942→
+   943→error: Fail extracting tarball from is-alphabetical
+   944→
+   945→error: Fail extracting tarball from is-decimal
+   946→
+   947→error: Fail extracting tarball from parse-entities
+   948→
+   949→error: Fail extracting tarball from @radix-ui/react-context
+   950→
+   951→error: Fail extracting tarball from @radix-ui/react-primitive
+   952→
+   953→error: Fail extracting tarball from property-information
+   954→
+   955→error: Fail extracting tarball from prismjs
+   956→
+   957→error: Fail extracting tarball from @types/hast
+   958→
+   959→error: Fail extracting tarball from @swc/core-win32-x64-msvc
+   960→
+   961→error: Failed to link baseline-browser-mapping: ENOENT
+   962→
+   963→error: Failed to link eslint: ENOENT
+   964→
+   965→error: Failed to link jiti: ENOENT
+   966→
+   967→error: Failed to link js-yaml: ENOENT
+   968→
+   969→error: Failed to link typescript: ENOENT
+   970→
+   971→error: Failed to link uuid: ENOENT
+   972→
+   973→error: Failed to link which: ENOENT
+   974→
+   975→error: Failed to link z-ai-web-dev-sdk: ENOENT
+   976→PS C:\Users\axtze\Downloads\rib-main\rib-main> bun run dev
+   977→$ next dev -p 3000 2>&1 | tee dev.log
+   978→bun: command not found: next
+   979→bun: command not found: tee
+   980→error: script "dev" exited with code 1
+   981→PS C:\Users\axtze\Downloads\rib-main\rib-main>
