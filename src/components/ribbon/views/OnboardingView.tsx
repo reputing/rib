@@ -3,7 +3,7 @@
 import { useState } from "react";
 import {
   Gamepad2, Palette, Music, Code, Star, Smile, Check, Upload, Plus,
-  ArrowLeft, Instagram, Twitter, Github, Home as HomeIcon,
+  Instagram, Twitter, Github, Home as HomeIcon,
 } from "lucide-react";
 import { useRibbon, ACCENT_HEX } from "@/lib/ribbon/store";
 import { onboardingInterests, onboardingSuggestedServers } from "@/lib/ribbon/mock-data";
@@ -32,7 +32,6 @@ const PARTICLES = [
 
 export function OnboardingView() {
   const {
-    navigate,
     onboardingStep,
     nextOnboardingStep,
     prevOnboardingStep,
@@ -47,36 +46,34 @@ export function OnboardingView() {
   } = useRibbon();
 
   const step = onboardingStep;
+  const [isExiting, setIsExiting] = useState(false);
 
   // "enter ribbon" from the setup step → go to the "done" screen (step 5)
   const handleFinish = () => {
     finishOnboarding();
   };
 
-  // "start chatting" from the done screen → enter the actual app
+  // "start chatting" from the done screen → fade out smoothly, then enter the app.
+  // The fade gives a moment of closure before the DMs view appears, instead of an
+  // abrupt cut. Total duration ~900ms (matches the ribbon-fade-up animation timing).
   const handleEnterApp = () => {
-    enterApp();
+    if (isExiting) return;
+    setIsExiting(true);
+    setTimeout(() => {
+      enterApp();
+    }, 900);
   };
 
   return (
     <div
       className="relative flex h-full w-full items-center justify-center overflow-hidden"
-      style={{ background: "#060504", color: "#EDE5D6" }}
+      style={{
+        background: "#060504",
+        color: "#EDE5D6",
+        opacity: isExiting ? 0 : 1,
+        transition: "opacity 900ms ease",
+      }}
     >
-      {/* Back to splash button */}
-      <button
-        onClick={() => navigate("splash")}
-        className="absolute left-5 top-5 z-30 flex cursor-pointer items-center gap-1.5 rounded-[10px] border px-3 py-1.5 text-[11px] font-medium"
-        style={{
-          background: "rgba(255, 255, 255, 0.04)",
-          borderColor: "var(--color-ribbon-border)",
-          color: "var(--color-ribbon-text-dim)",
-        }}
-      >
-        <ArrowLeft size={12} strokeWidth={2.5} />
-        Back
-      </button>
-
       {/* Background gradients */}
       <div
         className="pointer-events-none absolute inset-0"

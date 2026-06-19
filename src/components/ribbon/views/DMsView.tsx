@@ -19,6 +19,8 @@ export function DMsView() {
     setActiveDM,
     setActiveProfile,
     sendDM,
+    justEnteredApp,
+    clearJustEnteredApp,
   } = useRibbon();
 
   const activeDM = dms.find((d) => d.id === activeDMId) ?? dms[0];
@@ -31,6 +33,14 @@ export function DMsView() {
 
   const messagesRef = useRef<HTMLDivElement>(null);
 
+  // Clear the one-shot fade-in flag after this render so subsequent DMs visits don't re-fade.
+  useEffect(() => {
+    if (justEnteredApp) {
+      const t = setTimeout(() => clearJustEnteredApp(), 700);
+      return () => clearTimeout(t);
+    }
+  }, [justEnteredApp, clearJustEnteredApp]);
+
   useEffect(() => {
     if (messagesRef.current) {
       messagesRef.current.scrollTop = messagesRef.current.scrollHeight;
@@ -38,7 +48,7 @@ export function DMsView() {
   }, [activeDM.messages.length, activeDMId]);
 
   return (
-    <div className="flex h-full flex-1 min-h-0">
+    <div className={`flex h-full flex-1 min-h-0${justEnteredApp ? " animate-fade-in" : ""}`}>
       {/* ═══ DM LIST SIDEBAR ═══ */}
       <div
         className="flex w-[280px] flex-none flex-col border-r"

@@ -242,31 +242,8 @@ export function SplashView() {
         </div>
       </div>
 
-      {/* Branding at the bottom + alternate entry points */}
+      {/* Branding at the bottom + mobile mockup entry */}
       <div className="absolute bottom-[18px] left-1/2 z-50 flex -translate-x-1/2 items-center gap-2">
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            useRibbon.getState().navigate("onboarding");
-          }}
-          className="cursor-pointer rounded-[10px] border px-3 py-1.5 text-[10px] font-semibold transition"
-          style={{
-            background: "rgba(255, 255, 255, 0.03)",
-            borderColor: "var(--color-ribbon-border)",
-            color: "#6B5F52",
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
-            e.currentTarget.style.color = "#A89A88";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
-            e.currentTarget.style.color = "#6B5F52";
-          }}
-          title="View the onboarding flow"
-        >
-          onboarding
-        </button>
         <div
           className="flex items-center gap-1.5 rounded-[10px] border px-3 py-1.5"
           style={{

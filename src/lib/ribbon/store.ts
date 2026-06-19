@@ -22,8 +22,10 @@ interface RibbonState {
   view: ViewId;
   params: NavParams;
   hasEntered: boolean;          // user clicked past the splash
+  justEnteredApp: boolean;      // true for one render after enterApp() — used by DMsView to fade in
   navigate: (view: ViewId, params?: NavParams) => void;
   enterApp: () => void;         // mark splash as dismissed
+  clearJustEnteredApp: () => void;  // reset the one-shot fade-in flag
   goBack: () => void;
 
   // ─── Active selection ───
@@ -132,11 +134,15 @@ function now(): string {
 }
 
 export const useRibbon = create<RibbonState>((set, get) => ({
-  view: "splash",
+  // Start at onboarding — every new visitor goes through the welcome flow first.
+  // The splash screen is still reachable via the "Back" button on the onboarding view.
+  view: "onboarding",
   params: {},
   hasEntered: false,
+  justEnteredApp: false,
   navigate: (view, params = {}) => set({ view, params }),
-  enterApp: () => set({ hasEntered: true, view: "dms" }),
+  enterApp: () => set({ hasEntered: true, view: "dms", justEnteredApp: true }),
+  clearJustEnteredApp: () => set({ justEnteredApp: false }),
   goBack: () =>
     set((s) => ({
       view: s.view === "profile" || s.view === "pinboard" || s.view === "guestbook"
