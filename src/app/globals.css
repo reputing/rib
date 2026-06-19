@@ -1,0 +1,231 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-quicksand);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Ribbon-specific design tokens */
+  --color-ribbon-bg: #131010;
+  --color-ribbon-bg-deep: #060504;
+  --color-ribbon-dock: #151210;
+  --color-ribbon-sidebar: #1A1612;
+  --color-ribbon-card: #1A1612;
+  --color-ribbon-elevated: #211D17;
+  --color-ribbon-hover: #2A2118;
+  --color-ribbon-border: rgba(255, 255, 255, 0.04);
+  --color-ribbon-border-strong: rgba(255, 255, 255, 0.08);
+  --color-ribbon-text: #EDE5D8;
+  --color-ribbon-text-dim: #A89A88;
+  --color-ribbon-text-muted: #736757;
+  --color-ribbon-text-faint: #5C5045;
+  --color-ribbon-text-ghost: #4A4038;
+  --color-ribbon-text-placeholder: #3D3528;
+  --color-ribbon-terracotta: #C4654A;
+  --color-ribbon-rust: #B85544;
+  --color-ribbon-amber: #D4944C;
+  --color-ribbon-sage: #7BA87A;
+  --color-ribbon-mauve: #8B7FA0;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  --radius: 0.625rem;
+  /* Ribbon is always dark — set both light & dark to the same palette */
+  --background: #131010;
+  --foreground: #EDE5D8;
+  --card: #1A1612;
+  --card-foreground: #EDE5D8;
+  --popover: #211D17;
+  --popover-foreground: #EDE5D8;
+  --primary: #C4654A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #211D17;
+  --secondary-foreground: #EDE5D8;
+  --muted: #211D17;
+  --muted-foreground: #A89A88;
+  --accent: #2A2118;
+  --accent-foreground: #EDE5D8;
+  --destructive: #B85544;
+  --border: rgba(255, 255, 255, 0.04);
+  --input: #1A1612;
+  --ring: #C4654A;
+  --chart-1: #C4654A;
+  --chart-2: #D4944C;
+  --chart-3: #7BA87A;
+  --chart-4: #8B7FA0;
+  --chart-5: #B85544;
+  --sidebar: #1A1612;
+  --sidebar-foreground: #EDE5D8;
+  --sidebar-primary: #C4654A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #211D17;
+  --sidebar-accent-foreground: #EDE5D8;
+  --sidebar-border: rgba(255, 255, 255, 0.04);
+  --sidebar-ring: #C4654A;
+}
+
+.dark {
+  --background: #131010;
+  --foreground: #EDE5D8;
+  --card: #1A1612;
+  --card-foreground: #EDE5D8;
+  --popover: #211D17;
+  --popover-foreground: #EDE5D8;
+  --primary: #C4654A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #211D17;
+  --secondary-foreground: #EDE5D8;
+  --muted: #211D17;
+  --muted-foreground: #A89A88;
+  --accent: #2A2118;
+  --accent-foreground: #EDE5D8;
+  --destructive: #B85544;
+  --border: rgba(255, 255, 255, 0.04);
+  --input: #1A1612;
+  --ring: #C4654A;
+  --sidebar: #1A1612;
+  --sidebar-foreground: #EDE5D8;
+  --sidebar-primary: #C4654A;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #211D17;
+  --sidebar-accent-foreground: #EDE5D8;
+  --sidebar-border: rgba(255, 255, 255, 0.04);
+  --sidebar-ring: #C4654A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    box-sizing: border-box;
+  }
+  html,
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-quicksand), 'Quicksand', system-ui, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  /* Custom scrollbar — thin, warm, blends with the sidebar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ═══ Ribbon animations (ported from the profile mockup) ═══ */
+@keyframes ribbon-twinkle {
+  0%, 100% { opacity: 0; transform: scale(0.4); }
+  50% { opacity: 1; transform: scale(1); }
+}
+@keyframes ribbon-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes ribbon-breathe {
+  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(180, 70, 55, 0.3); }
+  50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(180, 70, 55, 0.5); }
+}
+@keyframes ribbon-ring-pulse {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+@keyframes ribbon-ring-pulse-slow {
+  0% { transform: scale(1); opacity: 0.15; }
+  100% { transform: scale(3); opacity: 0; }
+}
+@keyframes ribbon-enter-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+@keyframes ribbon-glitch {
+  0%, 90%, 100% { transform: translateX(0); }
+  92% { transform: translateX(-3px); }
+  94% { transform: translateX(2px); }
+  96% { transform: translateX(-1px); }
+  98% { transform: translateX(3px); }
+}
+@keyframes ribbon-eq-bar {
+  0%, 100% { height: 4px; }
+  25% { height: 14px; }
+  50% { height: 8px; }
+  75% { height: 18px; }
+}
+@keyframes ribbon-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes ribbon-typing {
+  0%, 60%, 100% { opacity: 0.2; }
+  30% { opacity: 1; }
+}
+
+.animate-twinkle { animation: ribbon-twinkle 3.5s ease-in-out infinite; }
+.animate-drift { animation: ribbon-drift 6s ease-in-out infinite; }
+.animate-breathe { animation: ribbon-breathe 4s ease-in-out infinite; }
+.animate-ring-pulse { animation: ribbon-ring-pulse 2s ease-out infinite; }
+.animate-ring-pulse-slow { animation: ribbon-ring-pulse-slow 3s ease-out infinite; }
+.animate-enter-pulse { animation: ribbon-enter-pulse 2s ease-in-out infinite; }
+.animate-glitch { animation: ribbon-glitch 12s ease-in-out infinite; }
+.animate-fade-up { animation: ribbon-fade-up 0.6s ease-out forwards; }
+
+/* Utility: hide scrollbar where needed (e.g. the bottom dock) */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Ribbon-shaped bubble corners (DM message style) */
+.bubble-maya {
+  border-radius: 14px 14px 14px 4px;
+}
+.bubble-self {
+  border-radius: 14px 14px 4px 14px;
+}
