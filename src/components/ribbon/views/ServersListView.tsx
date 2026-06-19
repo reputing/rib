@@ -55,7 +55,7 @@ export function ServersListView() {
           onClick={() => navigate("discover")}
           className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-[10px] px-3 py-1.5 text-[12px] font-medium"
           style={{
-            background: "rgba(196, 101, 74, 0.12)",
+            background: "rgba(255, 59, 48, 0.12)",
             color: "var(--color-ribbon-terracotta)",
           }}
         >

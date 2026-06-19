@@ -20,14 +20,14 @@ const INTEREST_ICONS = {
 };
 
 const PARTICLES = [
-  { top: "8%", left: "15%", size: 5, color: "#B85544", delay: 0, char: "✦" },
+  { top: "8%", left: "15%", size: 5, color: "#FF3B30", delay: 0, char: "✦" },
   { top: "20%", left: "80%", size: 2, color: "#E8E0D6", delay: 0.6, dot: true },
-  { top: "70%", left: "10%", size: 2, color: "#8B7FA0", delay: 1.1, dot: true },
-  { top: "85%", left: "75%", size: 4, color: "#D4944C", delay: 1.6, char: "✦" },
-  { top: "30%", left: "5%", size: 2, color: "#B85544", delay: 2.1, dot: true },
+  { top: "70%", left: "10%", size: 2, color: "#3B5BFF", delay: 1.1, dot: true },
+  { top: "85%", left: "75%", size: 4, color: "#FFD60A", delay: 1.6, char: "✦" },
+  { top: "30%", left: "5%", size: 2, color: "#FF3B30", delay: 2.1, dot: true },
   { top: "50%", left: "90%", size: 4, color: "#E8E0D6", delay: 0.4, char: "✦" },
-  { top: "15%", left: "45%", size: 1, color: "#D4944C", delay: 3.1, dot: true },
-  { top: "90%", left: "35%", size: 2, color: "#8B7FA0", delay: 2.6, dot: true },
+  { top: "15%", left: "45%", size: 1, color: "#FFD60A", delay: 3.1, dot: true },
+  { top: "90%", left: "35%", size: 2, color: "#3B5BFF", delay: 2.6, dot: true },
 ];
 
 export function OnboardingView() {
@@ -183,7 +183,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             width: 80,
             height: 80,
             borderRadius: 22,
-            border: "1px solid rgba(180, 70, 55, 0.2)",
+            border: "1px solid rgba(255, 59, 48, 0.2)",
           }}
         />
         <div
@@ -192,7 +192,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             width: 80,
             height: 80,
             borderRadius: 22,
-            border: "1px solid rgba(180, 70, 55, 0.15)",
+            border: "1px solid rgba(255, 59, 48, 0.15)",
             animationDelay: "1s",
           }}
         />
@@ -203,8 +203,8 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
             height: 80,
             borderRadius: 22,
             fontSize: 36,
-            background: "linear-gradient(135deg, #B85544, #D4944C)",
-            boxShadow: "0 8px 40px rgba(180, 70, 55, 0.3)",
+            background: "linear-gradient(135deg, #FF3B30, #FFD60A)",
+            boxShadow: "0 8px 40px rgba(255, 59, 48, 0.3)",
           }}
         >
           r
@@ -226,11 +226,11 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         onClick={onNext}
         className="mt-8 cursor-pointer rounded-[14px] px-10 py-3 text-[14px] font-bold text-white transition"
         style={{
-          background: "#B85544",
-          boxShadow: "0 4px 20px rgba(180, 70, 55, 0.3)",
+          background: "#FF3B30",
+          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
       >
         get started
       </button>
@@ -238,7 +238,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         already have an account?{" "}
         <span
           className="cursor-pointer font-semibold"
-          style={{ color: "#B85544" }}
+          style={{ color: "#FF3B30" }}
           onClick={onNext}
         >
           sign in
@@ -292,9 +292,9 @@ function StepCreateAccount({
         {username && (
           <div
             className="flex h-[18px] w-[18px] items-center justify-center rounded-full"
-            style={{ background: "rgba(123, 168, 122, 0.15)" }}
+            style={{ background: "rgba(0, 214, 125, 0.15)" }}
           >
-            <Check size={10} strokeWidth={3} style={{ color: "#7BA87A" }} />
+            <Check size={10} strokeWidth={3} style={{ color: "#00D67D" }} />
           </div>
         )}
       </div>
@@ -342,11 +342,11 @@ function StepCreateAccount({
         onClick={onNext}
         className="mt-5 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#B85544",
-          boxShadow: "0 4px 20px rgba(180, 70, 55, 0.3)",
+          background: "#FF3B30",
+          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
       >
         continue
       </button>
@@ -435,11 +435,11 @@ function StepPickVibe({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#B85544",
-          boxShadow: "0 4px 20px rgba(180, 70, 55, 0.3)",
+          background: "#FF3B30",
+          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
       >
         continue
       </button>
@@ -482,7 +482,7 @@ function StepFindPeople({
               style={{
                 background: "#1A1612",
                 borderColor: isJoined
-                  ? "rgba(123, 168, 122, 0.2)"
+                  ? "rgba(0, 214, 125, 0.2)"
                   : "rgba(255, 255, 255, 0.04)",
               }}
             >
@@ -506,9 +506,9 @@ function StepFindPeople({
                 className="flex-none cursor-pointer rounded-lg px-3.5 py-1.5 text-[11px] font-semibold transition"
                 style={{
                   background: isJoined
-                    ? "rgba(123, 168, 122, 0.15)"
-                    : "rgba(196, 101, 74, 0.12)",
-                  color: isJoined ? "#7BA87A" : "#C4654A",
+                    ? "rgba(0, 214, 125, 0.15)"
+                    : "rgba(255, 59, 48, 0.12)",
+                  color: isJoined ? "#00D67D" : "#FF3B30",
                 }}
               >
                 {isJoined ? "joined" : "join"}
@@ -522,11 +522,11 @@ function StepFindPeople({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#B85544",
-          boxShadow: "0 4px 20px rgba(180, 70, 55, 0.3)",
+          background: "#FF3B30",
+          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
       >
         continue
       </button>
@@ -567,7 +567,7 @@ function StepSetUpRibbon({
           background: "rgba(14, 12, 10, 0.7)",
           backdropFilter: "blur(16px)",
           borderColor: "rgba(255, 255, 255, 0.05)",
-          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(180, 70, 55, 0.06)",
+          boxShadow: "0 12px 40px rgba(0, 0, 0, 0.4), 0 0 60px rgba(255, 59, 48, 0.06)",
         }}
       >
         {/* Avatar upload area */}
@@ -651,11 +651,11 @@ function StepSetUpRibbon({
         onClick={onFinish}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#B85544",
-          boxShadow: "0 4px 20px rgba(180, 70, 55, 0.3)",
+          background: "#FF3B30",
+          boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
       >
         enter ribbon
       </button>
@@ -684,8 +684,8 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           width: 72,
           height: 72,
           borderRadius: 20,
-          background: "linear-gradient(135deg, #7BA87A, #5B8A6C)",
-          boxShadow: "0 8px 30px rgba(123, 168, 122, 0.3)",
+          background: "linear-gradient(135deg, #00D67D, #00B85C)",
+          boxShadow: "0 8px 30px rgba(0, 214, 125, 0.3)",
         }}
       >
         <Check size={32} strokeWidth={2.5} style={{ color: "#fff" }} />
@@ -707,11 +707,11 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           onClick={onFinish}
           className="cursor-pointer rounded-[14px] px-7 py-3 text-[14px] font-bold text-white transition"
           style={{
-            background: "#B85544",
-            boxShadow: "0 4px 20px rgba(180, 70, 55, 0.3)",
+            background: "#FF3B30",
+            boxShadow: "0 4px 20px rgba(255, 59, 48, 0.3)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
         >
           start chatting
         </button>
@@ -744,7 +744,7 @@ function ProgressBar({ step }: { step: number }) {
             width: 32,
             height: 3,
             borderRadius: 2,
-            background: i <= step ? "#B85544" : "rgba(255, 255, 255, 0.06)",
+            background: i <= step ? "#FF3B30" : "rgba(255, 255, 255, 0.06)",
           }}
         />
       ))}

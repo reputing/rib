@@ -65,10 +65,6 @@ interface RibbonState {
   declineFriend: (requestId: string) => void;
   removeFriend: (userId: string) => void;
 
-  // ─── Events ───
-  eventRSVP: Record<string, boolean>;
-  toggleRSVP: (eventId: string) => void;
-
   // ─── Settings ───
   settings: {
     reduceMotion: boolean;
@@ -145,9 +141,9 @@ export const useRibbon = create<RibbonState>((set, get) => ({
   clearJustEnteredApp: () => set({ justEnteredApp: false }),
   goBack: () =>
     set((s) => ({
-      view: s.view === "profile" || s.view === "pinboard" || s.view === "guestbook"
+      view: s.view === "profile"
         ? "dms"
-        : s.view === "settings"
+        : s.view === "settings" || s.view === "server-settings"
           ? "dms"
           : s.view === "voice"
             ? s.activeServerId
@@ -287,12 +283,6 @@ export const useRibbon = create<RibbonState>((set, get) => ({
       friendIds: s.friendIds.filter((id) => id !== userId),
     })),
 
-  eventRSVP: { se1: true, se4: true },
-  toggleRSVP: (eventId) =>
-    set((s) => ({
-      eventRSVP: { ...s.eventRSVP, [eventId]: !s.eventRSVP[eventId] },
-    })),
-
   settings: {
     reduceMotion: false,
     showOnlineStatus: true,
@@ -422,18 +412,21 @@ export const useRibbon = create<RibbonState>((set, get) => ({
 
 // ─── Helpers ─────────────────────────────────────────────────────
 
+// Accent colors are remapped to the new vibrant palette:
+//   terracotta → vivid red, amber → bright yellow, sage → vibrant green, mauve → electric blue
+// This keeps all existing component code working while swapping to the punchier palette.
 export const ACCENT_HEX: Record<string, string> = {
-  terracotta: "#C4654A",
-  amber: "#D4944C",
-  sage: "#7BA87A",
-  mauve: "#8B7FA0",
+  terracotta: "#FF3B30",
+  amber: "#FFD60A",
+  sage: "#00D67D",
+  mauve: "#3B5BFF",
 };
 
 export const ACCENT_HEX_BRIGHT: Record<string, string> = {
-  terracotta: "#B85544",
-  amber: "#E0A65A",
-  sage: "#8FC18E",
-  mauve: "#A095B5",
+  terracotta: "#FF5C52",
+  amber: "#FFE03D",
+  sage: "#1AE68A",
+  mauve: "#5B7BFF",
 };
 
 export function randomAccent(): typeof ACCENTS[number] {

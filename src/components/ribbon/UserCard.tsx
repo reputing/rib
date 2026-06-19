@@ -57,7 +57,7 @@ export function UserCard({ onEditBio }: { onEditBio?: () => void }) {
               onClick={onEditBio}
               className="cursor-pointer rounded-[7px] px-2 py-1 text-[10px] font-medium"
               style={{
-                background: "rgba(196, 101, 74, 0.1)",
+                background: "rgba(255, 59, 48, 0.1)",
                 color: "var(--color-ribbon-terracotta)",
               }}
             >
@@ -76,7 +76,7 @@ function VoiceMiniBar() {
   return (
     <div
       className="mt-2 flex items-center gap-1.5 rounded-lg px-2 py-1.5"
-      style={{ background: "rgba(123, 168, 122, 0.08)" }}
+      style={{ background: "rgba(0, 214, 125, 0.08)" }}
     >
       <span
         className="text-[9px] font-semibold uppercase"
@@ -90,7 +90,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: muted ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: muted ? "#B85544" : "var(--color-ribbon-text-faint)",
+          color: muted ? "#FF3B30" : "var(--color-ribbon-text-faint)",
         }}
       >
         {muted ? "unmute" : "mute"}
@@ -100,7 +100,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: deafened ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: deafened ? "#B85544" : "var(--color-ribbon-text-faint)",
+          color: deafened ? "#FF3B30" : "var(--color-ribbon-text-faint)",
         }}
       >
         {deafened ? "undeafen" : "deafen"}
@@ -108,7 +108,7 @@ function VoiceMiniBar() {
       <button
         onClick={leaveVoice}
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
-        style={{ color: "#B85544" }}
+        style={{ color: "#FF3B30" }}
       >
         leave
       </button>

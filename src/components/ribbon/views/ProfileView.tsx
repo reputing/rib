@@ -12,9 +12,7 @@ import {
   ArrowLeft,
   Eye,
   Volume2,
-  Heart,
   MessageCircle,
-  BookOpen,
 } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
 import { getUser } from "@/lib/ribbon/mock-data";
@@ -129,7 +127,7 @@ export function ProfileView() {
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse at 50% 40%, rgba(180, 70, 55, 0.1) 0%, transparent 50%)",
+            "radial-gradient(ellipse at 50% 40%, rgba(255, 59, 48, 0.1) 0%, transparent 50%)",
         }}
       />
       <div
@@ -205,7 +203,7 @@ export function ProfileView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: `linear-gradient(135deg, ${accentColor}, #D4944C)`,
+            background: `linear-gradient(135deg, ${accentColor}, #FFD60A)`,
           }}
         >
           {user.avatarLetter}
@@ -215,7 +213,7 @@ export function ProfileView() {
           style={{
             color: "#E8E0D6",
             letterSpacing: "-1px",
-            textShadow: "0 0 30px rgba(180, 70, 55, 0.4)",
+            textShadow: "0 0 30px rgba(255, 59, 48, 0.4)",
           }}
         >
           {user.username}
@@ -305,8 +303,8 @@ export function ProfileView() {
             height: 88,
             borderRadius: 24,
             fontSize: 34,
-            background: `linear-gradient(135deg, ${accentColor}, #D4944C)`,
-            boxShadow: "0 8px 40px rgba(180, 70, 55, 0.35)",
+            background: `linear-gradient(135deg, ${accentColor}, #FFD60A)`,
+            boxShadow: "0 8px 40px rgba(255, 59, 48, 0.35)",
           }}
         >
           {user.avatarLetter}
@@ -318,7 +316,7 @@ export function ProfileView() {
               width: 16,
               height: 16,
               borderRadius: "50%",
-              background: "#7BA87A",
+              background: "#00D67D",
               border: "3px solid #060504",
             }}
           />
@@ -438,14 +436,14 @@ export function ProfileView() {
             className="cursor-pointer rounded-[10px] border px-4 py-1.5 text-[11px] font-semibold transition"
             style={{
               background: isFriend
-                ? "rgba(123, 168, 122, 0.18)"
+                ? "rgba(0, 214, 125, 0.18)"
                 : friendRequested
-                  ? "rgba(139, 127, 160, 0.18)"
+                  ? "rgba(59, 91, 255, 0.18)"
                   : `${accentColor}2E`,
               borderColor: isFriend
-                ? "rgba(123, 168, 122, 0.2)"
+                ? "rgba(0, 214, 125, 0.2)"
                 : friendRequested
-                  ? "rgba(139, 127, 160, 0.2)"
+                  ? "rgba(59, 91, 255, 0.2)"
                   : `${accentColor}33`,
               color: isFriend
                 ? "var(--color-ribbon-sage)"
@@ -480,27 +478,6 @@ export function ProfileView() {
           >
             <MessageCircle size={11} strokeWidth={2.5} />
             message
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate("guestbook", { userId: user.id });
-            }}
-            className="flex cursor-pointer items-center gap-1.5 rounded-[10px] border px-4 py-1.5 text-[11px] font-semibold transition"
-            style={{
-              background: "rgba(139, 127, 160, 0.1)",
-              borderColor: "rgba(139, 127, 160, 0.1)",
-              color: "var(--color-ribbon-mauve)",
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(139, 127, 160, 0.2)";
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(139, 127, 160, 0.1)";
-            }}
-          >
-            <BookOpen size={11} strokeWidth={2.5} />
-            guestbook
           </button>
         </div>
 
@@ -543,39 +520,6 @@ export function ProfileView() {
             </div>
           </div>
         )}
-
-        {/* Pinboard + Files quick access */}
-        <div className="mt-4 flex gap-2">
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate("pinboard", { userId: user.id });
-            }}
-            className="flex cursor-pointer items-center gap-1.5 rounded-[10px] border px-3 py-1.5 text-[10px] font-medium transition"
-            style={{
-              background: "rgba(255, 255, 255, 0.03)",
-              borderColor: "var(--color-ribbon-border)",
-              color: "#6B5F52",
-            }}
-          >
-            <Heart size={10} strokeWidth={2.5} />
-            view pinboard
-          </button>
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              navigate("files");
-            }}
-            className="flex cursor-pointer items-center gap-1.5 rounded-[10px] border px-3 py-1.5 text-[10px] font-medium transition"
-            style={{
-              background: "rgba(255, 255, 255, 0.03)",
-              borderColor: "var(--color-ribbon-border)",
-              color: "#6B5F52",
-            }}
-          >
-            view files
-          </button>
-        </div>
       </div>
 
       {/* Bottom branding */}

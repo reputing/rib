@@ -104,7 +104,7 @@ export function VoiceView() {
                     className="flex w-full cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
                     style={{
                       background: isActive
-                        ? "rgba(123, 168, 122, 0.1)"
+                        ? "rgba(0, 214, 125, 0.1)"
                         : "transparent",
                       color: isActive
                         ? "var(--color-ribbon-sage)"
@@ -131,7 +131,7 @@ export function VoiceView() {
                                 className="h-3.5 w-3.5"
                                 style={{
                                   borderRadius: 5,
-                                  background: "linear-gradient(135deg,#C4654A,#D4944C)",
+                                  background: "linear-gradient(135deg,#FF3B30,#FFD60A)",
                                 }}
                               />
                             ) : (
@@ -164,8 +164,8 @@ export function VoiceView() {
             <div
               className="rounded-[12px] border px-2.5 py-2"
               style={{
-                background: "rgba(123, 168, 122, 0.08)",
-                borderColor: "rgba(123, 168, 122, 0.12)",
+                background: "rgba(0, 214, 125, 0.08)",
+                borderColor: "rgba(0, 214, 125, 0.12)",
               }}
             >
               <div className="mb-1.5 flex items-center gap-1.5">
@@ -176,7 +176,7 @@ export function VoiceView() {
                       style={{
                         width: 2,
                         borderRadius: 1,
-                        background: "#7BA87A",
+                        background: "#00D67D",
                         animation: `ribbon-eq-bar 0.8s ease-in-out infinite`,
                         animationDelay: `${i * 0.2}s`,
                       }}
@@ -201,13 +201,13 @@ export function VoiceView() {
                   active={!muted}
                   onClick={toggleMute}
                   icon={muted ? <MicOff size={14} /> : <Mic size={14} />}
-                  color={muted ? "#B85544" : "var(--color-ribbon-text-dim)"}
+                  color={muted ? "#FF3B30" : "var(--color-ribbon-text-dim)"}
                 />
                 <VoiceSidebarButton
                   active={!deafened}
                   onClick={toggleDeafen}
                   icon={<Headphones size={14} />}
-                  color={deafened ? "#B85544" : "var(--color-ribbon-text-dim)"}
+                  color={deafened ? "#FF3B30" : "var(--color-ribbon-text-dim)"}
                 />
                 <VoiceSidebarButton
                   onClick={() => {
@@ -215,7 +215,7 @@ export function VoiceView() {
                     navigate("dms");
                   }}
                   icon={<PhoneOff size={14} />}
-                  color="#C4654A"
+                  color="#FF3B30"
                   danger
                 />
               </div>
@@ -295,14 +295,14 @@ export function VoiceView() {
             icon={muted ? <MicOff size={18} /> : <Mic size={18} />}
             label={muted ? "muted" : "mic"}
             active={!muted}
-            color={muted ? "#B85544" : "var(--color-ribbon-text-dim)"}
+            color={muted ? "#FF3B30" : "var(--color-ribbon-text-dim)"}
           />
           <VoiceControlButton
             onClick={toggleDeafen}
             icon={<Headphones size={18} />}
             label="audio"
             active={!deafened}
-            color={deafened ? "#B85544" : "var(--color-ribbon-text-dim)"}
+            color={deafened ? "#FF3B30" : "var(--color-ribbon-text-dim)"}
           />
           <VoiceControlButton
             onClick={() => navigate("settings", { settingsTab: "audio" })}
@@ -324,7 +324,7 @@ export function VoiceView() {
             }}
             icon={<PhoneOff size={18} />}
             label="disconnect"
-            color="#C4654A"
+            color="#FF3B30"
             danger
           />
         </div>
@@ -353,7 +353,7 @@ function VoiceUserTile({
       style={{
         background: "#1A1612",
         borderColor: speaking
-          ? "rgba(123, 168, 122, 0.15)"
+          ? "rgba(0, 214, 125, 0.15)"
           : "var(--color-ribbon-border)",
       }}
     >
@@ -367,11 +367,11 @@ function VoiceUserTile({
             borderRadius: 20,
             fontSize: 28,
             background: isMe
-              ? "linear-gradient(135deg, #C4654A, #D4944C)"
+              ? "linear-gradient(135deg, #FF3B30, #FFD60A)"
               : accentColor,
             animation: speaking ? "ribbon-breathe 1.5s ease-in-out infinite" : "none",
             boxShadow: speaking
-              ? "0 0 0 0 rgba(123, 168, 122, 0.4)"
+              ? "0 0 0 0 rgba(0, 214, 125, 0.4)"
               : "none",
           }}
         >
@@ -393,7 +393,7 @@ function VoiceUserTile({
               justifyContent: "center",
             }}
           >
-            <MicOff size={9} strokeWidth={3} style={{ color: "#C4654A" }} />
+            <MicOff size={9} strokeWidth={3} style={{ color: "#FF3B30" }} />
           </div>
         )}
       </div>
@@ -460,22 +460,22 @@ function VoiceControlButton({
         width: 44,
         height: 44,
         background: danger
-          ? "rgba(196, 101, 74, 0.15)"
+          ? "rgba(255, 59, 48, 0.15)"
           : active
             ? "rgba(255, 255, 255, 0.04)"
             : "transparent",
         border: danger
-          ? "1px solid rgba(196, 101, 74, 0.2)"
+          ? "1px solid rgba(255, 59, 48, 0.2)"
           : "1px solid var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = danger
-          ? "rgba(196, 101, 74, 0.25)"
+          ? "rgba(255, 59, 48, 0.25)"
           : "rgba(255, 255, 255, 0.08)";
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.background = danger
-          ? "rgba(196, 101, 74, 0.15)"
+          ? "rgba(255, 59, 48, 0.15)"
           : active
             ? "rgba(255, 255, 255, 0.04)"
             : "transparent";
@@ -506,13 +506,13 @@ function VoiceSidebarButton({
       className="flex flex-1 cursor-pointer items-center justify-center rounded-lg py-1.5 transition"
       style={{
         background: danger
-          ? "rgba(196, 101, 74, 0.15)"
+          ? "rgba(255, 59, 48, 0.15)"
           : active
             ? "rgba(255, 255, 255, 0.04)"
             : "transparent",
       }}
-      onMouseEnter={(e) => (e.currentTarget.style.background = danger ? "rgba(196, 101, 74, 0.25)" : "rgba(255, 255, 255, 0.08)")}
-      onMouseLeave={(e) => (e.currentTarget.style.background = danger ? "rgba(196, 101, 74, 0.15)" : active ? "rgba(255, 255, 255, 0.04)" : "transparent")}
+      onMouseEnter={(e) => (e.currentTarget.style.background = danger ? "rgba(255, 59, 48, 0.25)" : "rgba(255, 255, 255, 0.08)")}
+      onMouseLeave={(e) => (e.currentTarget.style.background = danger ? "rgba(255, 59, 48, 0.15)" : active ? "rgba(255, 255, 255, 0.04)" : "transparent")}
     >
       <div style={{ color }}>{icon}</div>
     </button>

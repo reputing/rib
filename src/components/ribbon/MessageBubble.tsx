@@ -33,7 +33,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
             className="bubble-self border px-3.5 py-2.5 text-[14px] leading-[1.5]"
             style={{
               background: "#2A2118",
-              borderColor: "rgba(196, 101, 74, 0.1)",
+              borderColor: "rgba(255, 59, 48, 0.1)",
             }}
           >
             {getText(message)}

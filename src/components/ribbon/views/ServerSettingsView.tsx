@@ -119,7 +119,7 @@ export function ServerSettingsView() {
                     onClick={() => setServerSettingsTab(t.id)}
                     className="mb-0.5 flex w-full cursor-pointer items-center gap-2 rounded-[10px] px-2.5 py-1.5 text-[13px] transition"
                     style={{
-                      background: active ? "rgba(196, 101, 74, 0.1)" : "transparent",
+                      background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
                       color: active
                         ? "var(--color-ribbon-terracotta)"
                         : "var(--color-ribbon-text-dim)",
@@ -146,7 +146,7 @@ export function ServerSettingsView() {
               onClick={() => navigate("dms")}
               className="flex cursor-pointer items-center gap-1.5 rounded-[10px] px-2.5 py-2 text-[12px] transition"
               style={{ color: "var(--color-ribbon-terracotta)" }}
-              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(196, 101, 74, 0.08)")}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 59, 48, 0.08)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               <Trash2 size={12} strokeWidth={2} />
@@ -396,7 +396,7 @@ function OverviewTab({
       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
       <div
         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
-        style={{ background: server?.banner ?? "linear-gradient(135deg, #C4654A 0%, #D4944C 50%, #7BA87A 100%)" }}
+        style={{ background: server?.banner ?? "linear-gradient(135deg, #FF3B30 0%, #FFD60A 50%, #00D67D 100%)" }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
@@ -417,11 +417,11 @@ function OverviewTab({
         <button
           className="cursor-pointer rounded-[12px] px-7 py-2.5 text-[13px] font-bold text-white transition"
           style={{
-            background: "#B85544",
-            boxShadow: "0 4px 16px rgba(180, 70, 55, 0.25)",
+            background: "#FF3B30",
+            boxShadow: "0 4px 16px rgba(255, 59, 48, 0.25)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#C4654A")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#B85544")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#FF3B30")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#FF3B30")}
         >
           save changes
         </button>
@@ -533,7 +533,7 @@ function ToggleRow({
         style={{
           width: 40,
           height: 22,
-          background: value ? "#7BA87A" : "rgba(255, 255, 255, 0.1)",
+          background: value ? "#00D67D" : "rgba(255, 255, 255, 0.1)",
           padding: 2,
         }}
       >

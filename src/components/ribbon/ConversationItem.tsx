@@ -34,7 +34,7 @@ export function ConversationItem({
       }}
       className="mb-0.5 flex w-full cursor-pointer items-center gap-2.5 rounded-[12px] px-2.5 py-2.5 transition"
       style={{
-        background: active ? "rgba(196, 101, 74, 0.08)" : "transparent",
+        background: active ? "rgba(255, 59, 48, 0.08)" : "transparent",
       }}
       onMouseEnter={(e) => {
         if (!active) e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";

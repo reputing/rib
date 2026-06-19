@@ -54,7 +54,7 @@ export function FriendsView() {
               onClick={() => setTab(t)}
               className="relative cursor-pointer rounded-[8px] px-3 py-1 text-[11px] font-semibold transition"
               style={{
-                background: tab === t ? "rgba(196, 101, 74, 0.12)" : "transparent",
+                background: tab === t ? "rgba(255, 59, 48, 0.12)" : "transparent",
                 color: tab === t
                   ? "var(--color-ribbon-terracotta)"
                   : "var(--color-ribbon-text-muted)",
@@ -102,7 +102,7 @@ export function FriendsView() {
                 <button
                   className="cursor-pointer rounded-[10px] px-4 py-2 text-[12px] font-semibold"
                   style={{
-                    background: "rgba(196, 101, 74, 0.15)",
+                    background: "rgba(255, 59, 48, 0.15)",
                     color: "var(--color-ribbon-terracotta)",
                   }}
                 >
@@ -193,7 +193,7 @@ export function FriendsView() {
                         onClick={() => acceptFriend(r.id)}
                         className="flex cursor-pointer items-center gap-1 rounded-[8px] px-2.5 py-1.5 text-[11px] font-semibold transition"
                         style={{
-                          background: "rgba(123, 168, 122, 0.15)",
+                          background: "rgba(0, 214, 125, 0.15)",
                           color: "var(--color-ribbon-sage)",
                         }}
                       >
@@ -205,7 +205,7 @@ export function FriendsView() {
                         className="cursor-pointer rounded-[8px] px-2.5 py-1.5 text-[11px] font-semibold"
                         style={{
                           background: "rgba(184, 85, 68, 0.15)",
-                          color: "#B85544",
+                          color: "#FF3B30",
                         }}
                       >
                         <X size={11} strokeWidth={2.5} />
@@ -333,7 +333,7 @@ function FriendRow({
         className="cursor-pointer rounded-[8px] px-2 py-1.5 text-[11px] font-semibold"
         style={{
           background: "rgba(184, 85, 68, 0.1)",
-          color: "#B85544",
+          color: "#FF3B30",
         }}
         title="Remove friend"
       >

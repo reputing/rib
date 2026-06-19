@@ -5,10 +5,10 @@
 export type UserStatus = "online" | "idle" | "dnd" | "offline";
 
 export type AccentColor =
-  | "terracotta" // #C4654A
-  | "amber"      // #D4944C
-  | "sage"       // #7BA87A
-  | "mauve";     // #8B7FA0
+  | "terracotta" // #FF3B30 (red)
+  | "amber"      // #FFD60A (yellow)
+  | "sage"       // #00D67D (green)
+  | "mauve";     // #3B5BFF (blue)
 
 export interface User {
   id: string;
@@ -181,21 +181,13 @@ export type ViewId =
   | "friends"
   | "settings"
   | "server-settings"
-  | "pinboard"
-  | "guestbook"
-  | "voice"
-  | "events"
-  | "files";
+  | "voice";
 
 export interface NavParams {
-  // For "chat" — which server & channel
   serverId?: string;
   channelId?: string;
-  // For "profile" / "pinboard" / "guestbook" — which user
   userId?: string;
-  // For "settings" — which tab
   settingsTab?: string;
-  // For "server-settings" — which server + which tab
   serverSettingsTab?: string;
 }
 

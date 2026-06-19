@@ -1,7 +1,7 @@
 "use client";
 
 import { useRibbon } from "@/lib/ribbon/store";
-import { BottomDock } from "./BottomDock";
+import { FloatingDock } from "./FloatingDock";
 import { SplashView } from "./views/SplashView";
 import { OnboardingView } from "./views/OnboardingView";
 import { DMsView } from "./views/DMsView";
@@ -13,22 +13,18 @@ import { DiscoverView } from "./views/DiscoverView";
 import { FriendsView } from "./views/FriendsView";
 import { SettingsView } from "./views/SettingsView";
 import { ServerSettingsView } from "./views/ServerSettingsView";
-import { PinboardView } from "./views/PinboardView";
-import { GuestbookView } from "./views/GuestbookView";
 import { VoiceView } from "./views/VoiceView";
-import { EventsView } from "./views/EventsView";
-import { FilesView } from "./views/FilesView";
 
 export function AppShell() {
   const view = useRibbon((s) => s.view);
   const hasEntered = useRibbon((s) => s.hasEntered);
 
-  // Onboarding + Mobile + Splash are full-screen, no bottom dock, and accessible
-  // from the splash screen BEFORE the user has "entered" the app.
+  // Onboarding is full-screen, no dock
   if (view === "onboarding") {
     return <OnboardingView />;
   }
 
+  // Mobile is full-screen (has its own bottom tab bar)
   if (view === "mobile") {
     return (
       <div className="flex h-screen w-screen flex-col">
@@ -39,35 +35,36 @@ export function AppShell() {
     );
   }
 
+  // Splash is full-screen
   if (view === "splash" || (!hasEntered && view !== "mobile" && view !== "onboarding")) {
     return <SplashView />;
   }
 
-  // Voice has its own full-screen layout with sidebar + controls
+  // Voice has its own full-screen layout
   if (view === "voice") {
     return (
       <div className="flex h-screen w-screen flex-col">
         <div className="flex-1 min-h-0">
           <VoiceView />
         </div>
-        <BottomDock />
+        <FloatingDock />
       </div>
     );
   }
 
-  // Profile is a full-screen overlay (click-to-enter splash style)
+  // Profile is a full-screen overlay
   if (view === "profile") {
     return (
       <div className="flex h-screen w-screen flex-col">
         <div className="flex-1 min-h-0">
           <ProfileView />
         </div>
-        <BottomDock />
+        <FloatingDock />
       </div>
     );
   }
 
-  // All other views: top content + bottom dock
+  // All other views: content + floating dock
   return (
     <div className="flex h-screen w-screen flex-col">
       <div className="flex-1 min-h-0">
@@ -78,12 +75,8 @@ export function AppShell() {
         {view === "friends" && <FriendsView />}
         {view === "settings" && <SettingsView />}
         {view === "server-settings" && <ServerSettingsView />}
-        {view === "pinboard" && <PinboardView />}
-        {view === "guestbook" && <GuestbookView />}
-        {view === "events" && <EventsView />}
-        {view === "files" && <FilesView />}
       </div>
-      <BottomDock />
+      <FloatingDock />
     </div>
   );
 }

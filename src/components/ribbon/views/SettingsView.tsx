@@ -9,7 +9,11 @@ import {
   Volume2,
   Lock,
   Save,
+  Sun,
+  Moon,
+  Monitor,
 } from "lucide-react";
+import { useTheme } from "next-themes";
 import { useRibbon, ACCENT_HEX } from "@/lib/ribbon/store";
 import { getUser, CURRENT_USER_ID } from "@/lib/ribbon/mock-data";
 import { Avatar } from "../Avatar";
@@ -67,7 +71,7 @@ export function SettingsView() {
                 onClick={() => setActiveSettingsTab(t.id)}
                 className="mb-0.5 flex w-full cursor-pointer items-center gap-2 rounded-[10px] px-3 py-2 text-[12px] font-medium transition"
                 style={{
-                  background: active ? "rgba(196, 101, 74, 0.1)" : "transparent",
+                  background: active ? "rgba(255, 59, 48, 0.1)" : "transparent",
                   color: active
                     ? "var(--color-ribbon-terracotta)"
                     : "var(--color-ribbon-text-dim)",
@@ -249,23 +253,7 @@ export function SettingsView() {
                 onChange={(v) => updateSetting("reduceMotion", v)}
               />
 
-              <Field label="Theme">
-                <div
-                  className="flex items-center justify-between rounded-[10px] border px-3 py-2.5"
-                  style={{
-                    background: "#211D17",
-                    borderColor: "var(--color-ribbon-border)",
-                  }}
-                >
-                  <span className="text-[12px]">Warm dark (default)</span>
-                  <span
-                    className="text-[10px]"
-                    style={{ color: "var(--color-ribbon-text-faint)" }}
-                  >
-                    only theme available
-                  </span>
-                </div>
-              </Field>
+              <ThemeField />
             </div>
           )}
 
@@ -290,7 +278,7 @@ export function SettingsView() {
                       style={{
                         background:
                           settings.dmNotifications === opt
-                            ? "rgba(196, 101, 74, 0.15)"
+                            ? "rgba(255, 59, 48, 0.15)"
                             : "#211D17",
                         color:
                           settings.dmNotifications === opt
@@ -499,7 +487,7 @@ function SaveBar() {
       <button
         className="flex cursor-pointer items-center gap-2 rounded-[10px] px-4 py-2 text-[12px] font-semibold"
         style={{
-          background: "rgba(196, 101, 74, 0.15)",
+          background: "rgba(255, 59, 48, 0.15)",
           color: "var(--color-ribbon-terracotta)",
         }}
       >
@@ -507,5 +495,56 @@ function SaveBar() {
         save changes
       </button>
     </div>
+  );
+}
+
+function ThemeField() {
+  const { theme, setTheme } = useTheme();
+  // theme is undefined on first client render (before next-themes hydrates).
+  // Default to "system" for the active-state comparison.
+  const currentTheme = theme || "system";
+
+  const options = [
+    { id: "system", label: "System", icon: Monitor },
+    { id: "light", label: "Light", icon: Sun },
+    { id: "dark", label: "Dark", icon: Moon },
+  ];
+
+  return (
+    <Field label="Theme">
+      <div className="flex gap-1.5">
+        {options.map((opt) => {
+          const Icon = opt.icon;
+          const isActive = currentTheme === opt.id;
+          return (
+            <button
+              key={opt.id}
+              onClick={() => setTheme(opt.id)}
+              className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border px-3 py-2.5 text-[12px] font-semibold transition"
+              style={{
+                background: isActive
+                  ? "rgba(255, 59, 48, 0.12)"
+                  : "var(--ribbon-card)",
+                borderColor: isActive
+                  ? "rgba(255, 59, 48, 0.3)"
+                  : "var(--ribbon-border)",
+                color: isActive
+                  ? "var(--color-ribbon-terracotta)"
+                  : "var(--ribbon-text-dim)",
+              }}
+            >
+              <Icon size={13} strokeWidth={2.5} />
+              {opt.label}
+            </button>
+          );
+        })}
+      </div>
+      <div
+        className="mt-1.5 text-[10px]"
+        style={{ color: "var(--ribbon-text-faint)" }}
+      >
+        Auto-adapts to your device setting. Try switching your phone to light mode.
+      </div>
+    </Field>
   );
 }

@@ -2,10 +2,6 @@
 
 import { useEffect, useRef } from "react";
 import {
-  Grid2x2,
-  Share,
-  Search,
-  Users,
   Hash,
   Volume2,
   Settings as SettingsIcon,
@@ -152,30 +148,6 @@ export function ChatView() {
               title="Server settings"
             >
               <SettingsIcon size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-            </button>
-            <button
-              onClick={() => navigate("files")}
-              className="cursor-pointer"
-              title="Files"
-            >
-              <Grid2x2 size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-            </button>
-            <button
-              onClick={() => navigate("events")}
-              className="cursor-pointer"
-              title="Events"
-            >
-              <Share size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-            </button>
-            <button className="cursor-pointer" title="Search">
-              <Search size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-            </button>
-            <button
-              onClick={() => navigate("friends")}
-              className="cursor-pointer"
-              title="Members"
-            >
-              <Users size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
             </button>
           </div>
         </div>

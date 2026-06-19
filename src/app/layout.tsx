@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Quicksand } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
+import { ThemeWrapper } from "@/components/ribbon/ThemeWrapper";
 
 const quicksand = Quicksand({
   variable: "--font-quicksand",
@@ -12,7 +13,7 @@ const quicksand = Quicksand({
 
 export const metadata: Metadata = {
   title: "ribbon — chat for digital alchemists",
-  description: "A niche chat app for creative communities. DMs, servers, pinboards, guestbooks, voice, and more.",
+  description: "A niche chat app for creative communities. DMs, servers, voice, and more.",
   keywords: ["ribbon", "chat", "discord alternative", "creative community", "niche chat"],
   authors: [{ name: "ribbon.lol" }],
   icons: {
@@ -32,12 +33,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="dark">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${quicksand.variable} antialiased bg-background text-foreground`}
       >
-        {children}
-        <Toaster />
+        <ThemeWrapper>
+          {children}
+          <Toaster />
+        </ThemeWrapper>
       </body>
     </html>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Phone, Video, MoreHorizontal, Plus } from "lucide-react";
+import { Plus } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
 import { getUser, userList, CURRENT_USER_ID } from "@/lib/ribbon/mock-data";
 import { Avatar } from "../Avatar";
@@ -171,20 +171,11 @@ export function DMsView() {
               onClick={() => setActiveProfile(other.id)}
               className="cursor-pointer rounded-md px-2 py-1 text-[10px] font-medium"
               style={{
-                background: "rgba(196, 101, 74, 0.08)",
+                background: "rgba(255, 59, 48, 0.1)",
                 color: "var(--color-ribbon-terracotta)",
               }}
             >
               ribbon.lol/{other.handle}
-            </button>
-            <button className="cursor-pointer" title="Call">
-              <Phone size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-            </button>
-            <button className="cursor-pointer" title="Video">
-              <Video size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
-            </button>
-            <button className="cursor-pointer" title="More">
-              <MoreHorizontal size={15} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
             </button>
           </div>
         </div>

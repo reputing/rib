@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import { Plus, Image as ImageIcon, Mic, Smile } from "lucide-react";
+import { ArrowUp } from "lucide-react";
 
 interface MessageInputProps {
   placeholder: string;
@@ -27,22 +27,17 @@ export function MessageInput({ placeholder, onSend }: MessageInputProps) {
     setText("");
   };
 
+  const canSend = text.trim().length > 0;
+
   return (
-    <div className="px-6 pb-3.5">
+    <div className="px-6 pb-4">
       <div
-        className="flex items-center gap-2.5 rounded-2xl border px-4 py-3"
+        className="flex items-end gap-2 rounded-2xl border px-4 py-2.5"
         style={{
-          background: "#1A1612",
-          borderColor: "var(--color-ribbon-border)",
+          background: "var(--ribbon-card)",
+          borderColor: "var(--ribbon-border)",
         }}
       >
-        <button
-          className="flex-none cursor-pointer"
-          style={{ color: "var(--color-ribbon-text-faint)" }}
-          title="Attach"
-        >
-          <Plus size={17} strokeWidth={2} />
-        </button>
         <textarea
           ref={ref}
           value={text}
@@ -57,30 +52,24 @@ export function MessageInput({ placeholder, onSend }: MessageInputProps) {
           placeholder={placeholder}
           className="flex-1 resize-none bg-transparent text-[13px] outline-none"
           style={{
-            color: "var(--color-ribbon-text)",
+            color: "var(--ribbon-text)",
             fontFamily: "inherit",
+            lineHeight: "1.5",
           }}
         />
         <button
-          className="flex-none cursor-pointer"
-          style={{ color: "var(--color-ribbon-text-faint)" }}
-          title="Image"
+          onClick={send}
+          disabled={!canSend}
+          className="flex h-7 w-7 flex-none cursor-pointer items-center justify-center rounded-full transition disabled:cursor-default"
+          style={{
+            background: canSend
+              ? "linear-gradient(135deg, #FF3B30 0%, #FFD60A 50%, #3B5BFF 100%)"
+              : "var(--ribbon-hover)",
+            opacity: canSend ? 1 : 0.4,
+          }}
+          title="Send"
         >
-          <ImageIcon size={17} strokeWidth={2} />
-        </button>
-        <button
-          className="flex-none cursor-pointer"
-          style={{ color: "var(--color-ribbon-text-faint)" }}
-          title="Voice"
-        >
-          <Mic size={17} strokeWidth={2} />
-        </button>
-        <button
-          className="flex-none cursor-pointer"
-          style={{ color: "var(--color-ribbon-text-faint)" }}
-          title="Emoji"
-        >
-          <Smile size={17} strokeWidth={2} />
+          <ArrowUp size={14} strokeWidth={3} style={{ color: "#FFFFFF" }} />
         </button>
       </div>
     </div>
