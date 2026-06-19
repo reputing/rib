@@ -63,6 +63,27 @@ bun run dev
 
 Open http://localhost:3000 — you'll see the splash screen. Click to enter.
 
+> **Windows users:** if `bun install` fails with `ENOSPC`, your disk is full OR bun's cache is corrupted. Fix with:
+> ```powershell
+> # 1. Check disk space
+> Get-PSDrive C | Select-Object Used,Free
+>
+> # 2. Clear bun cache
+> bun pm cache rm
+>
+> # 3. Delete the broken node_modules and lockfile, then retry
+> Remove-Item -Recurse -Force node_modules
+> Remove-Item -Force bun.lock
+> bun install
+> ```
+>
+> If bun still struggles, fall back to npm:
+> ```powershell
+> Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue
+> npm install
+> npx next dev -p 3000
+> ```
+
 ## 📁 Structure
 
 ```
