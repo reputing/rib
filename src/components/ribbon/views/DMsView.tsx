@@ -17,10 +17,11 @@ export function DMsView() {
     dms,
     activeDMId,
     setActiveDM,
-    setActiveProfile,
     sendDM,
     justEnteredApp,
     clearJustEnteredApp,
+    openBiolink,
+    openProfilePopup,
   } = useRibbon();
 
   const activeDM = dms.find((d) => d.id === activeDMId) ?? dms[0];
@@ -94,7 +95,7 @@ export function DMsView() {
             {onlineUsers.slice(0, 6).map((u) => (
               <button
                 key={u.id}
-                onClick={() => setActiveProfile(u.id)}
+                onClick={() => openProfilePopup(u.id)}
                 className="relative cursor-pointer"
                 title={u.username}
               >
@@ -138,7 +139,7 @@ export function DMsView() {
           style={{ borderColor: "var(--color-ribbon-border)" }}
         >
           <button
-            onClick={() => setActiveProfile(other.id)}
+            onClick={() => openProfilePopup(other.id)}
             className="relative mr-2.5 flex-none cursor-pointer"
           >
             <Avatar
@@ -150,7 +151,7 @@ export function DMsView() {
             />
           </button>
           <button
-            onClick={() => setActiveProfile(other.id)}
+            onClick={() => openProfilePopup(other.id)}
             className="cursor-pointer text-left"
           >
             <div
@@ -168,7 +169,7 @@ export function DMsView() {
           </button>
           <div className="ml-auto flex items-center gap-2.5">
             <button
-              onClick={() => setActiveProfile(other.id)}
+              onClick={() => openBiolink(other.id)}
               className="cursor-pointer rounded-md px-2 py-1 text-[10px] font-medium"
               style={{
                 background: "rgba(255, 255, 255, 0.08)",

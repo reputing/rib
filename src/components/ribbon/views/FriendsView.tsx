@@ -178,7 +178,7 @@ export function FriendsView() {
                         status={u.status}
                       />
                       <button
-                        onClick={() => setActiveProfile(u.id)}
+                        onClick={() => openProfilePopup(u.id)}
                         className="flex-1 cursor-pointer text-left"
                       >
                         <div className="text-[13px] font-semibold">{u.username}</div>
@@ -229,7 +229,7 @@ export function FriendsView() {
                     <FriendRow
                       key={u.id}
                       userId={u.id}
-                      onOpenProfile={() => setActiveProfile(u.id)}
+                      onOpenProfile={() => openProfilePopup(u.id)}
                       onRemove={() => removeFriend(u.id)}
                     />
                   ))}
@@ -240,7 +240,7 @@ export function FriendsView() {
                     <FriendRow
                       key={u.id}
                       userId={u.id}
-                      onOpenProfile={() => setActiveProfile(u.id)}
+                      onOpenProfile={() => openProfilePopup(u.id)}
                       onRemove={() => removeFriend(u.id)}
                       dim
                     />
@@ -255,7 +255,7 @@ export function FriendsView() {
                   <FriendRow
                     key={u.id}
                     userId={u.id}
-                    onOpenProfile={() => setActiveProfile(u.id)}
+                    onOpenProfile={() => openProfilePopup(u.id)}
                     onRemove={() => removeFriend(u.id)}
                   />
                 ))}

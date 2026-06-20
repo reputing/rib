@@ -268,7 +268,7 @@ function MobileMessageCard({
   const author = getUser(message.authorId);
   const isOwn = message.authorId === CURRENT_USER_ID;
   const toggleReaction = useRibbon((s) => s.toggleReaction);
-  const setActiveProfile = useRibbon((s) => s.setActiveProfile);
+  const openProfilePopup = useRibbon((s) => s.openProfilePopup);
 
   const reactions =
     message.content.kind === "text-with-reactions"
@@ -287,7 +287,7 @@ function MobileMessageCard({
     >
       <div className="mb-1 flex items-center gap-1.5">
         <button
-          onClick={() => setActiveProfile(author.id)}
+          onClick={() => openProfilePopup(author.id)}
           className="cursor-pointer"
         >
           <Avatar
@@ -298,7 +298,7 @@ function MobileMessageCard({
           />
         </button>
         <button
-          onClick={() => setActiveProfile(author.id)}
+          onClick={() => openProfilePopup(author.id)}
           className="cursor-pointer text-[12px] font-semibold"
           style={{ color: `var(--color-ribbon-${author.accent})` }}
         >

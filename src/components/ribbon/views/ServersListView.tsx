@@ -19,139 +19,108 @@ export function ServersListView() {
   return (
     <div
       className="flex h-full w-full flex-col"
-      style={{ background: "var(--color-ribbon-bg)", color: "var(--color-ribbon-text)" }}
+      style={{ background: "var(--ribbon-bg)", color: "var(--ribbon-text)" }}
     >
       {/* Header */}
       <div
-        className="flex h-[52px] flex-none items-center px-5"
-        style={{ borderColor: "var(--color-ribbon-border)" }}
+        className="flex h-[48px] flex-none items-center px-5"
       >
         <button
           onClick={() => navigate("dms")}
           className="mr-3 flex-none cursor-pointer"
           title="Back"
         >
-          <ArrowLeft size={16} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
+          <ArrowLeft size={16} strokeWidth={2} style={{ color: "var(--ribbon-text-faint)" }} />
         </button>
         <div className="text-[15px] font-bold">Your Servers</div>
         <div
-          className="ml-auto flex items-center gap-2 rounded-[10px] px-2.5 py-1.5"
-          style={{
-            background: "var(--ribbon-elevated)",
-            borderColor: "var(--color-ribbon-border)",
-          }}
+          className="ml-auto flex items-center gap-2 rounded-[8px] px-2.5 py-1.5"
+          style={{ background: "var(--ribbon-card)" }}
         >
-          <Search size={12} strokeWidth={2} style={{ color: "var(--color-ribbon-text-faint)" }} />
+          <Search size={12} strokeWidth={2} style={{ color: "var(--ribbon-text-faint)" }} />
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Filter servers"
-            className="w-40 bg-transparent text-[12px] outline-none"
-            style={{ color: "var(--color-ribbon-text)" }}
+            placeholder="Filter"
+            className="w-32 bg-transparent text-[12px] outline-none"
+            style={{ color: "var(--ribbon-text)" }}
           />
         </div>
         <button
           onClick={() => navigate("discover")}
-          className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-[10px] px-3 py-1.5 text-[12px] font-medium"
-          style={{
-            background: "rgba(255, 255, 255, 0.1)",
-            color: "var(--color-ribbon-terracotta)",
-          }}
+          className="ml-2 flex cursor-pointer items-center gap-1 rounded-[8px] px-3 py-1.5 text-[12px] font-semibold"
+          style={{ background: "var(--color-ribbon-terracotta)", color: "#FFFFFF" }}
         >
           <Plus size={12} strokeWidth={2.5} />
           discover
         </button>
       </div>
 
-      {/* Server grid */}
-      <div className="flex-1 overflow-y-auto p-5">
+      {/* Compact server list — horizontal rows */}
+      <div className="flex-1 overflow-y-auto px-3 py-2">
         <SectionLabel>Joined — {filtered.length}</SectionLabel>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="space-y-1">
           {filtered.map((s) => (
             <button
               key={s.id}
               onClick={() => setActiveServer(s.id)}
-              className="group cursor-pointer overflow-hidden rounded-[14px] text-left transition"
-              style={{
-                background: "var(--ribbon-card)",
-                borderColor: "var(--color-ribbon-border)",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "transparent";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
-              }}
+              className="flex w-full cursor-pointer items-center gap-3 rounded-[8px] px-3 py-2.5 text-left transition"
+              style={{ background: "transparent" }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--ribbon-card)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
-              {/* Banner */}
-              <div
-                className="relative h-14"
-                style={{ background: s.banner }}
-              >
-                <div className="absolute -bottom-4 left-4">
-                  <Avatar
-                    letter={s.letter}
-                    accent={s.accent}
-                    size={36}
-                    radius={11}
-                  />
-                </div>
-              </div>
-              {/* Body */}
-              <div className="px-4 pb-4 pt-6">
+              <Avatar
+                letter={s.letter}
+                accent={s.accent}
+                size={36}
+                radius={10}
+              />
+              <div className="min-w-0 flex-1">
                 <div className="text-[13px] font-semibold">{s.name}</div>
-                <div
-                  className="mt-0.5 line-clamp-2 text-[11px]"
-                  style={{ color: "var(--color-ribbon-text-faint)" }}
-                >
+                <div className="truncate text-[11px]" style={{ color: "var(--ribbon-text-faint)" }}>
                   {s.description}
                 </div>
-                <div
-                  className="mt-3 flex items-center gap-1.5 text-[10px]"
-                  style={{ color: "var(--color-ribbon-text-muted)" }}
-                >
-                  <Users size={11} strokeWidth={2.5} />
-                  {s.memberCount} members · {s.onlineCount} online
-                </div>
+              </div>
+              <div className="flex flex-none items-center gap-1 text-[11px]" style={{ color: "var(--ribbon-text-faint)" }}>
+                <Users size={11} strokeWidth={2.5} />
+                {s.memberCount >= 1000 ? `${(s.memberCount / 1000).toFixed(1)}k` : s.memberCount}
               </div>
             </button>
           ))}
         </div>
 
-        {/* Discover suggestions */}
-        <SectionLabel>Suggested for you</SectionLabel>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {discoverableServers.slice(0, 3).map((s) => (
+        {/* Suggested — compact */}
+        <SectionLabel>Suggested</SectionLabel>
+        <div className="space-y-1">
+          {discoverableServers.slice(0, 4).map((s) => (
             <button
               key={s.id}
               onClick={() => navigate("discover")}
-              className="cursor-pointer overflow-hidden rounded-[14px] text-left transition"
-              style={{
-                background: "var(--ribbon-card)",
-                borderColor: "var(--color-ribbon-border)",
-                opacity: 0.7,
-              }}
+              className="flex w-full cursor-pointer items-center gap-3 rounded-[8px] px-3 py-2.5 text-left transition"
+              style={{ background: "transparent", opacity: 0.7 }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "transparent";
+                e.currentTarget.style.background = "var(--ribbon-card)";
                 e.currentTarget.style.opacity = "1";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "var(--color-ribbon-border)";
+                e.currentTarget.style.background = "transparent";
                 e.currentTarget.style.opacity = "0.7";
               }}
             >
-              <div className="relative h-12" style={{ background: s.banner }}>
-                <div className="absolute -bottom-3 left-3">
-                  <Avatar letter={s.letter} accent={s.accent} size={28} radius={9} />
-                </div>
-              </div>
-              <div className="px-3 pb-3 pt-5">
+              <Avatar
+                letter={s.letter}
+                accent={s.accent}
+                size={32}
+                radius={9}
+              />
+              <div className="min-w-0 flex-1">
                 <div className="text-[12px] font-semibold">{s.name}</div>
-                <div className="mt-0.5 truncate text-[10px]" style={{ color: "var(--color-ribbon-text-faint)" }}>
+                <div className="truncate text-[10px]" style={{ color: "var(--ribbon-text-faint)" }}>
                   {s.description}
                 </div>
               </div>
+              <Plus size={12} strokeWidth={2.5} style={{ color: "var(--ribbon-text-faint)" }} />
             </button>
           ))}
         </div>

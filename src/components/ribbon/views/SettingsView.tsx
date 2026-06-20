@@ -497,6 +497,7 @@ function ProfileEditForm({
   const [customTag, setCustomTag] = useState(user.customTag ?? "");
   const [bio, setBio] = useState(user.bio ?? "");
   const [pronouns, setPronouns] = useState(user.pronouns ?? "");
+  const [socialLinks, setSocialLinks] = useState(user.socialLinks ?? []);
   const [saved, setSaved] = useState(false);
 
   const handleSave = () => {
@@ -505,91 +506,226 @@ function ProfileEditForm({
       customTag,
       bio,
       pronouns,
+      socialLinks,
       handle: displayName.toLowerCase().replace(/\s+/g, ""),
     });
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
 
+  const addSocialLink = () => {
+    setSocialLinks([...socialLinks, { type: "website", label: "new link", url: "" }]);
+  };
+
+  const updateSocialLink = (index: number, field: "type" | "label" | "url", value: string) => {
+    const updated = [...socialLinks];
+    updated[index] = { ...updated[index], [field]: value };
+    setSocialLinks(updated);
+  };
+
+  const removeSocialLink = (index: number) => {
+    setSocialLinks(socialLinks.filter((_: any, i: number) => i !== index));
+  };
+
   return (
-    <>
-      <Field label="Display name">
-        <input
-          value={displayName}
-          onChange={(e) => setDisplayName(e.target.value)}
-          className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
-          style={{
-            background: "var(--ribbon-card)",
-            borderColor: "var(--ribbon-border)",
-            color: "var(--ribbon-text)",
-          }}
-        />
-      </Field>
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      {/* LEFT: Edit fields */}
+      <div>
+        <Field label="Display name">
+          <input
+            value={displayName}
+            onChange={(e) => setDisplayName(e.target.value)}
+            className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
+            style={{
+              background: "var(--ribbon-card)",
+              color: "var(--ribbon-text)",
+            }}
+          />
+        </Field>
 
-      <Field label="Custom tag">
-        <input
-          value={customTag}
-          onChange={(e) => setCustomTag(e.target.value)}
-          placeholder="e.g. digital alchemist"
-          className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
-          style={{
-            background: "var(--ribbon-card)",
-            borderColor: "var(--ribbon-border)",
-            color: "var(--ribbon-text)",
-          }}
-        />
-      </Field>
+        <Field label="Custom tag">
+          <input
+            value={customTag}
+            onChange={(e) => setCustomTag(e.target.value)}
+            placeholder="e.g. digital alchemist"
+            className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
+            style={{
+              background: "var(--ribbon-card)",
+              color: "var(--ribbon-text)",
+            }}
+          />
+        </Field>
 
-      <Field label="Bio">
-        <textarea
-          value={bio}
-          onChange={(e) => setBio(e.target.value)}
-          rows={3}
-          placeholder="say something about yourself..."
-          className="w-full resize-none rounded-[6px] px-3 py-2 text-[12px] outline-none"
-          style={{
-            background: "var(--ribbon-card)",
-            borderColor: "var(--ribbon-border)",
-            color: "var(--ribbon-text)",
-          }}
-        />
-      </Field>
+        <Field label="Bio">
+          <textarea
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
+            rows={3}
+            placeholder="say something about yourself..."
+            className="w-full resize-none rounded-[6px] px-3 py-2 text-[12px] outline-none"
+            style={{
+              background: "var(--ribbon-card)",
+              color: "var(--ribbon-text)",
+            }}
+          />
+        </Field>
 
-      <Field label="Pronouns">
-        <input
-          value={pronouns}
-          onChange={(e) => setPronouns(e.target.value)}
-          placeholder="they/them"
-          className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
-          style={{
-            background: "var(--ribbon-card)",
-            borderColor: "var(--ribbon-border)",
-            color: "var(--ribbon-text)",
-          }}
-        />
-      </Field>
+        <Field label="Pronouns">
+          <input
+            value={pronouns}
+            onChange={(e) => setPronouns(e.target.value)}
+            placeholder="they/them"
+            className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
+            style={{
+              background: "var(--ribbon-card)",
+              color: "var(--ribbon-text)",
+            }}
+          />
+        </Field>
 
-      <div className="mt-5 flex items-center justify-end gap-2">
-        {saved && (
-          <span
-            className="text-[11px] font-semibold"
-            style={{ color: "var(--color-ribbon-sage)" }}
+        {/* Social links editor */}
+        <Field label="Social links">
+          <div className="space-y-2">
+            {socialLinks.map((link: any, i: number) => (
+              <div key={i} className="flex gap-1.5">
+                <select
+                  value={link.type}
+                  onChange={(e) => updateSocialLink(i, "type", e.target.value)}
+                  className="rounded-[6px] px-2 py-2 text-[11px] outline-none"
+                  style={{
+                    background: "var(--ribbon-card)",
+                    color: "var(--ribbon-text)",
+                  }}
+                >
+                  <option value="website">Website</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="twitter">Twitter</option>
+                  <option value="github">GitHub</option>
+                  <option value="spotify">Spotify</option>
+                  <option value="twitch">Twitch</option>
+                  <option value="youtube">YouTube</option>
+                </select>
+                <input
+                  value={link.label}
+                  onChange={(e) => updateSocialLink(i, "label", e.target.value)}
+                  placeholder="label"
+                  className="w-20 rounded-[6px] px-2 py-2 text-[11px] outline-none"
+                  style={{
+                    background: "var(--ribbon-card)",
+                    color: "var(--ribbon-text)",
+                  }}
+                />
+                <input
+                  value={link.url}
+                  onChange={(e) => updateSocialLink(i, "url", e.target.value)}
+                  placeholder="https://..."
+                  className="flex-1 rounded-[6px] px-2 py-2 text-[11px] outline-none"
+                  style={{
+                    background: "var(--ribbon-card)",
+                    color: "var(--ribbon-text)",
+                  }}
+                />
+                <button
+                  onClick={() => removeSocialLink(i)}
+                  className="cursor-pointer rounded-[6px] px-2 text-[12px]"
+                  style={{ color: "var(--color-ribbon-rust)" }}
+                >
+                  ×
+                </button>
+              </div>
+            ))}
+            <button
+              onClick={addSocialLink}
+              className="cursor-pointer rounded-[6px] px-3 py-1.5 text-[11px] font-semibold"
+              style={{ background: "var(--ribbon-elevated)", color: "var(--ribbon-text-dim)" }}
+            >
+              + add link
+            </button>
+          </div>
+        </Field>
+
+        <div className="mt-5 flex items-center justify-end gap-2">
+          {saved && (
+            <span className="text-[11px] font-semibold" style={{ color: "#00FF88" }}>
+              ✓ saved
+            </span>
+          )}
+          <button
+            onClick={handleSave}
+            className="flex cursor-pointer items-center gap-2 rounded-[6px] px-4 py-2 text-[12px] font-semibold transition"
+            style={{
+              background: "var(--color-ribbon-terracotta)",
+              color: "#FFFFFF",
+            }}
           >
-            ✓ saved
-          </span>
-        )}
-        <button
-          onClick={handleSave}
-          className="flex cursor-pointer items-center gap-2 rounded-[6px] px-4 py-2 text-[12px] font-semibold transition"
-          style={{
-            background: "var(--color-ribbon-terracotta)",
-            color: "#FFFFFF",
-          }}
-        >
-          <Save size={12} strokeWidth={2.5} />
-          save changes
-        </button>
+            <Save size={12} strokeWidth={2.5} />
+            save changes
+          </button>
+        </div>
       </div>
-    </>
+
+      {/* RIGHT: Live preview (mini biolink card) */}
+      <div>
+        <div className="mb-2 text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--ribbon-text-faint)" }}>
+          Live Preview
+        </div>
+        <div
+          className="overflow-hidden rounded-[12px]"
+          style={{ background: "var(--ribbon-card)" }}
+        >
+          {/* Banner */}
+          <div
+            className="h-[60px]"
+            style={{
+              background: `linear-gradient(135deg, var(--color-ribbon-terracotta) 0%, var(--color-ribbon-mauve) 100%)`,
+            }}
+          />
+          {/* Body */}
+          <div className="px-4 pb-4">
+            <div className="-mt-8 mb-3 flex items-end justify-between">
+              <div
+                className="flex h-16 w-16 items-center justify-center rounded-[12px] text-[24px] font-bold text-white"
+                style={{ background: "var(--color-ribbon-terracotta)" }}
+              >
+                {(displayName || "y").charAt(0).toLowerCase()}
+              </div>
+            </div>
+            <div className="mb-1 flex items-center gap-1.5">
+              <span className="text-[16px] font-bold" style={{ color: "var(--ribbon-text)" }}>
+                {displayName || "yourname"}
+              </span>
+            </div>
+            <div className="mb-2 text-[11px]" style={{ color: "var(--ribbon-text-dim)" }}>
+              {customTag || "prey user"}
+            </div>
+            <div className="mb-3 flex items-center gap-1.5 text-[10px]" style={{ color: "var(--ribbon-text-faint)" }}>
+              <span
+                className="rounded-full"
+                style={{ width: 7, height: 7, background: "#00FF88" }}
+              />
+              ONLINE
+            </div>
+            {bio && (
+              <div className="mb-3 text-[11px] leading-[1.5]" style={{ color: "var(--ribbon-text-dim)" }}>
+                {bio}
+              </div>
+            )}
+            {socialLinks.length > 0 && (
+              <div className="flex flex-wrap gap-1.5">
+                {socialLinks.slice(0, 6).map((link: any, i: number) => (
+                  <div
+                    key={i}
+                    className="flex h-7 w-7 items-center justify-center rounded-full text-[9px] font-bold"
+                    style={{ background: "var(--ribbon-elevated)", color: "var(--ribbon-text-dim)" }}
+                  >
+                    {link.type.charAt(0).toUpperCase()}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

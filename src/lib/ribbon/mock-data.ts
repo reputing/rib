@@ -113,6 +113,8 @@ export const users: Record<string, User> = {
     pronouns: "they/them",
     location: "somewhere coastal",
     joinedAt: "2025-09-14",
+    viewCount: 192,
+    verified: true,
   },
   elm: {
     id: "elm",

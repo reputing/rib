@@ -18,7 +18,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
   const author = getUser(message.authorId);
   const isOwn = message.authorId === CURRENT_USER_ID;
   const toggleReaction = useRibbon((s) => s.toggleReaction);
-  const setActiveProfile = useRibbon((s) => s.setActiveProfile);
+  const openProfilePopup = useRibbon((s) => s.openProfilePopup);
   const navigate = useRibbon((s) => s.navigate);
 
   const accentColor = ACCENT_HEX[author.accent];
@@ -62,7 +62,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
       {/* Header row */}
       <div className="mb-1.5 flex items-center gap-2">
         <button
-          onClick={() => setActiveProfile(author.id)}
+          onClick={() => openProfilePopup(author.id)}
           className="cursor-pointer"
         >
           <Avatar
@@ -73,7 +73,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
           />
         </button>
         <button
-          onClick={() => setActiveProfile(author.id)}
+          onClick={() => openProfilePopup(author.id)}
           className="cursor-pointer text-[13px] font-semibold"
           style={{ color: accentColor }}
         >

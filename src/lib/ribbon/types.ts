@@ -25,6 +25,8 @@ export interface User {
   pronouns?: string;
   location?: string;
   joinedAt?: string;       // ISO date
+  viewCount?: number;      // biolink views
+  verified?: boolean;      // verification badge
 }
 
 export interface SocialLink {

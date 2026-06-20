@@ -40,6 +40,16 @@ interface RibbonState {
   muted: boolean;
   deafened: boolean;
 
+  // ─── Profile popup (Discord-style compact modal) ───
+  profilePopupUserId: string | null;   // null = popup closed
+  openProfilePopup: (userId: string) => void;
+  closeProfilePopup: () => void;
+
+  // ─── Biolink view (public profile page) ───
+  biolinkUserId: string | null;        // null = biolink closed
+  openBiolink: (userId: string) => void;
+  closeBiolink: () => void;
+
   setActiveServer: (serverId: string) => void;
   setActiveChannel: (channelId: string) => void;
   setActiveDM: (dmId: string) => void;
@@ -187,6 +197,17 @@ export const useRibbon = create<RibbonState>((set, get) => ({
     })),
   setActiveProfile: (userId) =>
     set({ activeProfileUserId: userId, view: "profile" }),
+
+  // ─── Profile popup ───
+  profilePopupUserId: null,
+  openProfilePopup: (userId) => set({ profilePopupUserId: userId }),
+  closeProfilePopup: () => set({ profilePopupUserId: null }),
+
+  // ─── Biolink view ───
+  biolinkUserId: null,
+  openBiolink: (userId) => set({ biolinkUserId: userId }),
+  closeBiolink: () => set({ biolinkUserId: null }),
+
   setActiveSettingsTab: (tab) => set({ activeSettingsTab: tab }),
   joinVoice: () => set({ joinedVoice: true, view: "voice" }),
   leaveVoice: () => set({ joinedVoice: false, muted: false, deafened: false }),

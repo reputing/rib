@@ -2,6 +2,7 @@
 
 import { useRibbon } from "@/lib/ribbon/store";
 import { FloatingDock } from "./FloatingDock";
+import { ProfilePopup } from "./ProfilePopup";
 import { SplashView } from "./views/SplashView";
 import { OnboardingView } from "./views/OnboardingView";
 import { DMsView } from "./views/DMsView";
@@ -14,69 +15,100 @@ import { FriendsView } from "./views/FriendsView";
 import { SettingsView } from "./views/SettingsView";
 import { ServerSettingsView } from "./views/ServerSettingsView";
 import { VoiceView } from "./views/VoiceView";
+import { BiolinkView } from "./views/BiolinkView";
 
 export function AppShell() {
   const view = useRibbon((s) => s.view);
   const hasEntered = useRibbon((s) => s.hasEntered);
+  const profilePopupUserId = useRibbon((s) => s.profilePopupUserId);
+  const biolinkUserId = useRibbon((s) => s.biolinkUserId);
 
   // Onboarding is full-screen, no dock
   if (view === "onboarding") {
-    return <OnboardingView />;
+    return (
+      <>
+        <OnboardingView />
+        {profilePopupUserId && <ProfilePopup />}
+        {biolinkUserId && <BiolinkView />}
+      </>
+    );
   }
 
   // Mobile is full-screen (has its own bottom tab bar)
   if (view === "mobile") {
     return (
-      <div className="flex h-screen w-screen flex-col">
-        <div className="flex-1 min-h-0">
-          <MobileView />
+      <>
+        <div className="flex h-screen w-screen flex-col">
+          <div className="flex-1 min-h-0">
+            <MobileView />
+          </div>
         </div>
-      </div>
+        {profilePopupUserId && <ProfilePopup />}
+        {biolinkUserId && <BiolinkView />}
+      </>
     );
   }
 
   // Splash is full-screen
   if (view === "splash" || (!hasEntered && view !== "mobile" && view !== "onboarding")) {
-    return <SplashView />;
+    return (
+      <>
+        <SplashView />
+        {profilePopupUserId && <ProfilePopup />}
+        {biolinkUserId && <BiolinkView />}
+      </>
+    );
   }
 
   // Voice has its own full-screen layout
   if (view === "voice") {
     return (
-      <div className="flex h-screen w-screen flex-col">
-        <div className="flex-1 min-h-0">
-          <VoiceView />
+      <>
+        <div className="flex h-screen w-screen flex-col">
+          <div className="flex-1 min-h-0">
+            <VoiceView />
+          </div>
+          <FloatingDock />
         </div>
-        <FloatingDock />
-      </div>
+        {profilePopupUserId && <ProfilePopup />}
+        {biolinkUserId && <BiolinkView />}
+      </>
     );
   }
 
   // Profile is a full-screen overlay
   if (view === "profile") {
     return (
-      <div className="flex h-screen w-screen flex-col">
-        <div className="flex-1 min-h-0">
-          <ProfileView />
+      <>
+        <div className="flex h-screen w-screen flex-col">
+          <div className="flex-1 min-h-0">
+            <ProfileView />
+          </div>
+          <FloatingDock />
         </div>
-        <FloatingDock />
-      </div>
+        {profilePopupUserId && <ProfilePopup />}
+        {biolinkUserId && <BiolinkView />}
+      </>
     );
   }
 
   // All other views: content + floating dock
   return (
-    <div className="flex h-screen w-screen flex-col">
-      <div className="flex-1 min-h-0">
-        {view === "dms" && <DMsView />}
-        {view === "chat" && <ChatView />}
-        {view === "servers" && <ServersListView />}
-        {view === "discover" && <DiscoverView />}
-        {view === "friends" && <FriendsView />}
-        {view === "settings" && <SettingsView />}
-        {view === "server-settings" && <ServerSettingsView />}
+    <>
+      <div className="flex h-screen w-screen flex-col">
+        <div className="flex-1 min-h-0">
+          {view === "dms" && <DMsView />}
+          {view === "chat" && <ChatView />}
+          {view === "servers" && <ServersListView />}
+          {view === "discover" && <DiscoverView />}
+          {view === "friends" && <FriendsView />}
+          {view === "settings" && <SettingsView />}
+          {view === "server-settings" && <ServerSettingsView />}
+        </div>
+        <FloatingDock />
       </div>
-      <FloatingDock />
-    </div>
+      {profilePopupUserId && <ProfilePopup />}
+      {biolinkUserId && <BiolinkView />}
+    </>
   );
 }

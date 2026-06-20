@@ -6,13 +6,13 @@ import { useRibbon } from "@/lib/ribbon/store";
 
 export function EmbedPreview({ embed }: { embed: EmbedPreviewType }) {
   const navigate = useRibbon((s) => s.navigate);
-  const setActiveProfile = useRibbon((s) => s.setActiveProfile);
+  const openProfilePopup = useRibbon((s) => s.openProfilePopup);
 
   return (
     <button
       onClick={() => {
         if (embed.type === "profile") {
-          setActiveProfile("sol");
+          openProfilePopup("sol");
         } else if (embed.type === "pinboard") {
           navigate("pinboard", { userId: "sol" });
         }

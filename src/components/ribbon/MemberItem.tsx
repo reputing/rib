@@ -25,10 +25,10 @@ export function OnlineRow({ users }: { users: User[] }) {
 }
 
 function OnlineAvatar({ user }: { user: User }) {
-  const setActiveProfile = useRibbon((s) => s.setActiveProfile);
+  const openProfilePopup = useRibbon((s) => s.openProfilePopup);
   return (
     <button
-      onClick={() => setActiveProfile(user.id)}
+      onClick={() => openProfilePopup(user.id)}
       className="relative cursor-pointer"
       title={user.username}
     >
@@ -45,10 +45,10 @@ function OnlineAvatar({ user }: { user: User }) {
 
 // Member row in the right-side member list panel.
 export function MemberRow({ user, role }: { user: User; role?: string }) {
-  const setActiveProfile = useRibbon((s) => s.setActiveProfile);
+  const openProfilePopup = useRibbon((s) => s.openProfilePopup);
   return (
     <button
-      onClick={() => setActiveProfile(user.id)}
+      onClick={() => openProfilePopup(user.id)}
       className="flex w-full cursor-pointer items-center gap-2 rounded-[8px] px-2 py-1.5 transition"
       onMouseEnter={(e) => {
         e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
