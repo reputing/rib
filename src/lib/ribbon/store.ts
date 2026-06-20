@@ -152,9 +152,8 @@ function now(): string {
 }
 
 export const useRibbon = create<RibbonState>((set, get) => ({
-  // Start at onboarding — every new visitor goes through the welcome flow first.
-  // The splash screen is still reachable via the "Back" button on the onboarding view.
-  view: "onboarding",
+  // Start at landing page — clean product page before onboarding
+  view: "landing",
   params: {},
   hasEntered: false,
   justEnteredApp: false,
@@ -346,7 +345,7 @@ export const useRibbon = create<RibbonState>((set, get) => ({
     blurAmount: 16,
     scanlines: false,
     grainTexture: false,
-    particles: true,
+    particles: false,
     cardShadow: true,
 
     bgType: "gradient",
@@ -405,7 +404,7 @@ export const useRibbon = create<RibbonState>((set, get) => ({
         blurAmount: 16,
         scanlines: false,
         grainTexture: false,
-        particles: true,
+        particles: false,
         cardShadow: true,
         bgType: "gradient",
         bgGradientFrom: "#1A1B1E",

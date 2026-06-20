@@ -19,17 +19,6 @@ const INTEREST_ICONS = {
   smile: Smile,
 };
 
-const PARTICLES = [
-  { top: "8%", left: "15%", size: 5, color: "#E8769A", delay: 0, char: "✦" },
-  { top: "20%", left: "80%", size: 2, color: "#FFFFFF", delay: 0.6, dot: true },
-  { top: "70%", left: "10%", size: 2, color: "#D4638A", delay: 1.1, dot: true },
-  { top: "85%", left: "75%", size: 4, color: "#E8769A", delay: 1.6, char: "✦" },
-  { top: "30%", left: "5%", size: 2, color: "#E8769A", delay: 2.1, dot: true },
-  { top: "50%", left: "90%", size: 4, color: "#FFFFFF", delay: 0.4, char: "✦" },
-  { top: "15%", left: "45%", size: 1, color: "#E8769A", delay: 3.1, dot: true },
-  { top: "90%", left: "35%", size: 2, color: "#D4638A", delay: 2.6, dot: true },
-];
-
 export function OnboardingView() {
   const {
     onboardingStep,
@@ -68,64 +57,12 @@ export function OnboardingView() {
     <div
       className="relative flex h-full w-full items-center justify-center overflow-hidden"
       style={{
-        background: "#151515",
-        color: "#FFFFFF",
+        background: "var(--ribbon-bg)",
+        color: "var(--ribbon-text)",
         opacity: isExiting ? 0 : 1,
         transition: "opacity 900ms ease",
       }}
     >
-      {/* Background gradients */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 50% 40%, rgba(180,70,55,0.08) 0%, transparent 50%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 25% 65%, rgba(123,168,122,0.04) 0%, transparent 35%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(ellipse at 75% 60%, rgba(212,148,76,0.03) 0%, transparent 30%)",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          opacity: 0.03,
-          background:
-            "repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 2px 2px",
-        }}
-      />
-
-      {/* Particles */}
-      {PARTICLES.map((p, i) => (
-        <div
-          key={i}
-          className="animate-twinkle pointer-events-none absolute"
-          style={{
-            top: p.top,
-            left: p.left,
-            width: p.size,
-            height: p.size,
-            fontSize: p.size,
-            color: p.color,
-            borderRadius: p.dot ? "50%" : undefined,
-            background: p.dot ? p.color : undefined,
-            animationDelay: `${p.delay}s`,
-          }}
-        >
-          {p.char ?? ""}
-        </div>
-      ))}
-
       {/* Step content */}
       <div className="relative z-10 w-full max-w-[440px] px-5">
         {step === 0 && <StepWelcome onNext={nextOnboardingStep} />}
@@ -175,36 +112,16 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
       className="flex flex-col items-center text-center"
       style={{ animation: "ribbon-fade-up 0.6s ease" }}
     >
-      {/* Logo with pulse rings */}
+      {/* Logo */}
       <div className="relative mb-6">
         <div
-          className="animate-ring-pulse-slow pointer-events-none absolute inset-0"
-          style={{
-            width: 80,
-            height: 80,
-            borderRadius: 22,
-            border: "1px solid transparent",
-          }}
-        />
-        <div
-          className="animate-ring-pulse-slow pointer-events-none absolute inset-0"
-          style={{
-            width: 80,
-            height: 80,
-            borderRadius: 22,
-            border: "1px solid transparent",
-            animationDelay: "1s",
-          }}
-        />
-        <div
-          className="animate-drift flex items-center justify-center font-extrabold text-white"
+          className="flex items-center justify-center font-extrabold text-white"
           style={{
             width: 80,
             height: 80,
             borderRadius: 22,
             fontSize: 36,
-            background: "linear-gradient(135deg, #E8769A, #E8769A)",
-            boxShadow: "0 8px 40px rgba(255, 255, 255, 0.24)",
+            background: "var(--color-ribbon-terracotta)",
           }}
         >
           p
@@ -666,13 +583,12 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
       style={{ animation: "ribbon-fade-up 0.6s ease" }}
     >
       <div
-        className="animate-drift flex items-center justify-center"
+        className="flex items-center justify-center"
         style={{
           width: 72,
           height: 72,
           borderRadius: 20,
-          background: "linear-gradient(135deg, #CCCCCC, #00B85C)",
-          boxShadow: "0 8px 30px rgba(128, 132, 142, 0.3)",
+          background: "var(--color-ribbon-sage)",
         }}
       >
         <Check size={32} strokeWidth={2.5} style={{ color: "#fff" }} />

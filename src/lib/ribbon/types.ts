@@ -172,6 +172,7 @@ export interface FriendRequest {
 // ═════════════════════════════════════════════════════════════════
 
 export type ViewId =
+  | "landing"
   | "splash"
   | "onboarding"
   | "dms"

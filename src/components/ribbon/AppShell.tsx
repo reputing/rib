@@ -3,6 +3,7 @@
 import { useRibbon } from "@/lib/ribbon/store";
 import { FloatingDock } from "./FloatingDock";
 import { ProfilePopup } from "./ProfilePopup";
+import { LandingView } from "./views/LandingView";
 import { SplashView } from "./views/SplashView";
 import { OnboardingView } from "./views/OnboardingView";
 import { DMsView } from "./views/DMsView";
@@ -22,6 +23,11 @@ export function AppShell() {
   const hasEntered = useRibbon((s) => s.hasEntered);
   const profilePopupUserId = useRibbon((s) => s.profilePopupUserId);
   const biolinkUserId = useRibbon((s) => s.biolinkUserId);
+
+  // Landing page — full-screen, no dock, no popups
+  if (view === "landing") {
+    return <LandingView />;
+  }
 
   // Onboarding is full-screen, no dock
   if (view === "onboarding") {
