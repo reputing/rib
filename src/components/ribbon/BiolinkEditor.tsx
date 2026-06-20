@@ -3,7 +3,7 @@
 import { useState } from "react";
 import {
   User, Palette, Sparkles, Image as ImageIcon, BadgeCheck, Music, Link2,
-  Eye, Heart, Calendar, Activity, RotateCcw, Plus, X,
+  Eye, Heart, Calendar, Activity, RotateCcw, Plus, X, Code,
 } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
 import type { BiolinkConfig, FontFamily, BgType, LayoutStyle, LinkStyle, CutsceneDirection } from "@/lib/ribbon/types";
@@ -17,6 +17,7 @@ const EDITOR_TABS = [
   { id: "badges", label: "Badges", icon: BadgeCheck },
   { id: "music", label: "Music", icon: Music },
   { id: "links", label: "Links", icon: Link2 },
+  { id: "css", label: "CSS", icon: Code },
 ] as const;
 
 type EditorTab = typeof EDITOR_TABS[number]["id"];
@@ -84,6 +85,7 @@ export function BiolinkEditor() {
       {tab === "badges" && <BadgesTab config={biolinkConfig} update={updateBiolinkConfig} />}
       {tab === "music" && <MusicTab config={biolinkConfig} update={updateBiolinkConfig} />}
       {tab === "links" && <LinksTab config={biolinkConfig} update={updateBiolinkConfig} />}
+      {tab === "css" && <CssTab config={biolinkConfig} update={updateBiolinkConfig} />}
     </div>
   );
 }
@@ -435,6 +437,197 @@ function LinksTab({ config, update }: TabProps) {
             </button>
           </div>
         </Field>
+      </div>
+      <BiolinkPreview config={config} />
+    </div>
+  );
+}
+
+// ═══ Preset themes ═══
+
+const PRESET_THEMES: { name: string; description: string; config: Partial<BiolinkConfig> }[] = [
+  {
+    name: "Minimal Dark",
+    description: "clean black card, no effects",
+    config: {
+      cardBg: "rgba(15, 15, 15, 0.95)",
+      accentColor: "#E8769A",
+      textColor: "#FFFFFF",
+      secondaryTextColor: "#9499A2",
+      glow: false,
+      glassmorphism: false,
+      scanlines: false,
+      grainTexture: false,
+      particles: false,
+      cardShadow: true,
+      bgType: "gradient",
+      bgGradientFrom: "#0F0F0F",
+      bgGradientTo: "#1A1A1A",
+      bgGradientAngle: 135,
+      bgOpacity: 100,
+      fontFamily: "inter",
+      borderRadius: 12,
+    },
+  },
+  {
+    name: "Glassmorphism",
+    description: "frosted glass blur, subtle glow",
+    config: {
+      cardBg: "rgba(0, 0, 0, 0.6)",
+      accentColor: "#E8769A",
+      textColor: "#FFFFFF",
+      secondaryTextColor: "#D1D5DB",
+      glow: true,
+      glowIntensity: 30,
+      glassmorphism: true,
+      blurAmount: 16,
+      scanlines: false,
+      grainTexture: false,
+      particles: true,
+      cardShadow: true,
+      bgType: "gradient",
+      bgGradientFrom: "#0A0A0A",
+      bgGradientTo: "#1A0A1A",
+      bgGradientAngle: 135,
+      bgOpacity: 100,
+      fontFamily: "inter",
+      borderRadius: 16,
+    },
+  },
+  {
+    name: "Retro CRT",
+    description: "scanlines, grain, glow — cyberpunk vibe",
+    config: {
+      cardBg: "rgba(10, 14, 23, 0.85)",
+      accentColor: "#64FFDA",
+      textColor: "#FFFFFF",
+      secondaryTextColor: "#9CA3AF",
+      glow: true,
+      glowIntensity: 60,
+      glassmorphism: true,
+      blurAmount: 8,
+      scanlines: true,
+      grainTexture: true,
+      particles: true,
+      cardShadow: true,
+      bgType: "gradient",
+      bgGradientFrom: "#0A0E17",
+      bgGradientTo: "#06080C",
+      bgGradientAngle: 180,
+      bgOpacity: 100,
+      fontFamily: "mono",
+      borderRadius: 8,
+    },
+  },
+  {
+    name: "Soft Pink",
+    description: "warm, approachable, pink-tinted",
+    config: {
+      cardBg: "rgba(26, 10, 26, 0.8)",
+      accentColor: "#EC4899",
+      textColor: "#FFFFFF",
+      secondaryTextColor: "#D1D5DB",
+      glow: true,
+      glowIntensity: 35,
+      glassmorphism: true,
+      blurAmount: 12,
+      scanlines: false,
+      grainTexture: false,
+      particles: true,
+      cardShadow: true,
+      bgType: "gradient",
+      bgGradientFrom: "#1A0A1A",
+      bgGradientTo: "#0A0A0A",
+      bgGradientAngle: 160,
+      bgOpacity: 100,
+      fontFamily: "rounded",
+      borderRadius: 16,
+    },
+  },
+  {
+    name: "Clean Light",
+    description: "bright, minimal, white card",
+    config: {
+      cardBg: "rgba(255, 255, 255, 0.95)",
+      accentColor: "#D4638A",
+      textColor: "#1A1B1E",
+      secondaryTextColor: "#5D6067",
+      glow: false,
+      glassmorphism: false,
+      scanlines: false,
+      grainTexture: false,
+      particles: false,
+      cardShadow: true,
+      bgType: "gradient",
+      bgGradientFrom: "#F5F2ED",
+      bgGradientTo: "#E8DFE3",
+      bgGradientAngle: 135,
+      bgOpacity: 100,
+      fontFamily: "inter",
+      borderRadius: 12,
+    },
+  },
+];
+
+function CssTab({ config, update }: TabProps) {
+  const applyPreset = (preset: typeof PRESET_THEMES[number]) => {
+    update(preset.config);
+  };
+
+  return (
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+      <div>
+        {/* Preset themes */}
+        <div className="mb-2 text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--ribbon-text-faint)" }}>
+          Preset Themes
+        </div>
+        <div className="mb-5 space-y-1.5">
+          {PRESET_THEMES.map((preset) => (
+            <button
+              key={preset.name}
+              onClick={() => applyPreset(preset)}
+              className="flex w-full cursor-pointer items-center justify-between rounded-[6px] px-3 py-2.5 text-left transition"
+              style={{ background: "var(--ribbon-card)" }}
+              onMouseEnter={(e) => (e.currentTarget.style.background = "var(--ribbon-hover)")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "var(--ribbon-card)")}
+            >
+              <div>
+                <div className="text-[12px] font-semibold">{preset.name}</div>
+                <div className="text-[10px]" style={{ color: "var(--ribbon-text-faint)" }}>{preset.description}</div>
+              </div>
+              <div
+                className="h-8 w-8 flex-none rounded-[4px]"
+                style={{
+                  background: preset.config.cardBg as string,
+                  boxShadow: `inset 0 0 0 1px ${preset.config.accentColor as string}40`,
+                }}
+              />
+            </button>
+          ))}
+        </div>
+
+        {/* Custom CSS */}
+        <div className="mb-2 text-[10px] font-bold uppercase tracking-wider" style={{ color: "var(--ribbon-text-faint)" }}>
+          Custom CSS
+        </div>
+        <div className="text-[10px] mb-2" style={{ color: "var(--ribbon-text-faint)" }}>
+          Inject your own CSS into the biolink page. Use <code style={{ color: "var(--color-ribbon-terracotta)" }}>prey-biolink</code> as the card class, <code style={{ color: "var(--color-ribbon-terracotta)" }}>prey-name</code> for the name, <code style={{ color: "var(--color-ribbon-terracotta)" }}>prey-bio</code> for bio, <code style={{ color: "var(--color-ribbon-terracotta)" }}>prey-links</code> for social links.
+        </div>
+        <textarea
+          value={config.customCss}
+          onChange={(e) => update({ customCss: e.target.value })}
+          rows={10}
+          placeholder={"/* custom CSS for your biolink */\n.prey-biolink {\n  /* your styles here */\n}\n\n.prey-name {\n  letter-spacing: -0.5px;\n}"}
+          className="w-full resize-none rounded-[6px] px-3 py-2 font-mono text-[11px] outline-none"
+          style={{
+            background: "var(--ribbon-card)",
+            color: "var(--ribbon-text)",
+            fontFamily: "'JetBrains Mono', monospace",
+          }}
+        />
+        <div className="mt-1 text-[10px]" style={{ color: "var(--ribbon-text-faint)" }}>
+          This CSS is injected directly into the biolink page head. Be careful — invalid CSS may break the layout.
+        </div>
       </div>
       <BiolinkPreview config={config} />
     </div>

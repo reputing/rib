@@ -316,5 +316,6 @@ export interface BiolinkConfig {
   showTopBar: boolean;
   linkStyle: LinkStyle;
   cutsceneDirection: CutsceneDirection;  // opening animation direction
+  customCss: string;                      // user's custom CSS injected into the biolink page
 }
 

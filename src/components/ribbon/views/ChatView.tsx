@@ -69,7 +69,7 @@ export function ChatView() {
     <div className="flex h-full flex-1 min-h-0">
       {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex w-[256px] flex-none flex-col"
+        className="hidden sm:flex w-[60px] sm:w-[256px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",

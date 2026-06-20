@@ -40,7 +40,7 @@ export function VoiceView() {
     >
       {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex w-[256px] flex-none flex-col"
+        className="hidden sm:flex w-[60px] sm:w-[256px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",

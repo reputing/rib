@@ -196,6 +196,11 @@ export function BiolinkView() {
           <X size={16} strokeWidth={2.5} style={{ color: "#FFFFFF" }} />
         </button>
 
+        {/* Custom CSS injection */}
+        {config.customCss && (
+          <style dangerouslySetInnerHTML={{ __html: config.customCss }} />
+        )}
+
         {/* The biolink card — with cutscene opening animation */}
         <motion.div
           initial={
@@ -214,7 +219,7 @@ export function BiolinkView() {
                 : { opacity: 0 }
           }
           transition={{ type: "spring", stiffness: 200, damping: 25, duration: 0.8 }}
-          className="relative my-10 z-10"
+          className="prey-biolink relative my-10 z-10 mx-4 sm:mx-auto"
           style={cardStyle}
         >
           {/* Top bar */}
@@ -266,7 +271,7 @@ export function BiolinkView() {
               </div>
               <div>
                 <div className="flex items-center gap-1.5">
-                  <span className="text-[20px] font-bold" style={{ color: config.textColor, ...glowStyle }}>
+                  <span className="prey-name text-[20px] font-bold" style={{ color: config.textColor, ...glowStyle }}>
                     {config.displayName || "yourname"}
                   </span>
                   {config.verified && (
@@ -285,7 +290,7 @@ export function BiolinkView() {
 
             {/* Bio */}
             {config.bio && (
-              <div className="mb-3 text-[13px] leading-[1.6]" style={{ color: config.secondaryTextColor }}>
+              <div className="prey-bio mb-3 text-[13px] leading-[1.6]" style={{ color: config.secondaryTextColor }}>
                 {config.bio}
               </div>
             )}
@@ -333,7 +338,7 @@ export function BiolinkView() {
             {/* Social links */}
             {config.socialLinks.length > 0 && (
               <div
-                className="mb-4 flex flex-wrap gap-2"
+                className="prey-links mb-4 flex flex-wrap gap-2"
                 style={{
                   justifyContent: config.layoutStyle === "centered" ? "center" : config.layoutStyle === "right" ? "flex-end" : "flex-start",
                 }}

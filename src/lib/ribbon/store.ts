@@ -378,6 +378,7 @@ export const useRibbon = create<RibbonState>((set, get) => ({
     showTopBar: true,
     linkStyle: "cards",
     cutsceneDirection: "vertical",
+    customCss: "",
   } as BiolinkConfig,
   updateBiolinkConfig: (updates) =>
     set((s) => ({ biolinkConfig: { ...s.biolinkConfig, ...updates } })),
@@ -431,6 +432,7 @@ export const useRibbon = create<RibbonState>((set, get) => ({
         showTopBar: true,
         linkStyle: "cards",
     cutsceneDirection: "vertical",
+    customCss: "",
       } as BiolinkConfig,
     }),
 

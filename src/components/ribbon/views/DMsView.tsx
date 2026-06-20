@@ -52,7 +52,7 @@ export function DMsView() {
     <div className={`flex h-full flex-1 min-h-0${justEnteredApp ? " animate-fade-in" : ""}`}>
       {/* ═══ DM LIST SIDEBAR ═══ */}
       <div
-        className="flex w-[280px] flex-none flex-col"
+        className="hidden sm:flex w-[60px] sm:w-[280px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",

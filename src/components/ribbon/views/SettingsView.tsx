@@ -47,7 +47,7 @@ export function SettingsView() {
     >
       {/* Settings sidebar */}
       <div
-        className="flex w-[240px] flex-none flex-col"
+        className="hidden sm:flex w-[60px] sm:w-[240px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",

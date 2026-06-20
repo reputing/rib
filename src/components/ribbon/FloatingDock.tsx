@@ -32,7 +32,7 @@ export function FloatingDock() {
   useEffect(() => {
     if (hasPositionedRef.current) return;
     hasPositionedRef.current = true;
-    const dockWidth = 280;
+    const dockWidth = window.innerWidth < 640 ? 200 : 280;
     const dockHeight = 56;
     x.set((window.innerWidth - dockWidth) / 2);
     y.set(window.innerHeight - dockHeight - 24);
@@ -42,7 +42,7 @@ export function FloatingDock() {
   useEffect(() => {
     const handleResize = () => {
       if (isDragging) return;
-      const dockWidth = 280;
+      const dockWidth = window.innerWidth < 640 ? 200 : 280;
       const dockHeight = 56;
       if (edge === "top" || edge === "bottom") {
         x.set((window.innerWidth - dockWidth) / 2);
@@ -61,7 +61,7 @@ export function FloatingDock() {
   // Snap to nearest edge on drag end.
   const handleDragEnd = () => {
     setIsDragging(false);
-    const dockWidth = 280;
+    const dockWidth = window.innerWidth < 640 ? 200 : 280;
     const dockHeight = 56;
     const currentX = x.get();
     const currentY = y.get();
@@ -152,7 +152,7 @@ export function FloatingDock() {
       onDragStart={() => setIsDragging(true)}
       onDragEnd={handleDragEnd}
       style={{ x, y, background: "var(--ribbon-elevated)" }}
-      className="fixed z-50 flex items-center gap-1 rounded-full p-1.5 backdrop-blur-xl"
+      className="fixed z-50 flex items-center gap-0.5 sm:gap-1 rounded-full p-1 sm:p-1.5 backdrop-blur-xl"
       data-edge={edge}
     >
       {/* Items */}
