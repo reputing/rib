@@ -9,6 +9,7 @@ import type {
   InterestId,
   ServerSettingsTab,
   User,
+  BiolinkConfig,
 } from "./types";
 import {
   dmConversations as initialDms,
@@ -78,8 +79,13 @@ interface RibbonState {
   removeFriend: (userId: string) => void;
 
   // ─── Current user (editable) ───
-  currentUser: User;               // starts as a copy of mock "you", updated via Settings → Profile
+  currentUser: User;
   updateCurrentUser: (updates: Partial<User>) => void;
+
+  // ─── Biolink config (highly customizable) ───
+  biolinkConfig: BiolinkConfig;
+  updateBiolinkConfig: (updates: Partial<BiolinkConfig>) => void;
+  resetBiolinkConfig: () => void;
 
   // ─── Settings ───
   settings: {
@@ -314,6 +320,113 @@ export const useRibbon = create<RibbonState>((set, get) => ({
   currentUser: { ...mockUsers.you },
   updateCurrentUser: (updates) =>
     set((s) => ({ currentUser: { ...s.currentUser, ...updates } })),
+
+  // ─── Biolink config (highly customizable) ───
+  biolinkConfig: {
+    displayName: "you",
+    bio: "just here making things",
+    tagline: "prey user",
+    avatarUrl: "",
+    verified: false,
+
+    accentColor: "#E8769A",
+    textColor: "#FFFFFF",
+    secondaryTextColor: "#9499A2",
+    cardBg: "rgba(30, 30, 30, 0.8)",
+    pageBg: "#121212",
+
+    fontFamily: "quicksand",
+    fontSize: 14,
+    borderRadius: 12,
+    cardWidth: 380,
+
+    glow: true,
+    glowIntensity: 40,
+    glassmorphism: true,
+    blurAmount: 16,
+    scanlines: false,
+    grainTexture: false,
+    particles: true,
+    cardShadow: true,
+
+    bgType: "gradient",
+    bgGradientFrom: "#1A1B1E",
+    bgGradientTo: "#0A0E17",
+    bgGradientAngle: 135,
+    bgImageUrl: "",
+
+    showViews: true,
+    showLikes: false,
+    showJoinDate: true,
+    showOnlineStatus: true,
+
+    showNowPlaying: true,
+    trackName: "When You Sleep",
+    artistName: "My Bloody Valentine",
+    albumArtUrl: "",
+
+    socialLinks: [
+      { type: "instagram", label: "@you", url: "#" },
+      { type: "twitter", label: "@you", url: "#" },
+      { type: "github", label: "you-dev", url: "#" },
+      { type: "website", label: "prey.lol/you", url: "#" },
+    ],
+
+    layoutStyle: "centered",
+    showTopBar: true,
+    linkStyle: "cards",
+  } as BiolinkConfig,
+  updateBiolinkConfig: (updates) =>
+    set((s) => ({ biolinkConfig: { ...s.biolinkConfig, ...updates } })),
+  resetBiolinkConfig: () =>
+    set({
+      biolinkConfig: {
+        displayName: "you",
+        bio: "just here making things",
+        tagline: "prey user",
+        avatarUrl: "",
+        verified: false,
+        accentColor: "#E8769A",
+        textColor: "#FFFFFF",
+        secondaryTextColor: "#9499A2",
+        cardBg: "rgba(30, 30, 30, 0.8)",
+        pageBg: "#121212",
+        fontFamily: "quicksand",
+        fontSize: 14,
+        borderRadius: 12,
+        cardWidth: 380,
+        glow: true,
+        glowIntensity: 40,
+        glassmorphism: true,
+        blurAmount: 16,
+        scanlines: false,
+        grainTexture: false,
+        particles: true,
+        cardShadow: true,
+        bgType: "gradient",
+        bgGradientFrom: "#1A1B1E",
+        bgGradientTo: "#0A0E17",
+        bgGradientAngle: 135,
+        bgImageUrl: "",
+        showViews: true,
+        showLikes: false,
+        showJoinDate: true,
+        showOnlineStatus: true,
+        showNowPlaying: true,
+        trackName: "When You Sleep",
+        artistName: "My Bloody Valentine",
+        albumArtUrl: "",
+        socialLinks: [
+          { type: "instagram", label: "@you", url: "#" },
+          { type: "twitter", label: "@you", url: "#" },
+          { type: "github", label: "you-dev", url: "#" },
+          { type: "website", label: "prey.lol/you", url: "#" },
+        ],
+        layoutStyle: "centered",
+        showTopBar: true,
+        linkStyle: "cards",
+      } as BiolinkConfig,
+    }),
 
   settings: {
     reduceMotion: false,

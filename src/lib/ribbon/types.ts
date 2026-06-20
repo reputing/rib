@@ -246,3 +246,71 @@ export interface ServerSettings {
   tags: string[];
 }
 
+// ═════════════════════════════════════════════════════════════════
+// Biolink customization config
+// ═════════════════════════════════════════════════════════════════
+
+export type BgType = "solid" | "gradient" | "image";
+export type LayoutStyle = "centered" | "left" | "right";
+export type LinkStyle = "cards" | "buttons" | "list";
+export type FontFamily = "quicksand" | "inter" | "mono" | "serif" | "rounded";
+
+export interface BiolinkConfig {
+  // ─── Profile ───
+  displayName: string;
+  bio: string;
+  tagline: string;              // pill text under bio
+  avatarUrl: string;            // empty = use letter avatar
+  verified: boolean;
+
+  // ─── Colors ───
+  accentColor: string;          // name, interactive elements
+  textColor: string;            // primary text
+  secondaryTextColor: string;   // bio, handle
+  cardBg: string;               // card background (can be rgba for glass)
+  pageBg: string;               // page background
+
+  // ─── Typography ───
+  fontFamily: FontFamily;
+  fontSize: number;             // base font size in px
+  borderRadius: number;         // card corner radius in px
+  cardWidth: number;            // card width in px
+
+  // ─── Effects ───
+  glow: boolean;
+  glowIntensity: number;        // 0-100
+  glassmorphism: boolean;
+  blurAmount: number;           // 0-30 px
+  scanlines: boolean;
+  grainTexture: boolean;
+  particles: boolean;
+  cardShadow: boolean;
+
+  // ─── Background ───
+  bgType: BgType;
+  bgGradientFrom: string;
+  bgGradientTo: string;
+  bgGradientAngle: number;      // 0-360
+  bgImageUrl: string;
+
+  // ─── Badges ───
+  showViews: boolean;
+  showLikes: boolean;
+  showJoinDate: boolean;
+  showOnlineStatus: boolean;
+
+  // ─── Music ───
+  showNowPlaying: boolean;
+  trackName: string;
+  artistName: string;
+  albumArtUrl: string;
+
+  // ─── Social links ───
+  socialLinks: SocialLink[];
+
+  // ─── Layout ───
+  layoutStyle: LayoutStyle;
+  showTopBar: boolean;
+  linkStyle: LinkStyle;
+}
+
