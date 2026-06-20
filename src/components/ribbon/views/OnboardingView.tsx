@@ -143,11 +143,11 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         onClick={onNext}
         className="mt-8 cursor-pointer rounded-[14px] px-10 py-3 text-[14px] font-bold text-white transition"
         style={{
-          background: "#E8769A",
+          background: "#ff7fae",
           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
       >
         get started
       </button>
@@ -155,7 +155,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
         already have an account?{" "}
         <span
           className="cursor-pointer font-semibold"
-          style={{ color: "#E8769A" }}
+          style={{ color: "#ff7fae" }}
           onClick={onNext}
         >
           sign in
@@ -246,11 +246,11 @@ function StepCreateAccount({
         onClick={onNext}
         className="mt-5 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E8769A",
+          background: "#ff7fae",
           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
       >
         continue
       </button>
@@ -339,11 +339,11 @@ function StepPickVibe({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E8769A",
+          background: "#ff7fae",
           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
       >
         continue
       </button>
@@ -412,7 +412,7 @@ function StepFindPeople({
                   background: isJoined
                     ? "rgba(128, 132, 142, 0.18)"
                     : "rgba(255, 255, 255, 0.1)",
-                  color: isJoined ? "#CCCCCC" : "#E8769A",
+                  color: isJoined ? "#CCCCCC" : "#ff7fae",
                 }}
               >
                 {isJoined ? "joined" : "join"}
@@ -426,11 +426,11 @@ function StepFindPeople({
         onClick={onNext}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E8769A",
+          background: "#ff7fae",
           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
       >
         continue
       </button>
@@ -555,11 +555,11 @@ function StepSetUpRibbon({
         onClick={onFinish}
         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
         style={{
-          background: "#E8769A",
+          background: "#ff7fae",
           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
       >
         enter prey
       </button>
@@ -610,11 +610,11 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           onClick={onFinish}
           className="cursor-pointer rounded-[14px] px-7 py-3 text-[14px] font-bold text-white transition"
           style={{
-            background: "#E8769A",
+            background: "#ff7fae",
             boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
         >
           start chatting
         </button>
@@ -647,7 +647,7 @@ function ProgressBar({ step }: { step: number }) {
             width: 32,
             height: 3,
             borderRadius: 2,
-            background: i <= step ? "#E8769A" : "rgba(255, 255, 255, 0.06)",
+            background: i <= step ? "#ff7fae" : "rgba(255, 255, 255, 0.06)",
           }}
         />
       ))}

@@ -396,7 +396,7 @@ function OverviewTab({
       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
       <div
         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
-        style={{ background: server?.banner ?? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #CCCCCC 100%)" }}
+        style={{ background: server?.banner ?? "linear-gradient(135deg, #ff7fae 0%, #ff7fae 50%, #CCCCCC 100%)" }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
@@ -417,11 +417,11 @@ function OverviewTab({
         <button
           className="cursor-pointer rounded-[12px] px-7 py-2.5 text-[13px] font-bold text-white transition"
           style={{
-            background: "#E8769A",
+            background: "#ff7fae",
             boxShadow: "0 4px 16px rgba(255, 255, 255, 0.2)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
         >
           save changes
         </button>

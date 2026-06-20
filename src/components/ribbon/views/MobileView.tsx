@@ -194,7 +194,7 @@ export function MobileView() {
                 className="h-5 w-5"
                 style={{
                   borderRadius: 6,
-                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
+                  background: "linear-gradient(135deg,#ff7fae,#ff7fae)",
                 }}
               />
             }
@@ -230,10 +230,10 @@ function MobileTabButton({
       className="relative flex cursor-pointer flex-col items-center gap-1"
       style={{ padding: "4px 12px" }}
     >
-      <div style={{ color: active ? "#E8769A" : "#888888" }}>{icon}</div>
+      <div style={{ color: active ? "#ff7fae" : "#888888" }}>{icon}</div>
       <span
         className="text-[9px] font-semibold"
-        style={{ color: active ? "#E8769A" : "#888888" }}
+        style={{ color: active ? "#ff7fae" : "#888888" }}
       >
         {label}
       </span>
@@ -246,7 +246,7 @@ function MobileTabButton({
             width: 7,
             height: 7,
             borderRadius: "50%",
-            background: "#E8769A",
+            background: "#ff7fae",
             border: "2px solid var(--ribbon-bg-deep)",
           }}
         />

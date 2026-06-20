@@ -451,7 +451,7 @@ const PRESET_THEMES: { name: string; description: string; config: Partial<Biolin
     description: "clean black card, no effects",
     config: {
       cardBg: "rgba(15, 15, 15, 0.95)",
-      accentColor: "#E8769A",
+      accentColor: "#ff7fae",
       textColor: "#FFFFFF",
       secondaryTextColor: "#9499A2",
       glow: false,
@@ -474,7 +474,7 @@ const PRESET_THEMES: { name: string; description: string; config: Partial<Biolin
     description: "frosted glass blur, subtle glow",
     config: {
       cardBg: "rgba(0, 0, 0, 0.6)",
-      accentColor: "#E8769A",
+      accentColor: "#ff7fae",
       textColor: "#FFFFFF",
       secondaryTextColor: "#D1D5DB",
       glow: true,
@@ -549,7 +549,7 @@ const PRESET_THEMES: { name: string; description: string; config: Partial<Biolin
     description: "bright, minimal, white card",
     config: {
       cardBg: "rgba(255, 255, 255, 0.95)",
-      accentColor: "#D4638A",
+      accentColor: "#ff6b81",
       textColor: "#1A1B1E",
       secondaryTextColor: "#5D6067",
       glow: false,

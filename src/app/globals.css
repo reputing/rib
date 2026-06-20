@@ -439,3 +439,23 @@
   50% { opacity: .5; box-shadow: 0 0 0 6px rgba(255,127,174,0); }
 }
 .prey-pulse-dot { animation: prey-pulse-dot 1.8s infinite; }
+
+/* ═══ prey global polish ═══ */
+/* Soft accent selection highlight */
+::selection { background: rgba(255,127,174,.28); color: #fff; }
+
+/* Any element that opts into blur gets a consistent saturated glass feel */
+[class*="backdrop-blur"] { -webkit-backdrop-filter: saturate(1.15); backdrop-filter: saturate(1.15); }
+
+/* Pill/card hover lift used across views */
+.prey-lift { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+.prey-lift:hover { transform: translateY(-2px); }
+
+/* Accent ring focus that matches the theme */
+*:focus-visible { outline: 2px solid var(--ac, #ff7fae); outline-offset: 2px; }
+
+/* Respect reduced-motion: kill ambient loops, keep essential transitions */
+@media (prefers-reduced-motion: reduce) {
+  .animate-prey-drift, .prey-scanlines, .prey-eq-bar, .prey-pulse-dot,
+  .animate-breathe, .animate-twinkle, .animate-drift, .animate-glitch { animation: none !important; }
+}

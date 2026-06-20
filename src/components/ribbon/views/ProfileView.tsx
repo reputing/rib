@@ -206,7 +206,7 @@ export function ProfileView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: `linear-gradient(135deg, ${accentColor}, #E8769A)`,
+            background: `linear-gradient(135deg, ${accentColor}, #ff7fae)`,
           }}
         >
           {user.avatarLetter}
@@ -306,7 +306,7 @@ export function ProfileView() {
             height: 88,
             borderRadius: 24,
             fontSize: 34,
-            background: `linear-gradient(135deg, ${accentColor}, #E8769A)`,
+            background: `linear-gradient(135deg, ${accentColor}, #ff7fae)`,
             boxShadow: "0 8px 40px rgba(181, 186, 193, 0.2)",
           }}
         >
