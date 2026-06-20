@@ -1,0 +1,1817 @@
+From 8373bfe11d3db633a67da872a8f7c9d26ba5dd81 Mon Sep 17 00:00:00 2001
+From: rib <you@prey.lol>
+Date: Sat, 20 Jun 2026 03:33:40 +0000
+Subject: [PATCH 1/2] =?UTF-8?q?feat(theme):=20prey=20dark-glass=20redesign?=
+ =?UTF-8?q?=20=E2=80=94=20Space=20Grotesk=20+=20JetBrains=20Mono,=20bright?=
+ =?UTF-8?q?er=20pink/rose/violet=20accents,=20glass=20biolink=20card?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- layout: swap Quicksand for Space Grotesk (display/body) + JetBrains Mono (labels)
+- globals.css: deepen dark bg to #070709, glass cards w/ hairline borders,
+  brighten accent to #ff7fae, add .prey-glass/.prey-chip/.prey-label utils,
+  scanline + grain + drift + eq + pulse-dot animations, --ac/--acg runtime vars
+- BiolinkView: rebuild to match prey card — gradient avatar ring, glass surface,
+  mono uppercase labels, refined now-playing (cover + EQ + transport), 3D tilt,
+  tasteful scanline/grain; still fully driven by BiolinkConfig
+- store: default biolink config to prey values (accent, near-black bg, wider glass card)
+---
+ src/app/globals.css                         | 199 +++++---
+ src/app/layout.tsx                          |  15 +-
+ src/components/ribbon/views/BiolinkView.tsx | 524 +++++++++++---------
+ src/lib/ribbon/store.ts                     |  44 +-
+ 4 files changed, 442 insertions(+), 340 deletions(-)
+
+diff --git a/src/app/globals.css b/src/app/globals.css
+index e90c307..8b2b548 100755
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -6,8 +6,8 @@
+ @theme inline {
+   --color-background: var(--background);
+   --color-foreground: var(--foreground);
+-  --font-sans: var(--font-quicksand);
+-  --font-mono: var(--font-geist-mono);
++  --font-sans: var(--font-space-grotesk);
++  --font-mono: var(--font-jetbrains-mono);
+   --color-sidebar-ring: var(--sidebar-ring);
+   --color-sidebar-border: var(--sidebar-border);
+   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+@@ -38,18 +38,18 @@
+   --color-card-foreground: var(--card-foreground);
+   --color-card: var(--card);
+ 
+-  /* prey design tokens — grey + pink palette */
+-  --color-ribbon-pink: #E8769A;
+-  --color-ribbon-pink-soft: #D4638A;
+-  --color-ribbon-pink-deep: #B14D72;
+-  --color-ribbon-gradient: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
++  /* prey design tokens — dark glass + pink/rose/violet accents */
++  --color-ribbon-pink: #ff7fae;
++  --color-ribbon-pink-soft: #ff6b81;
++  --color-ribbon-pink-deep: #b58cff;
++  --color-ribbon-gradient: linear-gradient(150deg, #ff7fae 0%, rgba(120,116,124,.5) 100%);
+ 
+-  /* Legacy accent token names — mapped to pink-tinted values */
+-  --color-ribbon-terracotta: #E8769A;
+-  --color-ribbon-amber: #E8769A;
+-  --color-ribbon-sage: #CCCCCC;
+-  --color-ribbon-mauve: #D4638A;
+-  --color-ribbon-rust: #E8769A;
++  /* Legacy accent token names — mapped to the prey accent set */
++  --color-ribbon-terracotta: #ff7fae;
++  --color-ribbon-amber: #d4944c;
++  --color-ribbon-sage: #7ba87a;
++  --color-ribbon-mauve: #b58cff;
++  --color-ribbon-rust: #ff6b81;
+ 
+   --radius-sm: calc(var(--radius) - 2px);
+   --radius-md: var(--radius);
+@@ -60,13 +60,13 @@
+ /* ═══ DARK MODE (default) — grey + pink ═══ */
+ :root {
+   --radius: 0.25rem;
+-  --background: #121212;
++  --background: #070709;
+   --foreground: #FFFFFF;
+-  --card: #1E1E1E;
++  --card: rgba(15,14,19,.55);
+   --card-foreground: #FFFFFF;
+   --popover: #1A1A1A;
+   --popover-foreground: #FFFFFF;
+-  --primary: #E8769A;
++  --primary: #ff7fae;
+   --primary-foreground: #121212;
+   --secondary: #242424;
+   --secondary-foreground: #FFFFFF;
+@@ -74,39 +74,43 @@
+   --muted-foreground: #CCCCCC;
+   --accent: #2A2A2A;
+   --accent-foreground: #FFFFFF;
+-  --destructive: #D4638A;
+-  --border: transparent;
+-  --input: #121212;
+-  --ring: #E8769A;
+-  --chart-1: #E8769A;
+-  --chart-2: #D4638A;
++  --destructive: #ff6b81;
++  --border: rgba(255,255,255,.08);
++  --input: #0d0c10;
++  --ring: #ff7fae;
++  --chart-1: #ff7fae;
++  --chart-2: #ff6b81;
+   --chart-3: #CCCCCC;
+   --chart-4: #888888;
+   --chart-5: #6D6F78;
+-  --sidebar: #151515;
++  --sidebar: #0c0b0e;
+   --sidebar-foreground: #FFFFFF;
+-  --sidebar-primary: #E8769A;
++  --sidebar-primary: #ff7fae;
+   --sidebar-primary-foreground: #121212;
+   --sidebar-accent: #1E1E1E;
+   --sidebar-accent-foreground: #FFFFFF;
+-  --sidebar-border: transparent;
+-  --sidebar-ring: #E8769A;
++  --sidebar-border: rgba(255,255,255,.06);
++  --sidebar-ring: #ff7fae;
+ 
+   /* prey semantic tokens (dark grey + pink) */
+-  --ribbon-bg: #121212;
+-  --ribbon-bg-deep: #151515;
+-  --ribbon-sidebar: #151515;
+-  --ribbon-card: #1E1E1E;
++  --ribbon-bg: #070709;
++  --ribbon-bg-deep: #0a0a0c;
++  --ribbon-sidebar: #0c0b0e;
++  --ribbon-card: rgba(15,14,19,.55);
+   --ribbon-elevated: #242424;
+   --ribbon-hover: #2A2A2A;
+-  --ribbon-border: transparent;
+-  --ribbon-border-strong: rgba(232, 118, 154, 0.08);
++  --ribbon-border: rgba(255,255,255,.08);
++  --ribbon-border-strong: rgba(255,255,255,.12);
+   --ribbon-text: #FFFFFF;
+   --ribbon-text-dim: #CCCCCC;
+   --ribbon-text-muted: #888888;
+   --ribbon-text-faint: #666666;
+   --ribbon-text-ghost: #444444;
+   --ribbon-text-placeholder: #333333;
++
++  /* prey runtime accent — overridden per-accent by ThemeWrapper/biolink */
++  --ac: #ff7fae;
++  --acg: rgba(255,127,174,.5);
+ }
+ 
+ /* ═══ LIGHT MODE (auto via system preference OR explicit .light class) ═══ */
+@@ -118,7 +122,7 @@
+     --card-foreground: #121212;
+     --popover: #FFFFFF;
+     --popover-foreground: #121212;
+-    --primary: #D4638A;
++    --primary: #ff6b81;
+     --primary-foreground: #FFFFFF;
+     --secondary: #F0EDEE;
+     --secondary-foreground: #121212;
+@@ -126,23 +130,23 @@
+     --muted-foreground: #666666;
+     --accent: #E8DFE3;
+     --accent-foreground: #121212;
+-    --destructive: #D4638A;
++    --destructive: #ff6b81;
+     --border: transparent;
+     --input: #FFFFFF;
+-    --ring: #D4638A;
+-    --chart-1: #D4638A;
+-    --chart-2: #B14D72;
++    --ring: #ff6b81;
++    --chart-1: #ff6b81;
++    --chart-2: #b58cff;
+     --chart-3: #CCCCCC;
+     --chart-4: #888888;
+     --chart-5: #6D6F78;
+     --sidebar: #F0EDEE;
+     --sidebar-foreground: #121212;
+-    --sidebar-primary: #D4638A;
++    --sidebar-primary: #ff6b81;
+     --sidebar-primary-foreground: #FFFFFF;
+     --sidebar-accent: #E8DFE3;
+     --sidebar-accent-foreground: #121212;
+     --sidebar-border: transparent;
+-    --sidebar-ring: #D4638A;
++    --sidebar-ring: #ff6b81;
+ 
+     --ribbon-bg: #FAF7F8;
+     --ribbon-bg-deep: #F0EDEE;
+@@ -163,13 +167,13 @@
+ 
+ /* Explicit .dark class overrides system preference (for manual toggle) */
+ .dark {
+-  --background: #121212;
++  --background: #070709;
+   --foreground: #FFFFFF;
+-  --card: #1E1E1E;
++  --card: rgba(15,14,19,.55);
+   --card-foreground: #FFFFFF;
+   --popover: #1A1A1A;
+   --popover-foreground: #FFFFFF;
+-  --primary: #E8769A;
++  --primary: #ff7fae;
+   --primary-foreground: #121212;
+   --secondary: #242424;
+   --secondary-foreground: #FFFFFF;
+@@ -177,27 +181,27 @@
+   --muted-foreground: #CCCCCC;
+   --accent: #2A2A2A;
+   --accent-foreground: #FFFFFF;
+-  --destructive: #D4638A;
+-  --border: transparent;
+-  --input: #121212;
+-  --ring: #E8769A;
+-  --sidebar: #151515;
++  --destructive: #ff6b81;
++  --border: rgba(255,255,255,.08);
++  --input: #0d0c10;
++  --ring: #ff7fae;
++  --sidebar: #0c0b0e;
+   --sidebar-foreground: #FFFFFF;
+-  --sidebar-primary: #E8769A;
++  --sidebar-primary: #ff7fae;
+   --sidebar-primary-foreground: #121212;
+   --sidebar-accent: #1E1E1E;
+   --sidebar-accent-foreground: #FFFFFF;
+-  --sidebar-border: transparent;
+-  --sidebar-ring: #E8769A;
++  --sidebar-border: rgba(255,255,255,.06);
++  --sidebar-ring: #ff7fae;
+ 
+-  --ribbon-bg: #121212;
+-  --ribbon-bg-deep: #151515;
+-  --ribbon-sidebar: #151515;
+-  --ribbon-card: #1E1E1E;
++  --ribbon-bg: #070709;
++  --ribbon-bg-deep: #0a0a0c;
++  --ribbon-sidebar: #0c0b0e;
++  --ribbon-card: rgba(15,14,19,.55);
+   --ribbon-elevated: #242424;
+   --ribbon-hover: #2A2A2A;
+-  --ribbon-border: transparent;
+-  --ribbon-border-strong: rgba(232, 118, 154, 0.08);
++  --ribbon-border: rgba(255,255,255,.08);
++  --ribbon-border-strong: rgba(255,255,255,.12);
+   --ribbon-text: #FFFFFF;
+   --ribbon-text-dim: #CCCCCC;
+   --ribbon-text-muted: #888888;
+@@ -214,7 +218,7 @@
+   --card-foreground: #121212;
+   --popover: #FFFFFF;
+   --popover-foreground: #121212;
+-  --primary: #D4638A;
++  --primary: #ff6b81;
+   --primary-foreground: #FFFFFF;
+   --secondary: #F0EDEE;
+   --secondary-foreground: #121212;
+@@ -222,18 +226,18 @@
+   --muted-foreground: #666666;
+   --accent: #E8DFE3;
+   --accent-foreground: #121212;
+-  --destructive: #D4638A;
++  --destructive: #ff6b81;
+   --border: transparent;
+   --input: #FFFFFF;
+-  --ring: #D4638A;
++  --ring: #ff6b81;
+   --sidebar: #F0EDEE;
+   --sidebar-foreground: #121212;
+-  --sidebar-primary: #D4638A;
++  --sidebar-primary: #ff6b81;
+   --sidebar-primary-foreground: #FFFFFF;
+   --sidebar-accent: #E8DFE3;
+   --sidebar-accent-foreground: #121212;
+   --sidebar-border: transparent;
+-  --sidebar-ring: #D4638A;
++  --sidebar-ring: #ff6b81;
+ 
+   --ribbon-bg: #FAF7F8;
+   --ribbon-bg-deep: #F0EDEE;
+@@ -282,11 +286,11 @@
+     background: transparent;
+   }
+   ::-webkit-scrollbar-thumb {
+-    background: rgba(232, 118, 154, 0.12);
++    background: rgba(255, 127, 174, 0.12);
+     border-radius: 3px;
+   }
+   ::-webkit-scrollbar-thumb:hover {
+-    background: rgba(232, 118, 154, 0.2);
++    background: rgba(255, 127, 174, 0.2);
+   }
+ }
+ 
+@@ -300,8 +304,8 @@
+   50% { transform: translateY(-6px); }
+ }
+ @keyframes ribbon-breathe {
+-  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(232, 118, 154, 0.2); }
+-  50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(232, 118, 154, 0.35); }
++  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 127, 174, 0.2); }
++  50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(255, 127, 174, 0.35); }
+ }
+ @keyframes ribbon-ring-pulse {
+   0% { transform: scale(0.8); opacity: 0.4; }
+@@ -365,12 +369,73 @@
+ 
+ /* Signature gradient — grey → pink → grey */
+ .ribbon-gradient {
+-  background: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
++  background: linear-gradient(135deg, #333333 0%, #ff7fae 50%, #333333 100%);
+ }
+ .ribbon-gradient-text {
+-  background: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
++  background: linear-gradient(135deg, #333333 0%, #ff7fae 50%, #333333 100%);
+   -webkit-background-clip: text;
+   background-clip: text;
+   -webkit-text-fill-color: transparent;
+   color: transparent;
+ }
++
++/* ═══ prey glass surfaces & accent atmospherics ═══ */
++.prey-glass {
++  background: rgba(15, 14, 19, 0.55);
++  backdrop-filter: blur(46px) saturate(1.2);
++  -webkit-backdrop-filter: blur(46px) saturate(1.2);
++  border: 1px solid rgba(255, 255, 255, 0.1);
++  box-shadow: 0 44px 96px -34px rgba(0, 0, 0, 0.88),
++    inset 0 1px 0 rgba(255, 255, 255, 0.07);
++}
++.prey-glass-soft {
++  background: rgba(15, 14, 18, 0.45);
++  backdrop-filter: blur(14px);
++  -webkit-backdrop-filter: blur(14px);
++  border: 1px solid rgba(255, 255, 255, 0.07);
++}
++/* faint inset chip used for socials / now-playing / badges */
++.prey-chip {
++  background: rgba(255, 255, 255, 0.035);
++  border: 1px solid rgba(255, 255, 255, 0.09);
++}
++/* mono utility label — wide tracking, uppercase */
++.prey-label {
++  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
++  letter-spacing: 0.16em;
++  text-transform: uppercase;
++}
++
++/* scanline + film-grain overlays (tasteful, low opacity) */
++@keyframes prey-scan { from { background-position: 0 0; } to { background-position: 0 240px; } }
++.prey-scanlines {
++  background-image: repeating-linear-gradient(0deg,
++    rgba(255,255,255,.02) 0px, rgba(255,255,255,.02) 1px,
++    transparent 1px, transparent 3px);
++  background-size: 100% 3px;
++  animation: prey-scan 13s linear infinite;
++}
++.prey-grain {
++  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
++  background-size: 180px;
++  mix-blend-mode: overlay;
++}
++
++/* ambient accent drift behind the card */
++@keyframes prey-drift {
++  0%   { transform: translate(-3%, -2%) scale(1.05); }
++  50%  { transform: translate(3%, 2%) scale(1.1); }
++  100% { transform: translate(-3%, -2%) scale(1.05); }
++}
++.animate-prey-drift { animation: prey-drift 24s ease-in-out infinite; }
++
++/* equalizer bars for now-playing (replaces the old height-jump version) */
++@keyframes prey-eq { 0% { transform: scaleY(.2); } 100% { transform: scaleY(1); } }
++.prey-eq-bar { transform-origin: bottom; animation: prey-eq .85s ease-in-out infinite alternate; }
++
++/* pulsing online dot */
++@keyframes prey-pulse-dot {
++  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--acg, rgba(255,127,174,.5)); }
++  50% { opacity: .5; box-shadow: 0 0 0 6px rgba(255,127,174,0); }
++}
++.prey-pulse-dot { animation: prey-pulse-dot 1.8s infinite; }
+diff --git a/src/app/layout.tsx b/src/app/layout.tsx
+index 52f9634..7320333 100755
+--- a/src/app/layout.tsx
++++ b/src/app/layout.tsx
+@@ -1,16 +1,23 @@
+ import type { Metadata } from "next";
+-import { Quicksand } from "next/font/google";
++import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+ import "./globals.css";
+ import { Toaster } from "@/components/ui/toaster";
+ import { ThemeWrapper } from "@/components/ribbon/ThemeWrapper";
+ 
+-const quicksand = Quicksand({
+-  variable: "--font-quicksand",
++const spaceGrotesk = Space_Grotesk({
++  variable: "--font-space-grotesk",
+   subsets: ["latin"],
+   weight: ["400", "500", "600", "700"],
+   display: "swap",
+ });
+ 
++const jetbrainsMono = JetBrains_Mono({
++  variable: "--font-jetbrains-mono",
++  subsets: ["latin"],
++  weight: ["400", "500", "600"],
++  display: "swap",
++});
++
+ export const metadata: Metadata = {
+   title: "prey — chat for digital alchemists",
+   description: "A niche chat app for creative communities. DMs, servers, voice, and more.",
+@@ -35,7 +42,7 @@ export default function RootLayout({
+   return (
+     <html lang="en" suppressHydrationWarning>
+       <body
+-        className={`${quicksand.variable} antialiased bg-background text-foreground`}
++        className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased bg-background text-foreground`}
+       >
+         <ThemeWrapper>
+           {children}
+diff --git a/src/components/ribbon/views/BiolinkView.tsx b/src/components/ribbon/views/BiolinkView.tsx
+index cfc8855..50943e2 100644
+--- a/src/components/ribbon/views/BiolinkView.tsx
++++ b/src/components/ribbon/views/BiolinkView.tsx
+@@ -1,9 +1,10 @@
+ "use client";
+ 
+-import { useEffect } from "react";
++import { useEffect, useRef } from "react";
+ import {
+   X, Globe, Eye, Instagram, Twitter, Github, Home, Twitch, Youtube, Music2,
+-  MessageCircle, UserPlus, Heart, Calendar,
++  MessageCircle, UserPlus, Heart, Calendar, Pause, Play, SkipBack, SkipForward,
++  BadgeCheck,
+ } from "lucide-react";
+ import { useRibbon } from "@/lib/ribbon/store";
+ import { motion, AnimatePresence } from "framer-motion";
+@@ -20,23 +21,14 @@ const SOCIAL_ICONS: Record<string, any> = {
+ };
+ 
+ const FONT_CSS: Record<FontFamily, string> = {
+-  quicksand: "'Quicksand', sans-serif",
++  quicksand: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
+   inter: "'Inter', sans-serif",
+-  mono: "'JetBrains Mono', monospace",
++  mono: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
+   serif: "Georgia, serif",
+   rounded: "'Nunito', sans-serif",
+ };
+ 
+-const PARTICLES = [
+-  { top: "8%", left: "15%", size: 5, delay: 0, char: "✦" },
+-  { top: "20%", left: "80%", size: 2, delay: 0.6, dot: true },
+-  { top: "70%", left: "10%", size: 2, delay: 1.1, dot: true },
+-  { top: "85%", left: "75%", size: 4, delay: 1.6, char: "✦" },
+-  { top: "30%", left: "5%", size: 2, delay: 2.1, dot: true },
+-  { top: "50%", left: "90%", size: 4, delay: 0.4, char: "✦" },
+-  { top: "15%", left: "45%", size: 1, delay: 3.1, dot: true },
+-  { top: "90%", left: "35%", size: 2, delay: 2.6, dot: true },
+-];
++const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', monospace";
+ 
+ export function BiolinkView() {
+   const {
+@@ -46,12 +38,14 @@ export function BiolinkView() {
+     dms,
+     setActiveDM,
+     navigate,
+-    currentUser,
+   } = useRibbon();
+ 
+   const isOwnProfile = biolinkUserId === "you";
+   const config = biolinkConfig;
+ 
++  const cardRef = useRef<HTMLDivElement>(null);
++  const glareRef = useRef<HTMLDivElement>(null);
++
+   useEffect(() => {
+     const handler = (e: KeyboardEvent) => {
+       if (e.key === "Escape") closeBiolink();
+@@ -64,6 +58,8 @@ export function BiolinkView() {
+ 
+   const fontCss = FONT_CSS[config.fontFamily] || FONT_CSS.quicksand;
+   const accentColor = config.accentColor;
++  // translucent accent glow derived from the accent color
++  const accentGlow = `${accentColor}80`;
+ 
+   const pageBg = config.bgType === "gradient"
+     ? `linear-gradient(${config.bgGradientAngle}deg, ${config.bgGradientFrom}, ${config.bgGradientTo})`
+@@ -75,18 +71,44 @@ export function BiolinkView() {
+     ? { textShadow: `0 0 ${config.glowIntensity / 3}px ${accentColor}` }
+     : {};
+ 
++  // 3D tilt on pointer move (mirrors prey_dc card behaviour)
++  const onMove = (e: React.PointerEvent) => {
++    const c = cardRef.current;
++    if (!c) return;
++    const rect = c.getBoundingClientRect();
++    const px = (e.clientX - rect.left) / rect.width - 0.5;
++    const py = (e.clientY - rect.top) / rect.height - 0.5;
++    c.style.transform = `rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 10).toFixed(2)}deg)`;
++    const g = glareRef.current;
++    if (g) {
++      g.style.opacity = "1";
++      g.style.background = `radial-gradient(circle at ${((px + 0.5) * 100).toFixed(1)}% ${((py + 0.5) * 100).toFixed(1)}%, rgba(255,255,255,.14), transparent 55%)`;
++    }
++  };
++  const onLeave = () => {
++    const c = cardRef.current;
++    if (c) c.style.transform = "rotateX(0deg) rotateY(0deg)";
++    const g = glareRef.current;
++    if (g) g.style.opacity = "0";
++  };
++
+   const cardStyle: React.CSSProperties = {
+-    background: config.cardBg,
++    background: config.cardBg || "rgba(15,14,19,.55)",
+     borderRadius: config.borderRadius,
+-    backdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px)` : "none",
+-    WebkitBackdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px)` : "none",
+-    boxShadow: config.cardShadow ? "0 8px 40px rgba(0, 0, 0, 0.5)" : "none",
++    border: "1px solid rgba(255,255,255,.1)",
++    backdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px) saturate(1.2)` : "none",
++    WebkitBackdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px) saturate(1.2)` : "none",
++    boxShadow: config.cardShadow
++      ? "0 44px 96px -34px rgba(0,0,0,.88), inset 0 1px 0 rgba(255,255,255,.07)"
++      : "none",
+     width: "100%",
+     maxWidth: config.cardWidth,
+     fontFamily: fontCss,
+     fontSize: config.fontSize,
+     overflow: "hidden",
+     position: "relative",
++    transformStyle: "preserve-3d",
++    transition: "transform .14s ease-out",
+   };
+ 
+   const handleMessage = () => {
+@@ -98,26 +120,30 @@ export function BiolinkView() {
+     }
+   };
+ 
++  const alignItems =
++    config.layoutStyle === "centered" ? "center" :
++    config.layoutStyle === "right" ? "flex-end" : "flex-start";
++
+   return (
+     <AnimatePresence>
+       <motion.div
+         initial={{ opacity: 0 }}
+         animate={{ opacity: 1 }}
+         exit={{ opacity: 0 }}
++        onPointerMove={onMove}
++        onPointerLeave={onLeave}
+         className="fixed inset-0 z-[110] flex items-center justify-center overflow-y-auto"
+         style={{
+-          background: config.bgType === "video" ? "#000000" : pageBg,
++          background: config.bgType === "video" ? "#070709" : pageBg,
+           backgroundSize: "cover",
+           backgroundPosition: "center",
++          perspective: "1100px",
+         }}
+       >
+         {/* Video background */}
+         {config.bgType === "video" && config.bgVideoUrl && (
+           <video
+-            autoPlay
+-            loop
+-            muted
+-            playsInline
++            autoPlay loop muted playsInline
+             className="absolute inset-0 h-full w-full object-cover"
+             style={{ opacity: config.bgOpacity / 100, zIndex: 0 }}
+           >
+@@ -127,71 +153,45 @@ export function BiolinkView() {
+ 
+         {/* Image background with translucency */}
+         {config.bgType === "image" && config.bgImageUrl && (
+-          <div
+-            className="absolute inset-0"
+-            style={{
+-              backgroundImage: `url(${config.bgImageUrl})`,
+-              backgroundSize: "cover",
+-              backgroundPosition: "center",
+-              opacity: config.bgOpacity / 100,
+-              zIndex: 0,
+-            }}
+-          />
++          <div className="absolute inset-0" style={{
++            backgroundImage: `url(${config.bgImageUrl})`,
++            backgroundSize: "cover", backgroundPosition: "center",
++            opacity: config.bgOpacity / 100, zIndex: 0,
++          }} />
+         )}
+ 
+         {/* Gradient/solid background with translucency */}
+         {(config.bgType === "gradient" || config.bgType === "solid") && (
+-          <div
+-            className="absolute inset-0"
+-            style={{
+-              background: pageBg,
+-              opacity: config.bgOpacity / 100,
+-              zIndex: 0,
+-            }}
+-          />
++          <div className="absolute inset-0" style={{
++            background: pageBg, opacity: config.bgOpacity / 100, zIndex: 0,
++          }} />
+         )}
++
++        {/* Ambient accent drift + vignette */}
++        <div className="animate-prey-drift pointer-events-none absolute" style={{
++          inset: "-10%",
++          background: `radial-gradient(42% 38% at 30% 34%, ${accentGlow}, transparent 62%)`,
++          opacity: 0.5, zIndex: 0,
++        }} />
++        <div className="pointer-events-none absolute inset-0" style={{
++          background: "radial-gradient(125% 85% at 50% 50%, transparent 40%, rgba(3,3,5,.9) 100%)",
++          zIndex: 0,
++        }} />
++
+         {/* Scanlines overlay */}
+         {config.scanlines && (
+-          <div className="pointer-events-none absolute inset-0" style={{
+-            background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px)",
+-            zIndex: 1,
+-          }} />
++          <div className="prey-scanlines pointer-events-none absolute inset-0" style={{ opacity: 0.4, zIndex: 1 }} />
+         )}
+ 
+         {/* Grain texture overlay */}
+         {config.grainTexture && (
+-          <div className="pointer-events-none absolute inset-0" style={{
+-            opacity: 0.035,
+-            background: "repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 2px 2px",
+-            zIndex: 1,
+-          }} />
++          <div className="prey-grain pointer-events-none absolute inset-0" style={{ opacity: 0.09, zIndex: 1 }} />
+         )}
+ 
+-        {/* Particles */}
+-        {config.particles && PARTICLES.map((p, i) => (
+-          <div
+-            key={i}
+-            className="animate-twinkle pointer-events-none absolute"
+-            style={{
+-              top: p.top, left: p.left,
+-              width: p.size, height: p.size,
+-              fontSize: p.size,
+-              color: accentColor,
+-              borderRadius: p.dot ? "50%" : undefined,
+-              background: p.dot ? accentColor : undefined,
+-              animationDelay: `${p.delay}s`,
+-              zIndex: 1,
+-            }}
+-          >
+-            {p.char ?? ""}
+-          </div>
+-        ))}
+-
+         {/* Close button */}
+         <button
+           onClick={closeBiolink}
+-          className="fixed right-5 top-5 z-[120] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
+-          style={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(8px)" }}
++          className="prey-glass-soft fixed right-5 top-5 z-[120] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
+         >
+           <X size={16} strokeWidth={2.5} style={{ color: "#FFFFFF" }} />
+         </button>
+@@ -201,214 +201,244 @@ export function BiolinkView() {
+           <style dangerouslySetInnerHTML={{ __html: config.customCss }} />
+         )}
+ 
+-        {/* The biolink card — with cutscene opening animation */}
++        {/* Card wrapper with aura */}
+         <motion.div
+           initial={
+-            config.cutsceneDirection === "vertical"
+-              ? { y: -200, opacity: 0 }
+-              : config.cutsceneDirection === "horizontal"
+-                ? { x: -200, opacity: 0 }
+-                : { opacity: 0 }
++            config.cutsceneDirection === "vertical" ? { y: -200, opacity: 0 }
++            : config.cutsceneDirection === "horizontal" ? { x: -200, opacity: 0 }
++            : { opacity: 0, y: 18 }
+           }
+           animate={{ x: 0, y: 0, opacity: 1 }}
+           exit={
+-            config.cutsceneDirection === "vertical"
+-              ? { y: -200, opacity: 0 }
+-              : config.cutsceneDirection === "horizontal"
+-                ? { x: -200, opacity: 0 }
+-                : { opacity: 0 }
++            config.cutsceneDirection === "vertical" ? { y: -200, opacity: 0 }
++            : config.cutsceneDirection === "horizontal" ? { x: -200, opacity: 0 }
++            : { opacity: 0 }
+           }
+           transition={{ type: "spring", stiffness: 200, damping: 25, duration: 0.8 }}
+-          className="prey-biolink relative my-10 z-10 mx-4 sm:mx-auto"
+-          style={cardStyle}
++          className="relative z-10 my-10 mx-4 sm:mx-auto"
++          style={{ width: "100%", maxWidth: config.cardWidth }}
+         >
+-          {/* Top bar */}
+-          {config.showTopBar && (
+-            <div className="flex items-center justify-between px-4 py-2" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
+-              <div className="flex items-center gap-2">
+-                {config.showOnlineStatus && (
+-                  <span className="rounded-full" style={{ width: 8, height: 8, background: "#00FF88" }} />
+-                )}
+-                <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: config.secondaryTextColor }}>
+-                  prey.lol/{config.displayName.toLowerCase().replace(/\s+/g, "")}
+-                </span>
+-              </div>
+-              <div className="flex items-center gap-3">
+-                {config.showLikes && (
+-                  <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor }}>
+-                    <Heart size={11} strokeWidth={2} /> 42
+-                  </div>
+-                )}
+-                {config.showViews && (
+-                  <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor }}>
+-                    <Eye size={11} strokeWidth={2} /> 192
+-                  </div>
+-                )}
+-              </div>
+-            </div>
++          {/* aura behind card */}
++          {config.glow && (
++            <div className="pointer-events-none absolute" style={{
++              inset: -26, borderRadius: config.borderRadius + 20,
++              background: `radial-gradient(50% 50% at 50% 45%, ${accentGlow}, transparent 70%)`,
++              filter: "blur(34px)", opacity: config.glowIntensity / 220, zIndex: 0,
++            }} />
+           )}
+ 
+-          {/* Body */}
+-          <div className="px-5 py-5" style={{ textAlign: config.layoutStyle as any }}>
+-            {/* Avatar + name */}
+-            <div
+-              className="mb-4 flex items-center gap-3"
+-              style={{
+-                justifyContent: config.layoutStyle === "centered" ? "center" : config.layoutStyle === "right" ? "flex-end" : "flex-start",
+-              }}
+-            >
+-              <div
+-                className="flex items-center justify-center font-bold text-white"
+-                style={{
+-                  width: 64, height: 64,
+-                  borderRadius: config.borderRadius / 1.5,
+-                  background: config.avatarUrl ? `url(${config.avatarUrl}) center/cover` : accentColor,
+-                  fontSize: 28,
+-                  boxShadow: config.glow ? `0 0 ${config.glowIntensity / 2}px ${accentColor}66` : "none",
+-                }}
+-              >
+-                {!config.avatarUrl && (config.displayName || "y").charAt(0).toLowerCase()}
+-              </div>
+-              <div>
+-                <div className="flex items-center gap-1.5">
+-                  <span className="prey-name text-[20px] font-bold" style={{ color: config.textColor, ...glowStyle }}>
+-                    {config.displayName || "yourname"}
++          {/* The biolink card */}
++          <div ref={cardRef} className="prey-biolink relative z-[1]" style={cardStyle}>
++            {/* glare layer for tilt */}
++            <div ref={glareRef} className="pointer-events-none absolute inset-0" style={{
++              opacity: 0, transition: "opacity .3s ease", mixBlendMode: "screen", zIndex: 5,
++              borderRadius: config.borderRadius,
++            }} />
++
++            {/* Top bar */}
++            {config.showTopBar && (
++              <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "rgba(0,0,0,.25)" }}>
++                <div className="flex items-center gap-2">
++                  {config.showOnlineStatus && (
++                    <span className="prey-pulse-dot rounded-full" style={{ width: 7, height: 7, background: accentColor }} />
++                  )}
++                  <span className="prey-label text-[10px] font-semibold" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
++                    prey.lol/{config.displayName.toLowerCase().replace(/\s+/g, "")}
+                   </span>
+-                  {config.verified && (
+-                    <svg width="18" height="18" viewBox="0 0 24 24" fill={accentColor}>
+-                      <path d="M12 2L14.5 5L18 4L17 7.5L20 10L16.5 11.5L17 15L13.5 14L12 17L10.5 14L7 15L7.5 11.5L4 10L7 7.5L6 4L9.5 5L12 2Z" />
+-                    </svg>
++                </div>
++                <div className="flex items-center gap-3">
++                  {config.showLikes && (
++                    <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor, fontFamily: MONO }}>
++                      <Heart size={11} strokeWidth={2} /> 42
++                    </div>
++                  )}
++                  {config.showViews && (
++                    <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor, fontFamily: MONO }}>
++                      <Eye size={11} strokeWidth={2} /> 192
++                    </div>
+                   )}
+                 </div>
+-                {config.showOnlineStatus && (
+-                  <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#00FF88" }}>
+-                    ONLINE
+-                  </div>
+-                )}
+-              </div>
+-            </div>
+-
+-            {/* Bio */}
+-            {config.bio && (
+-              <div className="prey-bio mb-3 text-[13px] leading-[1.6]" style={{ color: config.secondaryTextColor }}>
+-                {config.bio}
+               </div>
+             )}
+ 
+-            {/* Tagline pill */}
+-            {config.tagline && (
+-              <div className="mb-4">
+-                <span
+-                  className="inline-block rounded-full px-3 py-1 text-[11px] font-semibold"
+-                  style={{ background: "rgba(0, 0, 0, 0.3)", color: accentColor }}
+-                >
+-                  {config.tagline}
+-                </span>
+-              </div>
+-            )}
+-
+-            {/* Now playing */}
+-            {config.showNowPlaying && config.trackName && (
+-              <div className="mb-4 flex items-center gap-2.5 rounded-[8px] px-3 py-2.5" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
+-                <div className="flex items-end gap-0.5" style={{ height: 16 }}>
+-                  {[0, 1, 2, 3, 4].map((i) => (
+-                    <div
+-                      key={i}
+-                      style={{
+-                        width: 2,
+-                        borderRadius: 1,
+-                        background: accentColor,
+-                        animation: `ribbon-eq-bar ${[1.1, 0.9, 1.3, 1, 1.2][i]}s ease-in-out infinite`,
+-                        animationDelay: `${i * 0.15}s`,
+-                      }}
+-                    />
+-                  ))}
+-                </div>
+-                <div className="flex-1">
+-                  <div className="text-[11px] font-semibold" style={{ color: accentColor }}>
+-                    {config.trackName}
++            {/* Body */}
++            <div className="px-7 py-6" style={{ transform: "translateZ(20px)" }}>
++              {/* identity + avatar */}
++              <div className="flex items-start justify-between gap-5">
++                <div className="min-w-0 pt-1.5">
++                  <div className="flex items-center gap-2.5">
++                    <span className="font-bold leading-none" style={{ fontSize: 40, letterSpacing: "-.045em", color: config.textColor, ...glowStyle }}>
++                      {config.displayName || "yourname"}
++                    </span>
++                    {config.verified && (
++                      <BadgeCheck size={22} style={{ color: accentColor }} />
++                    )}
+                   </div>
+-                  <div className="text-[10px]" style={{ color: config.secondaryTextColor }}>
+-                    {config.artistName}
++                  {config.showOnlineStatus && (
++                    <div className="prey-label mt-3 flex items-center gap-2 text-[11px] font-semibold" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
++                      <span className="prey-pulse-dot" style={{ width: 7, height: 7, borderRadius: "50%", background: accentColor }} />
++                      online
++                    </div>
++                  )}
++                </div>
++
++                {/* gradient-ring avatar */}
++                <div className="relative flex-none">
++                  <div style={{
++                    padding: 2.5, borderRadius: config.borderRadius / 1.2,
++                    background: `linear-gradient(150deg, ${accentColor}, rgba(120,116,124,.5))`,
++                    boxShadow: `0 0 0 1px rgba(0,0,0,.4), 0 18px 40px -16px ${accentGlow}`,
++                  }}>
++                    <div className="flex items-center justify-center font-bold text-white" style={{
++                      width: 104, height: 104,
++                      borderRadius: config.borderRadius / 1.5,
++                      border: "3px solid #100f14",
++                      background: config.avatarUrl ? `url(${config.avatarUrl}) center/cover` : accentColor,
++                      fontSize: 40,
++                    }}>
++                      {!config.avatarUrl && (config.displayName || "y").charAt(0).toLowerCase()}
++                    </div>
+                   </div>
+                 </div>
+               </div>
+-            )}
+ 
+-            {/* Social links */}
+-            {config.socialLinks.length > 0 && (
+-              <div
+-                className="prey-links mb-4 flex flex-wrap gap-2"
+-                style={{
+-                  justifyContent: config.layoutStyle === "centered" ? "center" : config.layoutStyle === "right" ? "flex-end" : "flex-start",
+-                }}
+-              >
+-                {config.socialLinks.map((link, i) => {
+-                  const Icon = SOCIAL_ICONS[link.type] || Globe;
+-                  if (config.linkStyle === "cards") {
++              {/* Bio */}
++              {config.bio && (
++                <div className="mt-5 text-[14px] leading-[1.6]" style={{ color: config.secondaryTextColor }}>
++                  {config.bio}
++                </div>
++              )}
++
++              {/* Tagline pill */}
++              {config.tagline && (
++                <div className="mt-4" style={{ textAlign: config.layoutStyle as any }}>
++                  <span className="prey-chip prey-label inline-block rounded-full px-3 py-1 text-[11px] font-semibold"
++                    style={{ color: accentColor, fontFamily: MONO }}>
++                    {config.tagline}
++                  </span>
++                </div>
++              )}
++
++              {/* Social links */}
++              {config.socialLinks.length > 0 && (
++                <div className="mt-6 flex flex-wrap gap-2.5" style={{ justifyContent: alignItems }}>
++                  {config.socialLinks.map((link, i) => {
++                    const Icon = SOCIAL_ICONS[link.type] || Globe;
++                    const cards = config.linkStyle === "cards";
+                     return (
+                       <a
+                         key={i}
+                         href={link.url}
+                         onClick={(e) => e.stopPropagation()}
+-                        className="flex cursor-pointer items-center gap-2 rounded-[6px] px-3 py-2 transition"
+-                        style={{ background: "rgba(0, 0, 0, 0.3)" }}
+-                        onMouseEnter={(e) => (e.currentTarget.style.background = `${accentColor}20`)}
+-                        onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0, 0, 0, 0.3)")}
++                        className="prey-chip flex cursor-pointer items-center justify-center transition"
++                        style={{
++                          gap: cards ? 8 : 0,
++                          width: cards ? "auto" : 48,
++                          height: 48,
++                          padding: cards ? "0 14px" : 0,
++                          borderRadius: 14,
++                          color: config.textColor,
++                          textDecoration: "none",
++                        }}
++                        onMouseEnter={(e) => {
++                          e.currentTarget.style.background = `${accentColor}24`;
++                          e.currentTarget.style.borderColor = accentColor;
++                          e.currentTarget.style.color = accentColor;
++                          e.currentTarget.style.transform = "translateY(-3px)";
++                          e.currentTarget.style.boxShadow = `0 8px 22px -8px ${accentGlow}`;
++                        }}
++                        onMouseLeave={(e) => {
++                          e.currentTarget.style.background = "rgba(255,255,255,.035)";
++                          e.currentTarget.style.borderColor = "rgba(255,255,255,.09)";
++                          e.currentTarget.style.color = config.textColor;
++                          e.currentTarget.style.transform = "translateY(0)";
++                          e.currentTarget.style.boxShadow = "none";
++                        }}
+                         title={link.label}
+                       >
+-                        <Icon size={14} strokeWidth={2} style={{ color: config.textColor }} />
+-                        <span className="text-[10px] font-semibold" style={{ color: config.textColor }}>
+-                          {link.label}
+-                        </span>
++                        <Icon size={20} strokeWidth={2} />
++                        {cards && (
++                          <span className="text-[11px] font-semibold">{link.label}</span>
++                        )}
+                       </a>
+                     );
+-                  }
+-                  return (
+-                    <a
+-                      key={i}
+-                      href={link.url}
+-                      onClick={(e) => e.stopPropagation()}
+-                      className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
+-                      style={{ background: "rgba(0, 0, 0, 0.3)" }}
+-                      onMouseEnter={(e) => (e.currentTarget.style.background = `${accentColor}20`)}
+-                      onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0, 0, 0, 0.3)")}
+-                      title={link.label}
+-                    >
+-                      <Icon size={15} strokeWidth={2} style={{ color: config.textColor }} />
+-                    </a>
+-                  );
+-                })}
+-              </div>
+-            )}
+-
+-            {/* Footer */}
+-            <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}>
+-              {config.showJoinDate && (
+-                <div className="flex items-center gap-1 text-[10px]" style={{ color: config.secondaryTextColor }}>
+-                  <Calendar size={10} strokeWidth={2} />
+-                  Joined Sep 2025
++                  })}
+                 </div>
+               )}
+-              {!isOwnProfile && (
+-                <div className="flex gap-1.5">
+-                  <button
+-                    onClick={handleMessage}
+-                    className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-[6px] transition"
+-                    style={{ background: "rgba(0, 0, 0, 0.3)" }}
+-                    title="Message"
+-                  >
+-                    <MessageCircle size={12} strokeWidth={2.5} style={{ color: config.secondaryTextColor }} />
+-                  </button>
+-                  <button
+-                    className="flex cursor-pointer items-center gap-1 rounded-[6px] px-3 py-1 text-[11px] font-semibold transition"
+-                    style={{ background: `${accentColor}20`, color: accentColor }}
+-                  >
+-                    <UserPlus size={11} strokeWidth={2.5} />
+-                    Add
+-                  </button>
++
++              {/* divider */}
++              {config.showNowPlaying && config.trackName && (
++                <div className="my-5" style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent)" }} />
++              )}
++
++              {/* Now playing */}
++              {config.showNowPlaying && config.trackName && (
++                <div className="flex items-center gap-3.5">
++                  <div className="flex-none" style={{
++                    width: 46, height: 46, borderRadius: 11,
++                    background: config.albumArtUrl ? `url(${config.albumArtUrl}) center/cover` : "rgba(255,255,255,.06)",
++                  }} />
++                  <div className="min-w-0 flex-1">
++                    <div className="prey-label text-[10px] font-semibold" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
++                      now playing
++                    </div>
++                    <div className="mt-1 flex items-baseline gap-2 overflow-hidden whitespace-nowrap">
++                      <span className="text-[16px] font-semibold" style={{ color: config.textColor }}>{config.trackName}</span>
++                      <span className="text-[13px]" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>— {config.artistName}</span>
++                    </div>
++                  </div>
++                  {/* EQ */}
++                  <div className="flex items-end gap-[2.5px]" style={{ height: 15 }}>
++                    {[0, 0.16, 0.32, 0.48].map((d, i) => (
++                      <span key={i} className="prey-eq-bar" style={{
++                        width: 2.5, height: "100%", borderRadius: 2, background: accentColor, animationDelay: `${d}s`,
++                      }} />
++                    ))}
++                  </div>
++                  {/* transport */}
++                  <div className="flex items-center gap-0.5">
++                    <button title="prev" className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "transparent", border: "none", color: config.secondaryTextColor, cursor: "pointer" }}>
++                      <SkipBack size={18} />
++                    </button>
++                    <button title="play" className="flex items-center justify-center rounded-full" style={{
++                      width: 40, height: 40, border: `1px solid ${accentColor}`, background: `${accentColor}1f`, color: accentColor, cursor: "pointer",
++                    }}>
++                      <Play size={18} />
++                    </button>
++                    <button title="next" className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "transparent", border: "none", color: config.secondaryTextColor, cursor: "pointer" }}>
++                      <SkipForward size={18} />
++                    </button>
++                  </div>
+                 </div>
+               )}
++
++              {/* Footer */}
++              <div className="mt-6 flex items-center justify-between pt-4" style={{ borderTop: "1px solid rgba(255,255,255,.07)" }}>
++                {config.showJoinDate ? (
++                  <div className="flex items-center gap-1.5 text-[11px]" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
++                    <Calendar size={11} strokeWidth={2} />
++                    joined sep 2025
++                  </div>
++                ) : <span />}
++                {!isOwnProfile && (
++                  <div className="flex gap-2">
++                    <button
++                      onClick={handleMessage}
++                      className="prey-chip flex h-8 w-8 cursor-pointer items-center justify-center rounded-[10px] transition"
++                      title="Message"
++                    >
++                      <MessageCircle size={13} strokeWidth={2.5} style={{ color: config.secondaryTextColor }} />
++                    </button>
++                    <button
++                      className="flex cursor-pointer items-center gap-1.5 rounded-[10px] px-3.5 py-1 text-[12px] font-semibold transition"
++                      style={{ background: `${accentColor}24`, color: accentColor, border: `1px solid ${accentColor}` }}
++                    >
++                      <UserPlus size={12} strokeWidth={2.5} />
++                      add friend
++                    </button>
++                  </div>
++                )}
++              </div>
+             </div>
+           </div>
+         </motion.div>
+diff --git a/src/lib/ribbon/store.ts b/src/lib/ribbon/store.ts
+index d0bfa6d..4cc1b0b 100755
+--- a/src/lib/ribbon/store.ts
++++ b/src/lib/ribbon/store.ts
+@@ -328,29 +328,29 @@ export const useRibbon = create<RibbonState>((set, get) => ({
+     avatarUrl: "",
+     verified: false,
+ 
+-    accentColor: "#E8769A",
++    accentColor: "#ff7fae",
+     textColor: "#FFFFFF",
+-    secondaryTextColor: "#9499A2",
+-    cardBg: "rgba(30, 30, 30, 0.8)",
+-    pageBg: "#121212",
++    secondaryTextColor: "#9a96a0",
++    cardBg: "rgba(15, 14, 19, 0.55)",
++    pageBg: "#070709",
+ 
+     fontFamily: "quicksand",
+     fontSize: 14,
+-    borderRadius: 12,
+-    cardWidth: 380,
++    borderRadius: 22,
++    cardWidth: 560,
+ 
+     glow: true,
+     glowIntensity: 40,
+     glassmorphism: true,
+-    blurAmount: 16,
+-    scanlines: false,
+-    grainTexture: false,
++    blurAmount: 46,
++    scanlines: true,
++    grainTexture: true,
+     particles: false,
+     cardShadow: true,
+ 
+     bgType: "gradient",
+-    bgGradientFrom: "#1A1B1E",
+-    bgGradientTo: "#0A0E17",
++    bgGradientFrom: "#0a0a0c",
++    bgGradientTo: "#070709",
+     bgGradientAngle: 135,
+     bgImageUrl: "",
+     bgVideoUrl: "",
+@@ -389,26 +389,26 @@ export const useRibbon = create<RibbonState>((set, get) => ({
+         tagline: "prey user",
+         avatarUrl: "",
+         verified: false,
+-        accentColor: "#E8769A",
++        accentColor: "#ff7fae",
+         textColor: "#FFFFFF",
+-        secondaryTextColor: "#9499A2",
+-        cardBg: "rgba(30, 30, 30, 0.8)",
+-        pageBg: "#121212",
++        secondaryTextColor: "#9a96a0",
++        cardBg: "rgba(15, 14, 19, 0.55)",
++        pageBg: "#070709",
+         fontFamily: "quicksand",
+         fontSize: 14,
+-        borderRadius: 12,
+-        cardWidth: 380,
++        borderRadius: 22,
++        cardWidth: 560,
+         glow: true,
+         glowIntensity: 40,
+         glassmorphism: true,
+-        blurAmount: 16,
+-        scanlines: false,
+-        grainTexture: false,
++        blurAmount: 46,
++        scanlines: true,
++        grainTexture: true,
+         particles: false,
+         cardShadow: true,
+         bgType: "gradient",
+-        bgGradientFrom: "#1A1B1E",
+-        bgGradientTo: "#0A0E17",
++        bgGradientFrom: "#0a0a0c",
++        bgGradientTo: "#070709",
+         bgGradientAngle: 135,
+         bgImageUrl: "",
+     bgVideoUrl: "",
+-- 
+2.43.0
+
+
+From 12b0ba4ac2e192bb60b1a8c1f65a6fc3926369f6 Mon Sep 17 00:00:00 2001
+From: rib <you@prey.lol>
+Date: Sat, 20 Jun 2026 03:47:19 +0000
+Subject: [PATCH 2/2] feat(theme): extend prey glass treatment across app
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- brighten all hardcoded muted-pink (#E8769A/#D4638A) to prey accents
+  (#ff7fae/#ff6b81/#b58cff) across 12 components
+- globals.css: accent selection color, glass saturation on blurred surfaces,
+  .prey-lift hover, accent focus ring, reduced-motion guard
+- FloatingDock: glass surface + hairline border, accent glow on active item,
+  glass hover tooltips
+- SplashView: rebuild to prey click-to-enter — gradient-ring avatar,
+  Space Grotesk name w/ glitch, mono prompt, pulsing-dot footer
+---
+ src/app/globals.css                           | 20 +++++
+ src/components/ribbon/BiolinkEditor.tsx       |  6 +-
+ src/components/ribbon/FloatingDock.tsx        | 13 +--
+ src/components/ribbon/MessageInput.tsx        |  2 +-
+ src/components/ribbon/TypingIndicator.tsx     |  2 +-
+ src/components/ribbon/UserCard.tsx            |  6 +-
+ src/components/ribbon/views/DiscoverView.tsx  |  2 +-
+ src/components/ribbon/views/FriendsView.tsx   |  4 +-
+ src/components/ribbon/views/MobileView.tsx    |  8 +-
+ .../ribbon/views/OnboardingView.tsx           | 42 ++++-----
+ src/components/ribbon/views/ProfileView.tsx   |  4 +-
+ .../ribbon/views/ServerSettingsView.tsx       |  8 +-
+ src/components/ribbon/views/SplashView.tsx    | 90 +++++++++++--------
+ src/components/ribbon/views/VoiceView.tsx     | 18 ++--
+ 14 files changed, 132 insertions(+), 93 deletions(-)
+
+diff --git a/src/app/globals.css b/src/app/globals.css
+index 8b2b548..bc11244 100755
+--- a/src/app/globals.css
++++ b/src/app/globals.css
+@@ -439,3 +439,23 @@
+   50% { opacity: .5; box-shadow: 0 0 0 6px rgba(255,127,174,0); }
+ }
+ .prey-pulse-dot { animation: prey-pulse-dot 1.8s infinite; }
++
++/* ═══ prey global polish ═══ */
++/* Soft accent selection highlight */
++::selection { background: rgba(255,127,174,.28); color: #fff; }
++
++/* Any element that opts into blur gets a consistent saturated glass feel */
++[class*="backdrop-blur"] { -webkit-backdrop-filter: saturate(1.15); backdrop-filter: saturate(1.15); }
++
++/* Pill/card hover lift used across views */
++.prey-lift { transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
++.prey-lift:hover { transform: translateY(-2px); }
++
++/* Accent ring focus that matches the theme */
++*:focus-visible { outline: 2px solid var(--ac, #ff7fae); outline-offset: 2px; }
++
++/* Respect reduced-motion: kill ambient loops, keep essential transitions */
++@media (prefers-reduced-motion: reduce) {
++  .animate-prey-drift, .prey-scanlines, .prey-eq-bar, .prey-pulse-dot,
++  .animate-breathe, .animate-twinkle, .animate-drift, .animate-glitch { animation: none !important; }
++}
+diff --git a/src/components/ribbon/BiolinkEditor.tsx b/src/components/ribbon/BiolinkEditor.tsx
+index cec52ab..bf61f20 100644
+--- a/src/components/ribbon/BiolinkEditor.tsx
++++ b/src/components/ribbon/BiolinkEditor.tsx
+@@ -451,7 +451,7 @@ const PRESET_THEMES: { name: string; description: string; config: Partial<Biolin
+     description: "clean black card, no effects",
+     config: {
+       cardBg: "rgba(15, 15, 15, 0.95)",
+-      accentColor: "#E8769A",
++      accentColor: "#ff7fae",
+       textColor: "#FFFFFF",
+       secondaryTextColor: "#9499A2",
+       glow: false,
+@@ -474,7 +474,7 @@ const PRESET_THEMES: { name: string; description: string; config: Partial<Biolin
+     description: "frosted glass blur, subtle glow",
+     config: {
+       cardBg: "rgba(0, 0, 0, 0.6)",
+-      accentColor: "#E8769A",
++      accentColor: "#ff7fae",
+       textColor: "#FFFFFF",
+       secondaryTextColor: "#D1D5DB",
+       glow: true,
+@@ -549,7 +549,7 @@ const PRESET_THEMES: { name: string; description: string; config: Partial<Biolin
+     description: "bright, minimal, white card",
+     config: {
+       cardBg: "rgba(255, 255, 255, 0.95)",
+-      accentColor: "#D4638A",
++      accentColor: "#ff6b81",
+       textColor: "#1A1B1E",
+       secondaryTextColor: "#5D6067",
+       glow: false,
+diff --git a/src/components/ribbon/FloatingDock.tsx b/src/components/ribbon/FloatingDock.tsx
+index 9641678..980f152 100755
+--- a/src/components/ribbon/FloatingDock.tsx
++++ b/src/components/ribbon/FloatingDock.tsx
+@@ -151,7 +151,7 @@ export function FloatingDock() {
+       dragElastic={0}
+       onDragStart={() => setIsDragging(true)}
+       onDragEnd={handleDragEnd}
+-      style={{ x, y, background: "var(--ribbon-elevated)" }}
++      style={{ x, y, background: "rgba(15,14,19,.5)", border: "1px solid rgba(255,255,255,.08)" }}
+       className="fixed z-50 flex items-center gap-0.5 sm:gap-1 rounded-full p-1 sm:p-1.5 backdrop-blur-xl"
+       data-edge={edge}
+     >
+@@ -220,9 +220,10 @@ function DockButton({
+       className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all"
+       style={{
+         background: item.active
+-          ? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #D4638A 100%)"
++          ? "linear-gradient(135deg, #ff7fae 0%, #ff7fae 50%, #ff6b81 100%)"
+           : "transparent",
+         color: item.active ? "#FFFFFF" : "var(--ribbon-text-dim)",
++        boxShadow: item.active ? "0 6px 18px -6px var(--acg, rgba(255,127,174,.6))" : "none",
+       }}
+       title={item.label}
+     >
+@@ -231,11 +232,13 @@ function DockButton({
+       {/* Hover label tooltip */}
+       {showLabel && !item.active && (
+         <div
+-          className="pointer-events-none absolute whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-semibold"
++          className="pointer-events-none absolute whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-semibold prey-label"
+           style={{
+-            background: "var(--ribbon-elevated)",
++            background: "rgba(15,14,19,.8)",
++            backdropFilter: "blur(12px)",
++            WebkitBackdropFilter: "blur(12px)",
+             color: "var(--ribbon-text)",
+-            border: "1px solid var(--ribbon-border)",
++            border: "1px solid rgba(255,255,255,.1)",
+             // Position label based on dock orientation
+             ...(isVertical
+               ? { left: "100%", marginLeft: 8, top: "50%", transform: "translateY(-50%)" }
+diff --git a/src/components/ribbon/MessageInput.tsx b/src/components/ribbon/MessageInput.tsx
+index 4c0d48e..40a0e4d 100755
+--- a/src/components/ribbon/MessageInput.tsx
++++ b/src/components/ribbon/MessageInput.tsx
+@@ -63,7 +63,7 @@ export function MessageInput({ placeholder, onSend }: MessageInputProps) {
+           className="flex h-7 w-7 flex-none cursor-pointer items-center justify-center rounded-full transition disabled:cursor-default"
+           style={{
+             background: canSend
+-              ? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #D4638A 100%)"
++              ? "linear-gradient(135deg, #ff7fae 0%, #ff7fae 50%, #ff6b81 100%)"
+               : "var(--ribbon-hover)",
+             opacity: canSend ? 1 : 0.4,
+           }}
+diff --git a/src/components/ribbon/TypingIndicator.tsx b/src/components/ribbon/TypingIndicator.tsx
+index 495553c..814219a 100755
+--- a/src/components/ribbon/TypingIndicator.tsx
++++ b/src/components/ribbon/TypingIndicator.tsx
+@@ -7,7 +7,7 @@ export function TypingIndicator({ users }: { users: string[] }) {
+       className="flex items-center gap-1.5 px-1 pb-1.5 text-[11px]"
+       style={{ color: "var(--color-ribbon-text-faint)" }}
+     >
+-      <span style={{ color: "#E8769A", fontWeight: 600 }}>{users.join(", ")}</span>
++      <span style={{ color: "#ff7fae", fontWeight: 600 }}>{users.join(", ")}</span>
+       <span>is typing</span>
+       <span className="flex gap-0.5">
+         {[0, 1, 2].map((i) => (
+diff --git a/src/components/ribbon/UserCard.tsx b/src/components/ribbon/UserCard.tsx
+index a3017ad..7757acb 100755
+--- a/src/components/ribbon/UserCard.tsx
++++ b/src/components/ribbon/UserCard.tsx
+@@ -89,7 +89,7 @@ function VoiceMiniBar() {
+         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
+         style={{
+           background: muted ? "rgba(184, 85, 68, 0.15)" : "transparent",
+-          color: muted ? "#E8769A" : "var(--color-ribbon-text-faint)",
++          color: muted ? "#ff7fae" : "var(--color-ribbon-text-faint)",
+         }}
+       >
+         {muted ? "unmute" : "mute"}
+@@ -99,7 +99,7 @@ function VoiceMiniBar() {
+         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
+         style={{
+           background: deafened ? "rgba(184, 85, 68, 0.15)" : "transparent",
+-          color: deafened ? "#E8769A" : "var(--color-ribbon-text-faint)",
++          color: deafened ? "#ff7fae" : "var(--color-ribbon-text-faint)",
+         }}
+       >
+         {deafened ? "undeafen" : "deafen"}
+@@ -107,7 +107,7 @@ function VoiceMiniBar() {
+       <button
+         onClick={leaveVoice}
+         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
+-        style={{ color: "#E8769A" }}
++        style={{ color: "#ff7fae" }}
+       >
+         leave
+       </button>
+diff --git a/src/components/ribbon/views/DiscoverView.tsx b/src/components/ribbon/views/DiscoverView.tsx
+index adf6b24..7c8dbf9 100755
+--- a/src/components/ribbon/views/DiscoverView.tsx
++++ b/src/components/ribbon/views/DiscoverView.tsx
+@@ -69,7 +69,7 @@ export function DiscoverView() {
+         <div className="flex items-center gap-2 px-3.5 pt-3.5 pb-2">
+           <div
+             className="flex h-7 w-7 items-center justify-center rounded-[9px] text-[14px] font-extrabold text-white"
+-            style={{ background: "#E8769A" }}
++            style={{ background: "#ff7fae" }}
+           >
+             r
+           </div>
+diff --git a/src/components/ribbon/views/FriendsView.tsx b/src/components/ribbon/views/FriendsView.tsx
+index b740730..6c94464 100755
+--- a/src/components/ribbon/views/FriendsView.tsx
++++ b/src/components/ribbon/views/FriendsView.tsx
+@@ -205,7 +205,7 @@ export function FriendsView() {
+                         className="cursor-pointer rounded-[8px] px-2.5 py-1.5 text-[11px] font-semibold"
+                         style={{
+                           background: "rgba(184, 85, 68, 0.15)",
+-                          color: "#E8769A",
++                          color: "#ff7fae",
+                         }}
+                       >
+                         <X size={11} strokeWidth={2.5} />
+@@ -333,7 +333,7 @@ function FriendRow({
+         className="cursor-pointer rounded-[8px] px-2 py-1.5 text-[11px] font-semibold"
+         style={{
+           background: "rgba(184, 85, 68, 0.1)",
+-          color: "#E8769A",
++          color: "#ff7fae",
+         }}
+         title="Remove friend"
+       >
+diff --git a/src/components/ribbon/views/MobileView.tsx b/src/components/ribbon/views/MobileView.tsx
+index 6926d2c..9840d8d 100755
+--- a/src/components/ribbon/views/MobileView.tsx
++++ b/src/components/ribbon/views/MobileView.tsx
+@@ -194,7 +194,7 @@ export function MobileView() {
+                 className="h-5 w-5"
+                 style={{
+                   borderRadius: 6,
+-                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
++                  background: "linear-gradient(135deg,#ff7fae,#ff7fae)",
+                 }}
+               />
+             }
+@@ -230,10 +230,10 @@ function MobileTabButton({
+       className="relative flex cursor-pointer flex-col items-center gap-1"
+       style={{ padding: "4px 12px" }}
+     >
+-      <div style={{ color: active ? "#E8769A" : "#888888" }}>{icon}</div>
++      <div style={{ color: active ? "#ff7fae" : "#888888" }}>{icon}</div>
+       <span
+         className="text-[9px] font-semibold"
+-        style={{ color: active ? "#E8769A" : "#888888" }}
++        style={{ color: active ? "#ff7fae" : "#888888" }}
+       >
+         {label}
+       </span>
+@@ -246,7 +246,7 @@ function MobileTabButton({
+             width: 7,
+             height: 7,
+             borderRadius: "50%",
+-            background: "#E8769A",
++            background: "#ff7fae",
+             border: "2px solid var(--ribbon-bg-deep)",
+           }}
+         />
+diff --git a/src/components/ribbon/views/OnboardingView.tsx b/src/components/ribbon/views/OnboardingView.tsx
+index 578d53d..fa1f256 100755
+--- a/src/components/ribbon/views/OnboardingView.tsx
++++ b/src/components/ribbon/views/OnboardingView.tsx
+@@ -143,11 +143,11 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
+         onClick={onNext}
+         className="mt-8 cursor-pointer rounded-[14px] px-10 py-3 text-[14px] font-bold text-white transition"
+         style={{
+-          background: "#E8769A",
++          background: "#ff7fae",
+           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
+         }}
+-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+       >
+         get started
+       </button>
+@@ -155,7 +155,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
+         already have an account?{" "}
+         <span
+           className="cursor-pointer font-semibold"
+-          style={{ color: "#E8769A" }}
++          style={{ color: "#ff7fae" }}
+           onClick={onNext}
+         >
+           sign in
+@@ -246,11 +246,11 @@ function StepCreateAccount({
+         onClick={onNext}
+         className="mt-5 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
+         style={{
+-          background: "#E8769A",
++          background: "#ff7fae",
+           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
+         }}
+-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+       >
+         continue
+       </button>
+@@ -339,11 +339,11 @@ function StepPickVibe({
+         onClick={onNext}
+         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
+         style={{
+-          background: "#E8769A",
++          background: "#ff7fae",
+           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
+         }}
+-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+       >
+         continue
+       </button>
+@@ -412,7 +412,7 @@ function StepFindPeople({
+                   background: isJoined
+                     ? "rgba(128, 132, 142, 0.18)"
+                     : "rgba(255, 255, 255, 0.1)",
+-                  color: isJoined ? "#CCCCCC" : "#E8769A",
++                  color: isJoined ? "#CCCCCC" : "#ff7fae",
+                 }}
+               >
+                 {isJoined ? "joined" : "join"}
+@@ -426,11 +426,11 @@ function StepFindPeople({
+         onClick={onNext}
+         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
+         style={{
+-          background: "#E8769A",
++          background: "#ff7fae",
+           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
+         }}
+-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+       >
+         continue
+       </button>
+@@ -555,11 +555,11 @@ function StepSetUpRibbon({
+         onClick={onFinish}
+         className="mt-6 w-full cursor-pointer rounded-[14px] py-3 text-center text-[14px] font-bold text-white transition"
+         style={{
+-          background: "#E8769A",
++          background: "#ff7fae",
+           boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
+         }}
+-        onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-        onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++        onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++        onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+       >
+         enter prey
+       </button>
+@@ -610,11 +610,11 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
+           onClick={onFinish}
+           className="cursor-pointer rounded-[14px] px-7 py-3 text-[14px] font-bold text-white transition"
+           style={{
+-            background: "#E8769A",
++            background: "#ff7fae",
+             boxShadow: "0 4px 20px rgba(255, 255, 255, 0.24)",
+           }}
+-          onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-          onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++          onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++          onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+         >
+           start chatting
+         </button>
+@@ -647,7 +647,7 @@ function ProgressBar({ step }: { step: number }) {
+             width: 32,
+             height: 3,
+             borderRadius: 2,
+-            background: i <= step ? "#E8769A" : "rgba(255, 255, 255, 0.06)",
++            background: i <= step ? "#ff7fae" : "rgba(255, 255, 255, 0.06)",
+           }}
+         />
+       ))}
+diff --git a/src/components/ribbon/views/ProfileView.tsx b/src/components/ribbon/views/ProfileView.tsx
+index e5cce0c..df6fdc6 100755
+--- a/src/components/ribbon/views/ProfileView.tsx
++++ b/src/components/ribbon/views/ProfileView.tsx
+@@ -206,7 +206,7 @@ export function ProfileView() {
+             height: 72,
+             borderRadius: 20,
+             fontSize: 28,
+-            background: `linear-gradient(135deg, ${accentColor}, #E8769A)`,
++            background: `linear-gradient(135deg, ${accentColor}, #ff7fae)`,
+           }}
+         >
+           {user.avatarLetter}
+@@ -306,7 +306,7 @@ export function ProfileView() {
+             height: 88,
+             borderRadius: 24,
+             fontSize: 34,
+-            background: `linear-gradient(135deg, ${accentColor}, #E8769A)`,
++            background: `linear-gradient(135deg, ${accentColor}, #ff7fae)`,
+             boxShadow: "0 8px 40px rgba(181, 186, 193, 0.2)",
+           }}
+         >
+diff --git a/src/components/ribbon/views/ServerSettingsView.tsx b/src/components/ribbon/views/ServerSettingsView.tsx
+index b17e025..3a1fb0f 100755
+--- a/src/components/ribbon/views/ServerSettingsView.tsx
++++ b/src/components/ribbon/views/ServerSettingsView.tsx
+@@ -396,7 +396,7 @@ function OverviewTab({
+       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
+       <div
+         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
+-        style={{ background: server?.banner ?? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #CCCCCC 100%)" }}
++        style={{ background: server?.banner ?? "linear-gradient(135deg, #ff7fae 0%, #ff7fae 50%, #CCCCCC 100%)" }}
+         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
+         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+       >
+@@ -417,11 +417,11 @@ function OverviewTab({
+         <button
+           className="cursor-pointer rounded-[12px] px-7 py-2.5 text-[13px] font-bold text-white transition"
+           style={{
+-            background: "#E8769A",
++            background: "#ff7fae",
+             boxShadow: "0 4px 16px rgba(255, 255, 255, 0.2)",
+           }}
+-          onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+-          onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
++          onMouseEnter={(e) => (e.currentTarget.style.background = "#ff7fae")}
++          onMouseLeave={(e) => (e.currentTarget.style.background = "#ff7fae")}
+         >
+           save changes
+         </button>
+diff --git a/src/components/ribbon/views/SplashView.tsx b/src/components/ribbon/views/SplashView.tsx
+index 7271717..7fa3e74 100755
+--- a/src/components/ribbon/views/SplashView.tsx
++++ b/src/components/ribbon/views/SplashView.tsx
+@@ -18,7 +18,7 @@ export function SplashView() {
+   return (
+     <div
+       onClick={handleEnter}
+-      className="flex h-full w-full cursor-pointer flex-col items-center justify-center"
++      className="relative flex h-full w-full cursor-pointer flex-col items-center justify-center overflow-hidden"
+       style={{
+         background: "var(--ribbon-bg)",
+         color: "var(--ribbon-text)",
+@@ -26,52 +26,68 @@ export function SplashView() {
+         transition: "opacity 600ms ease",
+       }}
+     >
+-      {/* Avatar */}
++      {/* ambient accent drift */}
+       <div
+-        className="flex items-center justify-center font-bold text-white"
++        className="animate-prey-drift pointer-events-none absolute"
+         style={{
+-          width: 64,
+-          height: 64,
+-          borderRadius: 16,
+-          fontSize: 26,
+-          background: "var(--color-ribbon-terracotta)",
++          inset: "-10%",
++          background: "radial-gradient(42% 38% at 50% 42%, var(--acg, rgba(255,127,174,.5)), transparent 62%)",
++          opacity: 0.4,
++        }}
++      />
++      {/* scanlines + vignette */}
++      <div className="prey-scanlines pointer-events-none absolute inset-0" style={{ opacity: 0.35 }} />
++      <div
++        className="pointer-events-none absolute inset-0"
++        style={{ background: "radial-gradient(125% 85% at 50% 50%, transparent 38%, rgba(3,3,5,.92) 100%)" }}
++      />
++
++      {/* gradient-ring avatar */}
++      <div
++        className="relative"
++        style={{
++          padding: 2.5,
++          borderRadius: 22,
++          background: "linear-gradient(150deg, var(--ac, #ff7fae), rgba(120,116,124,.5))",
++          boxShadow: "0 0 0 1px rgba(0,0,0,.4), 0 22px 50px -18px var(--acg, rgba(255,127,174,.55))",
+         }}
+       >
+-        {me.avatarLetter}
++        <div
++          className="flex items-center justify-center font-bold text-white"
++          style={{
++            width: 96,
++            height: 96,
++            borderRadius: 18,
++            border: "3px solid #100f14",
++            fontSize: 38,
++            background: "var(--color-ribbon-pink)",
++          }}
++        >
++          {me.avatarLetter}
++        </div>
+       </div>
+ 
+-      {/* Name */}
+-      <div className="mt-4 text-[28px] font-bold" style={{ letterSpacing: "-0.5px" }}>
++      {/* name with subtle glitch */}
++      <div
++        className="animate-glitch mt-7 font-bold"
++        style={{ fontSize: 56, letterSpacing: "-.045em" }}
++      >
+         {me.username}
+       </div>
+ 
+-      {/* Tag */}
+-      <div className="mt-1 text-[11px]" style={{ color: "var(--ribbon-text-faint)" }}>
+-        {me.customTag}
+-      </div>
+-
+-      {/* Enter prompt */}
+-      <div className="mt-6 text-[10px] uppercase" style={{ color: "var(--ribbon-text-ghost)", letterSpacing: "2px" }}>
++      {/* mono prompt */}
++      <div
++        className="prey-label animate-enter-pulse mt-4 text-[12px] font-medium"
++        style={{ letterSpacing: "0.42em", color: "var(--ac, #ff7fae)" }}
++      >
+         click to enter
+       </div>
+ 
+-      {/* Branding */}
+-      <div
+-        className="absolute bottom-[18px] left-1/2 flex -translate-x-1/2 items-center gap-1.5"
+-      >
+-        <div
+-          className="flex items-center justify-center text-[8px] font-extrabold text-white"
+-          style={{
+-            width: 16,
+-            height: 16,
+-            borderRadius: 4,
+-            background: "var(--color-ribbon-terracotta)",
+-          }}
+-        >
+-          p
+-        </div>
+-        <span className="text-[10px] font-semibold" style={{ color: "var(--ribbon-text-faint)" }}>
+-          prey.lol
++      {/* footer branding */}
++      <div className="absolute bottom-[26px] flex items-center gap-2">
++        <span className="prey-pulse-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--ac, #ff7fae)" }} />
++        <span className="prey-label text-[11px] font-medium" style={{ color: "var(--ribbon-text-faint)" }}>
++          {me.customTag} · prey.lol
+         </span>
+         <button
+           onClick={(e) => {
+@@ -79,8 +95,8 @@ export function SplashView() {
+             useRibbon.getState().enterApp();
+             useRibbon.getState().navigate("mobile");
+           }}
+-          className="ml-2 cursor-pointer rounded-[6px] px-2 py-1 text-[10px] font-semibold"
+-          style={{ background: "var(--ribbon-card)", color: "var(--ribbon-text-faint)" }}
++          className="prey-chip ml-2 cursor-pointer rounded-[8px] px-2.5 py-1 text-[10px] font-semibold"
++          style={{ color: "var(--ribbon-text-dim)" }}
+           title="View mobile"
+         >
+           mobile
+diff --git a/src/components/ribbon/views/VoiceView.tsx b/src/components/ribbon/views/VoiceView.tsx
+index b9a1d4d..c6bc1a0 100755
+--- a/src/components/ribbon/views/VoiceView.tsx
++++ b/src/components/ribbon/views/VoiceView.tsx
+@@ -131,7 +131,7 @@ export function VoiceView() {
+                                 className="h-3.5 w-3.5"
+                                 style={{
+                                   borderRadius: 5,
+-                                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
++                                  background: "linear-gradient(135deg,#ff7fae,#ff7fae)",
+                                 }}
+                               />
+                             ) : (
+@@ -201,13 +201,13 @@ export function VoiceView() {
+                   active={!muted}
+                   onClick={toggleMute}
+                   icon={muted ? <MicOff size={14} /> : <Mic size={14} />}
+-                  color={muted ? "#E8769A" : "var(--color-ribbon-text-dim)"}
++                  color={muted ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
+                 />
+                 <VoiceSidebarButton
+                   active={!deafened}
+                   onClick={toggleDeafen}
+                   icon={<Headphones size={14} />}
+-                  color={deafened ? "#E8769A" : "var(--color-ribbon-text-dim)"}
++                  color={deafened ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
+                 />
+                 <VoiceSidebarButton
+                   onClick={() => {
+@@ -215,7 +215,7 @@ export function VoiceView() {
+                     navigate("dms");
+                   }}
+                   icon={<PhoneOff size={14} />}
+-                  color="#E8769A"
++                  color="#ff7fae"
+                   danger
+                 />
+               </div>
+@@ -295,14 +295,14 @@ export function VoiceView() {
+             icon={muted ? <MicOff size={18} /> : <Mic size={18} />}
+             label={muted ? "muted" : "mic"}
+             active={!muted}
+-            color={muted ? "#E8769A" : "var(--color-ribbon-text-dim)"}
++            color={muted ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
+           />
+           <VoiceControlButton
+             onClick={toggleDeafen}
+             icon={<Headphones size={18} />}
+             label="audio"
+             active={!deafened}
+-            color={deafened ? "#E8769A" : "var(--color-ribbon-text-dim)"}
++            color={deafened ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
+           />
+           <VoiceControlButton
+             onClick={() => navigate("settings", { settingsTab: "audio" })}
+@@ -324,7 +324,7 @@ export function VoiceView() {
+             }}
+             icon={<PhoneOff size={18} />}
+             label="disconnect"
+-            color="#E8769A"
++            color="#ff7fae"
+             danger
+           />
+         </div>
+@@ -367,7 +367,7 @@ function VoiceUserTile({
+             borderRadius: 20,
+             fontSize: 28,
+             background: isMe
+-              ? "linear-gradient(135deg, #E8769A, #E8769A)"
++              ? "linear-gradient(135deg, #ff7fae, #ff7fae)"
+               : accentColor,
+             animation: speaking ? "ribbon-breathe 1.5s ease-in-out infinite" : "none",
+             boxShadow: speaking
+@@ -393,7 +393,7 @@ function VoiceUserTile({
+               justifyContent: "center",
+             }}
+           >
+-            <MicOff size={9} strokeWidth={3} style={{ color: "#E8769A" }} />
++            <MicOff size={9} strokeWidth={3} style={{ color: "#ff7fae" }} />
+           </div>
+         )}
+       </div>
+-- 
+2.43.0
+
