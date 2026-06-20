@@ -1,9 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import {
   X, Globe, Eye, Instagram, Twitter, Github, Home, Twitch, Youtube, Music2,
-  MessageCircle, UserPlus, Heart, Calendar,
+  MessageCircle, UserPlus, Heart, Calendar, Pause, Play, SkipBack, SkipForward,
+  BadgeCheck,
 } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,23 +21,14 @@ const SOCIAL_ICONS: Record<string, any> = {
 };
 
 const FONT_CSS: Record<FontFamily, string> = {
-  quicksand: "'Quicksand', sans-serif",
+  quicksand: "var(--font-space-grotesk), 'Space Grotesk', sans-serif",
   inter: "'Inter', sans-serif",
-  mono: "'JetBrains Mono', monospace",
+  mono: "var(--font-jetbrains-mono), 'JetBrains Mono', monospace",
   serif: "Georgia, serif",
   rounded: "'Nunito', sans-serif",
 };
 
-const PARTICLES = [
-  { top: "8%", left: "15%", size: 5, delay: 0, char: "✦" },
-  { top: "20%", left: "80%", size: 2, delay: 0.6, dot: true },
-  { top: "70%", left: "10%", size: 2, delay: 1.1, dot: true },
-  { top: "85%", left: "75%", size: 4, delay: 1.6, char: "✦" },
-  { top: "30%", left: "5%", size: 2, delay: 2.1, dot: true },
-  { top: "50%", left: "90%", size: 4, delay: 0.4, char: "✦" },
-  { top: "15%", left: "45%", size: 1, delay: 3.1, dot: true },
-  { top: "90%", left: "35%", size: 2, delay: 2.6, dot: true },
-];
+const MONO = "var(--font-jetbrains-mono), 'JetBrains Mono', monospace";
 
 export function BiolinkView() {
   const {
@@ -46,11 +38,13 @@ export function BiolinkView() {
     dms,
     setActiveDM,
     navigate,
-    currentUser,
   } = useRibbon();
 
   const isOwnProfile = biolinkUserId === "you";
   const config = biolinkConfig;
+
+  const cardRef = useRef<HTMLDivElement>(null);
+  const glareRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
@@ -64,6 +58,8 @@ export function BiolinkView() {
 
   const fontCss = FONT_CSS[config.fontFamily] || FONT_CSS.quicksand;
   const accentColor = config.accentColor;
+  // translucent accent glow derived from the accent color
+  const accentGlow = `${accentColor}80`;
 
   const pageBg = config.bgType === "gradient"
     ? `linear-gradient(${config.bgGradientAngle}deg, ${config.bgGradientFrom}, ${config.bgGradientTo})`
@@ -75,18 +71,44 @@ export function BiolinkView() {
     ? { textShadow: `0 0 ${config.glowIntensity / 3}px ${accentColor}` }
     : {};
 
+  // 3D tilt on pointer move (mirrors prey_dc card behaviour)
+  const onMove = (e: React.PointerEvent) => {
+    const c = cardRef.current;
+    if (!c) return;
+    const rect = c.getBoundingClientRect();
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    c.style.transform = `rotateX(${(-py * 8).toFixed(2)}deg) rotateY(${(px * 10).toFixed(2)}deg)`;
+    const g = glareRef.current;
+    if (g) {
+      g.style.opacity = "1";
+      g.style.background = `radial-gradient(circle at ${((px + 0.5) * 100).toFixed(1)}% ${((py + 0.5) * 100).toFixed(1)}%, rgba(255,255,255,.14), transparent 55%)`;
+    }
+  };
+  const onLeave = () => {
+    const c = cardRef.current;
+    if (c) c.style.transform = "rotateX(0deg) rotateY(0deg)";
+    const g = glareRef.current;
+    if (g) g.style.opacity = "0";
+  };
+
   const cardStyle: React.CSSProperties = {
-    background: config.cardBg,
+    background: config.cardBg || "rgba(15,14,19,.55)",
     borderRadius: config.borderRadius,
-    backdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px)` : "none",
-    WebkitBackdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px)` : "none",
-    boxShadow: config.cardShadow ? "0 8px 40px rgba(0, 0, 0, 0.5)" : "none",
+    border: "1px solid rgba(255,255,255,.1)",
+    backdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px) saturate(1.2)` : "none",
+    WebkitBackdropFilter: config.glassmorphism ? `blur(${config.blurAmount}px) saturate(1.2)` : "none",
+    boxShadow: config.cardShadow
+      ? "0 44px 96px -34px rgba(0,0,0,.88), inset 0 1px 0 rgba(255,255,255,.07)"
+      : "none",
     width: "100%",
     maxWidth: config.cardWidth,
     fontFamily: fontCss,
     fontSize: config.fontSize,
     overflow: "hidden",
     position: "relative",
+    transformStyle: "preserve-3d",
+    transition: "transform .14s ease-out",
   };
 
   const handleMessage = () => {
@@ -98,26 +120,30 @@ export function BiolinkView() {
     }
   };
 
+  const alignItems =
+    config.layoutStyle === "centered" ? "center" :
+    config.layoutStyle === "right" ? "flex-end" : "flex-start";
+
   return (
     <AnimatePresence>
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
+        onPointerMove={onMove}
+        onPointerLeave={onLeave}
         className="fixed inset-0 z-[110] flex items-center justify-center overflow-y-auto"
         style={{
-          background: config.bgType === "video" ? "#000000" : pageBg,
+          background: config.bgType === "video" ? "#070709" : pageBg,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          perspective: "1100px",
         }}
       >
         {/* Video background */}
         {config.bgType === "video" && config.bgVideoUrl && (
           <video
-            autoPlay
-            loop
-            muted
-            playsInline
+            autoPlay loop muted playsInline
             className="absolute inset-0 h-full w-full object-cover"
             style={{ opacity: config.bgOpacity / 100, zIndex: 0 }}
           >
@@ -127,71 +153,45 @@ export function BiolinkView() {
 
         {/* Image background with translucency */}
         {config.bgType === "image" && config.bgImageUrl && (
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url(${config.bgImageUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              opacity: config.bgOpacity / 100,
-              zIndex: 0,
-            }}
-          />
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url(${config.bgImageUrl})`,
+            backgroundSize: "cover", backgroundPosition: "center",
+            opacity: config.bgOpacity / 100, zIndex: 0,
+          }} />
         )}
 
         {/* Gradient/solid background with translucency */}
         {(config.bgType === "gradient" || config.bgType === "solid") && (
-          <div
-            className="absolute inset-0"
-            style={{
-              background: pageBg,
-              opacity: config.bgOpacity / 100,
-              zIndex: 0,
-            }}
-          />
+          <div className="absolute inset-0" style={{
+            background: pageBg, opacity: config.bgOpacity / 100, zIndex: 0,
+          }} />
         )}
+
+        {/* Ambient accent drift + vignette */}
+        <div className="animate-prey-drift pointer-events-none absolute" style={{
+          inset: "-10%",
+          background: `radial-gradient(42% 38% at 30% 34%, ${accentGlow}, transparent 62%)`,
+          opacity: 0.5, zIndex: 0,
+        }} />
+        <div className="pointer-events-none absolute inset-0" style={{
+          background: "radial-gradient(125% 85% at 50% 50%, transparent 40%, rgba(3,3,5,.9) 100%)",
+          zIndex: 0,
+        }} />
+
         {/* Scanlines overlay */}
         {config.scanlines && (
-          <div className="pointer-events-none absolute inset-0" style={{
-            background: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.06) 2px, rgba(0,0,0,0.06) 4px)",
-            zIndex: 1,
-          }} />
+          <div className="prey-scanlines pointer-events-none absolute inset-0" style={{ opacity: 0.4, zIndex: 1 }} />
         )}
 
         {/* Grain texture overlay */}
         {config.grainTexture && (
-          <div className="pointer-events-none absolute inset-0" style={{
-            opacity: 0.035,
-            background: "repeating-conic-gradient(#fff 0% 25%, transparent 0% 50%) 0 0 / 2px 2px",
-            zIndex: 1,
-          }} />
+          <div className="prey-grain pointer-events-none absolute inset-0" style={{ opacity: 0.09, zIndex: 1 }} />
         )}
-
-        {/* Particles */}
-        {config.particles && PARTICLES.map((p, i) => (
-          <div
-            key={i}
-            className="animate-twinkle pointer-events-none absolute"
-            style={{
-              top: p.top, left: p.left,
-              width: p.size, height: p.size,
-              fontSize: p.size,
-              color: accentColor,
-              borderRadius: p.dot ? "50%" : undefined,
-              background: p.dot ? accentColor : undefined,
-              animationDelay: `${p.delay}s`,
-              zIndex: 1,
-            }}
-          >
-            {p.char ?? ""}
-          </div>
-        ))}
 
         {/* Close button */}
         <button
           onClick={closeBiolink}
-          className="fixed right-5 top-5 z-[120] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
-          style={{ background: "rgba(0, 0, 0, 0.5)", backdropFilter: "blur(8px)" }}
+          className="prey-glass-soft fixed right-5 top-5 z-[120] flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
         >
           <X size={16} strokeWidth={2.5} style={{ color: "#FFFFFF" }} />
         </button>
@@ -201,214 +201,244 @@ export function BiolinkView() {
           <style dangerouslySetInnerHTML={{ __html: config.customCss }} />
         )}
 
-        {/* The biolink card — with cutscene opening animation */}
+        {/* Card wrapper with aura */}
         <motion.div
           initial={
-            config.cutsceneDirection === "vertical"
-              ? { y: -200, opacity: 0 }
-              : config.cutsceneDirection === "horizontal"
-                ? { x: -200, opacity: 0 }
-                : { opacity: 0 }
+            config.cutsceneDirection === "vertical" ? { y: -200, opacity: 0 }
+            : config.cutsceneDirection === "horizontal" ? { x: -200, opacity: 0 }
+            : { opacity: 0, y: 18 }
           }
           animate={{ x: 0, y: 0, opacity: 1 }}
           exit={
-            config.cutsceneDirection === "vertical"
-              ? { y: -200, opacity: 0 }
-              : config.cutsceneDirection === "horizontal"
-                ? { x: -200, opacity: 0 }
-                : { opacity: 0 }
+            config.cutsceneDirection === "vertical" ? { y: -200, opacity: 0 }
+            : config.cutsceneDirection === "horizontal" ? { x: -200, opacity: 0 }
+            : { opacity: 0 }
           }
           transition={{ type: "spring", stiffness: 200, damping: 25, duration: 0.8 }}
-          className="prey-biolink relative my-10 z-10 mx-4 sm:mx-auto"
-          style={cardStyle}
+          className="relative z-10 my-10 mx-4 sm:mx-auto"
+          style={{ width: "100%", maxWidth: config.cardWidth }}
         >
-          {/* Top bar */}
-          {config.showTopBar && (
-            <div className="flex items-center justify-between px-4 py-2" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
-              <div className="flex items-center gap-2">
-                {config.showOnlineStatus && (
-                  <span className="rounded-full" style={{ width: 8, height: 8, background: "#00FF88" }} />
-                )}
-                <span className="text-[10px] font-bold uppercase tracking-wider" style={{ color: config.secondaryTextColor }}>
-                  prey.lol/{config.displayName.toLowerCase().replace(/\s+/g, "")}
-                </span>
-              </div>
-              <div className="flex items-center gap-3">
-                {config.showLikes && (
-                  <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor }}>
-                    <Heart size={11} strokeWidth={2} /> 42
-                  </div>
-                )}
-                {config.showViews && (
-                  <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor }}>
-                    <Eye size={11} strokeWidth={2} /> 192
-                  </div>
-                )}
-              </div>
-            </div>
+          {/* aura behind card */}
+          {config.glow && (
+            <div className="pointer-events-none absolute" style={{
+              inset: -26, borderRadius: config.borderRadius + 20,
+              background: `radial-gradient(50% 50% at 50% 45%, ${accentGlow}, transparent 70%)`,
+              filter: "blur(34px)", opacity: config.glowIntensity / 220, zIndex: 0,
+            }} />
           )}
 
-          {/* Body */}
-          <div className="px-5 py-5" style={{ textAlign: config.layoutStyle as any }}>
-            {/* Avatar + name */}
-            <div
-              className="mb-4 flex items-center gap-3"
-              style={{
-                justifyContent: config.layoutStyle === "centered" ? "center" : config.layoutStyle === "right" ? "flex-end" : "flex-start",
-              }}
-            >
-              <div
-                className="flex items-center justify-center font-bold text-white"
-                style={{
-                  width: 64, height: 64,
-                  borderRadius: config.borderRadius / 1.5,
-                  background: config.avatarUrl ? `url(${config.avatarUrl}) center/cover` : accentColor,
-                  fontSize: 28,
-                  boxShadow: config.glow ? `0 0 ${config.glowIntensity / 2}px ${accentColor}66` : "none",
-                }}
-              >
-                {!config.avatarUrl && (config.displayName || "y").charAt(0).toLowerCase()}
-              </div>
-              <div>
-                <div className="flex items-center gap-1.5">
-                  <span className="prey-name text-[20px] font-bold" style={{ color: config.textColor, ...glowStyle }}>
-                    {config.displayName || "yourname"}
+          {/* The biolink card */}
+          <div ref={cardRef} className="prey-biolink relative z-[1]" style={cardStyle}>
+            {/* glare layer for tilt */}
+            <div ref={glareRef} className="pointer-events-none absolute inset-0" style={{
+              opacity: 0, transition: "opacity .3s ease", mixBlendMode: "screen", zIndex: 5,
+              borderRadius: config.borderRadius,
+            }} />
+
+            {/* Top bar */}
+            {config.showTopBar && (
+              <div className="flex items-center justify-between px-4 py-2.5" style={{ background: "rgba(0,0,0,.25)" }}>
+                <div className="flex items-center gap-2">
+                  {config.showOnlineStatus && (
+                    <span className="prey-pulse-dot rounded-full" style={{ width: 7, height: 7, background: accentColor }} />
+                  )}
+                  <span className="prey-label text-[10px] font-semibold" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
+                    prey.lol/{config.displayName.toLowerCase().replace(/\s+/g, "")}
                   </span>
-                  {config.verified && (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill={accentColor}>
-                      <path d="M12 2L14.5 5L18 4L17 7.5L20 10L16.5 11.5L17 15L13.5 14L12 17L10.5 14L7 15L7.5 11.5L4 10L7 7.5L6 4L9.5 5L12 2Z" />
-                    </svg>
+                </div>
+                <div className="flex items-center gap-3">
+                  {config.showLikes && (
+                    <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor, fontFamily: MONO }}>
+                      <Heart size={11} strokeWidth={2} /> 42
+                    </div>
+                  )}
+                  {config.showViews && (
+                    <div className="flex items-center gap-1 text-[11px]" style={{ color: accentColor, fontFamily: MONO }}>
+                      <Eye size={11} strokeWidth={2} /> 192
+                    </div>
                   )}
                 </div>
-                {config.showOnlineStatus && (
-                  <div className="text-[10px] font-bold uppercase tracking-wider" style={{ color: "#00FF88" }}>
-                    ONLINE
+              </div>
+            )}
+
+            {/* Body */}
+            <div className="px-7 py-6" style={{ transform: "translateZ(20px)" }}>
+              {/* identity + avatar */}
+              <div className="flex items-start justify-between gap-5">
+                <div className="min-w-0 pt-1.5">
+                  <div className="flex items-center gap-2.5">
+                    <span className="font-bold leading-none" style={{ fontSize: 40, letterSpacing: "-.045em", color: config.textColor, ...glowStyle }}>
+                      {config.displayName || "yourname"}
+                    </span>
+                    {config.verified && (
+                      <BadgeCheck size={22} style={{ color: accentColor }} />
+                    )}
                   </div>
-                )}
-              </div>
-            </div>
-
-            {/* Bio */}
-            {config.bio && (
-              <div className="prey-bio mb-3 text-[13px] leading-[1.6]" style={{ color: config.secondaryTextColor }}>
-                {config.bio}
-              </div>
-            )}
-
-            {/* Tagline pill */}
-            {config.tagline && (
-              <div className="mb-4">
-                <span
-                  className="inline-block rounded-full px-3 py-1 text-[11px] font-semibold"
-                  style={{ background: "rgba(0, 0, 0, 0.3)", color: accentColor }}
-                >
-                  {config.tagline}
-                </span>
-              </div>
-            )}
-
-            {/* Now playing */}
-            {config.showNowPlaying && config.trackName && (
-              <div className="mb-4 flex items-center gap-2.5 rounded-[8px] px-3 py-2.5" style={{ background: "rgba(0, 0, 0, 0.3)" }}>
-                <div className="flex items-end gap-0.5" style={{ height: 16 }}>
-                  {[0, 1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      style={{
-                        width: 2,
-                        borderRadius: 1,
-                        background: accentColor,
-                        animation: `ribbon-eq-bar ${[1.1, 0.9, 1.3, 1, 1.2][i]}s ease-in-out infinite`,
-                        animationDelay: `${i * 0.15}s`,
-                      }}
-                    />
-                  ))}
+                  {config.showOnlineStatus && (
+                    <div className="prey-label mt-3 flex items-center gap-2 text-[11px] font-semibold" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
+                      <span className="prey-pulse-dot" style={{ width: 7, height: 7, borderRadius: "50%", background: accentColor }} />
+                      online
+                    </div>
+                  )}
                 </div>
-                <div className="flex-1">
-                  <div className="text-[11px] font-semibold" style={{ color: accentColor }}>
-                    {config.trackName}
-                  </div>
-                  <div className="text-[10px]" style={{ color: config.secondaryTextColor }}>
-                    {config.artistName}
+
+                {/* gradient-ring avatar */}
+                <div className="relative flex-none">
+                  <div style={{
+                    padding: 2.5, borderRadius: config.borderRadius / 1.2,
+                    background: `linear-gradient(150deg, ${accentColor}, rgba(120,116,124,.5))`,
+                    boxShadow: `0 0 0 1px rgba(0,0,0,.4), 0 18px 40px -16px ${accentGlow}`,
+                  }}>
+                    <div className="flex items-center justify-center font-bold text-white" style={{
+                      width: 104, height: 104,
+                      borderRadius: config.borderRadius / 1.5,
+                      border: "3px solid #100f14",
+                      background: config.avatarUrl ? `url(${config.avatarUrl}) center/cover` : accentColor,
+                      fontSize: 40,
+                    }}>
+                      {!config.avatarUrl && (config.displayName || "y").charAt(0).toLowerCase()}
+                    </div>
                   </div>
                 </div>
               </div>
-            )}
 
-            {/* Social links */}
-            {config.socialLinks.length > 0 && (
-              <div
-                className="prey-links mb-4 flex flex-wrap gap-2"
-                style={{
-                  justifyContent: config.layoutStyle === "centered" ? "center" : config.layoutStyle === "right" ? "flex-end" : "flex-start",
-                }}
-              >
-                {config.socialLinks.map((link, i) => {
-                  const Icon = SOCIAL_ICONS[link.type] || Globe;
-                  if (config.linkStyle === "cards") {
+              {/* Bio */}
+              {config.bio && (
+                <div className="mt-5 text-[14px] leading-[1.6]" style={{ color: config.secondaryTextColor }}>
+                  {config.bio}
+                </div>
+              )}
+
+              {/* Tagline pill */}
+              {config.tagline && (
+                <div className="mt-4" style={{ textAlign: config.layoutStyle as any }}>
+                  <span className="prey-chip prey-label inline-block rounded-full px-3 py-1 text-[11px] font-semibold"
+                    style={{ color: accentColor, fontFamily: MONO }}>
+                    {config.tagline}
+                  </span>
+                </div>
+              )}
+
+              {/* Social links */}
+              {config.socialLinks.length > 0 && (
+                <div className="mt-6 flex flex-wrap gap-2.5" style={{ justifyContent: alignItems }}>
+                  {config.socialLinks.map((link, i) => {
+                    const Icon = SOCIAL_ICONS[link.type] || Globe;
+                    const cards = config.linkStyle === "cards";
                     return (
                       <a
                         key={i}
                         href={link.url}
                         onClick={(e) => e.stopPropagation()}
-                        className="flex cursor-pointer items-center gap-2 rounded-[6px] px-3 py-2 transition"
-                        style={{ background: "rgba(0, 0, 0, 0.3)" }}
-                        onMouseEnter={(e) => (e.currentTarget.style.background = `${accentColor}20`)}
-                        onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0, 0, 0, 0.3)")}
+                        className="prey-chip flex cursor-pointer items-center justify-center transition"
+                        style={{
+                          gap: cards ? 8 : 0,
+                          width: cards ? "auto" : 48,
+                          height: 48,
+                          padding: cards ? "0 14px" : 0,
+                          borderRadius: 14,
+                          color: config.textColor,
+                          textDecoration: "none",
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.background = `${accentColor}24`;
+                          e.currentTarget.style.borderColor = accentColor;
+                          e.currentTarget.style.color = accentColor;
+                          e.currentTarget.style.transform = "translateY(-3px)";
+                          e.currentTarget.style.boxShadow = `0 8px 22px -8px ${accentGlow}`;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.background = "rgba(255,255,255,.035)";
+                          e.currentTarget.style.borderColor = "rgba(255,255,255,.09)";
+                          e.currentTarget.style.color = config.textColor;
+                          e.currentTarget.style.transform = "translateY(0)";
+                          e.currentTarget.style.boxShadow = "none";
+                        }}
                         title={link.label}
                       >
-                        <Icon size={14} strokeWidth={2} style={{ color: config.textColor }} />
-                        <span className="text-[10px] font-semibold" style={{ color: config.textColor }}>
-                          {link.label}
-                        </span>
+                        <Icon size={20} strokeWidth={2} />
+                        {cards && (
+                          <span className="text-[11px] font-semibold">{link.label}</span>
+                        )}
                       </a>
                     );
-                  }
-                  return (
-                    <a
-                      key={i}
-                      href={link.url}
-                      onClick={(e) => e.stopPropagation()}
-                      className="flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition"
-                      style={{ background: "rgba(0, 0, 0, 0.3)" }}
-                      onMouseEnter={(e) => (e.currentTarget.style.background = `${accentColor}20`)}
-                      onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(0, 0, 0, 0.3)")}
-                      title={link.label}
-                    >
-                      <Icon size={15} strokeWidth={2} style={{ color: config.textColor }} />
-                    </a>
-                  );
-                })}
-              </div>
-            )}
+                  })}
+                </div>
+              )}
 
-            {/* Footer */}
-            <div className="flex items-center justify-between pt-3" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.06)" }}>
-              {config.showJoinDate && (
-                <div className="flex items-center gap-1 text-[10px]" style={{ color: config.secondaryTextColor }}>
-                  <Calendar size={10} strokeWidth={2} />
-                  Joined Sep 2025
+              {/* divider */}
+              {config.showNowPlaying && config.trackName && (
+                <div className="my-5" style={{ height: 1, background: "linear-gradient(90deg, transparent, rgba(255,255,255,.12), transparent)" }} />
+              )}
+
+              {/* Now playing */}
+              {config.showNowPlaying && config.trackName && (
+                <div className="flex items-center gap-3.5">
+                  <div className="flex-none" style={{
+                    width: 46, height: 46, borderRadius: 11,
+                    background: config.albumArtUrl ? `url(${config.albumArtUrl}) center/cover` : "rgba(255,255,255,.06)",
+                  }} />
+                  <div className="min-w-0 flex-1">
+                    <div className="prey-label text-[10px] font-semibold" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
+                      now playing
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-2 overflow-hidden whitespace-nowrap">
+                      <span className="text-[16px] font-semibold" style={{ color: config.textColor }}>{config.trackName}</span>
+                      <span className="text-[13px]" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>— {config.artistName}</span>
+                    </div>
+                  </div>
+                  {/* EQ */}
+                  <div className="flex items-end gap-[2.5px]" style={{ height: 15 }}>
+                    {[0, 0.16, 0.32, 0.48].map((d, i) => (
+                      <span key={i} className="prey-eq-bar" style={{
+                        width: 2.5, height: "100%", borderRadius: 2, background: accentColor, animationDelay: `${d}s`,
+                      }} />
+                    ))}
+                  </div>
+                  {/* transport */}
+                  <div className="flex items-center gap-0.5">
+                    <button title="prev" className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "transparent", border: "none", color: config.secondaryTextColor, cursor: "pointer" }}>
+                      <SkipBack size={18} />
+                    </button>
+                    <button title="play" className="flex items-center justify-center rounded-full" style={{
+                      width: 40, height: 40, border: `1px solid ${accentColor}`, background: `${accentColor}1f`, color: accentColor, cursor: "pointer",
+                    }}>
+                      <Play size={18} />
+                    </button>
+                    <button title="next" className="flex h-8 w-8 items-center justify-center rounded-full" style={{ background: "transparent", border: "none", color: config.secondaryTextColor, cursor: "pointer" }}>
+                      <SkipForward size={18} />
+                    </button>
+                  </div>
                 </div>
               )}
-              {!isOwnProfile && (
-                <div className="flex gap-1.5">
-                  <button
-                    onClick={handleMessage}
-                    className="flex h-7 w-7 cursor-pointer items-center justify-center rounded-[6px] transition"
-                    style={{ background: "rgba(0, 0, 0, 0.3)" }}
-                    title="Message"
-                  >
-                    <MessageCircle size={12} strokeWidth={2.5} style={{ color: config.secondaryTextColor }} />
-                  </button>
-                  <button
-                    className="flex cursor-pointer items-center gap-1 rounded-[6px] px-3 py-1 text-[11px] font-semibold transition"
-                    style={{ background: `${accentColor}20`, color: accentColor }}
-                  >
-                    <UserPlus size={11} strokeWidth={2.5} />
-                    Add
-                  </button>
-                </div>
-              )}
+
+              {/* Footer */}
+              <div className="mt-6 flex items-center justify-between pt-4" style={{ borderTop: "1px solid rgba(255,255,255,.07)" }}>
+                {config.showJoinDate ? (
+                  <div className="flex items-center gap-1.5 text-[11px]" style={{ color: config.secondaryTextColor, fontFamily: MONO }}>
+                    <Calendar size={11} strokeWidth={2} />
+                    joined sep 2025
+                  </div>
+                ) : <span />}
+                {!isOwnProfile && (
+                  <div className="flex gap-2">
+                    <button
+                      onClick={handleMessage}
+                      className="prey-chip flex h-8 w-8 cursor-pointer items-center justify-center rounded-[10px] transition"
+                      title="Message"
+                    >
+                      <MessageCircle size={13} strokeWidth={2.5} style={{ color: config.secondaryTextColor }} />
+                    </button>
+                    <button
+                      className="flex cursor-pointer items-center gap-1.5 rounded-[10px] px-3.5 py-1 text-[12px] font-semibold transition"
+                      style={{ background: `${accentColor}24`, color: accentColor, border: `1px solid ${accentColor}` }}
+                    >
+                      <UserPlus size={12} strokeWidth={2.5} />
+                      add friend
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </motion.div>

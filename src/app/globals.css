@@ -6,8 +6,8 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-quicksand);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -38,18 +38,18 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
 
-  /* prey design tokens — grey + pink palette */
-  --color-ribbon-pink: #E8769A;
-  --color-ribbon-pink-soft: #D4638A;
-  --color-ribbon-pink-deep: #B14D72;
-  --color-ribbon-gradient: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
+  /* prey design tokens — dark glass + pink/rose/violet accents */
+  --color-ribbon-pink: #ff7fae;
+  --color-ribbon-pink-soft: #ff6b81;
+  --color-ribbon-pink-deep: #b58cff;
+  --color-ribbon-gradient: linear-gradient(150deg, #ff7fae 0%, rgba(120,116,124,.5) 100%);
 
-  /* Legacy accent token names — mapped to pink-tinted values */
-  --color-ribbon-terracotta: #E8769A;
-  --color-ribbon-amber: #E8769A;
-  --color-ribbon-sage: #CCCCCC;
-  --color-ribbon-mauve: #D4638A;
-  --color-ribbon-rust: #E8769A;
+  /* Legacy accent token names — mapped to the prey accent set */
+  --color-ribbon-terracotta: #ff7fae;
+  --color-ribbon-amber: #d4944c;
+  --color-ribbon-sage: #7ba87a;
+  --color-ribbon-mauve: #b58cff;
+  --color-ribbon-rust: #ff6b81;
 
   --radius-sm: calc(var(--radius) - 2px);
   --radius-md: var(--radius);
@@ -60,13 +60,13 @@
 /* ═══ DARK MODE (default) — grey + pink ═══ */
 :root {
   --radius: 0.25rem;
-  --background: #121212;
+  --background: #070709;
   --foreground: #FFFFFF;
-  --card: #1E1E1E;
+  --card: rgba(15,14,19,.55);
   --card-foreground: #FFFFFF;
   --popover: #1A1A1A;
   --popover-foreground: #FFFFFF;
-  --primary: #E8769A;
+  --primary: #ff7fae;
   --primary-foreground: #121212;
   --secondary: #242424;
   --secondary-foreground: #FFFFFF;
@@ -74,39 +74,43 @@
   --muted-foreground: #CCCCCC;
   --accent: #2A2A2A;
   --accent-foreground: #FFFFFF;
-  --destructive: #D4638A;
-  --border: transparent;
-  --input: #121212;
-  --ring: #E8769A;
-  --chart-1: #E8769A;
-  --chart-2: #D4638A;
+  --destructive: #ff6b81;
+  --border: rgba(255,255,255,.08);
+  --input: #0d0c10;
+  --ring: #ff7fae;
+  --chart-1: #ff7fae;
+  --chart-2: #ff6b81;
   --chart-3: #CCCCCC;
   --chart-4: #888888;
   --chart-5: #6D6F78;
-  --sidebar: #151515;
+  --sidebar: #0c0b0e;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #E8769A;
+  --sidebar-primary: #ff7fae;
   --sidebar-primary-foreground: #121212;
   --sidebar-accent: #1E1E1E;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: transparent;
-  --sidebar-ring: #E8769A;
+  --sidebar-border: rgba(255,255,255,.06);
+  --sidebar-ring: #ff7fae;
 
   /* prey semantic tokens (dark grey + pink) */
-  --ribbon-bg: #121212;
-  --ribbon-bg-deep: #151515;
-  --ribbon-sidebar: #151515;
-  --ribbon-card: #1E1E1E;
+  --ribbon-bg: #070709;
+  --ribbon-bg-deep: #0a0a0c;
+  --ribbon-sidebar: #0c0b0e;
+  --ribbon-card: rgba(15,14,19,.55);
   --ribbon-elevated: #242424;
   --ribbon-hover: #2A2A2A;
-  --ribbon-border: transparent;
-  --ribbon-border-strong: rgba(232, 118, 154, 0.08);
+  --ribbon-border: rgba(255,255,255,.08);
+  --ribbon-border-strong: rgba(255,255,255,.12);
   --ribbon-text: #FFFFFF;
   --ribbon-text-dim: #CCCCCC;
   --ribbon-text-muted: #888888;
   --ribbon-text-faint: #666666;
   --ribbon-text-ghost: #444444;
   --ribbon-text-placeholder: #333333;
+
+  /* prey runtime accent — overridden per-accent by ThemeWrapper/biolink */
+  --ac: #ff7fae;
+  --acg: rgba(255,127,174,.5);
 }
 
 /* ═══ LIGHT MODE (auto via system preference OR explicit .light class) ═══ */
@@ -118,7 +122,7 @@
     --card-foreground: #121212;
     --popover: #FFFFFF;
     --popover-foreground: #121212;
-    --primary: #D4638A;
+    --primary: #ff6b81;
     --primary-foreground: #FFFFFF;
     --secondary: #F0EDEE;
     --secondary-foreground: #121212;
@@ -126,23 +130,23 @@
     --muted-foreground: #666666;
     --accent: #E8DFE3;
     --accent-foreground: #121212;
-    --destructive: #D4638A;
+    --destructive: #ff6b81;
     --border: transparent;
     --input: #FFFFFF;
-    --ring: #D4638A;
-    --chart-1: #D4638A;
-    --chart-2: #B14D72;
+    --ring: #ff6b81;
+    --chart-1: #ff6b81;
+    --chart-2: #b58cff;
     --chart-3: #CCCCCC;
     --chart-4: #888888;
     --chart-5: #6D6F78;
     --sidebar: #F0EDEE;
     --sidebar-foreground: #121212;
-    --sidebar-primary: #D4638A;
+    --sidebar-primary: #ff6b81;
     --sidebar-primary-foreground: #FFFFFF;
     --sidebar-accent: #E8DFE3;
     --sidebar-accent-foreground: #121212;
     --sidebar-border: transparent;
-    --sidebar-ring: #D4638A;
+    --sidebar-ring: #ff6b81;
 
     --ribbon-bg: #FAF7F8;
     --ribbon-bg-deep: #F0EDEE;
@@ -163,13 +167,13 @@
 
 /* Explicit .dark class overrides system preference (for manual toggle) */
 .dark {
-  --background: #121212;
+  --background: #070709;
   --foreground: #FFFFFF;
-  --card: #1E1E1E;
+  --card: rgba(15,14,19,.55);
   --card-foreground: #FFFFFF;
   --popover: #1A1A1A;
   --popover-foreground: #FFFFFF;
-  --primary: #E8769A;
+  --primary: #ff7fae;
   --primary-foreground: #121212;
   --secondary: #242424;
   --secondary-foreground: #FFFFFF;
@@ -177,27 +181,27 @@
   --muted-foreground: #CCCCCC;
   --accent: #2A2A2A;
   --accent-foreground: #FFFFFF;
-  --destructive: #D4638A;
-  --border: transparent;
-  --input: #121212;
-  --ring: #E8769A;
-  --sidebar: #151515;
+  --destructive: #ff6b81;
+  --border: rgba(255,255,255,.08);
+  --input: #0d0c10;
+  --ring: #ff7fae;
+  --sidebar: #0c0b0e;
   --sidebar-foreground: #FFFFFF;
-  --sidebar-primary: #E8769A;
+  --sidebar-primary: #ff7fae;
   --sidebar-primary-foreground: #121212;
   --sidebar-accent: #1E1E1E;
   --sidebar-accent-foreground: #FFFFFF;
-  --sidebar-border: transparent;
-  --sidebar-ring: #E8769A;
+  --sidebar-border: rgba(255,255,255,.06);
+  --sidebar-ring: #ff7fae;
 
-  --ribbon-bg: #121212;
-  --ribbon-bg-deep: #151515;
-  --ribbon-sidebar: #151515;
-  --ribbon-card: #1E1E1E;
+  --ribbon-bg: #070709;
+  --ribbon-bg-deep: #0a0a0c;
+  --ribbon-sidebar: #0c0b0e;
+  --ribbon-card: rgba(15,14,19,.55);
   --ribbon-elevated: #242424;
   --ribbon-hover: #2A2A2A;
-  --ribbon-border: transparent;
-  --ribbon-border-strong: rgba(232, 118, 154, 0.08);
+  --ribbon-border: rgba(255,255,255,.08);
+  --ribbon-border-strong: rgba(255,255,255,.12);
   --ribbon-text: #FFFFFF;
   --ribbon-text-dim: #CCCCCC;
   --ribbon-text-muted: #888888;
@@ -214,7 +218,7 @@
   --card-foreground: #121212;
   --popover: #FFFFFF;
   --popover-foreground: #121212;
-  --primary: #D4638A;
+  --primary: #ff6b81;
   --primary-foreground: #FFFFFF;
   --secondary: #F0EDEE;
   --secondary-foreground: #121212;
@@ -222,18 +226,18 @@
   --muted-foreground: #666666;
   --accent: #E8DFE3;
   --accent-foreground: #121212;
-  --destructive: #D4638A;
+  --destructive: #ff6b81;
   --border: transparent;
   --input: #FFFFFF;
-  --ring: #D4638A;
+  --ring: #ff6b81;
   --sidebar: #F0EDEE;
   --sidebar-foreground: #121212;
-  --sidebar-primary: #D4638A;
+  --sidebar-primary: #ff6b81;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #E8DFE3;
   --sidebar-accent-foreground: #121212;
   --sidebar-border: transparent;
-  --sidebar-ring: #D4638A;
+  --sidebar-ring: #ff6b81;
 
   --ribbon-bg: #FAF7F8;
   --ribbon-bg-deep: #F0EDEE;
@@ -282,11 +286,11 @@
     background: transparent;
   }
   ::-webkit-scrollbar-thumb {
-    background: rgba(232, 118, 154, 0.12);
+    background: rgba(255, 127, 174, 0.12);
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(232, 118, 154, 0.2);
+    background: rgba(255, 127, 174, 0.2);
   }
 }
 
@@ -300,8 +304,8 @@
   50% { transform: translateY(-6px); }
 }
 @keyframes ribbon-breathe {
-  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(232, 118, 154, 0.2); }
-  50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(232, 118, 154, 0.35); }
+  0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(255, 127, 174, 0.2); }
+  50% { transform: scale(1.03); box-shadow: 0 0 60px rgba(255, 127, 174, 0.35); }
 }
 @keyframes ribbon-ring-pulse {
   0% { transform: scale(0.8); opacity: 0.4; }
@@ -365,12 +369,73 @@
 
 /* Signature gradient — grey → pink → grey */
 .ribbon-gradient {
-  background: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
+  background: linear-gradient(135deg, #333333 0%, #ff7fae 50%, #333333 100%);
 }
 .ribbon-gradient-text {
-  background: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
+  background: linear-gradient(135deg, #333333 0%, #ff7fae 50%, #333333 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+/* ═══ prey glass surfaces & accent atmospherics ═══ */
+.prey-glass {
+  background: rgba(15, 14, 19, 0.55);
+  backdrop-filter: blur(46px) saturate(1.2);
+  -webkit-backdrop-filter: blur(46px) saturate(1.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 44px 96px -34px rgba(0, 0, 0, 0.88),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+.prey-glass-soft {
+  background: rgba(15, 14, 18, 0.45);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+/* faint inset chip used for socials / now-playing / badges */
+.prey-chip {
+  background: rgba(255, 255, 255, 0.035);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+/* mono utility label — wide tracking, uppercase */
+.prey-label {
+  font-family: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+/* scanline + film-grain overlays (tasteful, low opacity) */
+@keyframes prey-scan { from { background-position: 0 0; } to { background-position: 0 240px; } }
+.prey-scanlines {
+  background-image: repeating-linear-gradient(0deg,
+    rgba(255,255,255,.02) 0px, rgba(255,255,255,.02) 1px,
+    transparent 1px, transparent 3px);
+  background-size: 100% 3px;
+  animation: prey-scan 13s linear infinite;
+}
+.prey-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px;
+  mix-blend-mode: overlay;
+}
+
+/* ambient accent drift behind the card */
+@keyframes prey-drift {
+  0%   { transform: translate(-3%, -2%) scale(1.05); }
+  50%  { transform: translate(3%, 2%) scale(1.1); }
+  100% { transform: translate(-3%, -2%) scale(1.05); }
+}
+.animate-prey-drift { animation: prey-drift 24s ease-in-out infinite; }
+
+/* equalizer bars for now-playing (replaces the old height-jump version) */
+@keyframes prey-eq { 0% { transform: scaleY(.2); } 100% { transform: scaleY(1); } }
+.prey-eq-bar { transform-origin: bottom; animation: prey-eq .85s ease-in-out infinite alternate; }
+
+/* pulsing online dot */
+@keyframes prey-pulse-dot {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--acg, rgba(255,127,174,.5)); }
+  50% { opacity: .5; box-shadow: 0 0 0 6px rgba(255,127,174,0); }
+}
+.prey-pulse-dot { animation: prey-pulse-dot 1.8s infinite; }
