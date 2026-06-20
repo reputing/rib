@@ -6,7 +6,7 @@ import {
   Eye, Heart, Calendar, Activity, RotateCcw, Plus, X,
 } from "lucide-react";
 import { useRibbon } from "@/lib/ribbon/store";
-import type { BiolinkConfig, FontFamily, BgType, LayoutStyle, LinkStyle } from "@/lib/ribbon/types";
+import type { BiolinkConfig, FontFamily, BgType, LayoutStyle, LinkStyle, CutsceneDirection } from "@/lib/ribbon/types";
 import type { SocialLink } from "@/lib/ribbon/types";
 
 const EDITOR_TABS = [
@@ -282,7 +282,8 @@ function BackgroundTab({ config, update }: TabProps) {
           options={[
             { value: "solid", label: "Solid color" },
             { value: "gradient", label: "Gradient" },
-            { value: "image", label: "Image URL" },
+            { value: "image", label: "Image" },
+            { value: "video", label: "Video" },
           ]}
         />
         {config.bgType === "solid" && (
@@ -298,6 +299,13 @@ function BackgroundTab({ config, update }: TabProps) {
         {config.bgType === "image" && (
           <Field label="Image URL"><TextInput value={config.bgImageUrl} onChange={(v) => update({ bgImageUrl: v })} placeholder="https://..." /></Field>
         )}
+        {config.bgType === "video" && (
+          <Field label="Video URL"><TextInput value={config.bgVideoUrl} onChange={(v) => update({ bgVideoUrl: v })} placeholder="https://...mp4" /></Field>
+        )}
+        <Slider label="Background translucency" value={config.bgOpacity} min={0} max={100} onChange={(v) => update({ bgOpacity: v })} unit="%" />
+        <div className="mb-3 text-[10px]" style={{ color: "var(--ribbon-text-faint)" }}>
+          Controls how transparent the background layer is. Lower = more see-through.
+        </div>
       </div>
       <BiolinkPreview config={config} />
     </div>
@@ -334,6 +342,19 @@ function BadgesTab({ config, update }: TabProps) {
             { value: "list", label: "List" },
           ]}
         />
+        <Select<CutsceneDirection>
+          label="Opening cutscene"
+          value={config.cutsceneDirection}
+          onChange={(v) => update({ cutsceneDirection: v })}
+          options={[
+            { value: "vertical", label: "Vertical (top to bottom)" },
+            { value: "horizontal", label: "Horizontal (side to side)" },
+            { value: "fade", label: "Fade in" },
+          ]}
+        />
+        <div className="mb-3 text-[10px]" style={{ color: "var(--ribbon-text-faint)" }}>
+          How the biolink opens when someone visits it — like a cinematic cutscene.
+        </div>
       </div>
       <BiolinkPreview config={config} />
     </div>
@@ -456,9 +477,7 @@ function BiolinkPreview({ config }: { config: BiolinkConfig }) {
       <div
         className="overflow-hidden rounded-[8px] p-4"
         style={{
-          background: pageBg,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          background: "#000000",
           minHeight: 300,
           display: "flex",
           alignItems: "center",
@@ -466,6 +485,28 @@ function BiolinkPreview({ config }: { config: BiolinkConfig }) {
           position: "relative",
         }}
       >
+        {/* Background layer with translucency */}
+        {config.bgType === "video" && config.bgVideoUrl && (
+          <div className="absolute inset-0 overflow-hidden" style={{ opacity: config.bgOpacity / 100 }}>
+            <video autoPlay loop muted playsInline className="h-full w-full object-cover">
+              <source src={config.bgVideoUrl} type="video/mp4" />
+            </video>
+          </div>
+        )}
+        {config.bgType === "image" && config.bgImageUrl && (
+          <div className="absolute inset-0" style={{
+            backgroundImage: `url(${config.bgImageUrl})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            opacity: config.bgOpacity / 100,
+          }} />
+        )}
+        {(config.bgType === "gradient" || config.bgType === "solid") && (
+          <div className="absolute inset-0" style={{
+            background: pageBg,
+            opacity: config.bgOpacity / 100,
+          }} />
+        )}
         {/* Scanlines */}
         {config.scanlines && (
           <div className="pointer-events-none absolute inset-0" style={{

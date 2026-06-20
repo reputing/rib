@@ -250,10 +250,11 @@ export interface ServerSettings {
 // Biolink customization config
 // ═════════════════════════════════════════════════════════════════
 
-export type BgType = "solid" | "gradient" | "image";
+export type BgType = "solid" | "gradient" | "image" | "video";
 export type LayoutStyle = "centered" | "left" | "right";
 export type LinkStyle = "cards" | "buttons" | "list";
 export type FontFamily = "quicksand" | "inter" | "mono" | "serif" | "rounded";
+export type CutsceneDirection = "vertical" | "horizontal" | "fade";
 
 export interface BiolinkConfig {
   // ─── Profile ───
@@ -292,6 +293,8 @@ export interface BiolinkConfig {
   bgGradientTo: string;
   bgGradientAngle: number;      // 0-360
   bgImageUrl: string;
+  bgVideoUrl: string;           // video background URL
+  bgOpacity: number;             // 0-100 translucency of the background layer
 
   // ─── Badges ───
   showViews: boolean;
@@ -312,5 +315,6 @@ export interface BiolinkConfig {
   layoutStyle: LayoutStyle;
   showTopBar: boolean;
   linkStyle: LinkStyle;
+  cutsceneDirection: CutsceneDirection;  // opening animation direction
 }
 

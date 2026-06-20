@@ -354,6 +354,8 @@ export const useRibbon = create<RibbonState>((set, get) => ({
     bgGradientTo: "#0A0E17",
     bgGradientAngle: 135,
     bgImageUrl: "",
+    bgVideoUrl: "",
+    bgOpacity: 100,
 
     showViews: true,
     showLikes: false,
@@ -375,6 +377,7 @@ export const useRibbon = create<RibbonState>((set, get) => ({
     layoutStyle: "centered",
     showTopBar: true,
     linkStyle: "cards",
+    cutsceneDirection: "vertical",
   } as BiolinkConfig,
   updateBiolinkConfig: (updates) =>
     set((s) => ({ biolinkConfig: { ...s.biolinkConfig, ...updates } })),
@@ -408,6 +411,8 @@ export const useRibbon = create<RibbonState>((set, get) => ({
         bgGradientTo: "#0A0E17",
         bgGradientAngle: 135,
         bgImageUrl: "",
+    bgVideoUrl: "",
+    bgOpacity: 100,
         showViews: true,
         showLikes: false,
         showJoinDate: true,
@@ -425,6 +430,7 @@ export const useRibbon = create<RibbonState>((set, get) => ({
         layoutStyle: "centered",
         showTopBar: true,
         linkStyle: "cards",
+    cutsceneDirection: "vertical",
       } as BiolinkConfig,
     }),
 

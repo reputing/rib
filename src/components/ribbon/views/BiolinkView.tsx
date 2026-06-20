@@ -106,11 +106,50 @@ export function BiolinkView() {
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[110] flex items-center justify-center overflow-y-auto"
         style={{
-          background: pageBg,
+          background: config.bgType === "video" ? "#000000" : pageBg,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
+        {/* Video background */}
+        {config.bgType === "video" && config.bgVideoUrl && (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ opacity: config.bgOpacity / 100, zIndex: 0 }}
+          >
+            <source src={config.bgVideoUrl} type="video/mp4" />
+          </video>
+        )}
+
+        {/* Image background with translucency */}
+        {config.bgType === "image" && config.bgImageUrl && (
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `url(${config.bgImageUrl})`,
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              opacity: config.bgOpacity / 100,
+              zIndex: 0,
+            }}
+          />
+        )}
+
+        {/* Gradient/solid background with translucency */}
+        {(config.bgType === "gradient" || config.bgType === "solid") && (
+          <div
+            className="absolute inset-0"
+            style={{
+              background: pageBg,
+              opacity: config.bgOpacity / 100,
+              zIndex: 0,
+            }}
+          />
+        )}
         {/* Scanlines overlay */}
         {config.scanlines && (
           <div className="pointer-events-none absolute inset-0" style={{
@@ -157,12 +196,24 @@ export function BiolinkView() {
           <X size={16} strokeWidth={2.5} style={{ color: "#FFFFFF" }} />
         </button>
 
-        {/* The biolink card */}
+        {/* The biolink card — with cutscene opening animation */}
         <motion.div
-          initial={{ scale: 0.95, y: 20, opacity: 0 }}
-          animate={{ scale: 1, y: 0, opacity: 1 }}
-          exit={{ scale: 0.95, y: 20, opacity: 0 }}
-          transition={{ type: "spring", stiffness: 350, damping: 28 }}
+          initial={
+            config.cutsceneDirection === "vertical"
+              ? { y: -200, opacity: 0 }
+              : config.cutsceneDirection === "horizontal"
+                ? { x: -200, opacity: 0 }
+                : { opacity: 0 }
+          }
+          animate={{ x: 0, y: 0, opacity: 1 }}
+          exit={
+            config.cutsceneDirection === "vertical"
+              ? { y: -200, opacity: 0 }
+              : config.cutsceneDirection === "horizontal"
+                ? { x: -200, opacity: 0 }
+                : { opacity: 0 }
+          }
+          transition={{ type: "spring", stiffness: 200, damping: 25, duration: 0.8 }}
           className="relative my-10 z-10"
           style={cardStyle}
         >
