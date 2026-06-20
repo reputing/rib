@@ -7,7 +7,7 @@ export type UserStatus = "online" | "idle" | "dnd" | "offline";
 export type AccentColor =
   | "terracotta" // #E8769A (red)
   | "amber"      // #E8769A (yellow)
-  | "sage"       // #9499A2 (green)
+  | "sage"       // #CCCCCC (green)
   | "mauve";     // #D4638A (blue)
 
 export interface User {

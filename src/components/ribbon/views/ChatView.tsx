@@ -69,7 +69,7 @@ export function ChatView() {
     <div className="flex h-full flex-1 min-h-0">
       {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex w-[256px] flex-none flex-col border-r"
+        className="flex w-[256px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
@@ -117,7 +117,7 @@ export function ChatView() {
       <div className="flex flex-1 flex-col min-w-0">
         {/* Header */}
         <div
-          className="flex h-12 flex-none items-center px-5 border-b"
+          className="flex h-12 flex-none items-center px-5"
           style={{ borderColor: "var(--color-ribbon-border)" }}
         >
           <Hash size={14} strokeWidth={2.5} style={{ color: "var(--color-ribbon-text-faint)" }} />
@@ -180,7 +180,7 @@ export function ChatView() {
 
       {/* ═══ MEMBER LIST PANEL ═══ */}
       <div
-        className="hidden w-[220px] flex-none flex-col border-l lg:flex"
+        className="hidden w-[220px] flex-none flex-col lg:flex"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",

@@ -17,7 +17,7 @@ export function EmbedPreview({ embed }: { embed: EmbedPreviewType }) {
           navigate("pinboard", { userId: "sol" });
         }
       }}
-      className="mt-2.5 block max-w-[340px] cursor-pointer overflow-hidden rounded-[12px] border text-left transition"
+      className="mt-2.5 block max-w-[340px] cursor-pointer overflow-hidden rounded-[12px] text-left transition"
       style={{
         background: "var(--ribbon-elevated)",
         borderColor: "var(--color-ribbon-border)",

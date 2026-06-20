@@ -42,12 +42,12 @@
   --color-ribbon-pink: #E8769A;
   --color-ribbon-pink-soft: #D4638A;
   --color-ribbon-pink-deep: #B14D72;
-  --color-ribbon-gradient: linear-gradient(135deg, #4E5058 0%, #E8769A 50%, #4E5058 100%);
+  --color-ribbon-gradient: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
 
   /* Legacy accent token names — mapped to pink-tinted values */
   --color-ribbon-terracotta: #E8769A;
   --color-ribbon-amber: #E8769A;
-  --color-ribbon-sage: #9499A2;
+  --color-ribbon-sage: #CCCCCC;
   --color-ribbon-mauve: #D4638A;
   --color-ribbon-rust: #E8769A;
 
@@ -60,87 +60,87 @@
 /* ═══ DARK MODE (default) — grey + pink ═══ */
 :root {
   --radius: 0.25rem;
-  --background: #1A1B1E;
-  --foreground: #E8E9ED;
-  --card: #232428;
-  --card-foreground: #E8E9ED;
-  --popover: #18191C;
-  --popover-foreground: #E8E9ED;
+  --background: #121212;
+  --foreground: #FFFFFF;
+  --card: #1E1E1E;
+  --card-foreground: #FFFFFF;
+  --popover: #1A1A1A;
+  --popover-foreground: #FFFFFF;
   --primary: #E8769A;
-  --primary-foreground: #1A1B1E;
-  --secondary: #2B2D31;
-  --secondary-foreground: #E8E9ED;
-  --muted: #2B2D31;
-  --muted-foreground: #9499A2;
-  --accent: #35373C;
-  --accent-foreground: #E8E9ED;
+  --primary-foreground: #121212;
+  --secondary: #242424;
+  --secondary-foreground: #FFFFFF;
+  --muted: #242424;
+  --muted-foreground: #CCCCCC;
+  --accent: #2A2A2A;
+  --accent-foreground: #FFFFFF;
   --destructive: #D4638A;
   --border: transparent;
-  --input: #1A1B1E;
+  --input: #121212;
   --ring: #E8769A;
   --chart-1: #E8769A;
   --chart-2: #D4638A;
-  --chart-3: #9499A2;
-  --chart-4: #80848E;
+  --chart-3: #CCCCCC;
+  --chart-4: #888888;
   --chart-5: #6D6F78;
-  --sidebar: #16171A;
-  --sidebar-foreground: #E8E9ED;
+  --sidebar: #151515;
+  --sidebar-foreground: #FFFFFF;
   --sidebar-primary: #E8769A;
-  --sidebar-primary-foreground: #1A1B1E;
-  --sidebar-accent: #232428;
-  --sidebar-accent-foreground: #E8E9ED;
+  --sidebar-primary-foreground: #121212;
+  --sidebar-accent: #1E1E1E;
+  --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: transparent;
   --sidebar-ring: #E8769A;
 
   /* prey semantic tokens (dark grey + pink) */
-  --ribbon-bg: #1A1B1E;
-  --ribbon-bg-deep: #16171A;
-  --ribbon-sidebar: #16171A;
-  --ribbon-card: #232428;
-  --ribbon-elevated: #2B2D31;
-  --ribbon-hover: #35373C;
+  --ribbon-bg: #121212;
+  --ribbon-bg-deep: #151515;
+  --ribbon-sidebar: #151515;
+  --ribbon-card: #1E1E1E;
+  --ribbon-elevated: #242424;
+  --ribbon-hover: #2A2A2A;
   --ribbon-border: transparent;
   --ribbon-border-strong: rgba(232, 118, 154, 0.08);
-  --ribbon-text: #E8E9ED;
-  --ribbon-text-dim: #9499A2;
-  --ribbon-text-muted: #80848E;
-  --ribbon-text-faint: #5D6067;
-  --ribbon-text-ghost: #3A3B3F;
-  --ribbon-text-placeholder: #4E5058;
+  --ribbon-text: #FFFFFF;
+  --ribbon-text-dim: #CCCCCC;
+  --ribbon-text-muted: #888888;
+  --ribbon-text-faint: #666666;
+  --ribbon-text-ghost: #444444;
+  --ribbon-text-placeholder: #333333;
 }
 
 /* ═══ LIGHT MODE (auto via system preference OR explicit .light class) ═══ */
 @media (prefers-color-scheme: light) {
   :root:not(.dark) {
     --background: #FAF7F8;
-    --foreground: #1A1B1E;
+    --foreground: #121212;
     --card: #FFFFFF;
-    --card-foreground: #1A1B1E;
+    --card-foreground: #121212;
     --popover: #FFFFFF;
-    --popover-foreground: #1A1B1E;
+    --popover-foreground: #121212;
     --primary: #D4638A;
     --primary-foreground: #FFFFFF;
     --secondary: #F0EDEE;
-    --secondary-foreground: #1A1B1E;
+    --secondary-foreground: #121212;
     --muted: #F0EDEE;
-    --muted-foreground: #5D6067;
+    --muted-foreground: #666666;
     --accent: #E8DFE3;
-    --accent-foreground: #1A1B1E;
+    --accent-foreground: #121212;
     --destructive: #D4638A;
     --border: transparent;
     --input: #FFFFFF;
     --ring: #D4638A;
     --chart-1: #D4638A;
     --chart-2: #B14D72;
-    --chart-3: #9499A2;
-    --chart-4: #80848E;
+    --chart-3: #CCCCCC;
+    --chart-4: #888888;
     --chart-5: #6D6F78;
     --sidebar: #F0EDEE;
-    --sidebar-foreground: #1A1B1E;
+    --sidebar-foreground: #121212;
     --sidebar-primary: #D4638A;
     --sidebar-primary-foreground: #FFFFFF;
     --sidebar-accent: #E8DFE3;
-    --sidebar-accent-foreground: #1A1B1E;
+    --sidebar-accent-foreground: #121212;
     --sidebar-border: transparent;
     --sidebar-ring: #D4638A;
 
@@ -152,10 +152,10 @@
     --ribbon-hover: #E8DFE3;
     --ribbon-border: transparent;
     --ribbon-border-strong: rgba(212, 99, 138, 0.12);
-    --ribbon-text: #1A1B1E;
-    --ribbon-text-dim: #4E5058;
+    --ribbon-text: #121212;
+    --ribbon-text-dim: #333333;
     --ribbon-text-muted: #6D6F78;
-    --ribbon-text-faint: #80848E;
+    --ribbon-text-faint: #888888;
     --ribbon-text-ghost: #B5BAC1;
     --ribbon-text-placeholder: #C7CAD0;
   }
@@ -163,75 +163,75 @@
 
 /* Explicit .dark class overrides system preference (for manual toggle) */
 .dark {
-  --background: #1A1B1E;
-  --foreground: #E8E9ED;
-  --card: #232428;
-  --card-foreground: #E8E9ED;
-  --popover: #18191C;
-  --popover-foreground: #E8E9ED;
+  --background: #121212;
+  --foreground: #FFFFFF;
+  --card: #1E1E1E;
+  --card-foreground: #FFFFFF;
+  --popover: #1A1A1A;
+  --popover-foreground: #FFFFFF;
   --primary: #E8769A;
-  --primary-foreground: #1A1B1E;
-  --secondary: #2B2D31;
-  --secondary-foreground: #E8E9ED;
-  --muted: #2B2D31;
-  --muted-foreground: #9499A2;
-  --accent: #35373C;
-  --accent-foreground: #E8E9ED;
+  --primary-foreground: #121212;
+  --secondary: #242424;
+  --secondary-foreground: #FFFFFF;
+  --muted: #242424;
+  --muted-foreground: #CCCCCC;
+  --accent: #2A2A2A;
+  --accent-foreground: #FFFFFF;
   --destructive: #D4638A;
   --border: transparent;
-  --input: #1A1B1E;
+  --input: #121212;
   --ring: #E8769A;
-  --sidebar: #16171A;
-  --sidebar-foreground: #E8E9ED;
+  --sidebar: #151515;
+  --sidebar-foreground: #FFFFFF;
   --sidebar-primary: #E8769A;
-  --sidebar-primary-foreground: #1A1B1E;
-  --sidebar-accent: #232428;
-  --sidebar-accent-foreground: #E8E9ED;
+  --sidebar-primary-foreground: #121212;
+  --sidebar-accent: #1E1E1E;
+  --sidebar-accent-foreground: #FFFFFF;
   --sidebar-border: transparent;
   --sidebar-ring: #E8769A;
 
-  --ribbon-bg: #1A1B1E;
-  --ribbon-bg-deep: #16171A;
-  --ribbon-sidebar: #16171A;
-  --ribbon-card: #232428;
-  --ribbon-elevated: #2B2D31;
-  --ribbon-hover: #35373C;
+  --ribbon-bg: #121212;
+  --ribbon-bg-deep: #151515;
+  --ribbon-sidebar: #151515;
+  --ribbon-card: #1E1E1E;
+  --ribbon-elevated: #242424;
+  --ribbon-hover: #2A2A2A;
   --ribbon-border: transparent;
   --ribbon-border-strong: rgba(232, 118, 154, 0.08);
-  --ribbon-text: #E8E9ED;
-  --ribbon-text-dim: #9499A2;
-  --ribbon-text-muted: #80848E;
-  --ribbon-text-faint: #5D6067;
-  --ribbon-text-ghost: #3A3B3F;
-  --ribbon-text-placeholder: #4E5058;
+  --ribbon-text: #FFFFFF;
+  --ribbon-text-dim: #CCCCCC;
+  --ribbon-text-muted: #888888;
+  --ribbon-text-faint: #666666;
+  --ribbon-text-ghost: #444444;
+  --ribbon-text-placeholder: #333333;
 }
 
 /* Explicit .light class — mirrors the system-preference light mode. */
 .light {
   --background: #FAF7F8;
-  --foreground: #1A1B1E;
+  --foreground: #121212;
   --card: #FFFFFF;
-  --card-foreground: #1A1B1E;
+  --card-foreground: #121212;
   --popover: #FFFFFF;
-  --popover-foreground: #1A1B1E;
+  --popover-foreground: #121212;
   --primary: #D4638A;
   --primary-foreground: #FFFFFF;
   --secondary: #F0EDEE;
-  --secondary-foreground: #1A1B1E;
+  --secondary-foreground: #121212;
   --muted: #F0EDEE;
-  --muted-foreground: #5D6067;
+  --muted-foreground: #666666;
   --accent: #E8DFE3;
-  --accent-foreground: #1A1B1E;
+  --accent-foreground: #121212;
   --destructive: #D4638A;
   --border: transparent;
   --input: #FFFFFF;
   --ring: #D4638A;
   --sidebar: #F0EDEE;
-  --sidebar-foreground: #1A1B1E;
+  --sidebar-foreground: #121212;
   --sidebar-primary: #D4638A;
   --sidebar-primary-foreground: #FFFFFF;
   --sidebar-accent: #E8DFE3;
-  --sidebar-accent-foreground: #1A1B1E;
+  --sidebar-accent-foreground: #121212;
   --sidebar-border: transparent;
   --sidebar-ring: #D4638A;
 
@@ -243,10 +243,10 @@
   --ribbon-hover: #E8DFE3;
   --ribbon-border: transparent;
   --ribbon-border-strong: rgba(212, 99, 138, 0.12);
-  --ribbon-text: #1A1B1E;
-  --ribbon-text-dim: #4E5058;
+  --ribbon-text: #121212;
+  --ribbon-text-dim: #333333;
   --ribbon-text-muted: #6D6F78;
-  --ribbon-text-faint: #80848E;
+  --ribbon-text-faint: #888888;
   --ribbon-text-ghost: #B5BAC1;
   --ribbon-text-placeholder: #C7CAD0;
 }
@@ -365,10 +365,10 @@
 
 /* Signature gradient — grey → pink → grey */
 .ribbon-gradient {
-  background: linear-gradient(135deg, #4E5058 0%, #E8769A 50%, #4E5058 100%);
+  background: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
 }
 .ribbon-gradient-text {
-  background: linear-gradient(135deg, #4E5058 0%, #E8769A 50%, #4E5058 100%);
+  background: linear-gradient(135deg, #333333 0%, #E8769A 50%, #333333 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

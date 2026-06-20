@@ -424,11 +424,11 @@ export const useRibbon = create<RibbonState>((set, get) => ({
 // ─── Helpers ─────────────────────────────────────────────────────
 
 // Accent colors — grey + pink palette:
-//   terracotta → pink #E8769A, amber → pink #E8769A, sage → grey #9499A2, mauve → deep pink #D4638A
+//   terracotta → pink #E8769A, amber → pink #E8769A, sage → grey #CCCCCC, mauve → deep pink #D4638A
 export const ACCENT_HEX: Record<string, string> = {
   terracotta: "#E8769A",
   amber: "#E8769A",
-  sage: "#9499A2",
+  sage: "#CCCCCC",
   mauve: "#D4638A",
 };
 

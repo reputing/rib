@@ -46,13 +46,13 @@ export function SettingsView() {
     >
       {/* Settings sidebar */}
       <div
-        className="flex w-[240px] flex-none flex-col border-r"
+        className="flex w-[240px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
-        <div className="flex h-[52px] flex-none items-center px-5 border-b" style={{ borderColor: "var(--color-ribbon-border)" }}>
+        <div className="flex h-[52px] flex-none items-center px-5" style={{ borderColor: "var(--color-ribbon-border)" }}>
           <button
             onClick={() => navigate("dms")}
             className="mr-3 cursor-pointer"
@@ -93,7 +93,7 @@ export function SettingsView() {
         {/* User card mini */}
         <div className="p-3">
           <div
-            className="flex items-center gap-2 rounded-[12px] border p-3"
+            className="flex items-center gap-2 rounded-[12px] p-3"
             style={{
               background: "var(--ribbon-elevated)",
               borderColor: "var(--color-ribbon-border)",
@@ -136,7 +136,7 @@ export function SettingsView() {
 
               {/* Avatar preview */}
               <div
-                className="mb-6 flex items-center gap-4 rounded-[12px] border p-4"
+                className="mb-6 flex items-center gap-4 rounded-[12px] p-4"
                 style={{
                   background: "var(--ribbon-card)",
                   borderColor: "var(--color-ribbon-border)",
@@ -184,7 +184,7 @@ export function SettingsView() {
                     <button
                       key={c}
                       onClick={() => updateSetting("accent", c)}
-                      className="cursor-pointer rounded-full border-2 transition"
+                      className="cursor-pointer rounded-full transition"
                       style={{
                         width: 32,
                         height: 32,
@@ -277,7 +277,7 @@ export function SettingsView() {
                 <Field label="Push-to-talk key">
                   <input
                     defaultValue={settings.pushToTalkKey}
-                    className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
+                    className="w-full rounded-[10px] px-3 py-2 text-[12px] outline-none"
                     style={{
                       background: "var(--ribbon-elevated)",
                       borderColor: "var(--color-ribbon-border)",
@@ -331,7 +331,7 @@ export function SettingsView() {
 
               <Field label="Who can DM you">
                 <select
-                  className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
+                  className="w-full rounded-[10px] px-3 py-2 text-[12px] outline-none"
                   style={{
                     background: "var(--ribbon-elevated)",
                     borderColor: "var(--color-ribbon-border)",
@@ -347,7 +347,7 @@ export function SettingsView() {
 
               <Field label="Who can sign your guestbook">
                 <select
-                  className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
+                  className="w-full rounded-[10px] px-3 py-2 text-[12px] outline-none"
                   style={{
                     background: "var(--ribbon-elevated)",
                     borderColor: "var(--color-ribbon-border)",
@@ -394,7 +394,7 @@ function ToggleRow({
 }) {
   return (
     <div
-      className="mb-3 flex items-center justify-between rounded-[12px] border p-3"
+      className="mb-3 flex items-center justify-between rounded-[12px] p-3"
       style={{
         background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
@@ -457,7 +457,7 @@ function ThemeField() {
             <button
               key={opt.id}
               onClick={() => setTheme(opt.id)}
-              className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[10px] border px-3 py-2.5 text-[12px] font-semibold transition"
+              className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[10px] px-3 py-2.5 text-[12px] font-semibold transition"
               style={{
                 background: isActive
                   ? "rgba(255, 255, 255, 0.1)"
@@ -517,7 +517,7 @@ function ProfileEditForm({
         <input
           value={displayName}
           onChange={(e) => setDisplayName(e.target.value)}
-          className="w-full rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
           style={{
             background: "var(--ribbon-card)",
             borderColor: "var(--ribbon-border)",
@@ -531,7 +531,7 @@ function ProfileEditForm({
           value={customTag}
           onChange={(e) => setCustomTag(e.target.value)}
           placeholder="e.g. digital alchemist"
-          className="w-full rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
           style={{
             background: "var(--ribbon-card)",
             borderColor: "var(--ribbon-border)",
@@ -546,7 +546,7 @@ function ProfileEditForm({
           onChange={(e) => setBio(e.target.value)}
           rows={3}
           placeholder="say something about yourself..."
-          className="w-full resize-none rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          className="w-full resize-none rounded-[6px] px-3 py-2 text-[12px] outline-none"
           style={{
             background: "var(--ribbon-card)",
             borderColor: "var(--ribbon-border)",
@@ -560,7 +560,7 @@ function ProfileEditForm({
           value={pronouns}
           onChange={(e) => setPronouns(e.target.value)}
           placeholder="they/them"
-          className="w-full rounded-[6px] border px-3 py-2 text-[12px] outline-none"
+          className="w-full rounded-[6px] px-3 py-2 text-[12px] outline-none"
           style={{
             background: "var(--ribbon-card)",
             borderColor: "var(--ribbon-border)",

@@ -19,7 +19,7 @@ export function FileAttachmentChip({ file }: { file: FileAttachmentType }) {
   const Icon = cfg.icon;
   return (
     <button
-      className="flex cursor-pointer items-center gap-2 rounded-[10px] border px-3 py-2 transition"
+      className="flex cursor-pointer items-center gap-2 rounded-[10px] px-3 py-2 transition"
       style={{
         background: "var(--ribbon-elevated)",
         borderColor: "var(--color-ribbon-border)",
@@ -61,7 +61,7 @@ export function FileRow({ file, onOpen }: { file: FileAttachmentType; onOpen?: (
   return (
     <button
       onClick={onOpen}
-      className="flex w-full cursor-pointer items-center gap-3 rounded-[12px] border px-3 py-3 text-left transition"
+      className="flex w-full cursor-pointer items-center gap-3 rounded-[12px] px-3 py-3 text-left transition"
       style={{
         background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",

@@ -13,7 +13,7 @@ export function ReactionChip({ reaction, onClick }: ReactionProps) {
   return (
     <button
       onClick={onClick}
-      className="flex cursor-pointer items-center gap-1.5 rounded-lg border px-2 py-1 text-[12px] transition"
+      className="flex cursor-pointer items-center gap-1.5 rounded-lg px-2 py-1 text-[12px] transition"
       style={{
         background: reaction.reactedByMe ? `${color}1A` : `${color}14`,
         borderColor: reaction.reactedByMe ? `${color}26` : `${color}1A`,

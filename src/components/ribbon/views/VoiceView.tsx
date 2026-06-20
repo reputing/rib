@@ -40,7 +40,7 @@ export function VoiceView() {
     >
       {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex w-[256px] flex-none flex-col border-r"
+        className="flex w-[256px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
@@ -162,7 +162,7 @@ export function VoiceView() {
         {joinedVoice && (
           <div className="px-3 pb-3 pt-2">
             <div
-              className="rounded-[12px] border px-2.5 py-2"
+              className="rounded-[12px] px-2.5 py-2"
               style={{
                 background: "rgba(128, 132, 142, 0.1)",
                 borderColor: "rgba(128, 132, 142, 0.14)",
@@ -176,7 +176,7 @@ export function VoiceView() {
                       style={{
                         width: 2,
                         borderRadius: 1,
-                        background: "#9499A2",
+                        background: "#CCCCCC",
                         animation: `ribbon-eq-bar 0.8s ease-in-out infinite`,
                         animationDelay: `${i * 0.2}s`,
                       }}
@@ -231,7 +231,7 @@ export function VoiceView() {
       >
         {/* Header */}
         <div
-          className="flex h-12 flex-none items-center px-5 border-b"
+          className="flex h-12 flex-none items-center px-5"
           style={{ borderColor: "var(--color-ribbon-border)" }}
         >
           <Volume2
@@ -349,7 +349,7 @@ function VoiceUserTile({
 
   return (
     <div
-      className="flex flex-col items-center gap-2.5 rounded-[20px] border px-5 py-6 transition"
+      className="flex flex-col items-center gap-2.5 rounded-[20px] px-5 py-6 transition"
       style={{
         background: "var(--ribbon-card)",
         borderColor: speaking
@@ -464,9 +464,6 @@ function VoiceControlButton({
           : active
             ? "rgba(255, 255, 255, 0.04)"
             : "transparent",
-        border: danger
-          ? "1px solid rgba(255, 255, 255, 0.16)"
-          : "1px solid var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = danger

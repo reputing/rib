@@ -63,7 +63,7 @@ export function ServerSettingsView() {
     >
       {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex w-[240px] flex-none flex-col border-r"
+        className="flex w-[240px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
@@ -248,7 +248,7 @@ function OverviewTab({
         <div className="flex-1">
           <Label>Server Name</Label>
           <div
-            className="rounded-[12px] border px-3.5 py-2.5"
+            className="rounded-[12px] px-3.5 py-2.5"
             style={{ background: "var(--ribbon-card)", borderColor: "var(--color-ribbon-border)" }}
           >
             <span className="text-[14px] font-semibold">{server?.name ?? "Art Collective"}</span>
@@ -256,7 +256,7 @@ function OverviewTab({
           <div className="mt-3">
             <Label>Description</Label>
             <div
-              className="min-h-[60px] rounded-[12px] border px-3.5 py-2.5"
+              className="min-h-[60px] rounded-[12px] px-3.5 py-2.5"
               style={{ background: "var(--ribbon-card)", borderColor: "var(--color-ribbon-border)" }}
             >
               <span
@@ -308,7 +308,7 @@ function OverviewTab({
           return (
             <div
               key={t}
-              className="flex items-center gap-1 rounded-lg border px-3 py-1 text-[12px] font-medium"
+              className="flex items-center gap-1 rounded-lg px-3 py-1 text-[12px] font-medium"
               style={{
                 background: `${color}1A`,
                 borderColor: `${color}26`,
@@ -337,7 +337,7 @@ function OverviewTab({
                 if (e.key === "Escape") setShowTagInput(false);
               }}
               placeholder="tag name"
-              className="rounded-lg border px-2 py-1 text-[12px] outline-none"
+              className="rounded-lg px-2 py-1 text-[12px] outline-none"
               style={{
                 background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-terracotta)",
@@ -356,7 +356,7 @@ function OverviewTab({
         ) : (
           <button
             onClick={() => setShowTagInput(true)}
-            className="flex cursor-pointer items-center gap-1 rounded-lg border border-dashed px-3 py-1 text-[12px] transition"
+            className="flex cursor-pointer items-center gap-1 rounded-lg px-3 py-1 text-[12px] transition"
             style={{
               background: "rgba(255, 255, 255, 0.04)",
               borderColor: "transparent",
@@ -396,7 +396,7 @@ function OverviewTab({
       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
       <div
         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
-        style={{ background: server?.banner ?? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #9499A2 100%)" }}
+        style={{ background: server?.banner ?? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #CCCCCC 100%)" }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
@@ -440,7 +440,7 @@ function PlaceholderTab({ title, description }: { title: string; description: st
         {description}
       </div>
       <div
-        className="mt-6 flex flex-col items-center justify-center rounded-[16px] border py-16"
+        className="mt-6 flex flex-col items-center justify-center rounded-[16px] py-16"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
@@ -512,7 +512,7 @@ function ToggleRow({
 }) {
   return (
     <div
-      className="flex items-center justify-between rounded-[14px] border px-3.5 py-3"
+      className="flex items-center justify-between rounded-[14px] px-3.5 py-3"
       style={{
         background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
@@ -533,7 +533,7 @@ function ToggleRow({
         style={{
           width: 40,
           height: 22,
-          background: value ? "#9499A2" : "rgba(255, 255, 255, 0.1)",
+          background: value ? "#CCCCCC" : "rgba(255, 255, 255, 0.1)",
           padding: 2,
         }}
       >

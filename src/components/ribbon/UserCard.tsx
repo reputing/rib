@@ -12,7 +12,7 @@ export function UserCard({ onEditBio }: { onEditBio?: () => void }) {
   return (
     <div className="px-3 pb-3 pt-2">
       <div
-        className="rounded-[14px] border px-3 py-2.5"
+        className="rounded-[14px] px-3 py-2.5"
         style={{
           background: "var(--ribbon-elevated)",
           borderColor: "var(--color-ribbon-border)",

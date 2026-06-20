@@ -6,20 +6,20 @@ import { getUser } from "@/lib/ribbon/mock-data";
 
 const PARTICLES = [
   { top: "7%", left: "14%", size: 6, color: "#E8769A", delay: 0, char: "✦" },
-  { top: "18%", left: "76%", size: 2, color: "#E8E9ED", delay: 0.6, dot: true },
+  { top: "18%", left: "76%", size: 2, color: "#FFFFFF", delay: 0.6, dot: true },
   { top: "28%", left: "22%", size: 2, color: "#D4638A", delay: 1.1, dot: true },
   { top: "38%", left: "88%", size: 5, color: "#E8769A", delay: 1.6, char: "✦" },
   { top: "58%", left: "6%", size: 2, color: "#E8769A", delay: 2.1, dot: true },
-  { top: "72%", left: "62%", size: 4, color: "#E8E9ED", delay: 0.4, char: "✦" },
+  { top: "72%", left: "62%", size: 4, color: "#FFFFFF", delay: 0.4, char: "✦" },
   { top: "82%", left: "32%", size: 2, color: "#D4638A", delay: 2.6, dot: true },
-  { top: "14%", left: "52%", size: 1, color: "#E8E9ED", delay: 3.1, dot: true },
+  { top: "14%", left: "52%", size: 1, color: "#FFFFFF", delay: 3.1, dot: true },
   { top: "48%", left: "94%", size: 2, color: "#E8769A", delay: 1.3, dot: true },
   { top: "66%", left: "16%", size: 5, color: "#E8769A", delay: 0.9, char: "✦" },
-  { top: "92%", left: "74%", size: 2, color: "#E8E9ED", delay: 1.9, dot: true },
+  { top: "92%", left: "74%", size: 2, color: "#FFFFFF", delay: 1.9, dot: true },
   { top: "5%", left: "40%", size: 4, color: "#D4638A", delay: 2.3, char: "✦" },
-  { top: "52%", left: "44%", size: 1, color: "#E8E9ED", delay: 3.6, dot: true },
+  { top: "52%", left: "44%", size: 1, color: "#FFFFFF", delay: 3.6, dot: true },
   { top: "34%", left: "4%", size: 2, color: "#E8769A", delay: 0.2, dot: true },
-  { top: "78%", left: "86%", size: 6, color: "#E8E9ED", delay: 1.7, char: "✦" },
+  { top: "78%", left: "86%", size: 6, color: "#FFFFFF", delay: 1.7, char: "✦" },
   { top: "22%", left: "66%", size: 2, color: "#E8769A", delay: 2.9, dot: true },
   { top: "88%", left: "10%", size: 4, color: "#E8769A", delay: 3.3, char: "✦" },
   { top: "42%", left: "36%", size: 1, color: "#D4638A", delay: 0.7, dot: true },
@@ -42,8 +42,8 @@ export function SplashView() {
       onClick={handleEnter}
       className="relative flex h-screen w-screen cursor-default flex-col items-center justify-center overflow-hidden"
       style={{
-        background: "#16171A",
-        color: "#E8E9ED",
+        background: "#151515",
+        color: "#FFFFFF",
       }}
     >
       {/* Background gradients */}
@@ -168,7 +168,7 @@ export function SplashView() {
         <div
           className="animate-glitch mt-4 text-[32px] font-bold"
           style={{
-            color: "#E8E9ED",
+            color: "#FFFFFF",
             letterSpacing: "-1px",
             textShadow: "0 0 30px rgba(181, 186, 193, 0.25)",
           }}
@@ -180,7 +180,7 @@ export function SplashView() {
         <div
           className="mt-1.5 text-[11px] uppercase"
           style={{
-            color: "#9499A2",
+            color: "#CCCCCC",
             letterSpacing: "1px",
           }}
         >
@@ -234,7 +234,7 @@ export function SplashView() {
         <div
           className="animate-enter-pulse mt-3 text-[10px] uppercase"
           style={{
-            color: "#5D6067",
+            color: "#666666",
             letterSpacing: "2px",
           }}
         >
@@ -245,7 +245,7 @@ export function SplashView() {
       {/* Branding at the bottom + mobile mockup entry */}
       <div className="absolute bottom-[18px] left-1/2 z-50 flex -translate-x-1/2 items-center gap-2">
         <div
-          className="flex items-center gap-1.5 rounded-[10px] border px-3 py-1.5"
+          className="flex items-center gap-1.5 rounded-[10px] px-3 py-1.5"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
             borderColor: "var(--color-ribbon-border)",
@@ -264,7 +264,7 @@ export function SplashView() {
           </div>
           <span
             className="text-[10px] font-semibold"
-            style={{ color: "#5D6067" }}
+            style={{ color: "#666666" }}
           >
             prey.lol
           </span>
@@ -276,11 +276,11 @@ export function SplashView() {
             useRibbon.getState().enterApp();
             useRibbon.getState().navigate("mobile");
           }}
-          className="cursor-pointer rounded-[10px] border px-3 py-1.5 text-[10px] font-semibold transition"
+          className="cursor-pointer rounded-[10px] px-3 py-1.5 text-[10px] font-semibold transition"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
             borderColor: "var(--color-ribbon-border)",
-            color: "#9499A2",
+            color: "#CCCCCC",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
@@ -288,7 +288,7 @@ export function SplashView() {
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
-            e.currentTarget.style.color = "#9499A2";
+            e.currentTarget.style.color = "#CCCCCC";
           }}
           title="View the mobile mockup"
         >

@@ -32,7 +32,7 @@ export function MessageInput({ placeholder, onSend }: MessageInputProps) {
   return (
     <div className="px-6 pb-4">
       <div
-        className="flex items-end gap-2 rounded-2xl border px-4 py-2.5"
+        className="flex items-end gap-2 rounded-2xl px-4 py-2.5"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--ribbon-border)",

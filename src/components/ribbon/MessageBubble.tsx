@@ -30,7 +30,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         />
         <div className="flex flex-col items-end">
           <div
-            className="bubble-self border px-3.5 py-2.5 text-[14px] leading-[1.5]"
+            className="bubble-self px-3.5 py-2.5 text-[14px] leading-[1.5]"
             style={{
               background: "var(--ribbon-hover)",
               borderColor: "transparent",
@@ -60,7 +60,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
       />
       <div>
         <div
-          className="bubble-maya border px-3.5 py-2.5 text-[14px] leading-[1.5]"
+          className="bubble-maya px-3.5 py-2.5 text-[14px] leading-[1.5]"
           style={{
             background: "var(--ribbon-card)",
             borderColor: "var(--color-ribbon-border)",

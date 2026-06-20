@@ -23,7 +23,7 @@ export function ServersListView() {
     >
       {/* Header */}
       <div
-        className="flex h-[52px] flex-none items-center px-5 border-b"
+        className="flex h-[52px] flex-none items-center px-5"
         style={{ borderColor: "var(--color-ribbon-border)" }}
       >
         <button
@@ -35,7 +35,7 @@ export function ServersListView() {
         </button>
         <div className="text-[15px] font-bold">Your Servers</div>
         <div
-          className="ml-auto flex items-center gap-2 rounded-[10px] border px-2.5 py-1.5"
+          className="ml-auto flex items-center gap-2 rounded-[10px] px-2.5 py-1.5"
           style={{
             background: "var(--ribbon-elevated)",
             borderColor: "var(--color-ribbon-border)",
@@ -72,7 +72,7 @@ export function ServersListView() {
             <button
               key={s.id}
               onClick={() => setActiveServer(s.id)}
-              className="group cursor-pointer overflow-hidden rounded-[14px] border text-left transition"
+              className="group cursor-pointer overflow-hidden rounded-[14px] text-left transition"
               style={{
                 background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-border)",
@@ -126,7 +126,7 @@ export function ServersListView() {
             <button
               key={s.id}
               onClick={() => navigate("discover")}
-              className="cursor-pointer overflow-hidden rounded-[14px] border text-left transition"
+              className="cursor-pointer overflow-hidden rounded-[14px] text-left transition"
               style={{
                 background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-border)",

@@ -35,7 +35,7 @@ export function SearchBar({
   return (
     <div className="px-3.5 pb-2.5">
       <div
-        className="flex items-center gap-1.5 rounded-[10px] border px-2.5 py-1.5"
+        className="flex items-center gap-1.5 rounded-[10px] px-2.5 py-1.5"
         style={{
           background: "var(--ribbon-elevated)",
           borderColor: "var(--color-ribbon-border)",

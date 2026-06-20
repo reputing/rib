@@ -47,7 +47,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
 
   return (
     <div
-      className="group rounded-[14px] border px-4 py-3.5 transition"
+      className="group rounded-[14px] px-4 py-3.5 transition"
       style={{
         background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",

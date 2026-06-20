@@ -21,11 +21,11 @@ const INTEREST_ICONS = {
 
 const PARTICLES = [
   { top: "8%", left: "15%", size: 5, color: "#E8769A", delay: 0, char: "✦" },
-  { top: "20%", left: "80%", size: 2, color: "#E8E9ED", delay: 0.6, dot: true },
+  { top: "20%", left: "80%", size: 2, color: "#FFFFFF", delay: 0.6, dot: true },
   { top: "70%", left: "10%", size: 2, color: "#D4638A", delay: 1.1, dot: true },
   { top: "85%", left: "75%", size: 4, color: "#E8769A", delay: 1.6, char: "✦" },
   { top: "30%", left: "5%", size: 2, color: "#E8769A", delay: 2.1, dot: true },
-  { top: "50%", left: "90%", size: 4, color: "#E8E9ED", delay: 0.4, char: "✦" },
+  { top: "50%", left: "90%", size: 4, color: "#FFFFFF", delay: 0.4, char: "✦" },
   { top: "15%", left: "45%", size: 1, color: "#E8769A", delay: 3.1, dot: true },
   { top: "90%", left: "35%", size: 2, color: "#D4638A", delay: 2.6, dot: true },
 ];
@@ -68,8 +68,8 @@ export function OnboardingView() {
     <div
       className="relative flex h-full w-full items-center justify-center overflow-hidden"
       style={{
-        background: "#16171A",
-        color: "#E8E9ED",
+        background: "#151515",
+        color: "#FFFFFF",
         opacity: isExiting ? 0 : 1,
         transition: "opacity 900ms ease",
       }}
@@ -212,13 +212,13 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
       </div>
       <div
         className="text-[34px] font-bold"
-        style={{ color: "#E8E9ED", letterSpacing: "-0.8px" }}
+        style={{ color: "#FFFFFF", letterSpacing: "-0.8px" }}
       >
         welcome to prey
       </div>
       <div
         className="mt-2 max-w-[360px] text-[14px] leading-[1.6]"
-        style={{ color: "#9499A2" }}
+        style={{ color: "#CCCCCC" }}
       >
         the place where your community actually feels like home. chat, share, create your space.
       </div>
@@ -234,7 +234,7 @@ function StepWelcome({ onNext }: { onNext: () => void }) {
       >
         get started
       </button>
-      <div className="mt-3 text-[11px]" style={{ color: "#5D6067" }}>
+      <div className="mt-3 text-[11px]" style={{ color: "#666666" }}>
         already have an account?{" "}
         <span
           className="cursor-pointer font-semibold"
@@ -266,19 +266,19 @@ function StepCreateAccount({
       <div className="text-center text-[22px] font-bold" style={{ letterSpacing: "-0.3px" }}>
         claim your ribbon
       </div>
-      <div className="mt-1 text-center text-[12px]" style={{ color: "#80848E" }}>
+      <div className="mt-1 text-center text-[12px]" style={{ color: "#888888" }}>
         this is your username everywhere
       </div>
 
       {/* Username */}
       <div
-        className="mt-6 flex items-center gap-2.5 rounded-[14px] border px-4 py-3.5"
+        className="mt-6 flex items-center gap-2.5 rounded-[14px] px-4 py-3.5"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "transparent",
         }}
       >
-        <span className="text-[13px] font-semibold" style={{ color: "#80848E" }}>
+        <span className="text-[13px] font-semibold" style={{ color: "#888888" }}>
           prey.lol/
         </span>
         <input
@@ -287,35 +287,35 @@ function StepCreateAccount({
           onChange={(e) => onUsernameChange(e.target.value)}
           placeholder="yourname"
           className="flex-1 bg-transparent text-[14px] font-semibold outline-none"
-          style={{ color: "#E8E9ED" }}
+          style={{ color: "#FFFFFF" }}
         />
         {username && (
           <div
             className="flex h-[18px] w-[18px] items-center justify-center rounded-full"
             style={{ background: "rgba(128, 132, 142, 0.18)" }}
           >
-            <Check size={10} strokeWidth={3} style={{ color: "#9499A2" }} />
+            <Check size={10} strokeWidth={3} style={{ color: "#CCCCCC" }} />
           </div>
         )}
       </div>
 
       {/* Password */}
       <div
-        className="mt-2 rounded-[14px] border px-4 py-3.5"
+        className="mt-2 rounded-[14px] px-4 py-3.5"
         style={{ background: "var(--ribbon-card)", borderColor: "transparent" }}
       >
         <input
           type="password"
           placeholder="password"
           className="w-full bg-transparent text-[13px] outline-none"
-          style={{ color: "#E8E9ED" }}
+          style={{ color: "#FFFFFF" }}
         />
       </div>
 
       {/* Or social */}
       <div className="mt-4 flex items-center gap-3">
         <div className="h-px flex-1" style={{ background: "rgba(255, 255, 255, 0.04)" }} />
-        <span className="text-[10px]" style={{ color: "#5D6067" }}>
+        <span className="text-[10px]" style={{ color: "#666666" }}>
           or continue with
         </span>
         <div className="h-px flex-1" style={{ background: "rgba(255, 255, 255, 0.04)" }} />
@@ -345,7 +345,7 @@ function StepCreateAccount({
 function SocialButton({ label, icon }: { label: string; icon?: React.ReactNode }) {
   return (
     <button
-      className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[12px] border py-2.5 text-[12px] font-semibold transition"
+      className="flex flex-1 cursor-pointer items-center justify-center gap-1.5 rounded-[12px] py-2.5 text-[12px] font-semibold transition"
       style={{
         background: "rgba(255, 255, 255, 0.04)",
         borderColor: "transparent",
@@ -380,7 +380,7 @@ function StepPickVibe({
       <div className="text-center text-[22px] font-bold" style={{ letterSpacing: "-0.3px" }}>
         pick your vibe
       </div>
-      <div className="mt-1 text-center text-[12px]" style={{ color: "#80848E" }}>
+      <div className="mt-1 text-center text-[12px]" style={{ color: "#888888" }}>
         we&apos;ll find communities that match
       </div>
 
@@ -393,7 +393,7 @@ function StepPickVibe({
             <button
               key={interest.id}
               onClick={() => onToggle(interest.id)}
-              className="flex cursor-pointer flex-col items-center gap-2 rounded-[14px] border-2 py-4 text-center transition"
+              className="flex cursor-pointer flex-col items-center gap-2 rounded-[14px] py-4 text-center transition"
               style={{
                 background: isSelected ? `${accentColor}1A` : "rgba(255, 255, 255, 0.03)",
                 borderColor: isSelected ? accentColor : "transparent",
@@ -455,7 +455,7 @@ function StepFindPeople({
       <div className="text-center text-[22px] font-bold" style={{ letterSpacing: "-0.3px" }}>
         find your people
       </div>
-      <div className="mt-1 text-center text-[12px]" style={{ color: "#80848E" }}>
+      <div className="mt-1 text-center text-[12px]" style={{ color: "#888888" }}>
         based on your vibe — join a few to start
       </div>
 
@@ -465,7 +465,7 @@ function StepFindPeople({
           return (
             <div
               key={s.id}
-              className="flex items-center gap-3 rounded-[14px] border px-3.5 py-3"
+              className="flex items-center gap-3 rounded-[14px] px-3.5 py-3"
               style={{
                 background: "var(--ribbon-card)",
                 borderColor: isJoined
@@ -484,7 +484,7 @@ function StepFindPeople({
               </div>
               <div className="min-w-0 flex-1">
                 <div className="text-[13px] font-semibold">{s.name}</div>
-                <div className="text-[10px]" style={{ color: "#80848E" }}>
+                <div className="text-[10px]" style={{ color: "#888888" }}>
                   {s.memberCount.toLocaleString()} members · {s.tags?.join(", ")}
                 </div>
               </div>
@@ -495,7 +495,7 @@ function StepFindPeople({
                   background: isJoined
                     ? "rgba(128, 132, 142, 0.18)"
                     : "rgba(255, 255, 255, 0.1)",
-                  color: isJoined ? "#9499A2" : "#E8769A",
+                  color: isJoined ? "#CCCCCC" : "#E8769A",
                 }}
               >
                 {isJoined ? "joined" : "join"}
@@ -543,13 +543,13 @@ function StepSetUpRibbon({
       <div className="text-center text-[22px] font-bold" style={{ letterSpacing: "-0.3px" }}>
         set up your ribbon
       </div>
-      <div className="mt-1 text-center text-[12px]" style={{ color: "#80848E" }}>
+      <div className="mt-1 text-center text-[12px]" style={{ color: "#888888" }}>
         your bio page is live at prey.lol/{username}
       </div>
 
       {/* Mini profile card preview */}
       <div
-        className="mt-6 w-full rounded-[20px] border p-6"
+        className="mt-6 w-full rounded-[20px] p-6"
         style={{
           background: "rgba(14, 12, 10, 0.7)",
           backdropFilter: "blur(16px)",
@@ -560,7 +560,7 @@ function StepSetUpRibbon({
         {/* Avatar upload area */}
         <div className="flex flex-col items-center">
           <button
-            className="flex h-16 w-16 cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px] border-2 border-dashed transition"
+            className="flex h-16 w-16 cursor-pointer flex-col items-center justify-center gap-1 rounded-[18px] transition"
             style={{
               background: "rgba(255, 255, 255, 0.04)",
               borderColor: "transparent",
@@ -574,13 +574,13 @@ function StepSetUpRibbon({
               e.currentTarget.style.background = "rgba(255, 255, 255, 0.04)";
             }}
           >
-            <Upload size={18} strokeWidth={2} style={{ color: "#80848E" }} />
-            <span className="text-[8px] font-semibold" style={{ color: "#80848E" }}>
+            <Upload size={18} strokeWidth={2} style={{ color: "#888888" }} />
+            <span className="text-[8px] font-semibold" style={{ color: "#888888" }}>
               avatar
             </span>
           </button>
           <div className="mt-2.5 text-[18px] font-bold">{username}</div>
-          <div className="mt-0.5 text-[10px]" style={{ color: "#80848E" }}>
+          <div className="mt-0.5 text-[10px]" style={{ color: "#888888" }}>
             prey.lol/{username}
           </div>
         </div>
@@ -591,17 +591,17 @@ function StepSetUpRibbon({
           value={bio}
           onChange={(e) => setBio(e.target.value)}
           placeholder="add a bio..."
-          className="mt-3 w-full rounded-[10px] border px-3.5 py-2.5 text-[12px] outline-none"
+          className="mt-3 w-full rounded-[10px] px-3.5 py-2.5 text-[12px] outline-none"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
             borderColor: "transparent",
-            color: "#E8E9ED",
+            color: "#FFFFFF",
           }}
         />
 
         {/* Add links */}
         <button
-          className="mt-2 flex w-full cursor-pointer items-center gap-2 rounded-[10px] border px-3.5 py-2.5 transition"
+          className="mt-2 flex w-full cursor-pointer items-center gap-2 rounded-[10px] px-3.5 py-2.5 transition"
           style={{
             background: "rgba(255, 255, 255, 0.03)",
             borderColor: "transparent",
@@ -609,8 +609,8 @@ function StepSetUpRibbon({
           onMouseEnter={(e) => (e.currentTarget.style.borderColor = "transparent")}
           onMouseLeave={(e) => (e.currentTarget.style.borderColor = "transparent")}
         >
-          <Plus size={14} strokeWidth={2} style={{ color: "#80848E" }} />
-          <span className="text-[12px]" style={{ color: "#80848E" }}>
+          <Plus size={14} strokeWidth={2} style={{ color: "#888888" }} />
+          <span className="text-[12px]" style={{ color: "#888888" }}>
             add your links
           </span>
         </button>
@@ -620,7 +620,7 @@ function StepSetUpRibbon({
           {[Instagram, Twitter, Github, HomeIcon].map((Icon, i) => (
             <button
               key={i}
-              className="flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[8px] border transition"
+              className="flex h-[30px] w-[30px] cursor-pointer items-center justify-center rounded-[8px] transition"
               style={{
                 background: "rgba(255, 255, 255, 0.03)",
                 borderColor: "transparent",
@@ -628,7 +628,7 @@ function StepSetUpRibbon({
               onMouseEnter={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.07)")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)")}
             >
-              <Icon size={12} strokeWidth={2} style={{ color: "#80848E" }} />
+              <Icon size={12} strokeWidth={2} style={{ color: "#888888" }} />
             </button>
           ))}
         </div>
@@ -648,7 +648,7 @@ function StepSetUpRibbon({
       </button>
       <div
         className="mt-2 cursor-pointer text-center text-[11px]"
-        style={{ color: "#5D6067" }}
+        style={{ color: "#666666" }}
         onClick={onFinish}
       >
         skip for now
@@ -671,7 +671,7 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
           width: 72,
           height: 72,
           borderRadius: 20,
-          background: "linear-gradient(135deg, #9499A2, #00B85C)",
+          background: "linear-gradient(135deg, #CCCCCC, #00B85C)",
           boxShadow: "0 8px 30px rgba(128, 132, 142, 0.3)",
         }}
       >
@@ -685,7 +685,7 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
       </div>
       <div
         className="mt-1.5 max-w-[320px] text-[14px] leading-[1.6]"
-        style={{ color: "#9499A2" }}
+        style={{ color: "#CCCCCC" }}
       >
         your prey is live. go explore, join the conversation, make it yours.
       </div>
@@ -704,7 +704,7 @@ function StepDone({ onFinish }: { onFinish: () => void }) {
         </button>
         <button
           onClick={onFinish}
-          className="cursor-pointer rounded-[14px] border px-7 py-3 text-[14px] font-bold transition"
+          className="cursor-pointer rounded-[14px] px-7 py-3 text-[14px] font-bold transition"
           style={{
             background: "rgba(255, 255, 255, 0.04)",
             borderColor: "transparent",
@@ -744,9 +744,9 @@ function BackButton({ onBack }: { onBack: () => void }) {
     <button
       onClick={onBack}
       className="mt-2 w-full cursor-pointer py-2 text-center text-[12px] font-semibold transition"
-      style={{ color: "#80848E" }}
+      style={{ color: "#888888" }}
       onMouseEnter={(e) => (e.currentTarget.style.color = "#B5BAC1")}
-      onMouseLeave={(e) => (e.currentTarget.style.color = "#80848E")}
+      onMouseLeave={(e) => (e.currentTarget.style.color = "#888888")}
     >
       back
     </button>

@@ -151,8 +151,8 @@ export function FloatingDock() {
       dragElastic={0}
       onDragStart={() => setIsDragging(true)}
       onDragEnd={handleDragEnd}
-      style={{ x, y }}
-      className="fixed z-50 flex items-center gap-1 rounded-full border p-1.5 backdrop-blur-xl"
+      style={{ x, y, background: "var(--ribbon-elevated)" }}
+      className="fixed z-50 flex items-center gap-1 rounded-full p-1.5 backdrop-blur-xl"
       data-edge={edge}
     >
       {/* Items */}
@@ -184,7 +184,7 @@ export function FloatingDock() {
             style={{
               width: 8,
               height: 8,
-              background: "#9499A2",
+              background: "#CCCCCC",
               animation: "ribbon-enter-pulse 1.5s ease-in-out infinite",
             }}
           />

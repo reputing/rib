@@ -59,7 +59,7 @@ export function DiscoverView() {
     >
       {/* ═══ SIDEBAR ═══ */}
       <div
-        className="flex w-[256px] flex-none flex-col border-r"
+        className="flex w-[256px] flex-none flex-col"
         style={{
           background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
@@ -121,7 +121,7 @@ export function DiscoverView() {
         {/* Search bar */}
         <div className="px-7 pt-4">
           <div
-            className="flex items-center gap-2.5 rounded-[14px] border px-4 py-2.5"
+            className="flex items-center gap-2.5 rounded-[14px] px-4 py-2.5"
             style={{
               background: "var(--ribbon-card)",
               borderColor: "var(--color-ribbon-border)",
@@ -177,7 +177,7 @@ export function DiscoverView() {
               return (
                 <div
                   key={s.id}
-                  className="flex cursor-pointer items-center gap-3 rounded-[14px] border px-3.5 py-3 transition"
+                  className="flex cursor-pointer items-center gap-3 rounded-[14px] px-3.5 py-3 transition"
                   style={{
                     background: "var(--ribbon-card)",
                     borderColor: "var(--color-ribbon-border)",
@@ -264,7 +264,7 @@ export function DiscoverView() {
                 <div
                   key={server.id}
                   onClick={() => joinDiscoverServer(server.id)}
-                  className="flex cursor-pointer flex-col items-center rounded-[14px] border px-3.5 py-3.5 text-center transition"
+                  className="flex cursor-pointer flex-col items-center rounded-[14px] px-3.5 py-3.5 text-center transition"
                   style={{
                     background: "var(--ribbon-card)",
                     borderColor: "var(--color-ribbon-border)",
@@ -342,7 +342,7 @@ function FeaturedServerCard({
 }) {
   return (
     <div
-      className="cursor-pointer overflow-hidden rounded-[16px] border transition"
+      className="cursor-pointer overflow-hidden rounded-[16px] transition"
       style={{
         background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
@@ -381,7 +381,7 @@ function FeaturedServerCard({
             style={{
               background: "rgba(0, 0, 0, 0.4)",
               backdropFilter: "blur(4px)",
-              color: "#9499A2",
+              color: "#CCCCCC",
             }}
           >
             {server.onlineCount} online
@@ -392,7 +392,7 @@ function FeaturedServerCard({
       <div className="px-3.5 pb-3 pt-3">
         <div className="flex items-center gap-2">
           <div
-            className="-mt-6 flex h-8 w-8 flex-none items-center justify-center rounded-[10px] border-[3px] text-[13px] font-bold text-white"
+            className="-mt-6 flex h-8 w-8 flex-none items-center justify-center rounded-[10px] text-[13px] font-bold text-white"
             style={{
               background: ACCENT_HEX[server.accent],
               borderColor: "var(--ribbon-card)",

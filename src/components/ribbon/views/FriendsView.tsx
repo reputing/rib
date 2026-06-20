@@ -33,7 +33,7 @@ export function FriendsView() {
     >
       {/* Header */}
       <div
-        className="flex h-[52px] flex-none items-center px-5 border-b"
+        className="flex h-[52px] flex-none items-center px-5"
         style={{ borderColor: "var(--color-ribbon-border)" }}
       >
         <button
@@ -75,7 +75,7 @@ export function FriendsView() {
           <div>
             <SectionLabel>Add Friend</SectionLabel>
             <div
-              className="mb-4 rounded-[12px] border p-4"
+              className="mb-4 rounded-[12px] p-4"
               style={{
                 background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-border)",
@@ -92,7 +92,7 @@ export function FriendsView() {
                 <input
                   type="text"
                   placeholder="prey.lol/username"
-                  className="flex-1 rounded-[10px] border px-3 py-2 text-[12px] outline-none"
+                  className="flex-1 rounded-[10px] px-3 py-2 text-[12px] outline-none"
                   style={{
                     background: "var(--ribbon-elevated)",
                     borderColor: "var(--color-ribbon-border)",

@@ -37,7 +37,7 @@ export function MobileView() {
         style={{
           width: 390,
           height: 844,
-          background: "#1A1B1E",
+          background: "#121212",
           borderRadius: 48,
           boxShadow: "0 24px 80px rgba(0,0,0,0.3), 0 0 0 8px #1a1a1a",
           color: "#EDE5D8",
@@ -145,7 +145,7 @@ export function MobileView() {
 
         {/* Bottom tab bar */}
         <div
-          className="flex flex-none items-center justify-around border-t"
+          className="flex flex-none items-center justify-around"
           style={{
             height: 82,
             padding: "0 8px 28px",
@@ -230,10 +230,10 @@ function MobileTabButton({
       className="relative flex cursor-pointer flex-col items-center gap-1"
       style={{ padding: "4px 12px" }}
     >
-      <div style={{ color: active ? "#E8769A" : "#80848E" }}>{icon}</div>
+      <div style={{ color: active ? "#E8769A" : "#888888" }}>{icon}</div>
       <span
         className="text-[9px] font-semibold"
-        style={{ color: active ? "#E8769A" : "#80848E" }}
+        style={{ color: active ? "#E8769A" : "#888888" }}
       >
         {label}
       </span>
@@ -279,7 +279,7 @@ function MobileMessageCard({
 
   return (
     <div
-      className="rounded-[14px] border px-3 py-2.5"
+      className="rounded-[14px] px-3 py-2.5"
       style={{
         background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
@@ -322,7 +322,7 @@ function MobileMessageCard({
           {reactions.map((r, i) => (
             <div
               key={i}
-              className="flex items-center gap-1 rounded-md border px-1.5 py-0.5 text-[11px]"
+              className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px]"
               style={{
                 background: `var(--color-ribbon-${r.accent})`,
                 background: `rgba(255, 255, 255, 0.08)`,

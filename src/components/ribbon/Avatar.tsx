@@ -15,9 +15,9 @@ interface AvatarProps {
 
 const STATUS_COLORS: Record<UserStatus, string> = {
   online: "#DBDEE1",
-  idle: "#9499A2",
-  dnd: "#9499A2",
-  offline: "#5D6067",
+  idle: "#CCCCCC",
+  dnd: "#CCCCCC",
+  offline: "#666666",
 };
 
 export function Avatar({
