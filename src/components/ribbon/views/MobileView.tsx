@@ -16,7 +16,7 @@ import type { ViewId } from "@/lib/ribbon/types";
 type MobileTab = "home" | "dms" | "discover" | "boards" | "you";
 
 export function MobileView() {
-  const { navigate, activeServerId, activeChannelId, channelMessages, sendMessage } = useRibbon();
+  const { navigate, activeServerId, activeChannelId, channelMessages, sendMessage, setActiveProfile } = useRibbon();
   const [tab, setTab] = useState<MobileTab>("home");
 
   const server = servers[activeServerId];
@@ -158,7 +158,6 @@ export function MobileView() {
             label="home"
             active={tab === "home"}
             onClick={() => setTab("home")}
-            accent="terracotta"
           />
           <MobileTabButton
             icon={<MessageCircle size={20} strokeWidth={2} />}
@@ -185,7 +184,7 @@ export function MobileView() {
             active={tab === "boards"}
             onClick={() => {
               setTab("boards");
-              navigate("pinboard", { userId: "sol" });
+              setActiveProfile("sol");
             }}
           />
           <MobileTabButton
@@ -324,8 +323,7 @@ function MobileMessageCard({
               key={i}
               className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px]"
               style={{
-                background: `var(--color-ribbon-${r.accent})`,
-                background: `rgba(255, 255, 255, 0.08)`,
+                background: "rgba(255, 255, 255, 0.08)",
                 borderColor: "transparent",
               }}
             >

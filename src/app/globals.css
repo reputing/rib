@@ -439,10 +439,6 @@
   50% { opacity: .5; box-shadow: 0 0 0 6px rgba(255,127,174,0); }
 }
 .prey-pulse-dot { animation: prey-pulse-dot 1.8s infinite; }
-<<<<<<< ours
-<<<<<<< ours
-=======
->>>>>>> theirs
 
 /* ═══ prey global polish ═══ */
 /* Soft accent selection highlight */
@@ -463,8 +459,3 @@
   .animate-prey-drift, .prey-scanlines, .prey-eq-bar, .prey-pulse-dot,
   .animate-breathe, .animate-twinkle, .animate-drift, .animate-glitch { animation: none !important; }
 }
-<<<<<<< ours
-=======
->>>>>>> theirs
-=======
->>>>>>> theirs

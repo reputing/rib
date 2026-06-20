@@ -55,8 +55,8 @@ export function AppShell() {
     );
   }
 
-  // Splash is full-screen
-  if (view === "splash" || (!hasEntered && view !== "mobile" && view !== "onboarding")) {
+  // Splash is full-screen (landing/onboarding/mobile are already handled above)
+  if (view === "splash" || !hasEntered) {
     return (
       <>
         <SplashView />

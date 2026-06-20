@@ -15,7 +15,7 @@ export function FriendsView() {
     acceptFriend,
     declineFriend,
     removeFriend,
-    setActiveProfile,
+    openProfilePopup,
   } = useRibbon();
   const [tab, setTab] = useState<"all" | "online" | "pending" | "add">("all");
 

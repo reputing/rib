@@ -5,16 +5,13 @@ import { Avatar, ACCENT_HEX } from "./Avatar";
 import { useRibbon } from "@/lib/ribbon/store";
 
 export function EmbedPreview({ embed }: { embed: EmbedPreviewType }) {
-  const navigate = useRibbon((s) => s.navigate);
   const openProfilePopup = useRibbon((s) => s.openProfilePopup);
 
   return (
     <button
       onClick={() => {
-        if (embed.type === "profile") {
+        if (embed.type === "profile" || embed.type === "pinboard") {
           openProfilePopup("sol");
-        } else if (embed.type === "pinboard") {
-          navigate("pinboard", { userId: "sol" });
         }
       }}
       className="mt-2.5 block max-w-[340px] cursor-pointer overflow-hidden rounded-[12px] text-left transition"
