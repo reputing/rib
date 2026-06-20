@@ -71,7 +71,7 @@ export function ChatView() {
       <div
         className="flex w-[256px] flex-none flex-col border-r"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -182,7 +182,7 @@ export function ChatView() {
       <div
         className="hidden w-[220px] flex-none flex-col border-l lg:flex"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >

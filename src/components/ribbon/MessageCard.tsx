@@ -49,7 +49,7 @@ export function MessageCard({ message, channelId }: MessageCardProps) {
     <div
       className="group rounded-[14px] border px-4 py-3.5 transition"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {

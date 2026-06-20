@@ -65,7 +65,7 @@ export function ServerSettingsView() {
       <div
         className="flex w-[240px] flex-none flex-col border-r"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -238,7 +238,7 @@ function OverviewTab({
               width: 24,
               height: 24,
               borderRadius: 8,
-              background: "#211D17",
+              background: "var(--ribbon-elevated)",
               border: "2px solid var(--color-ribbon-bg)",
             }}
           >
@@ -249,7 +249,7 @@ function OverviewTab({
           <Label>Server Name</Label>
           <div
             className="rounded-[12px] border px-3.5 py-2.5"
-            style={{ background: "#1A1612", borderColor: "var(--color-ribbon-border)" }}
+            style={{ background: "var(--ribbon-card)", borderColor: "var(--color-ribbon-border)" }}
           >
             <span className="text-[14px] font-semibold">{server?.name ?? "Art Collective"}</span>
           </div>
@@ -257,7 +257,7 @@ function OverviewTab({
             <Label>Description</Label>
             <div
               className="min-h-[60px] rounded-[12px] border px-3.5 py-2.5"
-              style={{ background: "#1A1612", borderColor: "var(--color-ribbon-border)" }}
+              style={{ background: "var(--ribbon-card)", borderColor: "var(--color-ribbon-border)" }}
             >
               <span
                 className="text-[13px] leading-[1.5]"
@@ -339,7 +339,7 @@ function OverviewTab({
               placeholder="tag name"
               className="rounded-lg border px-2 py-1 text-[12px] outline-none"
               style={{
-                background: "#1A1612",
+                background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-terracotta)",
                 color: "var(--color-ribbon-text)",
                 width: 90,
@@ -396,7 +396,7 @@ function OverviewTab({
       <SectionTitle title="Server Banner" subtitle="Shown on Discover and invite pages" />
       <div
         className="relative flex h-[120px] cursor-pointer items-center justify-center overflow-hidden rounded-[16px] transition"
-        style={{ background: server?.banner ?? "linear-gradient(135deg, #B5BAC1 0%, #B5BAC1 50%, #80848E 100%)" }}
+        style={{ background: server?.banner ?? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #9499A2 100%)" }}
         onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.9")}
         onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
       >
@@ -417,11 +417,11 @@ function OverviewTab({
         <button
           className="cursor-pointer rounded-[12px] px-7 py-2.5 text-[13px] font-bold text-white transition"
           style={{
-            background: "#B5BAC1",
+            background: "#E8769A",
             boxShadow: "0 4px 16px rgba(255, 255, 255, 0.2)",
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.background = "#B5BAC1")}
-          onMouseLeave={(e) => (e.currentTarget.style.background = "#B5BAC1")}
+          onMouseEnter={(e) => (e.currentTarget.style.background = "#E8769A")}
+          onMouseLeave={(e) => (e.currentTarget.style.background = "#E8769A")}
         >
           save changes
         </button>
@@ -442,7 +442,7 @@ function PlaceholderTab({ title, description }: { title: string; description: st
       <div
         className="mt-6 flex flex-col items-center justify-center rounded-[16px] border py-16"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -514,7 +514,7 @@ function ToggleRow({
     <div
       className="flex items-center justify-between rounded-[14px] border px-3.5 py-3"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
       }}
     >
@@ -533,7 +533,7 @@ function ToggleRow({
         style={{
           width: 40,
           height: 22,
-          background: value ? "#80848E" : "rgba(255, 255, 255, 0.1)",
+          background: value ? "#9499A2" : "rgba(255, 255, 255, 0.1)",
           padding: 2,
         }}
       >

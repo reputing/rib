@@ -14,7 +14,7 @@ export function UserCard({ onEditBio }: { onEditBio?: () => void }) {
       <div
         className="rounded-[14px] border px-3 py-2.5"
         style={{
-          background: "#211D17",
+          background: "var(--ribbon-elevated)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -89,7 +89,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: muted ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: muted ? "#B5BAC1" : "var(--color-ribbon-text-faint)",
+          color: muted ? "#E8769A" : "var(--color-ribbon-text-faint)",
         }}
       >
         {muted ? "unmute" : "mute"}
@@ -99,7 +99,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: deafened ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: deafened ? "#B5BAC1" : "var(--color-ribbon-text-faint)",
+          color: deafened ? "#E8769A" : "var(--color-ribbon-text-faint)",
         }}
       >
         {deafened ? "undeafen" : "deafen"}
@@ -107,7 +107,7 @@ function VoiceMiniBar() {
       <button
         onClick={leaveVoice}
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
-        style={{ color: "#B5BAC1" }}
+        style={{ color: "#E8769A" }}
       >
         leave
       </button>

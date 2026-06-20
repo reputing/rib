@@ -68,8 +68,8 @@ export function ProfileView() {
       onClick={handleEnter}
       className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden"
       style={{
-        background: "#060504",
-        color: "#E8E0D6",
+        background: "#16171A",
+        color: "#E8E9ED",
         cursor: entered ? "default" : "pointer",
       }}
     >
@@ -111,15 +111,15 @@ export function ProfileView() {
         }}
         title="Toggle ambient audio"
       >
-        <Volume2 size={14} strokeWidth={2} style={{ color: "#6B5F52" }} />
+        <Volume2 size={14} strokeWidth={2} style={{ color: "#9499A2" }} />
       </button>
 
       {/* View count (top-right) */}
       <div className="absolute right-5 top-[26px] z-20 flex items-center gap-1.5">
-        <Eye size={12} strokeWidth={2} style={{ color: "#4A4038" }} />
+        <Eye size={12} strokeWidth={2} style={{ color: "#5D6067" }} />
         <span
           className="text-[11px] font-semibold"
-          style={{ color: "#4A4038" }}
+          style={{ color: "#5D6067" }}
         >
           192
         </span>
@@ -206,7 +206,7 @@ export function ProfileView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: `linear-gradient(135deg, ${accentColor}, #B5BAC1)`,
+            background: `linear-gradient(135deg, ${accentColor}, #E8769A)`,
           }}
         >
           {user.avatarLetter}
@@ -214,7 +214,7 @@ export function ProfileView() {
         <div
           className="animate-glitch mt-4 text-[32px] font-bold"
           style={{
-            color: "#E8E0D6",
+            color: "#E8E9ED",
             letterSpacing: "-1px",
             textShadow: "0 0 30px rgba(181, 186, 193, 0.25)",
           }}
@@ -224,7 +224,7 @@ export function ProfileView() {
         <div
           className="mt-1.5 text-[11px] uppercase"
           style={{
-            color: "#6B5F52",
+            color: "#9499A2",
             letterSpacing: "1px",
           }}
         >
@@ -270,7 +270,7 @@ export function ProfileView() {
         <div
           className="animate-enter-pulse mt-3 text-[10px] uppercase"
           style={{
-            color: "#4A4038",
+            color: "#5D6067",
             letterSpacing: "2px",
           }}
         >
@@ -306,7 +306,7 @@ export function ProfileView() {
             height: 88,
             borderRadius: 24,
             fontSize: 34,
-            background: `linear-gradient(135deg, ${accentColor}, #B5BAC1)`,
+            background: `linear-gradient(135deg, ${accentColor}, #E8769A)`,
             boxShadow: "0 8px 40px rgba(181, 186, 193, 0.2)",
           }}
         >
@@ -319,8 +319,8 @@ export function ProfileView() {
               width: 16,
               height: 16,
               borderRadius: "50%",
-              background: "#80848E",
-              border: "3px solid #060504",
+              background: "#9499A2",
+              border: "3px solid #16171A",
             }}
           />
         </div>
@@ -336,7 +336,7 @@ export function ProfileView() {
           >
             <span
               className="text-[9px] font-semibold"
-              style={{ color: "#4A4038", letterSpacing: "0.8px" }}
+              style={{ color: "#5D6067", letterSpacing: "0.8px" }}
             >
               UID {user.uid.toLocaleString()}
             </span>
@@ -347,7 +347,7 @@ export function ProfileView() {
         <div
           className="animate-glitch mt-1.5 text-[30px] font-bold"
           style={{
-            color: "#E8E0D6",
+            color: "#E8E9ED",
             letterSpacing: "-0.5px",
             textShadow: "0 2px 24px rgba(0, 0, 0, 0.6)",
           }}
@@ -377,7 +377,7 @@ export function ProfileView() {
         {user.bio && (
           <div
             className="mt-2 max-w-[300px] text-center text-[12px] leading-[1.6]"
-            style={{ color: "#6B5F52" }}
+            style={{ color: "#9499A2" }}
           >
             {user.bio}
           </div>
@@ -387,11 +387,11 @@ export function ProfileView() {
         {(user.pronouns || user.location) && (
           <div
             className="mt-1.5 flex items-center gap-2 text-[10px]"
-            style={{ color: "#4A4038" }}
+            style={{ color: "#5D6067" }}
           >
             {user.pronouns && <span>{user.pronouns}</span>}
             {user.pronouns && user.location && (
-              <span style={{ color: "#2A2118" }}>·</span>
+              <span style={{ color: "var(--ribbon-hover)" }}>·</span>
             )}
             {user.location && <span>{user.location}</span>}
           </div>
@@ -422,7 +422,7 @@ export function ProfileView() {
                   }}
                   title={s.label}
                 >
-                  <Icon size={13} strokeWidth={2} style={{ color: "#6B5F52" }} />
+                  <Icon size={13} strokeWidth={2} style={{ color: "#9499A2" }} />
                 </a>
               );
             })}
@@ -489,7 +489,7 @@ export function ProfileView() {
             style={{
               background: "rgba(255, 255, 255, 0.04)",
               borderColor: "var(--color-ribbon-border)",
-              color: "#6B5F52",
+              color: "#9499A2",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.background = "rgba(255, 255, 255, 0.08)";
@@ -531,13 +531,13 @@ export function ProfileView() {
             <div>
               <div
                 className="text-[10px] font-semibold"
-                style={{ color: "#6B5F52" }}
+                style={{ color: "#9499A2" }}
               >
                 {user.nowPlaying.track}
               </div>
               <div
                 className="text-[8px]"
-                style={{ color: "#4A4038" }}
+                style={{ color: "#5D6067" }}
               >
                 {user.nowPlaying.artist}
               </div>
@@ -568,7 +568,7 @@ export function ProfileView() {
         </div>
         <span
           className="text-[10px] font-semibold"
-          style={{ color: "#4A4038" }}
+          style={{ color: "#5D6067" }}
         >
           prey.lol/{user.handle}
         </span>

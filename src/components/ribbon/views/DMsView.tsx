@@ -53,7 +53,7 @@ export function DMsView() {
       <div
         className="flex w-[280px] flex-none flex-col border-r"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >

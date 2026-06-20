@@ -73,7 +73,7 @@ export function Avatar({
 export function StatusDot({
   status,
   size = 8,
-  borderBg = "#1A1612",
+  borderBg = "var(--ribbon-card)",
 }: {
   status: UserStatus;
   size?: number;

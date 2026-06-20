@@ -21,7 +21,7 @@ export function FileAttachmentChip({ file }: { file: FileAttachmentType }) {
     <button
       className="flex cursor-pointer items-center gap-2 rounded-[10px] border px-3 py-2 transition"
       style={{
-        background: "#211D17",
+        background: "var(--ribbon-elevated)",
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
@@ -63,7 +63,7 @@ export function FileRow({ file, onOpen }: { file: FileAttachmentType; onOpen?: (
       onClick={onOpen}
       className="flex w-full cursor-pointer items-center gap-3 rounded-[12px] border px-3 py-3 text-left transition"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {

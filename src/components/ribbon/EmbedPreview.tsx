@@ -19,7 +19,7 @@ export function EmbedPreview({ embed }: { embed: EmbedPreviewType }) {
       }}
       className="mt-2.5 block max-w-[340px] cursor-pointer overflow-hidden rounded-[12px] border text-left transition"
       style={{
-        background: "#211D17",
+        background: "var(--ribbon-elevated)",
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {

@@ -48,7 +48,7 @@ export function SettingsView() {
       <div
         className="flex w-[240px] flex-none flex-col border-r"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -95,7 +95,7 @@ export function SettingsView() {
           <div
             className="flex items-center gap-2 rounded-[12px] border p-3"
             style={{
-              background: "#211D17",
+              background: "var(--ribbon-elevated)",
               borderColor: "var(--color-ribbon-border)",
             }}
           >
@@ -138,7 +138,7 @@ export function SettingsView() {
               <div
                 className="mb-6 flex items-center gap-4 rounded-[12px] border p-4"
                 style={{
-                  background: "#1A1612",
+                  background: "var(--ribbon-card)",
                   borderColor: "var(--color-ribbon-border)",
                 }}
               >
@@ -233,7 +233,7 @@ export function SettingsView() {
                         background:
                           settings.dmNotifications === opt
                             ? "rgba(255, 255, 255, 0.12)"
-                            : "#211D17",
+                            : "var(--ribbon-elevated)",
                         color:
                           settings.dmNotifications === opt
                             ? "var(--color-ribbon-terracotta)"
@@ -279,7 +279,7 @@ export function SettingsView() {
                     defaultValue={settings.pushToTalkKey}
                     className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
                     style={{
-                      background: "#211D17",
+                      background: "var(--ribbon-elevated)",
                       borderColor: "var(--color-ribbon-border)",
                       color: "var(--color-ribbon-text)",
                     }}
@@ -333,7 +333,7 @@ export function SettingsView() {
                 <select
                   className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
                   style={{
-                    background: "#211D17",
+                    background: "var(--ribbon-elevated)",
                     borderColor: "var(--color-ribbon-border)",
                     color: "var(--color-ribbon-text)",
                   }}
@@ -349,7 +349,7 @@ export function SettingsView() {
                 <select
                   className="w-full rounded-[10px] border px-3 py-2 text-[12px] outline-none"
                   style={{
-                    background: "#211D17",
+                    background: "var(--ribbon-elevated)",
                     borderColor: "var(--color-ribbon-border)",
                     color: "var(--color-ribbon-text)",
                   }}
@@ -396,7 +396,7 @@ function ToggleRow({
     <div
       className="mb-3 flex items-center justify-between rounded-[12px] border p-3"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
       }}
     >

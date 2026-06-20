@@ -5,24 +5,24 @@ import { useRibbon } from "@/lib/ribbon/store";
 import { getUser } from "@/lib/ribbon/mock-data";
 
 const PARTICLES = [
-  { top: "7%", left: "14%", size: 6, color: "#B5BAC1", delay: 0, char: "✦" },
-  { top: "18%", left: "76%", size: 2, color: "#E8E0D6", delay: 0.6, dot: true },
-  { top: "28%", left: "22%", size: 2, color: "#9497A0", delay: 1.1, dot: true },
-  { top: "38%", left: "88%", size: 5, color: "#B5BAC1", delay: 1.6, char: "✦" },
-  { top: "58%", left: "6%", size: 2, color: "#B5BAC1", delay: 2.1, dot: true },
-  { top: "72%", left: "62%", size: 4, color: "#E8E0D6", delay: 0.4, char: "✦" },
-  { top: "82%", left: "32%", size: 2, color: "#9497A0", delay: 2.6, dot: true },
-  { top: "14%", left: "52%", size: 1, color: "#E8E0D6", delay: 3.1, dot: true },
-  { top: "48%", left: "94%", size: 2, color: "#B5BAC1", delay: 1.3, dot: true },
-  { top: "66%", left: "16%", size: 5, color: "#B5BAC1", delay: 0.9, char: "✦" },
-  { top: "92%", left: "74%", size: 2, color: "#E8E0D6", delay: 1.9, dot: true },
-  { top: "5%", left: "40%", size: 4, color: "#9497A0", delay: 2.3, char: "✦" },
-  { top: "52%", left: "44%", size: 1, color: "#E8E0D6", delay: 3.6, dot: true },
-  { top: "34%", left: "4%", size: 2, color: "#B5BAC1", delay: 0.2, dot: true },
-  { top: "78%", left: "86%", size: 6, color: "#E8E0D6", delay: 1.7, char: "✦" },
-  { top: "22%", left: "66%", size: 2, color: "#B5BAC1", delay: 2.9, dot: true },
-  { top: "88%", left: "10%", size: 4, color: "#B5BAC1", delay: 3.3, char: "✦" },
-  { top: "42%", left: "36%", size: 1, color: "#9497A0", delay: 0.7, dot: true },
+  { top: "7%", left: "14%", size: 6, color: "#E8769A", delay: 0, char: "✦" },
+  { top: "18%", left: "76%", size: 2, color: "#E8E9ED", delay: 0.6, dot: true },
+  { top: "28%", left: "22%", size: 2, color: "#D4638A", delay: 1.1, dot: true },
+  { top: "38%", left: "88%", size: 5, color: "#E8769A", delay: 1.6, char: "✦" },
+  { top: "58%", left: "6%", size: 2, color: "#E8769A", delay: 2.1, dot: true },
+  { top: "72%", left: "62%", size: 4, color: "#E8E9ED", delay: 0.4, char: "✦" },
+  { top: "82%", left: "32%", size: 2, color: "#D4638A", delay: 2.6, dot: true },
+  { top: "14%", left: "52%", size: 1, color: "#E8E9ED", delay: 3.1, dot: true },
+  { top: "48%", left: "94%", size: 2, color: "#E8769A", delay: 1.3, dot: true },
+  { top: "66%", left: "16%", size: 5, color: "#E8769A", delay: 0.9, char: "✦" },
+  { top: "92%", left: "74%", size: 2, color: "#E8E9ED", delay: 1.9, dot: true },
+  { top: "5%", left: "40%", size: 4, color: "#D4638A", delay: 2.3, char: "✦" },
+  { top: "52%", left: "44%", size: 1, color: "#E8E9ED", delay: 3.6, dot: true },
+  { top: "34%", left: "4%", size: 2, color: "#E8769A", delay: 0.2, dot: true },
+  { top: "78%", left: "86%", size: 6, color: "#E8E9ED", delay: 1.7, char: "✦" },
+  { top: "22%", left: "66%", size: 2, color: "#E8769A", delay: 2.9, dot: true },
+  { top: "88%", left: "10%", size: 4, color: "#E8769A", delay: 3.3, char: "✦" },
+  { top: "42%", left: "36%", size: 1, color: "#D4638A", delay: 0.7, dot: true },
 ];
 
 export function SplashView() {
@@ -42,8 +42,8 @@ export function SplashView() {
       onClick={handleEnter}
       className="relative flex h-screen w-screen cursor-default flex-col items-center justify-center overflow-hidden"
       style={{
-        background: "#060504",
-        color: "#E8E0D6",
+        background: "#16171A",
+        color: "#E8E9ED",
       }}
     >
       {/* Background gradients */}
@@ -158,7 +158,7 @@ export function SplashView() {
             height: 72,
             borderRadius: 20,
             fontSize: 28,
-            background: "linear-gradient(135deg, #B5BAC1 0%, #B5BAC1 50%, #9497A0 100%)",
+            background: "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #D4638A 100%)",
           }}
         >
           {me.avatarLetter}
@@ -168,7 +168,7 @@ export function SplashView() {
         <div
           className="animate-glitch mt-4 text-[32px] font-bold"
           style={{
-            color: "#E8E0D6",
+            color: "#E8E9ED",
             letterSpacing: "-1px",
             textShadow: "0 0 30px rgba(181, 186, 193, 0.25)",
           }}
@@ -180,7 +180,7 @@ export function SplashView() {
         <div
           className="mt-1.5 text-[11px] uppercase"
           style={{
-            color: "#6B5F52",
+            color: "#9499A2",
             letterSpacing: "1px",
           }}
         >
@@ -224,7 +224,7 @@ export function SplashView() {
               width={16}
               height={16}
               viewBox="0 0 24 24"
-              fill="#B5BAC1"
+              fill="#E8769A"
               stroke="none"
             >
               <polygon points="8 5 19 12 8 19 8 5" />
@@ -234,7 +234,7 @@ export function SplashView() {
         <div
           className="animate-enter-pulse mt-3 text-[10px] uppercase"
           style={{
-            color: "#4A4038",
+            color: "#5D6067",
             letterSpacing: "2px",
           }}
         >
@@ -257,14 +257,14 @@ export function SplashView() {
               width: 16,
               height: 16,
               borderRadius: 5,
-              background: "#B5BAC1",
+              background: "#E8769A",
             }}
           >
             p
           </div>
           <span
             className="text-[10px] font-semibold"
-            style={{ color: "#4A4038" }}
+            style={{ color: "#5D6067" }}
           >
             prey.lol
           </span>
@@ -280,15 +280,15 @@ export function SplashView() {
           style={{
             background: "rgba(255, 255, 255, 0.03)",
             borderColor: "var(--color-ribbon-border)",
-            color: "#6B5F52",
+            color: "#9499A2",
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.background = "rgba(255, 255, 255, 0.06)";
-            e.currentTarget.style.color = "#A89A88";
+            e.currentTarget.style.color = "#B5BAC1";
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = "rgba(255, 255, 255, 0.03)";
-            e.currentTarget.style.color = "#6B5F52";
+            e.currentTarget.style.color = "#9499A2";
           }}
           title="View the mobile mockup"
         >

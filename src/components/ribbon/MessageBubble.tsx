@@ -32,7 +32,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
           <div
             className="bubble-self border px-3.5 py-2.5 text-[14px] leading-[1.5]"
             style={{
-              background: "#2A2118",
+              background: "var(--ribbon-hover)",
               borderColor: "transparent",
             }}
           >
@@ -62,7 +62,7 @@ export function MessageBubble({ message }: MessageBubbleProps) {
         <div
           className="bubble-maya border px-3.5 py-2.5 text-[14px] leading-[1.5]"
           style={{
-            background: "#1A1612",
+            background: "var(--ribbon-card)",
             borderColor: "var(--color-ribbon-border)",
           }}
         >

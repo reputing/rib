@@ -42,7 +42,7 @@ export function VoiceView() {
       <div
         className="flex w-[256px] flex-none flex-col border-r"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -50,7 +50,7 @@ export function VoiceView() {
         <div className="px-3.5 pt-3.5 pb-2.5">
           <div
             className="flex items-center gap-2 rounded-[12px] px-2.5 py-2"
-            style={{ background: "#211D17" }}
+            style={{ background: "var(--ribbon-elevated)" }}
           >
             <Avatar
               letter={server?.letter ?? "A"}
@@ -131,7 +131,7 @@ export function VoiceView() {
                                 className="h-3.5 w-3.5"
                                 style={{
                                   borderRadius: 5,
-                                  background: "linear-gradient(135deg,#B5BAC1,#B5BAC1)",
+                                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
                                 }}
                               />
                             ) : (
@@ -176,7 +176,7 @@ export function VoiceView() {
                       style={{
                         width: 2,
                         borderRadius: 1,
-                        background: "#80848E",
+                        background: "#9499A2",
                         animation: `ribbon-eq-bar 0.8s ease-in-out infinite`,
                         animationDelay: `${i * 0.2}s`,
                       }}
@@ -201,13 +201,13 @@ export function VoiceView() {
                   active={!muted}
                   onClick={toggleMute}
                   icon={muted ? <MicOff size={14} /> : <Mic size={14} />}
-                  color={muted ? "#B5BAC1" : "var(--color-ribbon-text-dim)"}
+                  color={muted ? "#E8769A" : "var(--color-ribbon-text-dim)"}
                 />
                 <VoiceSidebarButton
                   active={!deafened}
                   onClick={toggleDeafen}
                   icon={<Headphones size={14} />}
-                  color={deafened ? "#B5BAC1" : "var(--color-ribbon-text-dim)"}
+                  color={deafened ? "#E8769A" : "var(--color-ribbon-text-dim)"}
                 />
                 <VoiceSidebarButton
                   onClick={() => {
@@ -215,7 +215,7 @@ export function VoiceView() {
                     navigate("dms");
                   }}
                   icon={<PhoneOff size={14} />}
-                  color="#B5BAC1"
+                  color="#E8769A"
                   danger
                 />
               </div>
@@ -295,14 +295,14 @@ export function VoiceView() {
             icon={muted ? <MicOff size={18} /> : <Mic size={18} />}
             label={muted ? "muted" : "mic"}
             active={!muted}
-            color={muted ? "#B5BAC1" : "var(--color-ribbon-text-dim)"}
+            color={muted ? "#E8769A" : "var(--color-ribbon-text-dim)"}
           />
           <VoiceControlButton
             onClick={toggleDeafen}
             icon={<Headphones size={18} />}
             label="audio"
             active={!deafened}
-            color={deafened ? "#B5BAC1" : "var(--color-ribbon-text-dim)"}
+            color={deafened ? "#E8769A" : "var(--color-ribbon-text-dim)"}
           />
           <VoiceControlButton
             onClick={() => navigate("settings", { settingsTab: "audio" })}
@@ -324,7 +324,7 @@ export function VoiceView() {
             }}
             icon={<PhoneOff size={18} />}
             label="disconnect"
-            color="#B5BAC1"
+            color="#E8769A"
             danger
           />
         </div>
@@ -351,7 +351,7 @@ function VoiceUserTile({
     <div
       className="flex flex-col items-center gap-2.5 rounded-[20px] border px-5 py-6 transition"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: speaking
           ? "rgba(128, 132, 142, 0.18)"
           : "var(--color-ribbon-border)",
@@ -367,7 +367,7 @@ function VoiceUserTile({
             borderRadius: 20,
             fontSize: 28,
             background: isMe
-              ? "linear-gradient(135deg, #B5BAC1, #B5BAC1)"
+              ? "linear-gradient(135deg, #E8769A, #E8769A)"
               : accentColor,
             animation: speaking ? "ribbon-breathe 1.5s ease-in-out infinite" : "none",
             boxShadow: speaking
@@ -393,7 +393,7 @@ function VoiceUserTile({
               justifyContent: "center",
             }}
           >
-            <MicOff size={9} strokeWidth={3} style={{ color: "#B5BAC1" }} />
+            <MicOff size={9} strokeWidth={3} style={{ color: "#E8769A" }} />
           </div>
         )}
       </div>

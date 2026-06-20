@@ -61,7 +61,7 @@ export function DiscoverView() {
       <div
         className="flex w-[256px] flex-none flex-col border-r"
         style={{
-          background: "#1A1612",
+          background: "var(--ribbon-card)",
           borderColor: "var(--color-ribbon-border)",
         }}
       >
@@ -69,7 +69,7 @@ export function DiscoverView() {
         <div className="flex items-center gap-2 px-3.5 pt-3.5 pb-2">
           <div
             className="flex h-7 w-7 items-center justify-center rounded-[9px] text-[14px] font-extrabold text-white"
-            style={{ background: "#B5BAC1" }}
+            style={{ background: "#E8769A" }}
           >
             r
           </div>
@@ -123,7 +123,7 @@ export function DiscoverView() {
           <div
             className="flex items-center gap-2.5 rounded-[14px] border px-4 py-2.5"
             style={{
-              background: "#1A1612",
+              background: "var(--ribbon-card)",
               borderColor: "var(--color-ribbon-border)",
             }}
           >
@@ -179,7 +179,7 @@ export function DiscoverView() {
                   key={s.id}
                   className="flex cursor-pointer items-center gap-3 rounded-[14px] border px-3.5 py-3 transition"
                   style={{
-                    background: "#1A1612",
+                    background: "var(--ribbon-card)",
                     borderColor: "var(--color-ribbon-border)",
                   }}
                   onMouseEnter={(e) => {
@@ -266,7 +266,7 @@ export function DiscoverView() {
                   onClick={() => joinDiscoverServer(server.id)}
                   className="flex cursor-pointer flex-col items-center rounded-[14px] border px-3.5 py-3.5 text-center transition"
                   style={{
-                    background: "#1A1612",
+                    background: "var(--ribbon-card)",
                     borderColor: "var(--color-ribbon-border)",
                   }}
                   onMouseEnter={(e) => {
@@ -344,7 +344,7 @@ function FeaturedServerCard({
     <div
       className="cursor-pointer overflow-hidden rounded-[16px] border transition"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
       }}
       onMouseEnter={(e) => {
@@ -381,7 +381,7 @@ function FeaturedServerCard({
             style={{
               background: "rgba(0, 0, 0, 0.4)",
               backdropFilter: "blur(4px)",
-              color: "#80848E",
+              color: "#9499A2",
             }}
           >
             {server.onlineCount} online
@@ -395,7 +395,7 @@ function FeaturedServerCard({
             className="-mt-6 flex h-8 w-8 flex-none items-center justify-center rounded-[10px] border-[3px] text-[13px] font-bold text-white"
             style={{
               background: ACCENT_HEX[server.accent],
-              borderColor: "#1A1612",
+              borderColor: "var(--ribbon-card)",
             }}
           >
             {server.letter}

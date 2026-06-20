@@ -151,12 +151,12 @@ export function ServerSelector({
       <button
         onClick={onClick}
         className="flex w-full cursor-pointer items-center gap-2 rounded-[12px] px-2.5 py-2 transition"
-        style={{ background: "#211D17" }}
+        style={{ background: "var(--ribbon-elevated)" }}
         onMouseEnter={(e) => {
           e.currentTarget.style.background = "#282319";
         }}
         onMouseLeave={(e) => {
-          e.currentTarget.style.background = "#211D17";
+          e.currentTarget.style.background = "var(--ribbon-elevated)";
         }}
       >
         <Avatar letter={letter} accent={accent} size={26} radius={9} />

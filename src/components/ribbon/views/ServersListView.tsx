@@ -37,7 +37,7 @@ export function ServersListView() {
         <div
           className="ml-auto flex items-center gap-2 rounded-[10px] border px-2.5 py-1.5"
           style={{
-            background: "#211D17",
+            background: "var(--ribbon-elevated)",
             borderColor: "var(--color-ribbon-border)",
           }}
         >
@@ -74,7 +74,7 @@ export function ServersListView() {
               onClick={() => setActiveServer(s.id)}
               className="group cursor-pointer overflow-hidden rounded-[14px] border text-left transition"
               style={{
-                background: "#1A1612",
+                background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-border)",
               }}
               onMouseEnter={(e) => {
@@ -128,7 +128,7 @@ export function ServersListView() {
               onClick={() => navigate("discover")}
               className="cursor-pointer overflow-hidden rounded-[14px] border text-left transition"
               style={{
-                background: "#1A1612",
+                background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-border)",
                 opacity: 0.7,
               }}

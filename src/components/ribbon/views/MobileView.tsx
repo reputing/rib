@@ -37,7 +37,7 @@ export function MobileView() {
         style={{
           width: 390,
           height: 844,
-          background: "#131010",
+          background: "#1A1B1E",
           borderRadius: 48,
           boxShadow: "0 24px 80px rgba(0,0,0,0.3), 0 0 0 8px #1a1a1a",
           color: "#EDE5D8",
@@ -117,7 +117,7 @@ export function MobileView() {
           <div
             className="flex items-center gap-2"
             style={{
-              background: "#1A1612",
+              background: "var(--ribbon-card)",
               borderRadius: 20,
               padding: "10px 14px",
               border: "1px solid var(--color-ribbon-border)",
@@ -149,7 +149,7 @@ export function MobileView() {
           style={{
             height: 82,
             padding: "0 8px 28px",
-            background: "#151210",
+            background: "var(--ribbon-bg-deep)",
             borderColor: "var(--color-ribbon-border)",
           }}
         >
@@ -194,7 +194,7 @@ export function MobileView() {
                 className="h-5 w-5"
                 style={{
                   borderRadius: 6,
-                  background: "linear-gradient(135deg,#B5BAC1,#B5BAC1)",
+                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
                 }}
               />
             }
@@ -230,10 +230,10 @@ function MobileTabButton({
       className="relative flex cursor-pointer flex-col items-center gap-1"
       style={{ padding: "4px 12px" }}
     >
-      <div style={{ color: active ? "#B5BAC1" : "#5C5045" }}>{icon}</div>
+      <div style={{ color: active ? "#E8769A" : "#80848E" }}>{icon}</div>
       <span
         className="text-[9px] font-semibold"
-        style={{ color: active ? "#B5BAC1" : "#5C5045" }}
+        style={{ color: active ? "#E8769A" : "#80848E" }}
       >
         {label}
       </span>
@@ -246,8 +246,8 @@ function MobileTabButton({
             width: 7,
             height: 7,
             borderRadius: "50%",
-            background: "#B5BAC1",
-            border: "2px solid #151210",
+            background: "#E8769A",
+            border: "2px solid var(--ribbon-bg-deep)",
           }}
         />
       )}
@@ -281,7 +281,7 @@ function MobileMessageCard({
     <div
       className="rounded-[14px] border px-3 py-2.5"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         borderColor: "var(--color-ribbon-border)",
       }}
     >

@@ -423,20 +423,20 @@ export const useRibbon = create<RibbonState>((set, get) => ({
 
 // ─── Helpers ─────────────────────────────────────────────────────
 
-// Accent colors — all muted greys (Discord-style, no vibrancy):
-//   terracotta → light grey #B5BAC1, amber → light grey #B5BAC1, sage → mid grey #80848E, mauve → mid grey #9497A0
+// Accent colors — grey + pink palette:
+//   terracotta → pink #E8769A, amber → pink #E8769A, sage → grey #9499A2, mauve → deep pink #D4638A
 export const ACCENT_HEX: Record<string, string> = {
-  terracotta: "#B5BAC1",
-  amber: "#B5BAC1",
-  sage: "#80848E",
-  mauve: "#9497A0",
+  terracotta: "#E8769A",
+  amber: "#E8769A",
+  sage: "#9499A2",
+  mauve: "#D4638A",
 };
 
 export const ACCENT_HEX_BRIGHT: Record<string, string> = {
-  terracotta: "#C9CCD2",
-  amber: "#C9CCD2",
-  sage: "#9499A2",
-  mauve: "#A8ABB2",
+  terracotta: "#F088AA",
+  amber: "#F088AA",
+  sage: "#E076A0",
+  mauve: "#E076A0",
 };
 
 export function randomAccent(): typeof ACCENTS[number] {

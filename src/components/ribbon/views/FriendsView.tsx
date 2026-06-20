@@ -77,7 +77,7 @@ export function FriendsView() {
             <div
               className="mb-4 rounded-[12px] border p-4"
               style={{
-                background: "#1A1612",
+                background: "var(--ribbon-card)",
                 borderColor: "var(--color-ribbon-border)",
               }}
             >
@@ -94,7 +94,7 @@ export function FriendsView() {
                   placeholder="prey.lol/username"
                   className="flex-1 rounded-[10px] border px-3 py-2 text-[12px] outline-none"
                   style={{
-                    background: "#211D17",
+                    background: "var(--ribbon-elevated)",
                     borderColor: "var(--color-ribbon-border)",
                     color: "var(--color-ribbon-text)",
                   }}
@@ -121,7 +121,7 @@ export function FriendsView() {
                       <div
                         key={r.id}
                         className="flex items-center gap-3 rounded-[10px] px-3 py-2.5"
-                        style={{ background: "#1A1612" }}
+                        style={{ background: "var(--ribbon-card)" }}
                       >
                         <Avatar
                           letter={u.avatarLetter}
@@ -168,7 +168,7 @@ export function FriendsView() {
                     <div
                       key={r.id}
                       className="flex items-center gap-3 rounded-[10px] px-3 py-2.5"
-                      style={{ background: "#1A1612" }}
+                      style={{ background: "var(--ribbon-card)" }}
                     >
                       <Avatar
                         letter={u.avatarLetter}
@@ -205,7 +205,7 @@ export function FriendsView() {
                         className="cursor-pointer rounded-[8px] px-2.5 py-1.5 text-[11px] font-semibold"
                         style={{
                           background: "rgba(184, 85, 68, 0.15)",
-                          color: "#B5BAC1",
+                          color: "#E8769A",
                         }}
                       >
                         <X size={11} strokeWidth={2.5} />
@@ -285,14 +285,14 @@ function FriendRow({
     <div
       className="flex items-center gap-3 rounded-[10px] px-3 py-2.5 transition"
       style={{
-        background: "#1A1612",
+        background: "var(--ribbon-card)",
         opacity: dim ? 0.55 : 1,
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.background = "#1F1A14";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.background = "#1A1612";
+        e.currentTarget.style.background = "var(--ribbon-card)";
       }}
     >
       <Avatar
@@ -333,7 +333,7 @@ function FriendRow({
         className="cursor-pointer rounded-[8px] px-2 py-1.5 text-[11px] font-semibold"
         style={{
           background: "rgba(184, 85, 68, 0.1)",
-          color: "#B5BAC1",
+          color: "#E8769A",
         }}
         title="Remove friend"
       >

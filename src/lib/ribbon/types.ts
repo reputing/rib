@@ -5,10 +5,10 @@
 export type UserStatus = "online" | "idle" | "dnd" | "offline";
 
 export type AccentColor =
-  | "terracotta" // #B5BAC1 (red)
-  | "amber"      // #B5BAC1 (yellow)
-  | "sage"       // #80848E (green)
-  | "mauve";     // #9497A0 (blue)
+  | "terracotta" // #E8769A (red)
+  | "amber"      // #E8769A (yellow)
+  | "sage"       // #9499A2 (green)
+  | "mauve";     // #D4638A (blue)
 
 export interface User {
   id: string;
