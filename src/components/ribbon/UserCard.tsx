@@ -89,7 +89,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: muted ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: muted ? "#E8769A" : "var(--color-ribbon-text-faint)",
+          color: muted ? "#ff7fae" : "var(--color-ribbon-text-faint)",
         }}
       >
         {muted ? "unmute" : "mute"}
@@ -99,7 +99,7 @@ function VoiceMiniBar() {
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
         style={{
           background: deafened ? "rgba(184, 85, 68, 0.15)" : "transparent",
-          color: deafened ? "#E8769A" : "var(--color-ribbon-text-faint)",
+          color: deafened ? "#ff7fae" : "var(--color-ribbon-text-faint)",
         }}
       >
         {deafened ? "undeafen" : "deafen"}
@@ -107,7 +107,7 @@ function VoiceMiniBar() {
       <button
         onClick={leaveVoice}
         className="cursor-pointer rounded px-1.5 py-1 text-[10px]"
-        style={{ color: "#E8769A" }}
+        style={{ color: "#ff7fae" }}
       >
         leave
       </button>

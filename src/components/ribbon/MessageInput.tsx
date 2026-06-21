@@ -63,7 +63,7 @@ export function MessageInput({ placeholder, onSend }: MessageInputProps) {
           className="flex h-7 w-7 flex-none cursor-pointer items-center justify-center rounded-full transition disabled:cursor-default"
           style={{
             background: canSend
-              ? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #D4638A 100%)"
+              ? "linear-gradient(135deg, #ff7fae 0%, #ff7fae 50%, #ff6b81 100%)"
               : "var(--ribbon-hover)",
             opacity: canSend ? 1 : 0.4,
           }}

@@ -16,7 +16,7 @@ import type { ViewId } from "@/lib/ribbon/types";
 type MobileTab = "home" | "dms" | "discover" | "boards" | "you";
 
 export function MobileView() {
-  const { navigate, activeServerId, activeChannelId, channelMessages, sendMessage } = useRibbon();
+  const { navigate, activeServerId, activeChannelId, channelMessages, sendMessage, setActiveProfile } = useRibbon();
   const [tab, setTab] = useState<MobileTab>("home");
 
   const server = servers[activeServerId];
@@ -158,7 +158,6 @@ export function MobileView() {
             label="home"
             active={tab === "home"}
             onClick={() => setTab("home")}
-            accent="terracotta"
           />
           <MobileTabButton
             icon={<MessageCircle size={20} strokeWidth={2} />}
@@ -185,7 +184,7 @@ export function MobileView() {
             active={tab === "boards"}
             onClick={() => {
               setTab("boards");
-              navigate("pinboard", { userId: "sol" });
+              setActiveProfile("sol");
             }}
           />
           <MobileTabButton
@@ -194,7 +193,7 @@ export function MobileView() {
                 className="h-5 w-5"
                 style={{
                   borderRadius: 6,
-                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
+                  background: "linear-gradient(135deg,#ff7fae,#ff7fae)",
                 }}
               />
             }
@@ -230,10 +229,10 @@ function MobileTabButton({
       className="relative flex cursor-pointer flex-col items-center gap-1"
       style={{ padding: "4px 12px" }}
     >
-      <div style={{ color: active ? "#E8769A" : "#888888" }}>{icon}</div>
+      <div style={{ color: active ? "#ff7fae" : "#888888" }}>{icon}</div>
       <span
         className="text-[9px] font-semibold"
-        style={{ color: active ? "#E8769A" : "#888888" }}
+        style={{ color: active ? "#ff7fae" : "#888888" }}
       >
         {label}
       </span>
@@ -246,7 +245,7 @@ function MobileTabButton({
             width: 7,
             height: 7,
             borderRadius: "50%",
-            background: "#E8769A",
+            background: "#ff7fae",
             border: "2px solid var(--ribbon-bg-deep)",
           }}
         />
@@ -324,8 +323,7 @@ function MobileMessageCard({
               key={i}
               className="flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px]"
               style={{
-                background: `var(--color-ribbon-${r.accent})`,
-                background: `rgba(255, 255, 255, 0.08)`,
+                background: "rgba(255, 255, 255, 0.08)",
                 borderColor: "transparent",
               }}
             >

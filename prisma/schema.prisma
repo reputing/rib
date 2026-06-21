@@ -1,32 +1,138 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  name      String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id           String   @id @default(cuid())
+  username     String
+  handle       String   @unique
+  email        String?  @unique
+  avatarLetter String?
+  accent       String   @default("terracotta")
+  status       String   @default("offline")
+  customTag    String?
+  bio          String?
+  pronouns     String?
+  location     String?
+  verified     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  ownedServers     Server[]        @relation("ServerOwner")
+  memberships      ServerMember[]
+  messages         Message[]
+  reactions        Reaction[]
+  sentRequests     FriendRequest[] @relation("RequestFrom")
+  receivedRequests FriendRequest[] @relation("RequestTo")
+  sentDMs          DirectMessage[] @relation("DMFrom")
+  receivedDMs      DirectMessage[] @relation("DMTo")
 }
 
-model Post {
+model Server {
+  id          String   @id @default(cuid())
+  name        String
+  letter      String?
+  accent      String   @default("terracotta")
+  description String?
+  isPublic    Boolean  @default(true)
+  category    String?
+  ownerId     String
+  createdAt   DateTime @default(now())
+
+  owner    User           @relation("ServerOwner", fields: [ownerId], references: [id])
+  channels Channel[]
+  members  ServerMember[]
+
+  @@index([ownerId])
+}
+
+model ServerMember {
+  id       String   @id @default(cuid())
+  serverId String
+  userId   String
+  role     String   @default("member")
+  nickname String?
+  joinedAt DateTime @default(now())
+
+  server Server @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([serverId, userId])
+  @@index([userId])
+}
+
+model Channel {
+  id       String  @id @default(cuid())
+  serverId String
+  name     String
+  type     String  @default("text")
+  topic    String?
+  position Int     @default(0)
+
+  server   Server    @relation(fields: [serverId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@index([serverId])
+}
+
+model Message {
   id        String   @id @default(cuid())
-  title     String
-  content   String?
-  published Boolean  @default(false)
+  channelId String
   authorId  String
+  text      String
   createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+
+  channel   Channel    @relation(fields: [channelId], references: [id], onDelete: Cascade)
+  author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  reactions Reaction[]
+
+  @@index([channelId])
+  @@index([authorId])
+}
+
+model Reaction {
+  id        String @id @default(cuid())
+  messageId String
+  userId    String
+  emoji     String
+
+  message Message @relation(fields: [messageId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([messageId, userId, emoji])
+}
+
+model DirectMessage {
+  id        String   @id @default(cuid())
+  fromId    String
+  toId      String
+  text      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  from User @relation("DMFrom", fields: [fromId], references: [id], onDelete: Cascade)
+  to   User @relation("DMTo", fields: [toId], references: [id], onDelete: Cascade)
+
+  @@index([fromId])
+  @@index([toId])
+}
+
+model FriendRequest {
+  id        String   @id @default(cuid())
+  fromId    String
+  toId      String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+
+  from User @relation("RequestFrom", fields: [fromId], references: [id], onDelete: Cascade)
+  to   User @relation("RequestTo", fields: [toId], references: [id], onDelete: Cascade)
+
+  @@unique([fromId, toId])
+  @@index([toId])
 }

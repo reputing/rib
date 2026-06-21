@@ -151,7 +151,7 @@ export function FloatingDock() {
       dragElastic={0}
       onDragStart={() => setIsDragging(true)}
       onDragEnd={handleDragEnd}
-      style={{ x, y, background: "var(--ribbon-elevated)" }}
+      style={{ x, y, background: "rgba(15,14,19,.5)", border: "1px solid rgba(255,255,255,.08)" }}
       className="fixed z-50 flex items-center gap-0.5 sm:gap-1 rounded-full p-1 sm:p-1.5 backdrop-blur-xl"
       data-edge={edge}
     >
@@ -220,9 +220,10 @@ function DockButton({
       className="relative flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition-all"
       style={{
         background: item.active
-          ? "linear-gradient(135deg, #E8769A 0%, #E8769A 50%, #D4638A 100%)"
+          ? "linear-gradient(135deg, #ff7fae 0%, #ff7fae 50%, #ff6b81 100%)"
           : "transparent",
         color: item.active ? "#FFFFFF" : "var(--ribbon-text-dim)",
+        boxShadow: item.active ? "0 6px 18px -6px var(--acg, rgba(255,127,174,.6))" : "none",
       }}
       title={item.label}
     >
@@ -231,11 +232,13 @@ function DockButton({
       {/* Hover label tooltip */}
       {showLabel && !item.active && (
         <div
-          className="pointer-events-none absolute whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-semibold"
+          className="pointer-events-none absolute whitespace-nowrap rounded-md px-2 py-1 text-[10px] font-semibold prey-label"
           style={{
-            background: "var(--ribbon-elevated)",
+            background: "rgba(15,14,19,.8)",
+            backdropFilter: "blur(12px)",
+            WebkitBackdropFilter: "blur(12px)",
             color: "var(--ribbon-text)",
-            border: "1px solid var(--ribbon-border)",
+            border: "1px solid rgba(255,255,255,.1)",
             // Position label based on dock orientation
             ...(isVertical
               ? { left: "100%", marginLeft: 8, top: "50%", transform: "translateY(-50%)" }

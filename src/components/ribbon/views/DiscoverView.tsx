@@ -69,7 +69,7 @@ export function DiscoverView() {
         <div className="flex items-center gap-2 px-3.5 pt-3.5 pb-2">
           <div
             className="flex h-7 w-7 items-center justify-center rounded-[9px] text-[14px] font-extrabold text-white"
-            style={{ background: "#E8769A" }}
+            style={{ background: "#ff7fae" }}
           >
             r
           </div>

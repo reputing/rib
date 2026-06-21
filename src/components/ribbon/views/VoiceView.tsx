@@ -131,7 +131,7 @@ export function VoiceView() {
                                 className="h-3.5 w-3.5"
                                 style={{
                                   borderRadius: 5,
-                                  background: "linear-gradient(135deg,#E8769A,#E8769A)",
+                                  background: "linear-gradient(135deg,#ff7fae,#ff7fae)",
                                 }}
                               />
                             ) : (
@@ -201,13 +201,13 @@ export function VoiceView() {
                   active={!muted}
                   onClick={toggleMute}
                   icon={muted ? <MicOff size={14} /> : <Mic size={14} />}
-                  color={muted ? "#E8769A" : "var(--color-ribbon-text-dim)"}
+                  color={muted ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
                 />
                 <VoiceSidebarButton
                   active={!deafened}
                   onClick={toggleDeafen}
                   icon={<Headphones size={14} />}
-                  color={deafened ? "#E8769A" : "var(--color-ribbon-text-dim)"}
+                  color={deafened ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
                 />
                 <VoiceSidebarButton
                   onClick={() => {
@@ -215,7 +215,7 @@ export function VoiceView() {
                     navigate("dms");
                   }}
                   icon={<PhoneOff size={14} />}
-                  color="#E8769A"
+                  color="#ff7fae"
                   danger
                 />
               </div>
@@ -295,14 +295,14 @@ export function VoiceView() {
             icon={muted ? <MicOff size={18} /> : <Mic size={18} />}
             label={muted ? "muted" : "mic"}
             active={!muted}
-            color={muted ? "#E8769A" : "var(--color-ribbon-text-dim)"}
+            color={muted ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
           />
           <VoiceControlButton
             onClick={toggleDeafen}
             icon={<Headphones size={18} />}
             label="audio"
             active={!deafened}
-            color={deafened ? "#E8769A" : "var(--color-ribbon-text-dim)"}
+            color={deafened ? "#ff7fae" : "var(--color-ribbon-text-dim)"}
           />
           <VoiceControlButton
             onClick={() => navigate("settings", { settingsTab: "audio" })}
@@ -324,7 +324,7 @@ export function VoiceView() {
             }}
             icon={<PhoneOff size={18} />}
             label="disconnect"
-            color="#E8769A"
+            color="#ff7fae"
             danger
           />
         </div>
@@ -367,7 +367,7 @@ function VoiceUserTile({
             borderRadius: 20,
             fontSize: 28,
             background: isMe
-              ? "linear-gradient(135deg, #E8769A, #E8769A)"
+              ? "linear-gradient(135deg, #ff7fae, #ff7fae)"
               : accentColor,
             animation: speaking ? "ribbon-breathe 1.5s ease-in-out infinite" : "none",
             boxShadow: speaking
@@ -393,7 +393,7 @@ function VoiceUserTile({
               justifyContent: "center",
             }}
           >
-            <MicOff size={9} strokeWidth={3} style={{ color: "#E8769A" }} />
+            <MicOff size={9} strokeWidth={3} style={{ color: "#ff7fae" }} />
           </div>
         )}
       </div>

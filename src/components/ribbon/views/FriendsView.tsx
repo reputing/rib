@@ -15,7 +15,7 @@ export function FriendsView() {
     acceptFriend,
     declineFriend,
     removeFriend,
-    setActiveProfile,
+    openProfilePopup,
   } = useRibbon();
   const [tab, setTab] = useState<"all" | "online" | "pending" | "add">("all");
 
@@ -205,7 +205,7 @@ export function FriendsView() {
                         className="cursor-pointer rounded-[8px] px-2.5 py-1.5 text-[11px] font-semibold"
                         style={{
                           background: "rgba(184, 85, 68, 0.15)",
-                          color: "#E8769A",
+                          color: "#ff7fae",
                         }}
                       >
                         <X size={11} strokeWidth={2.5} />
@@ -333,7 +333,7 @@ function FriendRow({
         className="cursor-pointer rounded-[8px] px-2 py-1.5 text-[11px] font-semibold"
         style={{
           background: "rgba(184, 85, 68, 0.1)",
-          color: "#E8769A",
+          color: "#ff7fae",
         }}
         title="Remove friend"
       >

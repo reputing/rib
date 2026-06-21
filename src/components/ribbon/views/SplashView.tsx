@@ -18,7 +18,7 @@ export function SplashView() {
   return (
     <div
       onClick={handleEnter}
-      className="flex h-full w-full cursor-pointer flex-col items-center justify-center"
+      className="relative flex h-full w-full cursor-pointer flex-col items-center justify-center overflow-hidden"
       style={{
         background: "var(--ribbon-bg)",
         color: "var(--ribbon-text)",
@@ -26,52 +26,68 @@ export function SplashView() {
         transition: "opacity 600ms ease",
       }}
     >
-      {/* Avatar */}
+      {/* ambient accent drift */}
       <div
-        className="flex items-center justify-center font-bold text-white"
+        className="animate-prey-drift pointer-events-none absolute"
         style={{
-          width: 64,
-          height: 64,
-          borderRadius: 16,
-          fontSize: 26,
-          background: "var(--color-ribbon-terracotta)",
+          inset: "-10%",
+          background: "radial-gradient(42% 38% at 50% 42%, var(--acg, rgba(255,127,174,.5)), transparent 62%)",
+          opacity: 0.4,
+        }}
+      />
+      {/* scanlines + vignette */}
+      <div className="prey-scanlines pointer-events-none absolute inset-0" style={{ opacity: 0.35 }} />
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ background: "radial-gradient(125% 85% at 50% 50%, transparent 38%, rgba(3,3,5,.92) 100%)" }}
+      />
+
+      {/* gradient-ring avatar */}
+      <div
+        className="relative"
+        style={{
+          padding: 2.5,
+          borderRadius: 22,
+          background: "linear-gradient(150deg, var(--ac, #ff7fae), rgba(120,116,124,.5))",
+          boxShadow: "0 0 0 1px rgba(0,0,0,.4), 0 22px 50px -18px var(--acg, rgba(255,127,174,.55))",
         }}
       >
-        {me.avatarLetter}
+        <div
+          className="flex items-center justify-center font-bold text-white"
+          style={{
+            width: 96,
+            height: 96,
+            borderRadius: 18,
+            border: "3px solid #100f14",
+            fontSize: 38,
+            background: "var(--color-ribbon-pink)",
+          }}
+        >
+          {me.avatarLetter}
+        </div>
       </div>
 
-      {/* Name */}
-      <div className="mt-4 text-[28px] font-bold" style={{ letterSpacing: "-0.5px" }}>
+      {/* name with subtle glitch */}
+      <div
+        className="animate-glitch mt-7 font-bold"
+        style={{ fontSize: 56, letterSpacing: "-.045em" }}
+      >
         {me.username}
       </div>
 
-      {/* Tag */}
-      <div className="mt-1 text-[11px]" style={{ color: "var(--ribbon-text-faint)" }}>
-        {me.customTag}
-      </div>
-
-      {/* Enter prompt */}
-      <div className="mt-6 text-[10px] uppercase" style={{ color: "var(--ribbon-text-ghost)", letterSpacing: "2px" }}>
+      {/* mono prompt */}
+      <div
+        className="prey-label animate-enter-pulse mt-4 text-[12px] font-medium"
+        style={{ letterSpacing: "0.42em", color: "var(--ac, #ff7fae)" }}
+      >
         click to enter
       </div>
 
-      {/* Branding */}
-      <div
-        className="absolute bottom-[18px] left-1/2 flex -translate-x-1/2 items-center gap-1.5"
-      >
-        <div
-          className="flex items-center justify-center text-[8px] font-extrabold text-white"
-          style={{
-            width: 16,
-            height: 16,
-            borderRadius: 4,
-            background: "var(--color-ribbon-terracotta)",
-          }}
-        >
-          p
-        </div>
-        <span className="text-[10px] font-semibold" style={{ color: "var(--ribbon-text-faint)" }}>
-          prey.lol
+      {/* footer branding */}
+      <div className="absolute bottom-[26px] flex items-center gap-2">
+        <span className="prey-pulse-dot" style={{ width: 6, height: 6, borderRadius: "50%", background: "var(--ac, #ff7fae)" }} />
+        <span className="prey-label text-[11px] font-medium" style={{ color: "var(--ribbon-text-faint)" }}>
+          {me.customTag} · prey.lol
         </span>
         <button
           onClick={(e) => {
@@ -79,8 +95,8 @@ export function SplashView() {
             useRibbon.getState().enterApp();
             useRibbon.getState().navigate("mobile");
           }}
-          className="ml-2 cursor-pointer rounded-[6px] px-2 py-1 text-[10px] font-semibold"
-          style={{ background: "var(--ribbon-card)", color: "var(--ribbon-text-faint)" }}
+          className="prey-chip ml-2 cursor-pointer rounded-[8px] px-2.5 py-1 text-[10px] font-semibold"
+          style={{ color: "var(--ribbon-text-dim)" }}
           title="View mobile"
         >
           mobile

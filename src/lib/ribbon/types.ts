@@ -4,11 +4,12 @@
 
 export type UserStatus = "online" | "idle" | "dnd" | "offline";
 
+// Legacy names kept for compatibility; the live palette is pink + grey.
 export type AccentColor =
-  | "terracotta" // #E8769A (red)
-  | "amber"      // #E8769A (yellow)
-  | "sage"       // #CCCCCC (green)
-  | "mauve";     // #D4638A (blue)
+  | "terracotta" // pink #E8769A
+  | "amber"      // pink #E8769A
+  | "sage"       // grey #CCCCCC
+  | "mauve";     // pink #D4638A
 
 export interface User {
   id: string;

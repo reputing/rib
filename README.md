@@ -1,154 +1,78 @@
-# ribbon
+# prey
 
-> chat for digital alchemists
+Chat for digital alchemists — a niche, Discord-style app for creative communities, with a dark glass aesthetic. Built with Next.js 16, React 19, TypeScript, and Tailwind CSS 4.
 
-A niche Discord-style chat app for creative communities. Warm dark terracotta aesthetic, built with Next.js 16 + TypeScript + Tailwind CSS 4 + shadcn/ui.
+## Stack
 
-## ✨ Features
+- **Next.js 16** (App Router, Turbopack) + **React 19**
+- **TypeScript 5**
+- **Tailwind CSS 4**
+- **Zustand** for client state
+- **Framer Motion** for animation
+- **Prisma 6** ORM against **Supabase** (Postgres)
+- **Lucide** icons, **Space Grotesk** / **JetBrains Mono** type
 
-- **Splash entry** — click-to-enter breathing avatar with ring pulses, particles, and glitch username
-- **Direct Messages** — conversation list with online row, search, message bubbles (left/right aligned), typing indicator
-- **Server Chat** — channels (text + voice), voice channel members, message cards with embeds, file attachments, and reactions
-- **Member list** — right sidebar grouped by role (owner/admin/mod/member) and online status
-- **Profile** — full-screen click-to-enter splash with avatar, UID, custom tag, bio, pronouns, location, social links, now-playing widget, add friend / message / guestbook actions
-- **Pinboard** — grid of pinned visual items (textures, color studies, etc.) per user, with like/comment counts
-- **Guestbook** — visitors leave signed entries on your profile
-- **Friends** — online/offline friends list, incoming/outgoing friend requests, add friend
-- **Servers list** — grid of joined servers with banners and member counts
-- **Discover** — featured collections + trending public servers, search, join/open
-- **Events** — upcoming events with host, attendees, RSVP, categories (voice/stream/irl/release/critique)
-- **Files** — shared files browser with list/grid toggle, type filter, search
-- **Voice** — voice channel UI with participant tiles, mute/deafen/share/disconnect controls, speaking indicators, channel info (ping, bitrate, duration)
-- **Settings** — tabs for Profile, Appearance (accent color, reduce motion), Notifications, Audio (voice activity, push-to-talk, volumes), Privacy
-
-## 🎨 Design System
-
-The exact palette from the original HTML mockups:
-
-| Token | Hex |
-|---|---|
-| Background | `#131010` |
-| Sidebar | `#1A1612` |
-| Card / elevated | `#211D17` |
-| Hover | `#2A2118` |
-| Text primary | `#EDE5D8` |
-| Text dim | `#A89A88` |
-| Text muted | `#736757` |
-| Text faint | `#5C5045` |
-| Text ghost | `#4A4038` |
-| Terracotta (primary) | `#C4654A` |
-| Rust | `#B85544` |
-| Amber | `#D4944C` |
-| Sage (online) | `#7BA87A` |
-| Mauve | `#8B7FA0` |
-
-Font: **Quicksand** (400/500/600/700).
-
-## 🛠 Tech Stack
-
-- Next.js 16 (App Router)
-- TypeScript 5
-- Tailwind CSS 4
-- shadcn/ui (New York style)
-- Zustand (client state)
-- Lucide React (icons)
-- Framer Motion (available)
-
-## 🚀 Run locally
+## Getting started
 
 ```bash
 bun install
 bun run dev
 ```
 
-Open http://localhost:3000 — you'll see the splash screen. Click to enter.
+Open [http://localhost:3000](http://localhost:3000). The UI starts on the landing page and runs off in-memory mock data, so it works with no database configured.
 
-> **Windows users:** if `bun install` fails with `ENOSPC`, your disk is full OR bun's cache is corrupted. Fix with:
-> ```powershell
-> # 1. Check disk space
-> Get-PSDrive C | Select-Object Used,Free
->
-> # 2. Clear bun cache
-> bun pm cache rm
->
-> # 3. Delete the broken node_modules and lockfile, then retry
-> Remove-Item -Recurse -Force node_modules
-> Remove-Item -Force bun.lock
-> bun install
-> ```
->
-> If bun still struggles, fall back to npm:
-> ```powershell
-> Remove-Item -Recurse -Force node_modules -ErrorAction SilentlyContinue
-> npm install
-> npx next dev -p 3000
-> ```
+## Database (Supabase + Prisma)
 
-## 📁 Structure
+The Prisma schema in [`prisma/schema.prisma`](prisma/schema.prisma) models the core domain — users, servers, channels, messages, reactions, direct messages, and friend requests. Two API routes read from it: `/api/health` (connectivity check) and `/api/servers`.
+
+1. Create a project at [supabase.com](https://supabase.com).
+2. In **Project Settings → Database → Connection string**, copy both the **pooled** (Transaction, port 6543) and **direct** (Session, port 5432) URIs.
+3. Copy `.env.example` to `.env` and fill in:
+   - `DATABASE_URL` — the pooled URI (append `?pgbouncer=true`); used by the app at runtime.
+   - `DIRECT_URL` — the direct URI; used by Prisma for migrations.
+4. Push the schema and seed it from the mock data:
+
+```bash
+bun run db:push
+bun run db:seed
+```
+
+`bun run db:generate` regenerates the Prisma client (also runs automatically on install).
+
+## Deploy to Vercel
+
+1. Push this repo to GitHub.
+2. Import it at [vercel.com/new](https://vercel.com/new) — Next.js is detected automatically.
+3. Add `DATABASE_URL` and `DIRECT_URL` as environment variables (same values as your `.env`).
+4. Deploy. `prisma generate` runs on install via the `postinstall` script, so the client is built for the serverless runtime.
+
+After the first deploy, run `bun run db:push` and `bun run db:seed` locally against the same database to create and populate the tables.
+
+## Project layout
 
 ```
 src/
 ├── app/
-│   ├── globals.css         # Ribbon palette + animations
-│   ├── layout.tsx          # Quicksand font, dark mode
-│   └── page.tsx            # Renders <AppShell />
+│   ├── api/            # health + servers route handlers
+│   ├── globals.css     # palette, glass + motion utilities
+│   ├── layout.tsx      # fonts, theme, toaster
+│   └── page.tsx        # renders <AppShell />
 ├── components/
-│   └── ribbon/
-│       ├── AppShell.tsx     # View router
-│       ├── BottomDock.tsx   # Universal bottom navigation
-│       ├── Avatar.tsx       # Avatar + status dot + accent helpers
-│       ├── ChannelItem.tsx  # Sidebar channel + voice channel + server selector
-│       ├── ConversationItem.tsx
-│       ├── EmbedPreview.tsx # Embedded profile/pinboard preview
-│       ├── FileAttachment.tsx
-│       ├── MemberItem.tsx   # MemberRow + OnlineRow
-│       ├── MessageBubble.tsx # DM-style bubble
-│       ├── MessageCard.tsx   # Channel-style message card
-│       ├── MessageInput.tsx
-│       ├── Reaction.tsx
-│       ├── Shared.tsx        # DateDivider, SearchBar, SectionLabel
-│       ├── TypingIndicator.tsx
-│       ├── UserCard.tsx
-│       └── views/
-│           ├── SplashView.tsx
-│           ├── DMsView.tsx
-│           ├── ChatView.tsx
-│           ├── ProfileView.tsx
-│           ├── ServersListView.tsx
-│           ├── DiscoverView.tsx
-│           ├── FriendsView.tsx
-│           ├── SettingsView.tsx
-│           ├── PinboardView.tsx
-│           ├── GuestbookView.tsx
-│           ├── VoiceView.tsx
-│           ├── EventsView.tsx
-│           └── FilesView.tsx
+│   ├── ribbon/         # app components + views (DMs, chat, voice, profile, …)
+│   └── ui/             # toast primitives
+├── hooks/
 └── lib/
-    └── ribbon/
-        ├── types.ts         # All TypeScript types
-        ├── mock-data.ts     # Users, servers, channels, messages, DMs, etc.
-        └── store.ts         # Zustand store (view routing, messages, friends, settings)
+    ├── db.ts           # Prisma client singleton
+    └── ribbon/         # types, mock data, Zustand store
 ```
 
-## 🎯 State management
+`AppShell` is the view router; navigation, messages, friends, settings, and the biolink editor all live in the Zustand store (`src/lib/ribbon/store.ts`).
 
-Single Zustand store (`useRibbon`) handles:
-- View navigation (`view`, `params`, `navigate()`)
-- Splash → app transition (`hasEntered`, `enterApp()`)
-- Active server / channel / DM / profile / settings tab
-- Voice state (joined, muted, deafened)
-- Channel messages (send, toggle reaction)
-- DMs (send, mark read)
-- Friends (accept, decline, remove)
-- Event RSVPs
-- User settings (reduce motion, accent color, audio, privacy, etc.)
+## Notes
 
-## 📝 Notes
+- The interface currently renders from mock data; the Supabase layer and API routes are the foundation for moving that state server-side.
+- `bun run lint` and `bun run build` are the checks run before deploying.
 
-- All data is mock data — reload resets state. No backend.
-- The bottom dock is the universal navigation — home (ribbon r), DMs, servers (A/D/G/M), discover, add, pinboard, guestbook, files, friends, voice.
-- The original 3 HTML mockups (DMs, Profile, Chat) are faithfully reproduced and extended with 10 additional working screens.
-
-## 📜 License
+## License
 
 MIT
